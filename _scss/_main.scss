@@ -1,0 +1,43 @@
+// <Media  Queries
+@media (max-width: 720px) {
+  .dashboard-main > .container {
+    display: block;
+  }
+  .side-bar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    transition: all 300ms ease;
+    min-width: 100vw;
+    z-index: 50;
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  .left-caption {
+    button {
+      display: block !important;
+    }
+    h3 {
+      font-size: small;
+    }
+  }
+  .dashboard .feeds-container {
+    display: block;
+
+    .feed {
+      margin-bottom: 1.3rem;
+    }
+  }
+
+  // Forms
+  // image prev
+  .product-upload-gallery.selected .selected_images {
+    display: block !important;
+  }
+  .form-sections {
+    display: block;
+  }
+}

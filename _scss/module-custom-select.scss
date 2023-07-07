@@ -1,0 +1,122 @@
+@import "variables";
+
+.custom_select {
+  position: relative;
+  flex: 1 1;
+
+  .custome_select_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: hsla(120, 100%, 25%, 0.171);
+    transition: all 1s ease;
+  }
+  .select_btn.some-input {
+    // margin-bottom: 5px;
+    // cursor: pointer;
+    // border: 2px solid var(--clr-white);
+    // border-radius: 5px;
+  }
+  .selected_info {
+    display: none;
+  }
+  .select_btn.input-rounded {
+    padding: 9px 12px;
+    border-radius: 1.5rem;
+    border: 2px solid var(--clr-white);
+  }
+  &.active .data_container {
+    display: block;
+  }
+  .data_container {
+    display: none;
+  }
+  .select_content {
+    position: absolute;
+    width: 100%;
+    background-color: $clr-white;
+    z-index: 20;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: form-anim 500ms ease forwards;
+  }
+
+  @keyframes form-anim {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .select_content .options,
+  .select_content .select_search {
+    border-radius: 5px;
+    box-shadow: var(--bs-2);
+    padding: 10px;
+    background: var(--clr-white-l);
+    border: 2px solid hsla($hsl-clr-white, 0.5);
+  }
+  .select_content .select_search {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .select_content input:hover ~ .search_icon,
+  .select_content input:focus ~ .search_icon,
+  .select_content input:active ~ .search_icon {
+    color: var(--clr-success);
+  }
+  .select_content input:hover,
+  .select_content input:focus,
+  .select_content input:active {
+    border: none;
+    outline: none;
+    // border-bottom: 1px solid var(--clr-success);
+  }
+  .select_content input {
+    padding: 0;
+    padding-left: 30px;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: transparent;
+    // border-bottom: 1px solid var(--clr-white);
+    border-radius: 0;
+  }
+  .select_icon.active {
+    transform: rotate(180deg);
+  }
+  .select_icon {
+    transition: transform 400ms ease;
+  }
+  .search_icon {
+    position: absolute;
+    left: 12px;
+    bottom: 13px;
+  }
+
+  .options {
+    max-height: 150px;
+    overflow: auto;
+    padding: 0 10px;
+  }
+
+  .options li {
+    padding: 6px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .options li.selected,
+  .options li:hover {
+    background: var(--clr-danger);
+  }
+  #null-value {
+    padding: 10px;
+    background: #333;
+    color: #eee;
+    text-align: center;
+    font-size: 0.89rem;
+    border-radius: 10px;
+  }
+}

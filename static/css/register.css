@@ -1,0 +1,124 @@
+body {
+  font-size: 0.9rem;
+}
+
+.main-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100vh;
+  padding: 50px 1rem;
+  background-color: hsl(218, 50%, 91%);
+}
+.main-container .container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.form-logo {
+  display: block;
+  width: 120px;
+  margin: 0 auto;
+}
+
+.screen-1 {
+  background: hsl(213, 85%, 97%);
+  padding: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 30px;
+  -webkit-box-shadow: 0 0 2em hsl(231, 62%, 94%);
+          box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  gap: 2em;
+}
+.screen-1 .form-error {
+  border-radius: 5px;
+  border-left: 5px solid hsl(334, 100%, 67%);
+  background: hsl(0, 0%, 100%);
+  padding: 15px;
+  color: hsl(334, 100%, 67%);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.screen-1 .form-group {
+  background: hsl(0, 0%, 100%);
+  -webkit-box-shadow: 0 0 2em hsl(231, 62%, 94%);
+          box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.3em;
+  border-radius: 20px;
+  color: hsl(0, 0%, 30%);
+  margin-bottom: 1em;
+}
+.screen-1 .form-group input {
+  outline: none;
+  border: none;
+}
+.screen-1 .form-group input::-webkit-input-placeholder {
+  color: hsl(0, 0%, 34%);
+  font-size: 0.9em;
+}
+.screen-1 .form-group input::-moz-placeholder {
+  color: hsl(0, 0%, 34%);
+  font-size: 0.9em;
+}
+.screen-1 .form-group input:-ms-input-placeholder {
+  color: hsl(0, 0%, 34%);
+  font-size: 0.9em;
+}
+.screen-1 .form-group input::-ms-input-placeholder {
+  color: hsl(0, 0%, 34%);
+  font-size: 0.9em;
+}
+.screen-1 .form-group input::placeholder {
+  color: hsl(0, 0%, 34%);
+  font-size: 0.9em;
+}
+.screen-1 .form-group .fas {
+  color: hsl(0, 0%, 30%);
+}
+.screen-1 .password .show-hide {
+  cursor: pointer;
+}
+.screen-1 .login-btn {
+  padding: 1em;
+  background: hsl(233, 36%, 38%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.footer {
+  font-size: 0.8rem;
+  padding-top: 2em;
+  padding-bottom: 3em;
+}
+.footer a {
+  color: hsl(0, 0%, 37%);
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: inherit;
+}

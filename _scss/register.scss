@@ -1,0 +1,102 @@
+$p: hsl(213deg 85% 97%);
+$s: hsl(233deg 36% 38%);
+$warning: hsl(29, 100%, 67%);
+$danger: hsl(334, 100%, 67%);
+body {
+  font-size: 0.9rem;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 50px 1rem;
+
+  background-color: hsl(218deg 50% 91%);
+  // background-image: url("/static/media/hero-bg.jpg");
+  // background-position: center;
+
+  // background-size: cover;
+  // background-blend-mode: soft-light;
+
+  .container {
+    width: 100%;
+    max-width: 450px;
+  }
+}
+.form-logo {
+  display: block;
+  width: 120px;
+  margin: 0 auto;
+}
+.screen-1 {
+  background: $p;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 2em hsl(231deg 62% 94%);
+  gap: 2em;
+
+  .form-error {
+    border-radius: 5px;
+    border-left: 5px solid $danger;
+    background: hsl(0deg 0% 100%);
+    padding: 15px;
+    color: $danger;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .form-group {
+    background: hsl(0deg 0% 100%);
+    box-shadow: 0 0 2em hsl(231deg 62% 94%);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    border-radius: 20px;
+    color: hsl(0deg 0% 30%);
+    margin-bottom: 1em;
+    input {
+      outline: none;
+      border: none;
+      &::placeholder {
+        color: hsl(0, 0%, 34%);
+        font-size: 0.9em;
+      }
+    }
+    .fas {
+      color: hsl(0deg 0% 30%);
+    }
+  }
+  .password {
+    .show-hide {
+      cursor: pointer;
+    }
+  }
+  .login-btn {
+    padding: 1em;
+    background: hsl(233deg 36% 38%);
+    color: hsl(0 0 100);
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    width: 100%;
+  }
+}
+
+.footer {
+  font-size: 0.8rem;
+  padding-top: 2em;
+  padding-bottom: 3em;
+  a {
+    color: hsl(0deg 0% 37%);
+  }
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: inherit;
+}
