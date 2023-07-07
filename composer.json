@@ -1,0 +1,6 @@
+{
+    "require": {
+        "devlee/x-mvc-core": "^1.1",
+        "devlee/x-router": "^1.0"
+    }
+}

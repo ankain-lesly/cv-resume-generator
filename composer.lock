@@ -1,0 +1,93 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "b6d364fa5bd9d7f19a86f9727c1e7693",
+    "packages": [
+        {
+            "name": "devlee/x-mvc-core",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ankain-lesly/php-mvc-core.git",
+                "reference": "a1b084564cb8c09f1df788e384593c8c2eb2b6c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ankain-lesly/php-mvc-core/zipball/a1b084564cb8c09f1df788e384593c8c2eb2b6c3",
+                "reference": "a1b084564cb8c09f1df788e384593c8c2eb2b6c3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Devlee\\mvccore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ankain Lesly",
+                    "email": "leeleslyank@gmail.com"
+                }
+            ],
+            "description": "A PHP data access and manipulation module implementing the mvc pattern",
+            "support": {
+                "issues": "https://github.com/ankain-lesly/php-mvc-core/issues",
+                "source": "https://github.com/ankain-lesly/php-mvc-core/tree/v1.1.0"
+            },
+            "time": "2023-07-07T15:48:32+00:00"
+        },
+        {
+            "name": "devlee/x-router",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ankain-lesly/php-router-core.git",
+                "reference": "06f18adbbad698d484c4abae39199004e5178fd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ankain-lesly/php-router-core/zipball/06f18adbbad698d484c4abae39199004e5178fd7",
+                "reference": "06f18adbbad698d484c4abae39199004e5178fd7",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Devlee\\XRouter\\": "x-router/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ankain Lesly",
+                    "email": "leeleslyank@gmail.com"
+                }
+            ],
+            "description": "Create a Fast, secure, efficient and support multiple and amazing features PHP routing package",
+            "support": {
+                "issues": "https://github.com/ankain-lesly/php-router-core/issues",
+                "source": "https://github.com/ankain-lesly/php-router-core/tree/v1.0.1"
+            },
+            "time": "2023-07-07T16:52:22+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
