@@ -1,0 +1,38 @@
+@import "variables";
+
+$p: hsl(213deg 85% 97%);
+$s: hsl(233deg 36% 38%);
+$warning: hsl(29, 100%, 67%);
+$danger: hsl(334, 100%, 67%);
+
+.main-header {
+  // border-bottom: 2px solid hsla(var(--hsl-clr-bg), 0.3);
+  // color: #fff;
+  background: $color-bg;
+  .main-header-title {
+    font-size: 1.2rem;
+    color: var(--clr-light);
+  }
+  .container {
+    padding-inline: 1rem;
+  }
+  .white {
+    color: #fff;
+    border-color: #fff;
+  }
+  .back-btn {
+    font-size: 0.8rem;
+  }
+}
+.register {
+  .layout-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .layout {
+    min-height: calc(100vh - 60px);
+  }
+  .meta {
+    background-color: $color-bg;
+  }
+}

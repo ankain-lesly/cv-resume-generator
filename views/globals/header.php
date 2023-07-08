@@ -1,6 +1,7 @@
 <header class="main-header">
   <div class="container-x gap-2 flex between header-h">
-    <a href="/">
+    <a href="/" class="flex gap-x">
+      <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Logo" width="30px">
       <h1 class="main-header-title"><span class="clr-warning">CV </span> Maker</h1>
     </a>
     <nav class="nav-menu">
