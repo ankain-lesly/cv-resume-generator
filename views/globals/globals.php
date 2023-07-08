@@ -7,16 +7,15 @@ function createCSSLink($stylesheet)
 
     for ($i = 0; $i < count($stylesheet); $i++) {
       $sheet = $stylesheet[$i];
-      $links  .= '<link rel="stylesheet" href="/static/css/' . $sheet . '.css">';
+      $links  .= '<link rel="stylesheet" href="/static/styles/' . $sheet . '.css">';
     }
 
     return $links;
   }
 
-  $link  = '<link rel="stylesheet" href="/static/css/' . $stylesheet . '.css">';
+  $link  = '<link rel="stylesheet" href="/static/styles/' . $stylesheet . '.css">';
   return $link;
 }
-// include_once __DIR__."/../../env.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,8 +24,7 @@ function createCSSLink($stylesheet)
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description"
-    content="HND CV Maker, Create amazing CV's downloadable in PDF with our awesome resume maker" />
+  <meta name="description" content="HND CV Maker, Create amazing CV's downloadable in PDF with our awesome resume maker" />
 
   <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700&display=swap" rel="stylesheet"> -->
   <!-- <script src="https://kit.fontawesome.com/8ea543231b.js" crossorigin="anonymous"></script> -->
