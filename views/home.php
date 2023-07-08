@@ -1,15 +1,4 @@
-<?php
-include_once "./static/globals/head-tags.php";
-?>
-</head>
-
-<body>
-  <div class="root">
-    <div class="hero-container">
-      <!-- HEADER -->
-      <?php include_once "./static/globals/header.php"; ?>
-      <!-- HERO -->
-      <div class="hero-banner section-p">
+<div class="hero-banner section-p">
         <div class="container-x flex">
           <div class="content">
             <h2><span class="clr-warning">HND</span> - CV Maker <br> Be the host of your creativity</h2>
@@ -66,8 +55,3 @@ include_once "./static/globals/head-tags.php";
         </div>
       </div>
     </section>
-
-    <?php include_once "./static/globals/footer.php"; ?>
-</body>
-
-</html>

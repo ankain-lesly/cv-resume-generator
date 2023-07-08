@@ -1,6 +1,22 @@
 {
-    "require": {
-        "devlee/x-mvc-core": "^1.1",
-        "devlee/x-router": "^1.0"
+  "name": "devlee/resume-generator",
+  "description": "Fast and Awesome resume/cv generator application",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "App\\": "./"
     }
+  },
+  "authors": [
+    {
+      "name": "Ankain Lesly",
+      "email": "leeleslyank@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "devlee/x-mvc-core": "^1.1",
+    "devlee/x-router": "^1.0"
+  }
 }

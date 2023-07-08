@@ -17,15 +17,15 @@
     <div class="column">
       <h3>Quick Actions</h3>
       <a href="/">CV Maker</a>
-      <a href="#track-now">Get Started</a>
-      <a href="/login.php">Signup</a>
-      <a href="/register.php">Login now</a>
+      <a href="#">Get Started</a>
+      <a href="/login">Signup</a>
+      <a href="/register">Login now</a>
     </div>
     <div class="column">
       <h3>Top Collections</h3>
       <a href="#">Our Designs</a>
       <a href="#services">Our Service</a>
-      <a href="/ship">Steps To Take</a>
+      <a href="#">Steps To Take</a>
       <a href="#carriers">Tutorials</a>
     </div>
     <div class="column">
@@ -40,10 +40,3 @@
   <p>Copyright &copy; CV-Maker 2020</p>
   <small><small class="clr-warning">X Exprience</small>
 </footer>
-</div>
-<!-- // Demo Scripts -->
-<script src="/static/scripts/jQuery.min.js"></script>
-<script src="/static/scripts/home.js"></script>
-</body>
-
-</html>

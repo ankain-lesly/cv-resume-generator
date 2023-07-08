@@ -1,6 +1,4 @@
 <?php
-include_once __DIR__ . "/../../../connect/Models/DataAccess.php";
-
 use App\Models\DataAccess;
 
 $admin  = $_SESSION['user']['role'];

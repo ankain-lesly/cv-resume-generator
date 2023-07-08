@@ -2,5 +2,5 @@
 <title>Home - HND CV Maker</title>
 
 <?php
-echo createCSSLink('home', 'style');
+echo createCSSLink('style');
 ?>

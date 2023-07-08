@@ -1,3 +1,3 @@
 <?php
-define("ROOT_URL", "http://usp-carriers-services.000webhostapp.com/");
-define("MAIN_EMAIL", "letechcg@gmail.com");
+define("ROOT_URL", "http://www.mysite.com/");
+define("MAIN_EMAIL", "leeleslyank@gmail.com");

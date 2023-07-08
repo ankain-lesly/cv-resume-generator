@@ -89,7 +89,7 @@
             <i class="fas fa-search"></i>
           </button>
           <div class="search-action">
-            <form action="/module.php">
+            <form action="/module">
               <label for="search">Search </label>
               <div class="form-group flex relative">
                 <i class="fas fa-search icon-seach"></i>
@@ -105,8 +105,8 @@
         </button>
         <?php if (!isset($_SESSION['user']['name'])) : ?>
         <div class="flex gap-x">
-          <a href="/login.php" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
-          <a href="/register.php" class="btn btn-p">Signup</a>
+          <a href="/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
+          <a href="/register" class="btn btn-p">Signup</a>
         </div>
         <?php else : ?>
         <button class="notification-btn btnB white">

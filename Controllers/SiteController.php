@@ -1,13 +1,13 @@
 <?php
 
-namespace app\controllers;
+namespace App\controllers;
 
-use app\models\Post;
-use app\router\Request;
-use app\router\Response;
-use app\router\Router;
+use App\models\Post;
+use Devlee\XRouter\Request;
+use Devlee\XRouter\Response;
+use Devlee\XRouter\Router;
 
-class MainController
+class SiteController
 {
   public function __construct()
   {
@@ -15,26 +15,8 @@ class MainController
   }
   public function index(Request $req, Response $res)
   {
-    $postObj = new Post();
-
-    // Pagination settings
-    $paginate = [
-      "current_page" => 1,
-      "page_limit" => 6,
-      "order_by" => '',
-    ];
-
-    // Get Posts with Pagination settings
-    $response = $postObj->findAll('', '', $paginate);
-
-    // Sending Data to views
-    $data = [
-      'posts' => $response['data'] ?? [],
-      'pagination' => $response['pagination_info'] ?? [],
-    ];
-
     // Rendering home view
-    $res->render("home", $data);
+    $res->render("home");
   }
 
   public function contact(Request $req, Response $res)
