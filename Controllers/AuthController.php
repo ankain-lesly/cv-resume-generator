@@ -21,13 +21,13 @@ class AuthController
     // $this->DataAccess = new DataAccess();
   }
 
-  
+
   // Login
   public function login(Request $req, Response $res)
   {
     // $data = $req->body();
     // $user = $UserObj->findOne(['email' => $data['email']]);
-    
+
     // if($user) {
     //   //set Sessions
     //   exit('setting user sessions');
@@ -36,29 +36,29 @@ class AuthController
   }
 
   // LOGIN 
-//   public function login()
-//   {
-//     $data = $_POST;
-//     $validate = CustomErrorValidator::validateData($data, 'sanitize');
+  //   public function login()
+  //   {
+  //     $data = $_POST;
+  //     $validate = CustomErrorValidator::validateData($data, 'sanitize');
 
-//     if (!empty($validate['errors']))
-//       return $validate;
+  //     if (!empty($validate['errors']))
+  //       return $validate;
 
-//     $res = $this->user->login($validate['data']);
+  //     $res = $this->user->login($validate['data']);
 
-//     return $res;
+  //     return $res;
 
-    
-// if (isset($_POST['login'])) {
-//   $UserObj = (new UserController)->login();
 
-//   if ($UserObj === false) {
-//     $UserObj['errors'] = ['Invalid Login credentialss'];
-//     $UserObj['data'] = ['email' => $_POST['email']];
-//   }
-//   // // exit();
-// }
-//   }
+  // if (isset($_POST['login'])) {
+  //   $UserObj = (new UserController)->login();
+
+  //   if ($UserObj === false) {
+  //     $UserObj['errors'] = ['Invalid Login credentialss'];
+  //     $UserObj['data'] = ['email' => $_POST['email']];
+  //   }
+  //   // // exit();
+  // }
+  //   }
   // UPDATE PROFILE
   public function updateProfile()
   {
@@ -72,6 +72,6 @@ class AuthController
     if (!empty($validate['errors']))
       return $validate;
 
-    return $this->user->update($validate['data']);
+    // return $this->UserObj->update($validate['data']);
   }
 }

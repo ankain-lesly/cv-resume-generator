@@ -1,4 +1,5 @@
-<div class="hero-banner section-p">
+    <div class="hero-container">
+      <div class="hero-banner section-p">
         <div class="container-x flex">
           <div class="content">
             <h2><span class="clr-warning">HND</span> - CV Maker <br> Be the host of your creativity</h2>

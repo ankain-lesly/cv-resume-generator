@@ -1,3 +1,5 @@
-<h1>Ooops - 404</h1>
+<div class="container-x">
+  <h1>Ooops - 404</h1>
 
-<p>This page is not found</p>
+  <p>This page is not found</p>
+</div>
