@@ -1,3 +1,33 @@
 # Router
 
     to static setLayout()
+
+## Router SetLayout()
+
+```php
+  public static function setLayout(string $layout_dir)
+  {
+    return self::$router->response::$LAYOUT_MAIN = $layout_dir;
+  }
+```
+
+## Router InterceptRequest()
+
+```php
+public function interceptRequest($path = null)
+  {
+    $server_root = str_replace('\\', "/", strtolower($_SERVER['DOCUMENT_ROOT']));
+    $app_root = str_replace('\\', "/", strtolower(self::$ROOT_DIR));
+
+    $route = str_replace($server_root, '', $app_root);
+
+    $path = $path ?? $this->request->path();
+
+    if (!str_contains($path, '_/')) return;
+    $path = explode('_/', $path);
+    $path = '/' . end($path);
+
+    $route = $route . $path;
+    $this->response->redirect($route, 200);
+  }
+```

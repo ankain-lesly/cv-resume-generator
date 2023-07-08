@@ -1,4 +1,5 @@
 vendor
+.vscode
 API.md
 00FA
 #00FA -> FontsAwsesome Package

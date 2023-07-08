@@ -80,7 +80,7 @@
     </nav>
 
     <div class="header-actions">
-      <div class="actions flex">
+      <div class="actions flex gap-x">
         <button class="theme-btn btnB white">
           <i class="fas fa-sun"></i>
         </button>
@@ -93,26 +93,25 @@
               <label for="search">Search </label>
               <div class="form-group flex relative">
                 <i class="fas fa-search icon-seach"></i>
-                <input class="search-module flex-1" type="search" name="keyword" id="search"
-                  placeholder="Search our collections" />
+                <input class="search-module flex-1" type="search" name="keyword" id="search" placeholder="Search our collections" />
                 <button class=" search-module">Go</button>
               </div>
             </form>
           </div>
         </div>
-        <button class="nav-menu-btn btnB mobile ml-1 white">
+        <button class="nav-menu-btn btnB mobile white">
           <i class="fas fa-bars"></i>
         </button>
         <?php if (!isset($_SESSION['user']['name'])) : ?>
-        <div class="flex gap-x">
-          <a href="/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
-          <a href="/register" class="btn btn-p">Signup</a>
-        </div>
+          <div class="flex gap-x">
+            <a href="/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
+            <a href="/register" class="btn btn-p">Signup</a>
+          </div>
         <?php else : ?>
-        <button class="notification-btn btnB white">
-          <i class="fas fa-bell"></i>
-        </button>
-        <?php include_once "profile-links.php"; ?>
+          <button class="notification-btn btnB white">
+            <i class="fas fa-bell"></i>
+          </button>
+          <?php include_once "profile-links.php"; ?>
         <?php endif; ?>
       </div>
     </div>

@@ -27,6 +27,7 @@ $router->config("views", "layouts/main", "_404");
 
 $router->get("/", [SiteController::class, 'index']);
 $router->get("/dashboard", "@dashboard");
+$router->get("/module", "Module");
 
 // $router->get("/create/post", [SiteController::class, 'createPost']);
 // $router->post("/create/post", [SiteController::class, 'createPost']);
