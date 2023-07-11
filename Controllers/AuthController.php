@@ -31,36 +31,36 @@ class AuthController
     $res->json($user);
   }
 
-  // Register New User
-  // public function register(Request $req, Response $res)
-  // {
-  //   if($req->isPost()) {
-  //     $data = $req->body();
+  Register New User
+  public function register(Request $req, Response $res)
+  {
+    if($req->isPost()) {
+      $data = $req->body();
 
-  //     $this->UserObj->loadData($data);
+      $this->UserObj->loadData($data);
 
-  //     if ($this->UserObj->validate() && $this->UserObj->save()) {
+      if ($this->UserObj->validate() && $this->UserObj->save()) {
 
-  //       // Setting User
-  //       $data['_sess_token'] = Library::generateToken(16);
-  //       $this->setUser($data);
+        // Setting User
+        $data['_sess_token'] = Library::generateToken(16);
+        $this->setUser($data);
 
-  //       // Setting Toast
-  //       Session::setToast("toast", 'Hi, '.$data['username'].'. 😎');
-  //       return $res->json([
-  //         "_sess_token" => $data["_sess_token"],
-  //         "_success" => true,
-  //       ]);
-  //     }
+        // Setting Toast
+        Session::setToast("toast", 'Hi, '.$data['username'].'. 😎');
+        return $res->json([
+          "_sess_token" => $data["_sess_token"],
+          "_success" => true,
+        ]);
+      }
 
-  //     // Form Errors
-  //     $errors =  $this->UserObj->getErrors();
-  //     return $res->status(422)->json($errors);
-  //   }
+      // Form Errors
+      $errors =  $this->UserObj->getErrors();
+      return $res->status(422)->json($errors);
+    }
 
-  //   // Register Page
-  //   $res->render('signup');
-  // }
+    // Register Page
+    $res->render('signup');
+  }
 
   // Login
   // public function login(Request $req, Response $res)
