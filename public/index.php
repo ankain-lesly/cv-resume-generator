@@ -13,16 +13,7 @@ use App\controllers\AuthController;
 
 $router = new Router(__DIR__);
 
-// Database Configurations
-
-$DB_Config['host'] 		= 'localhost';
-$DB_Config['user'] 		= 'root';
-$DB_Config['password'] 	= '';
-$DB_Config['name'] 		= 'db_demo_blog';
-
-DBModel::SetDatabaseDetails($DB_Config);
 // Router Configurations
-
 $router->config("views", "layouts/main", "_404");
 
 $router->interceptRequest();
