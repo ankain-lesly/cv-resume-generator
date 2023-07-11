@@ -12,32 +12,55 @@ class User extends DBModel
     public string $email = '';
     public string $phone = '';
     public string $password = '';
+    public string $confirm_password = '';
 
     public static function tableName(): string
     {
-        return 'users';
+        return 'tblusers';
     }
 
     public function attributes(): array
     {
-        return ["userID","username","email","phone","password"];
+        // attr: user_id
+        return ["username","email","phone","password"];
     }
 
     public function rules()
     {
+        // return [
+        //   "userID" => [self::RULE_REQUIRED],
+        //   "username" => [self::RULE_REQUIRED],
+        //   "email" => [self::RULE_REQUIRED],
+        //   "phone" => [self::RULE_REQUIRED],
+        //   "password" => [self::RULE_REQUIRED],
+        // ];
         return [
-          "userID" => [self::RULE_REQUIRED],
-          "username" => [self::RULE_REQUIRED],
-          "email" => [self::RULE_REQUIRED],
-          "phone" => [self::RULE_REQUIRED],
-          "password" => [self::RULE_REQUIRED],
+            // Logins
+            'login_user' => [self::RULE_REQUIRED],
+            'login_password' => [self::RULE_REQUIRED],
+
+            // Singups
+            'username' => [self::RULE_REQUIRED],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [
+                self::RULE_UNIQUE, 'class' => self::class
+            ]],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 4]],
+            'confirm_password' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
         ];
     }
 
     public function save()
     {
         // return parent::insert();
-        return $this->insert();
+        $this->password = self::hashString($this->password);
+        // return $this->insert();
+        return true;
     }
 
+    public static function hashString(string $string) {
+        return password_hash($string, PASSWORD_DEFAULT);
+    }
+    public static function verifyHashed(string $string, string $hashedString) {
+        return password_verify($string, $hashedString);
+    }
 }

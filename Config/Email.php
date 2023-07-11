@@ -2,7 +2,7 @@
 namespace App\Config;
 
 class sendEmail {
-  private String $logo = ROOT_URL."static/media/UPS_logo.svg"; 
+  private String $logo = ROOT_URL."static/media/logo.svg"; 
   private string $main_email = MAIN_EMAIL;
 
   
@@ -25,7 +25,7 @@ class sendEmail {
       $header = '
         <div class="header" style="color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 12px; background-color: #351c15;">
           <img src="'.$this->logo.'" alt="Logo">
-          <h4>UPS Carriers</h4>
+          <h4>Content Heading</h4>
         </div>';
 
 
@@ -48,12 +48,12 @@ class sendEmail {
   // Set Email Headers
   public function setHeaders($sender_email) {
     if($sender_email) {
-      $headers = "From: UPS Carriers <$sender_email> \r\n";
+      $headers = "From: My Website <$sender_email> \r\n";
     } else {
-      $headers = "From: UPS Carriers <$this->main_email> \r\n";
+      $headers = "From: My Website <$this->main_email> \r\n";
     }
 
-    $headers .= "Cc: UPS Customer Service <$this->main_email> \r\n";
+    $headers .= "Cc: My Website Customer Service <$this->main_email> \r\n";
     $headers .= "MIME-Version: 1.0 \r\n";
     $headers .= "Content-type: text/html; charset=UTF-8 \r\n";
     $headers .= "Reply-To: $this->main_email \r\n ";

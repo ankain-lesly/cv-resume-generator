@@ -31,3 +31,11 @@ public function interceptRequest($path = null)
     $this->response->redirect($route, 200);
   }
 ```
+## Use send to resent text content on reponse instead of content
+
+## Delete Post File form mvc core
+
+## Add session module to mvc core
+
+## Database
+## BaseModel
