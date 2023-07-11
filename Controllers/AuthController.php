@@ -31,7 +31,7 @@ class AuthController
     $res->json($user);
   }
 
-  // Register User
+  // Register New User
   // public function register(Request $req, Response $res)
   // {
   //   if($req->isPost()) {
@@ -70,7 +70,7 @@ class AuthController
 
   //     $this->UserObj->loadData($data);
   //     $where = ['email' => $data['login_user']];
-      
+
   //     if ($this->UserObj->validate($data) && $this->UserObj->save()) {
 
   //       // Setting User
