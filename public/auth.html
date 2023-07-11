@@ -2,12 +2,62 @@
 <html>
 <head>
 	<title>Authentication Simulator</title>
+	<link rel="stylesheet" type="text/css" href="./static/styles/index.css">
 	<style>
+		form {
+			max-width: 450px;
+			margin: auto;
+		}
+
+		.form-group {
+			margin-bottom: 10px;
+		}
+
+		.form-group input{
+			padding: 0.4em 1em;
+		}
+		.form-group.error input{
+			border-color: red;
+			padding: 0.4em 1em;
+		}
+		.form-group .message {
+			color: red;
+			display: none;
+			font-size: 0.8rem;
+		}
+		.form-group.error .message{
+			margin-top: 0.25em;
+			display: block;
+		}
+
 		
 	</style>
 </head>
 <body>
 	<!-- Signup Form -->
+	<section class="container-x section-p">
+		<form id="signup">
+			<h3>Signup Form</h3><br>
+			<div class="form-group">
+				<input type="text" name="username" placeholder="Enter username">
+				<div class="message"></div>
+			</div>
+			<div class="form-group">
+				<input type="text" name="email" placeholder="Enter email address">
+				<div class="message"></div>
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" placeholder="Enter password">
+				<div class="message"></div>
+			</div>
+			<div class="form-group">
+				<input type="password" name="confirm_password" placeholder="Confirm password">
+				<div class="message"></div>
+			</div>
+
+			<button class="signup-btn">SUBMIT</button>
+		</form>
+	</section>
 	<!-- Login Form -->
 
 	<!-- Javascript Controll -->
@@ -17,7 +67,68 @@
 	<!-- User Authentication -->
 	<!-- End -->
 
-	<script src="static/scripts/token.js"></script>
-	<script src="static/scripts/auth.js"></script>
+	<script src="static/scripts/jQuery.min.js"></script>
+	<!-- <script src="static/scripts/token.js"></script> -->
+	<!-- <script src="static/scripts/auth.js"></script> -->
+
+	<script>
+		$('#signup').on('submit', function(e) {
+			e.preventDefault();
+
+			const data = {};
+			data.username = e.target.username.value.trim();
+			data.email = e.target.email.value.trim();
+			data.password = e.target.password.value.trim();
+			data.confirm_password = e.target.confirm_password.value.trim();
+
+			// makeAjax("get", 'http://localhost:8500/api/test/', {});
+			makeFetch("GET", 'http://localhost:8500/api/test/', {});
+		})
+
+		function makeAjax(method, url, data) {
+			console.log('Request..')
+			let return_data;
+
+			$.ajax({
+				type: method,
+				url: url,
+				data: data,
+				// dataType: "json"
+				success: (res) => {
+					console.log(res)
+					console.log('Response..')
+				}
+			})
+
+			console.log('End..')
+		}
+
+		async function makeFetch(method, url, data) {
+			console.log('Request..')
+			let return_data;
+
+			const config = {
+				method: method,
+				headers: {
+					// "Accept": "application/json",
+					"Accept": "*",
+					// "Content-Type": "application/json", 
+				}
+			}
+
+			if(method.toUpperCase() !== "GET") config.body = JSON.stringify(data);
+
+
+			const response = await fetch(url, config);
+
+			console.log(response);
+
+			return_data = await response.json();
+
+			console.log(return_data);
+
+			console.log('End..')
+		}
+	</script>
 </body>
 </html>
