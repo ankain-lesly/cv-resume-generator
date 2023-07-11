@@ -25,11 +25,11 @@ class AuthController
   }
 
   // Fetch User
-  // public function user(Request $req, Response $res) {
-  //   $user = $this->UserObj->findOne(['id'=>1]);
+  public function user(Request $req, Response $res) {
+    $user = $this->UserObj->findOne(['id'=>1]);
 
-  //   $res->json($user);
-  // }
+    $res->json($user);
+  }
 
   // Register User
   // public function register(Request $req, Response $res)
