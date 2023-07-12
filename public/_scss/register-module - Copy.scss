@@ -78,13 +78,6 @@ $danger: hsl(334, 100%, 67%);
     }
   }
   .form-group {
-    &.error {
-      border-color: $clr-danger;
-
-      .icon {
-        color: $clr-danger;
-      }
-    }
     margin-bottom: 1em;
 
     border: 1px solid hsla($hsl-clr-bg, 0.5);
@@ -92,9 +85,9 @@ $danger: hsl(334, 100%, 67%);
 
     padding: 10px 0.6em 5px;
     position: relative;
-    // .content {
-    //  position: relative;
-    // }
+    .content {
+      // position: relative;
+    }
     input:active,
     input:focus {
       box-shadow: none;
@@ -122,15 +115,14 @@ $danger: hsl(334, 100%, 67%);
       // border: 1px solid #fff;
       background-color: transparent;
       width: 100%;
-      height: 100%;
-      // border-radius: 0.3em;
+      border-radius: 0.3em;
       padding: 0;
-      font-size: 0.95rem;
+      font-size: 0.8rem;
       color: $clr-bg;
     }
-    // input::placeholder {
-    //   opacity: 0;
-    // }
+    input::placeholder {
+      opacity: 0;
+    }
     input::-webkit-autofil,
     input::-webkit-autofil:focus,
     input:-webkit-autofil:active {
@@ -148,10 +140,10 @@ $danger: hsl(334, 100%, 67%);
       color: $clr-text-muted;
     }
     .icon {
-      margin-right: 8px;
+      // margin-right: 8px;
       // margin-bottom: 5px;
-      width: 20 px;
-      font-size: 1.25rem;
+      width: 25px;
+      font-size: 1.5rem;
     }
     .input-label {
       position: absolute;
@@ -161,16 +153,15 @@ $danger: hsl(334, 100%, 67%);
     }
     .input-label,
     .status-msg {
-      left: 0.5em;
+      left: 3rem;
       // left: 0;
     }
     .status-msg {
       line-height: 0.8;
       position: absolute;
-      top: 100%;
+      bottom: -5px;
       background-color: $clr-danger;
       color: $clr-dark;
-      border-radius: 0 0 0.25em 0.25em;
       font-weight: 500;
       padding: 2px 0.5rem;
       font-size: 0.8rem;
@@ -179,22 +170,22 @@ $danger: hsl(334, 100%, 67%);
     input:focus ~ .status-msg {
       background-color: $clr-success;
     }
-    // .input-line.motion {
-    //   width: 0%;
-    //   transition: all 400ms ease;
-    //   left: 50%;
-    //   transform: translateX(-50%);
-    // }
-    // .input-line {
-    //   position: absolute;
-    //   width: 100%;
-    //   bottom: 0;
-    //   left: ;
-    //   border-bottom: 2px solid hsla($hsl-clr-white, 0.5);
-    // }
-    // .input-line.error {
-    //   border-color: $clr-danger;
-    // }
+    .input-line.motion {
+      width: 0%;
+      transition: all 400ms ease;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .input-line {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      border-bottom: 2px solid hsla($hsl-clr-white, 0.5);
+    }
+    .input-line.error {
+      border-color: $clr-danger;
+    }
   }
   .form_btn {
     width: 100%;
