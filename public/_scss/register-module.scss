@@ -53,24 +53,8 @@ $danger: hsl(334, 100%, 67%);
   padding: 1.5rem 0;
   // border-radius: 5px;
   margin: auto;
+  animation: form-display 300ms ease forwards;
 
-  .form-head {
-    background: $clr-bg-l;
-    box-shadow: $bs;
-    color: $clr-white;
-    padding: 1rem 10px;
-    border-radius: 0.5em;
-  }
-  .container {
-    // background-color: $clr-bg-l;
-    // box-shadow: $bs;
-    border-radius: 10px;
-    // overflow: hidden;
-    // transform: scaleX(1.3);
-    // opacity: 0;
-    // padding-bottom: 3px;
-    // animation: form-display 300ms ease forwards;
-  }
   @keyframes form-display {
     to {
       transform: scaleX(1);
@@ -84,13 +68,17 @@ $danger: hsl(334, 100%, 67%);
       .icon {
         color: $clr-danger;
       }
+
+      .status-msg {
+        display: block;
+      }
     }
     margin-bottom: 1em;
 
     border: 1px solid hsla($hsl-clr-bg, 0.5);
     border-radius: 0.5em;
 
-    padding: 10px 0.6em 5px;
+    padding: 5px 0.6em;
     position: relative;
     // .content {
     //  position: relative;
@@ -127,6 +115,7 @@ $danger: hsl(334, 100%, 67%);
       padding: 0;
       font-size: 0.95rem;
       color: $clr-bg;
+      flex: 1 0;
     }
     // input::placeholder {
     //   opacity: 0;
@@ -148,7 +137,7 @@ $danger: hsl(334, 100%, 67%);
       color: $clr-text-muted;
     }
     .icon {
-      margin-right: 8px;
+      margin-right: 5px;
       // margin-bottom: 5px;
       width: 20 px;
       font-size: 1.25rem;
@@ -175,36 +164,39 @@ $danger: hsl(334, 100%, 67%);
       padding: 2px 0.5rem;
       font-size: 0.8rem;
       transition: var(--transition);
+      display: none;
+      text-overflow: ellipsis;
+      z-index: 20;
     }
     input:focus ~ .status-msg {
       background-color: $clr-success;
     }
-    // .input-line.motion {
-    //   width: 0%;
-    //   transition: all 400ms ease;
-    //   left: 50%;
-    //   transform: translateX(-50%);
-    // }
-    // .input-line {
-    //   position: absolute;
-    //   width: 100%;
-    //   bottom: 0;
-    //   left: ;
-    //   border-bottom: 2px solid hsla($hsl-clr-white, 0.5);
-    // }
-    // .input-line.error {
-    //   border-color: $clr-danger;
-    // }
   }
   .form_btn {
     width: 100%;
     border-radius: 5px;
     padding: 8px;
+    background-color: $color-bg;
+    color: $clr-light;
+    font-size: 0.9em;
+    .p-main {
+      display: block;
+    }
+    .p-odd {
+      display: none;
+    }
+
+    &.process {
+      .p-main {
+        display: none;
+      }
+      .p-odd {
+        display: block;
+      }
+    }
   }
-  .form_btn:hover {
-    background-color: $clr-success;
-    border-color: transparent;
-    opacity: 1 !important;
+  .form_btn:not(.process):hover {
+    background-color: $clr-bg;
   }
   .footer a:hover {
     color: $clr-success;
