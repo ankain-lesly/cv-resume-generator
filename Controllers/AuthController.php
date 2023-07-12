@@ -20,6 +20,16 @@ class AuthController
 
   public function __construct()
   {
+
+    /**
+     * Introducing middle wares
+     *
+     * Middleware => AuthMiddleware
+     *  ::isUser(token);
+     *  ::isAdmin(role);
+     *
+     */
+    
     $this->UserObj = new User();
     $this->session = new Session();
     Router::setLayout('layouts/auth');
