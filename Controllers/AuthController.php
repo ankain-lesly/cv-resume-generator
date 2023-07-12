@@ -15,20 +15,27 @@ use Devlee\mvccore\Library;
 class AuthController
 {
   private User $UserObj;
+  private Session $session;
   // private $DataAccess;
 
   public function __construct()
   {
     $this->UserObj = new User();
+    $this->session = new Session();
     Router::setLayout('layouts/auth');
     // $this->DataAccess = new DataAccess();
   }
 
   // Fetch User
-  public function user(Request $req, Response $res) {
-    $user = $this->UserObj->findOne(['id'=>1]);
+  public function get_user_info(Request $req, Response $res) {
+    $user = $this->session->get('user');
+    $token = $req->body('_sess_token');
 
-    $res->json($user);
+    if($user && $user['_sess_token'] === $token) {
+      return $res->json($this->UserObj->findOne(['userID' => $user['userID']]));
+    }
+
+    $res->status(401)->json(['message' => 'Unauthorized...']);
   }
 
   // Register New User
@@ -46,8 +53,8 @@ class AuthController
         $this->setUser($data);
 
         // Setting Toast
-        Session::setToast("toast", 'Hi, '.$data['username'].'. 😎');
-        echo json_encode($_SESSION);
+        $this->session->setToast("toast", 'Hi, '.$data['username'].'. 😎');
+        
         return $res->json([
           "_sess_token" => $data["_sess_token"],
           "_signup" => true,
@@ -88,7 +95,7 @@ class AuthController
         $this->setUser($user_data);
 
         // Setting Toast
-        Session::setToast("toast", 'Welcome back, '.$data['username'].'. 😎');
+        $this->session->setToast("toast", 'Welcome back, '.$data['username'].'. 😎');
         return $res->json([
           "_sess_token" => $user_data["_sess_token"],
           "_login" => true,
@@ -111,9 +118,9 @@ class AuthController
   public function logout($req, $res)
   {
     // Clearing user data
-    Session::clear('user');
+    $this->session->clear('user');
     // Setting Toast
-    Session::setToast("toast", 'You have been logged out: ✔');
+    $this->session->setToast("toast", 'You have been logged out: ✔');
     $res->json([
       "_logout" => true,
     ]);
@@ -126,8 +133,8 @@ class AuthController
       'email' => $data['email'],
       'role' => $data['role'] ?? "USER",
       'profile' => $data['profile_image'] ?? '',
-      'token' => $data['_sess_token'],
+      '_sess_token' => $data['_sess_token'],
     );
-    Session::set('user', $user_data);
+    $this->session->set('user', $user_data);
   }
 }

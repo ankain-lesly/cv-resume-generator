@@ -29,7 +29,7 @@ $router->get("/create/post", [SiteController::class, 'createPost']);
 $router->post("/api/create/post", [SiteController::class, 'createPost']);
 
 //Auth Test
-$router->get("/user", [AuthController::class, 'user']);
+$router->get("/info", [AuthController::class, 'get_user_info']);
 
 $router->get("/login", [AuthController::class, 'login']);
 $router->post("/api/auth/login", [AuthController::class, 'login']);

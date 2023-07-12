@@ -22,7 +22,7 @@ class User extends DBModel
     public function attributes(): array
     {
         // attr: user_id
-        return ["username","email","phone","password"];
+        return ["userID", "username","email","phone","password"];
     }
 
     public function rules()
