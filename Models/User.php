@@ -27,14 +27,8 @@ class User extends DBModel
 
     public function rules()
     {
-        // return [
-        //   "userID" => [self::RULE_REQUIRED],
-        //   "username" => [self::RULE_REQUIRED],
-        //   "email" => [self::RULE_REQUIRED],
-        //   "phone" => [self::RULE_REQUIRED],
-        //   "password" => [self::RULE_REQUIRED],
-        // ];
         return [
+            'userID' => [self::RULE_REQUIRED],
             'username' => [self::RULE_REQUIRED],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [
                 self::RULE_UNIQUE, 'class' => self::class
@@ -48,8 +42,7 @@ class User extends DBModel
     {
         // return parent::insert();
         $this->password = self::hashString($this->password);
-        // return $this->insert();
-        return true;
+        return $this->insert();
     }
 
     public static function hashString(string $string) {

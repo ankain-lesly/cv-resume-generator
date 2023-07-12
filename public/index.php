@@ -28,9 +28,13 @@ $router->get("/module", "Module");
 $router->get("/create/post", [SiteController::class, 'createPost']);
 $router->post("/api/create/post", [SiteController::class, 'createPost']);
 
+//Auth Test
 $router->get("/user", [AuthController::class, 'user']);
+
 $router->get("/login", [AuthController::class, 'login']);
 $router->post("/api/auth/login", [AuthController::class, 'login']);
+
+$router->get("/api/auth/logout", [AuthController::class, 'logout']);
 
 $router->get("/register", [AuthController::class, 'register']);
 $router->post("/api/auth/register", [AuthController::class, 'register']);

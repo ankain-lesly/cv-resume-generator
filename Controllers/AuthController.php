@@ -36,20 +36,21 @@ class AuthController
   {
     if($req->isPost()) {
       $data = $req->body();
+      $data['userID'] = Library::generateToken(12);
 
       $this->UserObj->loadData($data);
 
       if ($this->UserObj->validate() && $this->UserObj->save()) {
-
         // Setting User
         $data['_sess_token'] = Library::generateToken(16);
         $this->setUser($data);
 
         // Setting Toast
         Session::setToast("toast", 'Hi, '.$data['username'].'. 😎');
+        echo json_encode($_SESSION);
         return $res->json([
           "_sess_token" => $data["_sess_token"],
-          "_success" => true,
+          "_signup" => true,
         ]);
       }
 
@@ -105,9 +106,23 @@ class AuthController
     $res->render('login');
   }
 
+
+  // Login
+  public function logout($req, $res)
+  {
+    // Clearing user data
+    Session::clear('user');
+    // Setting Toast
+    Session::setToast("toast", 'You have been logged out: ✔');
+    $res->json([
+      "_logout" => true,
+    ]);
+  }
+
   private function setUser(array $data) {
     $user_data = array(
-      'username' => $data['username'],
+      'name' => $data['username'],
+      'userID' => $data['userID'],
       'email' => $data['email'],
       'role' => $data['role'] ?? "USER",
       'profile' => $data['profile_image'] ?? '',
