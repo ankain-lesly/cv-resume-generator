@@ -9,4 +9,4 @@
 define("DB_HOST", "localhost");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "");
-define("DB_NAME", "db_cv_creator");
+define("DB_NAME", "db_cv_generator");

@@ -1,7 +1,8 @@
 <?php
+
 declare(strict_types=1);
-header('Accept-Control-Allow-Origin:*');
-header("Content-Type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin:*');
+// header("Content-Type: application/json; charset=UTF-8");
 
 /** User: Dev Lee ... */
 require_once __DIR__ . "/../vendor/autoload.php";

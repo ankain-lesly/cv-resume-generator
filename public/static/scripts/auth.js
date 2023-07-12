@@ -1,38 +1,47 @@
 // Import Token Component
-console.log("Handling Registration");
+// import { makeFetch } from "./token.js";
 
-$("#login_form").on("submit", function (e) {
+// console.log(makeFetch);
+
+$("#login_form").on("submit", async function (e) {
   e.preventDefault();
 
-  const data = {};
-  data.username = e.target.username.value.trim();
-  data.password = e.target.password.value.trim();
+  const formData = {};
+  formData.username = e.target.username.value.trim();
+  formData.password = e.target.password.value.trim();
 
-  // makeAjax("get", 'http://localhost:8500/api/test/', {});
-  makeFetch("GET", "http://localhost:8500/api/test/", {});
+  // makeAjax("POST", "http://localhost:8500/api/auth/login", formData);
+  const { data, response } = await makeFetch(
+    "POST",
+    "http://localhost:8500/api/auth/login",
+    formData
+  );
+
+  if (data.errors) return displayFormErrors(data.errors);
+  if (!data.errors && data.message) return errorMessage(data.message);
+
+  console.log(response);
+  if (response.ok && response.status === 200) {
+    alert("Login Successfull");
+  }
 });
-
-function makeAjax(method, url, data) {
-  console.log("Request..");
-  let return_data;
-
-  $.ajax({
-    type: method,
-    url: url,
-    data: data,
-    // dataType: "json"
-    success: (res) => {
-      console.log(res);
-      console.log("Response..");
-    },
-  });
-
-  console.log("End..");
-}
+// Remove error on keypress
+$("#login_form input").on("keyup", function (e) {
+  setTimeout(() => {
+    $(this).closest(".form-group").removeClass("error");
+  }, 500);
+});
+// Toggle Pass Visibility
+$("[data-toggle-type]").on("click", function (e) {
+  const key = $(this)[0].dataset.toggleType;
+  const inputType = $(key).attr("type") === "text" ? "password" : "text";
+  $(key).attr("type", inputType);
+  $(this).toggleClass("fa-eye-slash");
+});
 
 async function makeFetch(method, url, data) {
   console.log("Request..");
-  let return_data;
+  const return_data = {};
 
   const config = {
     method: method,
@@ -40,18 +49,34 @@ async function makeFetch(method, url, data) {
       // "Accept": "application/json",
       Accept: "*",
       // "Content-Type": "application/json",
+      // Authorization: "Bearer xyz",
     },
   };
 
   if (method.toUpperCase() !== "GET") config.body = JSON.stringify(data);
 
-  const response = await fetch(url, config);
+  const res = await fetch(url, config).catch((err) => {
+    console.log(err);
+    // console.log(err.response.data);
+  });
+  return_data.data = await res.json();
+  const response = { ok: res.ok, status: res.status };
 
-  console.log(response);
+  return_data.response = response;
+  return return_data;
+}
 
-  return_data = await response.json();
+function displayFormErrors(errors) {
+  $.each(errors, (key, array) => {
+    const $parent = $(`#${key}`).closest(".form-group");
+    $parent.addClass("error");
+    $parent.find(".status-msg").text(array.errors[0]);
+  });
+}
 
-  console.log(return_data);
+function errorMessage(message) {
+  const $parent = $(".form-group");
+  $parent.addClass("error");
 
-  console.log("End..");
+  $(".status-msg").text(message);
 }

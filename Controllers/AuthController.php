@@ -29,7 +29,7 @@ class AuthController
      *  ::isAdmin(role);
      *
      */
-    
+
     $this->UserObj = new User();
     $this->session = new Session();
     Router::setLayout('layouts/auth');
@@ -38,11 +38,12 @@ class AuthController
 
   // Fetch User
   // Basis Authentication
-  public function get_user_info(Request $req, Response $res) {
+  public function get_user_info(Request $req, Response $res)
+  {
     $user = $this->session->get('user');
     $token = $req->body('_sess_token');
 
-    if($user && $user['_sess_token'] === $token) {
+    if ($user && $user['_sess_token'] === $token) {
       return $res->json($this->UserObj->findOne(['userID' => $user['userID']]));
     }
 
@@ -52,7 +53,7 @@ class AuthController
   // Register New User
   public function register(Request $req, Response $res)
   {
-    if($req->isPost()) {
+    if ($req->isPost()) {
       $data = $req->body();
       $data['userID'] = Library::generateToken(12);
 
@@ -64,8 +65,8 @@ class AuthController
         $this->setUser($data);
 
         // Setting Toast
-        $this->session->setToast("toast", 'Hi, '.$data['username'].'. 😎');
-        
+        $this->session->setToast("toast", 'Hi, ' . $data['username'] . '. 😎');
+
         return $res->json([
           "_sess_token" => $data["_sess_token"],
           "_signup" => true,
@@ -84,19 +85,19 @@ class AuthController
   // Login
   public function login(Request $req, Response $res)
   {
-    if($req->isPost()) {
+    if ($req->isPost()) {
       $data = $req->body();
 
       $this->UserObj->loadData($data);
-      $where = ['email' => $data['username'], 'username' => $data['username']];
+      $where = ['email' => $data['username'] ?? false, 'username' => $data['username'] ?? false];
 
       $user_data = $this->UserObj->findOne($where, [], 'OR');
       if ($this->UserObj->validate($data) && $user_data) {
         // Checking User Password
-        
-        if(!$this->UserObj->verifyHashed($data['password'], $user_data['password'])) {
+
+        if (!$this->UserObj->verifyHashed($data['password'], $user_data['password'])) {
           $error_response = [
-            'message' => 'Error: User or password is incorrect'
+            'message' => 'Username or password is incorrect'
           ];
 
           return $res->status(422)->json($error_response);
@@ -106,7 +107,7 @@ class AuthController
         $this->setUser($user_data);
 
         // Setting Toast
-        $this->session->setToast("toast", 'Welcome back, '.$data['username'].'. 😎');
+        $this->session->setToast("toast", 'Welcome back, ' . $data['username'] . '. 😎');
         return $res->json([
           "_sess_token" => $user_data["_sess_token"],
           "_login" => true,
@@ -137,7 +138,8 @@ class AuthController
     ]);
   }
 
-  private function setUser(array $data) {
+  private function setUser(array $data)
+  {
     $user_data = array(
       'name' => $data['username'],
       'userID' => $data['userID'],
