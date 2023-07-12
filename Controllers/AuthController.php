@@ -31,7 +31,7 @@ class AuthController
     $res->json($user);
   }
 
-  Register New User
+  // Register New User
   public function register(Request $req, Response $res)
   {
     if($req->isPost()) {
@@ -63,36 +63,47 @@ class AuthController
   }
 
   // Login
-  // public function login(Request $req, Response $res)
-  // {
-  //   if($req->isPost()) {
-  //     $data = $req->body();
+  public function login(Request $req, Response $res)
+  {
+    if($req->isPost()) {
+      $data = $req->body();
 
-  //     $this->UserObj->loadData($data);
-  //     $where = ['email' => $data['login_user']];
+      $this->UserObj->loadData($data);
+      $where = ['email' => $data['username'], 'username' => $data['username']];
 
-  //     if ($this->UserObj->validate($data) && $this->UserObj->save()) {
+      $user_data = $this->UserObj->findOne($where, [], 'OR');
+      if ($this->UserObj->validate($data) && $user_data) {
+        // Checking User Password
+        
+        if(!$this->UserObj->verifyHashed($data['password'], $user_data['password'])) {
+          $error_response = [
+            'message' => 'Error: User or password is incorrect'
+          ];
 
-  //       // Setting User
-  //       $data['_sess_token'] = Library::generateToken(16);
-  //       $this->setUser($data);
+          return $res->status(422)->json($error_response);
+        }
 
-  //       // Setting Toast
-  //       Session::setToast("toast", 'Hi, '.$data['username'].'. 😎');
-  //       return $res->json([
-  //         "_sess_token" => $data["_sess_token"],
-  //         "_success" => true,
-  //       ]);
-  //     }
+        $user_data['_sess_token'] = Library::generateToken(16);
+        $this->setUser($user_data);
 
-  //     // Form Errors
-  //     $errors =  $this->UserObj->getErrors();
-  //     return $res->status(422)->json($errors);
-  //   }
+        // Setting Toast
+        Session::setToast("toast", 'Welcome back, '.$data['username'].'. 😎');
+        return $res->json([
+          "_sess_token" => $user_data["_sess_token"],
+          "_login" => true,
+        ]);
+      }
 
-  //   // Register Page
-  //   $res->render('login');
-  // }
+      // Form Errors
+      $errors =  $this->UserObj->getErrors();
+      $errors['message'] = 'Invalid login credentials';
+
+      return $res->status(422)->json($errors);
+    }
+
+    // Register Page
+    $res->render('login');
+  }
 
   private function setUser(array $data) {
     $user_data = array(
