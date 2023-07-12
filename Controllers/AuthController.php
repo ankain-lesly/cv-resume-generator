@@ -27,6 +27,7 @@ class AuthController
   }
 
   // Fetch User
+  // Basis Authentication
   public function get_user_info(Request $req, Response $res) {
     $user = $this->session->get('user');
     $token = $req->body('_sess_token');
