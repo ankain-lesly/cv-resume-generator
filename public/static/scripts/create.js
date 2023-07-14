@@ -1,4 +1,16 @@
-import { generateEducationTemplate } from "./form_objects.js";
+import { generateFormCard } from "./form_objects.js";
+
+// Form section Objects
+const form_object_edu = {
+  title: "Education",
+  className: "education",
+  form_object: "edu_object",
+};
+const form_object_exp = {
+  title: "W Experience",
+  className: "experience",
+  form_object: "exp_object",
+};
 // Form Sections Accord
 $(".area-step .head").on("click", function (e) {
   $(".area-step .form-content").slideUp();
@@ -15,17 +27,19 @@ $(".area-step .head").on("click", function (e) {
 function setAccordion(Elements, targetEl, className = "active") {
   $(Elements).removeClass(className);
   targetEl.addClass(className);
+  $(".form_card").removeClass("on_edit");
 }
 
 // const div = document.createElement("div");
-// const design = generateEducationTemplate();
+// const design = generateFormCard();
 // div.innerHTML = design;
 
 // console.log(div);
 setTimeout(() => {
-  $(".education-main").append(generateEducationTemplate());
+  $(".education-main").append(generateFormCard("", form_object_edu));
+  $(".experience-main").append(generateFormCard("", form_object_exp));
 }, 1000);
-// console.log(generateEducationTemplate());
+// console.log(generateFormCard());
 
 // Education Logic
 // Done
@@ -34,6 +48,7 @@ $(document).on("click", ".btn_education_done", (e) =>
 );
 // Edit
 $(document).on("click", ".btn_education_edit", function (e) {
+  $(".education-card").removeClass("on_edit");
   $(this).closest(".education-card").addClass("on_edit");
 });
 $(document).on("click", ".btn_education_delete", function (e) {
@@ -41,5 +56,29 @@ $(document).on("click", ".btn_education_delete", function (e) {
 });
 $(document).on("click", ".btn_education_add", function (e) {
   $(".education-card").removeClass("on_edit");
-  $(".education-main").append(generateEducationTemplate(null, "on_edit"));
+  $(".education-main").append(
+    generateFormCard(null, form_object_edu, "on_edit")
+  );
+});
+
+// Experience Logic
+// Done
+$(document).on("click", ".btn_experience_done", (e) =>
+  $(".experience-card").removeClass("on_edit")
+);
+// Edit
+$(document).on("click", ".btn_experience_edit", function (e) {
+  $(".experience-card").removeClass("on_edit");
+  $(this).closest(".experience-card").addClass("on_edit");
+});
+// Delete
+$(document).on("click", ".btn_experience_delete", function (e) {
+  $(this).closest(".experience-card").remove();
+});
+// Add
+$(document).on("click", ".btn_experience_add", function (e) {
+  $(".experience-card").removeClass("on_edit");
+  $(".experience-main").append(
+    generateFormCard(null, form_object_exp, "on_edit")
+  );
 });

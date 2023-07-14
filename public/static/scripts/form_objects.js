@@ -1,7 +1,7 @@
 // import { token_id } from "./config.js";
 
 // EDUCATION
-const ed_object = {
+const edu_object = {
   education: { label: "Education", type: "text" },
   school: { label: "School", type: "text" },
   start_date: { label: "Start date", type: "date" },
@@ -14,42 +14,63 @@ const ed_object = {
   },
   description: { label: "Description", type: false, classes: "col-span" },
 };
-const generateFormGroup = (name, value) => {
-  if (!ed_object[name]["type"]) {
-    return `<div class="form-group ${ed_object[name]["classes"] ?? ""}">
-        <label for="${name}">${ed_object[name]["label"]}</label>
+
+// EXPERIENCE
+const exp_object = {
+  position: { label: "Position", type: "text" },
+  employer: { label: "Employer", type: "text" },
+  start_date: { label: "Start date", type: "date" },
+  end_date: { label: "End date", type: "date" },
+  city: { label: "City", type: "text" },
+  present: {
+    label: "Present",
+    type: "checkbox",
+    classes: "flex pt-1 row-reverse",
+  },
+  description: { label: "Description", type: false, classes: "col-span" },
+};
+
+// Generate Form Group
+const generateFormGroup = (name, value, object) => {
+
+  if (!object[name]["type"]) {
+    return `<div class="form-group ${object[name]["classes"] ?? ""}">
+        <label for="${name}">${object[name]["label"]}</label>
         <textarea id="${name}" data-inp-reff=".reff-${name}" cols="30" rows="2">${value}</textarea>
       </div>`;
   }
 
-  return `<div class="form-group ${ed_object[name]["classes"] ?? ""}">
-      <label for="${name}">${ed_object[name]["label"]}</label>
+  return `<div class="form-group ${object[name]["classes"] ?? ""}">
+      <label for="${name}">${object[name]["label"]}</label>
       <input type="${
-        ed_object[name]["type"]
+        object[name]["type"]
       }" id="${name}" data-inp-reff=".reff-${name}" value="${value}" />
     </div>`;
 };
 
-const generateEducationTemplate = (data = null, className = "") => {
+// Generate Card
+const generateFormCard = (data = null, config, className = "") => {
+  const object = config.form_object === "edu_object" ? edu_object : exp_object;
+
   let dataGroup = "";
   if (data)
     $.each(data, (key, value) => {
       // console.log(key, value);
-      dataGroup += generateFormGroup(key, value);
+      dataGroup += generateFormGroup(key, value, object);
     });
   else
-    $.each(ed_object, (key, value) => {
+    $.each(object, (key, value) => {
       // console.log(key, value);
-      dataGroup += generateFormGroup(key, "");
+      dataGroup += generateFormGroup(key, "", object);
     });
 
   return `<!-- EDUCATIONS -->
-  <div class="education-1 education-card ${className}">
+  <div class="education-1 form_card ${config.className}-card ${className}">
     <!-- HEAD -->
     <div class="ed_head">
       <div class="flex between gap-1">
-        <p>Education</p>
-        <span class="bbtn primary small btn_education_edit"><i class="fas fa-pencil-alt"></i></span>
+        <p>${config.title}</p>
+        <span class="bbtn primary small btn_${config.className}_edit"><i class="fas fa-pencil-alt"></i></span>
       </div>
       <input type="hidden" id="ed_key" value="">
     </div>
@@ -58,8 +79,8 @@ const generateEducationTemplate = (data = null, className = "") => {
       <div class="intro-group body">
         ${dataGroup}        
         <div class="card-options flex end gap-1 mt-1 col-span">
-          <span class="bbtn primary small btn_education_delete"><i class="fas fa-trash"></i></span>
-          <span class="bbtn secondary small btn_education_done"><i class="fas fa-check"></i> Done</span>
+          <span class="bbtn primary small btn_${config.className}_delete"><i class="fas fa-trash"></i></span>
+          <span class="bbtn secondary small btn_${config.className}_done"><i class="fas fa-check"></i> Done</span>
         </div>
       </div>
     </div>
@@ -68,4 +89,4 @@ const generateEducationTemplate = (data = null, className = "") => {
 // module.exports = {
 //   makeFetch,
 // };
-export { generateEducationTemplate };
+export { generateFormCard };

@@ -137,27 +137,25 @@ select {
   }
 }
 // EDUCATION
-.education {
-  &-card {
-    border: 1px solid hsla($hsl-clr-bg, 0.5);
-    padding: 0.5em;
-    border-radius: 0.4em;
-    margin-bottom: 1em;
+.form_card {
+  border: 1px solid hsla($hsl-clr-bg, 0.5);
+  padding: 0.5em;
+  border-radius: 0.4em;
+  margin-bottom: 1em;
 
-    &.on_edit {
-      .ed_head {
-        display: none;
-      }
-      .ed_body {
-        display: block;
-      }
-    }
+  &.on_edit {
     .ed_head {
-      display: block;
-    }
-    .ed_body {
       display: none;
     }
+    .ed_body {
+      display: block;
+    }
+  }
+  .ed_head {
+    display: block;
+  }
+  .ed_body {
+    display: none;
   }
   .col-span {
     grid-column: span 2;
