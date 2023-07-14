@@ -1,37 +1,61 @@
-// Import Token Component
-// import { makeFetch } from "./token.js";
+// User Authentication - JS API Endpoints
+import { useFetch, useToken, useStorage } from "./token.js";
+let isLoading = false;
+// Handle Signup
+$("#signup_form").on("submit", async (e) => {
+  e.preventDefault();
 
-// console.log(makeFetch);
+  const formData = {};
+  formData.username = e.target.username.value.trim();
+  formData.email = e.target.email.value.trim();
+  formData.phone = e.target.phone.value.trim();
+  formData.password = e.target.password.value.trim();
+  formData.confirm_password = e.target.confirm_password.value.trim();
+  formData.keep_alive = e.target.keep_alive.checked;
 
-$("#login_form").on("submit", async function (e) {
+  submitFormData(formData, "http://localhost:8500/api/auth/register");
+});
+// Handle Login
+$("#login_form").on("submit", async (e) => {
   e.preventDefault();
 
   const formData = {};
   formData.username = e.target.username.value.trim();
   formData.password = e.target.password.value.trim();
+  formData.keep_alive = e.target.keep_alive.checked;
 
-  // makeAjax("POST", "http://localhost:8500/api/auth/login", formData);
-  const { data, response } = await makeFetch(
-    "POST",
-    "http://localhost:8500/api/auth/login",
-    formData
-  );
+  submitFormData(formData, "http://localhost:8500/api/auth/login");
+});
+const submitFormData = async (formData, endpoint, redirect_route = "/") => {
+  if (isLoading) return;
+  setBtnLoading();
+  const res = await useFetch("POST", endpoint, formData);
+
+  if (!res) {
+    const message = "Error making requests, please try again";
+    return errorMessage(message);
+  }
+  const { data, response } = res;
 
   if (data.errors) return displayFormErrors(data.errors);
   if (!data.errors && data.message) return errorMessage(data.message);
 
-  console.log(response);
   if (response.ok && response.status === 200) {
-    alert("Login Successfull");
+    // resolve_form() && Redirect()
+    useToken(data._sess_token);
+    useStorage("_reff", data._reff ?? false);
+
+    window.location = redirect_route;
   }
-});
-// Remove error on keypress
-$("#login_form input").on("keyup", function (e) {
+};
+// Remove Form Errors on key
+$("form input").on("keyup", function (e) {
   setTimeout(() => {
     $(this).closest(".form-group").removeClass("error");
   }, 500);
 });
-// Toggle Pass Visibility
+
+// Toggle Visibility
 $("[data-toggle-type]").on("click", function (e) {
   const key = $(this)[0].dataset.toggleType;
   const inputType = $(key).attr("type") === "text" ? "password" : "text";
@@ -39,44 +63,30 @@ $("[data-toggle-type]").on("click", function (e) {
   $(this).toggleClass("fa-eye-slash");
 });
 
-async function makeFetch(method, url, data) {
-  console.log("Request..");
-  const return_data = {};
-
-  const config = {
-    method: method,
-    headers: {
-      // "Accept": "application/json",
-      Accept: "*",
-      // "Content-Type": "application/json",
-      // Authorization: "Bearer xyz",
-    },
-  };
-
-  if (method.toUpperCase() !== "GET") config.body = JSON.stringify(data);
-
-  const res = await fetch(url, config).catch((err) => {
-    console.log(err);
-    // console.log(err.response.data);
-  });
-  return_data.data = await res.json();
-  const response = { ok: res.ok, status: res.status };
-
-  return_data.response = response;
-  return return_data;
-}
-
+// Display Form Errors
 function displayFormErrors(errors) {
   $.each(errors, (key, array) => {
     const $parent = $(`#${key}`).closest(".form-group");
     $parent.addClass("error");
     $parent.find(".status-msg").text(array.errors[0]);
   });
+  $(".form-message").removeClass("error");
+  setBtnDone();
 }
 
+// Display Error Messages
 function errorMessage(message) {
-  const $parent = $(".form-group");
-  $parent.addClass("error");
+  const $msgBox = $(".form-message");
+  $msgBox.addClass("error").text(message);
+  $(".form-message")[0].scrollIntoView();
+  setBtnDone();
+}
 
-  $(".status-msg").text(message);
+function setBtnLoading() {
+  isLoading = true;
+  $(".form_btn").addClass("process");
+}
+function setBtnDone() {
+  isLoading = false;
+  $(".form_btn").removeClass("process");
 }

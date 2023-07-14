@@ -1,4 +1,311 @@
 <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description"
+    content="HND CV Maker, Create amazing CV's downloadable in PDF with our awesome resume maker" />
+
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700&display=swap" rel="stylesheet"> -->
+  <!-- <script src="https://kit.fontawesome.com/8ea543231b.js" crossorigin="anonymous"></script> -->
+
+  <link rel="stylesheet" href="/00FA/css/all.css" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" href="/static/styles/index.css">
+  <link rel="stylesheet" href="/static/styles/global.css">
+  <link rel="stylesheet" href="/static/styles/module-custom-select.css">
+  <link rel="stylesheet" href="/static/styles/toast.css">
+  <link rel="stylesheet" href="/static/styles/module-custom-tables.css">
+  <title>Home - HND CV Maker</title>
+
+  <link rel="stylesheet" href="/static/styles/style.css">
+</head>
+
+<body>
+  <div class="root">
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="container-x gap-2 flex between header-h">
+        <a href="/" class="flex gap-x">
+          <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Logo" width="30px">
+          <h1 class="main-header-title"><span class="clr-warning">CV </span> Maker</h1>
+        </a>
+        <nav class="nav-menu">
+          <button class="screen-overflow mobile" data-target="nav-menu"></button>
+          <div class="nav-menu-container">
+            <div class="nav-menu-head mobile">
+              <div class="nav flex between mb-1">
+                <h2>CV - Maker</h2>
+                <button class="btnB close-nav-menu">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Earum, debitis?
+              </p>
+            </div>
+            <div class="nav-menu-body">
+              <div class="nav-links flex gap-2">
+                <a href="/" class="nav-link">
+                  <span class="text">Home</span>
+                </a>
+
+                <div href="#" class="dropdown">
+                  <div class="dropdown-head nav-link">
+                    <span class="text">Our Desigs </span>
+                    <i class="fas fa-caret-down font-size-small drop-down-icon"></i>
+                  </div>
+                  <div class="dropdown-menu dropdown-head">
+                    <a href="">Design One</a>
+                    <a href="">Design Two</a>
+                    <a href="">Design Three</a>
+                    <a href="">More <i class="fas fa-arrow-right"></i> </a>
+                  </div>
+                </div>
+
+                <div href="#" class="dropdown">
+                  <div class="dropdown-head nav-link">
+                    <span class="text">Products </span>
+                    <i class="fas fa-caret-down font-size-small drop-down-icon"></i>
+                  </div>
+                  <div class="dropdown-menu dropdown-head">
+                    <a href="#">CV Maker</a>
+                    <a href="#">Digital Marketing</a>
+                    <a href="#">Web Design</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="nav-menu-foot mobile">
+              <div class="nav flex start mb-1">
+                <h4>Top Brands</h4>
+                <button class="btnB close-nav-menu">
+                  <i class="fas fa-angle-double-right"></i>
+                </button>
+              </div>
+              <div class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+              </div>
+              <div class="accessories nav flex start mt-2">
+                <h4>Accessories/Parts</h4>
+                <button class="btnB close-nav-menu">
+                  <i class="fas fa-angle-double-right"></i>
+                </button>
+              </div>
+              <div class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <div class="actions flex gap-x">
+            <button class="theme-btn btnB white">
+              <i class="fas fa-sun"></i>
+            </button>
+            <div class="search-component">
+              <button class="search-btn btnB white">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="search-action">
+                <form action="/module">
+                  <label for="search">Search </label>
+                  <div class="form-group flex relative">
+                    <i class="fas fa-search icon-seach"></i>
+                    <input class="search-module flex-1" type="search" name="keyword" id="search"
+                      placeholder="Search our collections" />
+                    <button class=" search-module">Go</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <button class="nav-menu-btn btnB mobile white">
+              <i class="fas fa-bars"></i>
+            </button>
+            <button class="notification-btn btnB white">
+              <i class="fas fa-bell"></i>
+            </button>
+            <div class="user_profile flex">
+              <!-- <h4>username</h4> -->
+              <div class="thumbnail">
+                <img class="ml-x mr-x profile-icon-x" src="/static/media/user.png" alt=" user profile">
+              </div>
+              <span class="padd">
+                <i class="fas fa-caret-down"></i>
+              </span>
+              <nav class="drop_menu">
+                <ul class="menu_container">
+                  <li>
+                    <div class="currency-component" style="margin-left: auto">
+                      <button class="currency-btn btnB w-full txt-right">
+                        <small class="text font-size-small">Data one</small>
+                        <i class="fas fa-caret-down"></i>
+                      </button>
+                      <div class="currency-container">
+                        <ul class="currencies">
+                          <li class="currency">
+                            <a href="#">
+                              <span class="text">Data Two</span>
+                              <i class="fas fa-caret-left"></i>
+                            </a>
+                          </li>
+                          <li class="currency">
+                            <a href="#" class="active">
+                              <span class="text">Data Three</span>
+                              <i class="fas fa-caret-left"></i>
+                            </a>
+                          </li>
+                          <li class="currency">
+                            <a href="#">
+                              <span class="text">Data Four</span>
+                              <i class="fas fa-caret-left"></i>
+                            </a>
+                          </li>
+                          <li class="currency">
+                            <a href="#">
+                              <span class="text">Transcripts</span>
+                              <i class="fas fa-caret-left"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header> <!-- CONTENT -->
+
+    <div class="hero-container">
+      <div class="hero-banner section-p">
+        <div class="container-x flex">
+          <div class="content">
+            <h2><span class="clr-warning">HND</span> - CV Maker <br> Be the host of your creativity</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis a, quidem impedit deserunt harum
+              corporis?</p>
+            <h5 class="captions flex gap-x start">
+              <small class="detail"><i class="fas fa-angle-double-left"></i></small>
+              <small class="detail">Popular</small>
+              <small class="detail">Most used</small>
+              <small class="detail">latest</small>
+              <small class="detail"><i class="fas fa-angle-double-right"></i></small>
+            </h5>
+          </div>
+          <div class="media">
+            <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Welcome cart item"
+              style="max-height: 460px;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="steps">
+      <div class="container-x section-p">
+        <h2>Lets Get Started</h2>
+        <div class="procedures section-p">
+          <div class="step-item">
+            <div class="icon">1</div>
+            <div class="content">
+              <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut voluptate id.</p> -->
+              <p>Create your account to get started</p>
+            </div>
+            <div class="actions">
+              <a href="/register.php" class="btn btn-p clr-white">Create Account <i class="fas fa-user"></i></a>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="icon">2</div>
+            <div class="content">
+              <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut voluptate id.</p> -->
+              <p>Select a resume template and enter the required Resume information</p>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn btn-p clr-white">Template <i class="fas fa-angle-double-right"></i></a>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="icon">3</div>
+            <div class="content">
+              <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut voluptate id.</p> -->
+              <p>Download your CV in PDF or DOCX Formats</p>
+            </div>
+            <div class="actions">
+              <a href="" class="btn btn-p clr-white">Downlaod<i class="fas fa-download"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- Toast Modul -->
+    <div class="Toast_container">
+      <br />
+      <b>Notice</b>: session_start(): Ignoring session_start() because a session is already active in <b>C:\Users\Dev
+        Lee\Documents\DEV --seed\Development\00-Project\cv-generator\vendor\devlee\x-mvc-core\src\Session.php</b> on
+      line <b>23</b><br />
+    </div><!-- FOOTER -->
+
+    <footer class="main-footer section-p">
+      <div class="row flex between top mb-2 gap-2 container-x">
+        <div class="column">
+          <h3>HND CV - Maker</h3>
+          <p><small>NO.1 CV Maker, Create amazing CV's downloadable in PDF with our awesome resume maker</small></p>
+          <div class="icons start mt-2 mb-2">
+            <div data-social-arch="" class="fab fa-facebook"></div>
+            <div data-social-arch="" class="fab fa-linkedin-in"></div>
+            <div data-social-arch="" class="fab fa-twitter"></div>
+            <div data-social-arch="" class="fab fa-youtube"></div>
+          </div>
+        </div>
+        <div class="column">
+          <h3>Quick Actions</h3>
+          <a href="/">CV Maker</a>
+          <a href="#">Get Started</a>
+          <a href="/login">Signup</a>
+          <a href="/register">Login now</a>
+        </div>
+        <div class="column">
+          <h3>Top Collections</h3>
+          <a href="#">Our Designs</a>
+          <a href="#services">Our Service</a>
+          <a href="#">Steps To Take</a>
+          <a href="#carriers">Tutorials</a>
+        </div>
+        <div class="column">
+          <h3>Support</h3>
+          <a href="/feedback">Send Feedback</a>
+          <a href="#"><i class="fas fa-phone"></i> (237) 670710480</a>
+          <a href="mailto::leeleslyank@gmail.com"><i class="fas fa-envelope"></i> leeleslyank@gmail.com </a>
+          <a href="/faq">Our FAQ</a>
+        </div>
+      </div>
+      <div class="hr-line mb-1 mt-1"></div>
+      <p>Copyright &copy; CV-Maker 2020</p>
+      <small><small class="clr-warning">X Exprience</small>
+    </footer>
+  </div>
+  <!-- // Scripts -->
+  <script src="/static/scripts/jQuery.min.js"></script>
+  <script src="/static/scripts/home.js"></script>
+</body>
+
+</html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>

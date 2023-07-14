@@ -5,21 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Resume</title>
-  <link rel="stylesheet" href="/static/css/index.css">
-  <link rel="stylesheet" href="/static/css/create.css">
+  <link rel="stylesheet" href="/static/styles/create.css">
   <link rel="stylesheet" href="/00FA/css/all.css">
 </head>
 
 <body>
 
   <div class="create-resume">
-    <header class="main-header flex between">
+    <header class="main-header flex between gap-1">
       <a href="/dashboard/" class="bbtn primary">
         <i class="fas fa-arrow-left pr-1"></i> Resume
       </a>
 
-      <div class="title">
-        <p>Resume Title</p>
+      <div class="title flex-1 txt-center" style="overflow: hidden">
+        <p class="txt-ellipsis">Resume Title</p>
       </div>
 
       <div class="actions flex gap-1">
@@ -38,15 +37,45 @@
         <h2 class="section-title">Resume Details</h2>
         <div class="form-area">
           <!-- item step -->
-          <div class="area-step">
+          <div class="area-step active">
             <div class="head flex between">
               <p>Personal Infomation</p>
               <button class="bbtn primary small area-botton">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-caret-down show"></i>
               </button>
             </div>
-            <div class="form-content">
-              content here
+            <div class="form-content personal">
+              <div class="personal-1 flex gap-2 top">
+                <div class="form-goup">
+                  <input type="file" id="photo" data-inp-reff=".reff-picture" accept="images/*">
+                  <label for="photo" class="picture_holder">
+                    <div class="picture">
+                      <img src="/static/media/user.png" class="img-cover" alt="Profile Picture">
+                    </div>
+                    <span class="btn_camera flex">
+                      <i class="fas fa-camera"></i>
+                    </span>
+                  </label>
+                </div>
+                <div class="intro-group flex-1">
+                  <div class="form-group">
+                    <label for="firstname">First name</label>
+                    <input type="text" id="firstname" data-inp-reff=".reff-firstname" />
+                  </div>
+                  <div class="form-group">
+                    <label for="lastname">Last name</label>
+                    <input type="text" id="lastname" data-inp-reff=".reff-lastname" />
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" data-inp-reff=".reff-address" />
+                  </div>
+                  <div class="form-group">
+                    <label for="date_of_birth">Date of birth</label>
+                    <input type="text" id="date_of_birth" data-inp-reff=".reff-date_of_birth" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- item step -->
@@ -54,7 +83,7 @@
             <div class="head flex between">
               <p>Education</p>
               <button class="bbtn primary small area-botton">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-caret-down show"></i>
               </button>
             </div>
             <div class="form-content">
@@ -66,7 +95,7 @@
             <div class="head flex between">
               <p>Work Experience</p>
               <button class="bbtn primary small area-botton">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-caret-down show"></i>
               </button>
             </div>
             <div class="form-content">
@@ -78,7 +107,7 @@
             <div class="head flex between">
               <p>Languages</p>
               <button class="bbtn primary small area-botton">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-caret-down show"></i>
               </button>
             </div>
             <div class="form-content">
@@ -89,7 +118,7 @@
             <div class="head flex between">
               <p>Additional Skills</p>
               <button class="bbtn primary small area-botton">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-caret-down show"></i>
               </button>
             </div>
             <div class="form-content">
@@ -121,8 +150,8 @@
   </div>
 
 
-  <script src="/static/js/jQuery.min.js"></script>
-  <script src="/static/js/create.js"></script>
+  <script src="/static/scripts/jQuery.min.js"></script>
+  <script src="/static/scripts/create.js"></script>
 
 </body>
 

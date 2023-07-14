@@ -38,5 +38,5 @@
   </div>
   <div class="hr-line mb-1 mt-1"></div>
   <p>Copyright &copy; CV-Maker 2020</p>
-  <small><small class="clr-warning">X Exprience</small>
+  <small class="clr-warning">X Exprience</small>
 </footer>

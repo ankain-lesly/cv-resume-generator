@@ -56,9 +56,6 @@ class ResumeController
       - Load Temlate
       - Load Data 
   
-
-
-
   */
 
   // Register New User

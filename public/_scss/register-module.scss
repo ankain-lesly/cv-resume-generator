@@ -1,3 +1,4 @@
+@import "index.scss";
 @import "variables";
 
 $p: hsl(213deg 85% 97%);
@@ -62,6 +63,18 @@ $danger: hsl(334, 100%, 67%);
       opacity: 1;
     }
   }
+  .form-message {
+    &.error {
+      display: block;
+    }
+    padding: 1em;
+    font-weight: bold;
+    color: brown;
+    background-color: hsla($hsl-clr-danger, 0.3);
+    border-radius: 0.5em;
+    margin-bottom: 0.5em;
+    display: none;
+  }
   .form-group {
     &.error {
       border-color: $clr-danger;
@@ -76,10 +89,10 @@ $danger: hsl(334, 100%, 67%);
     }
     margin-bottom: 1em;
 
-    border: 1px solid hsla($hsl-clr-bg, 0.5);
+    border: 2px solid hsla($hsl-clr-bg, 0.5);
     border-radius: 0.5em;
 
-    padding: 5px 0.6em;
+    padding: 0.4em 0.6em;
     position: relative;
     // .content {
     //  position: relative;
@@ -155,14 +168,14 @@ $danger: hsl(334, 100%, 67%);
       // left: 0;
     }
     .status-msg {
-      line-height: 0.8;
+      line-height: 0.9;
       position: absolute;
       top: 100%;
       background-color: $clr-danger;
       color: $clr-dark;
       border-radius: 0 0 0.25em 0.25em;
       font-weight: 500;
-      padding: 2px 0.5rem;
+      padding: 3px 0.5rem;
       font-size: 0.8rem;
       transition: var(--transition);
       display: none;
@@ -170,7 +183,16 @@ $danger: hsl(334, 100%, 67%);
       z-index: 20;
     }
     input:focus ~ .status-msg {
-      background-color: $clr-success;
+      background-color: $color-bg;
+      color: $clr-light;
+    }
+    &.error .info {
+      visibility: visible;
+    }
+    .info {
+      color: $clr-danger;
+      font-size: small;
+      visibility: hidden;
     }
   }
   .form_btn {
@@ -188,6 +210,8 @@ $danger: hsl(334, 100%, 67%);
     }
 
     &.process {
+      pointer-events: none;
+      background-color: hsla($hsl-color-bg, 0.5);
       .p-main {
         display: none;
       }
@@ -201,5 +225,14 @@ $danger: hsl(334, 100%, 67%);
   }
   .footer a:hover {
     color: $clr-success;
+  }
+}
+
+@media (max-width: 750px) {
+  .register .layout-items {
+    grid-template-columns: 1fr;
+  }
+  .register .layout {
+    min-height: max-content;
   }
 }

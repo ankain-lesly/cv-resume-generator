@@ -69,7 +69,7 @@ class AuthController
 
         return $res->json([
           "_sess_token" => $data["_sess_token"],
-          "_signup" => true,
+          "_reff" => "_signup",
         ]);
       }
 
@@ -110,7 +110,7 @@ class AuthController
         $this->session->setToast("toast", 'Welcome back, ' . $data['username'] . '. 😎');
         return $res->json([
           "_sess_token" => $user_data["_sess_token"],
-          "_login" => true,
+          "_reff" => "_login",
         ]);
       }
 

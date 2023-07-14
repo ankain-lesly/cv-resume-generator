@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Devlee\mvccore\DB\DBModel;
@@ -29,7 +28,9 @@ class User extends DBModel
     {
         return [
             'userID' => [self::RULE_REQUIRED],
-            'username' => [self::RULE_REQUIRED],
+            'username' => [self::RULE_REQUIRED, [
+                self::RULE_UNIQUE, 'class' => self::class
+            ]],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [
                 self::RULE_UNIQUE, 'class' => self::class
             ]],

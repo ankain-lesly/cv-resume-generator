@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 header('Access-Control-Allow-Origin:*');
 // header("Content-Type: application/json; charset=UTF-8");
@@ -22,6 +21,7 @@ $router->interceptRequest();
 
 // Regular Views
 $router->get("/", [SiteController::class, 'index']);
+
 $router->get("/dashboard", "@dashboard");
 $router->get("/module", "Module");
 
