@@ -137,7 +137,9 @@
                 <div class="education-main"></div>
                 <div class="actions">
                   <span
-                    class="bbtn primary small w-fit flex gap-x btn_education_add"
+                    data-target=".education-main"
+                    data-form-object="OBJECT_EDU"
+                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
                   >
                     <i class="fas fa-plus"></i>
                     <small class="text">Add education</small>
@@ -160,7 +162,9 @@
                 </div>
                 <div class="actions">
                   <span
-                    class="bbtn primary small w-fit flex gap-x btn_experience_add"
+                    data-target=".experience-main"
+                    data-form-object="OBJECT_EXP"
+                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
                   >
                     <i class="fas fa-plus"></i>
                     <small class="text">Add experience</small>
@@ -177,82 +181,47 @@
                   <i class="fas fa-caret-down show"></i>
                 </button>
               </div>
-              <div class="form-content">
-                <div
-                  class="education-1 form_card ${config.className}-card ${className} on_edit"
-                >
-                  <!-- HEAD -->
-                  <div class="ed_head">
-                    <div class="flex between gap-1">
-                      <div class="head_caption">
-                        <p class="title">[language]</p>
-                        <small class="proficiency"></small>
-                      </div>
-                      <span
-                        class="bbtn primary small btn_${config.className}_edit"
-                        ><i class="fas fa-pencil-alt"></i
-                      ></span>
-                    </div>
-                    <input type="hidden" id="ed_key" value="" />
-                  </div>
-                  <!-- BODY -->
-                  <div class="ed_body">
-                    <div class="intro-group-2">
-                      <div class="form-group">
-                        <label for="${name}">Language</label>
-                        <input
-                          type="text"
-                          id="${name}"
-                          data-inp-reff=".reff-${name}"
-                          value="${value}"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label for="lastname">Proficiency</label>
-                        <input
-                          type="range"
-                          id="lastname"
-                          data-inp-reff=".reff-lastname"
-                        />
-                        <div class="rang_setup flex gap-2 start">
-                          <input
-                            type="range"
-                            class="range_input flex-1"
-                            id="lastname"
-                            value="0"
-                            step="20"
-                            data-inp-reff=".reff-lastname"
-                          />
-                          <div class="info flex start gap-1">
-                            <span class="detail bubble" id="test_input">0</span>
-                            <small class="pro_caption">Make a choice</small>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- // options -->
-                      <div class="card-options flex end gap-1 mt-1 col-span">
-                        <span
-                          class="bbtn primary small btn_${config.className}_delete"
-                          ><i class="fas fa-trash"></i
-                        ></span>
-                        <span
-                          class="bbtn secondary small btn_${config.className}_done"
-                          ><i class="fas fa-check"></i> Done</span
-                        >
-                      </div>
-                    </div>
-                  </div>
+              <div class="form-content language">
+                <!-- CONTAINER -->
+                <div class="language-main"></div>
+                <!-- ACTIONS -->
+                <div class="actions">
+                  <span
+                    data-target=".language-main"
+                    data-form-object="OBJECT_LANG"
+                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
+                  >
+                    <i class="fas fa-plus"></i>
+                    <small class="text">Add Language</small>
+                  </span>
+                  <input type="hidden" id="ed_key" />
                 </div>
               </div>
             </div>
+            <!-- item step LANGUAGE -->
             <div class="area-step">
               <div class="head flex between">
-                <p>Additional Skills</p>
+                <p>Skills</p>
                 <button class="bbtn primary small area-botton">
                   <i class="fas fa-caret-down show"></i>
                 </button>
               </div>
-              <div class="form-content">content here</div>
+              <div class="form-content skill">
+                <!-- CONTAINER -->
+                <div class="language-main"></div>
+                <!-- ACTIONS -->
+                <div class="actions">
+                  <span
+                    data-target=".skill-main"
+                    data-form-object="OBJECT_SKILL"
+                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
+                  >
+                    <i class="fas fa-plus"></i>
+                    <small class="text">Add skill</small>
+                  </span>
+                  <input type="hidden" id="ed_key" />
+                </div>
+              </div>
             </div>
           </div>
 
