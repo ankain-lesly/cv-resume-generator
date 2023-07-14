@@ -4,8 +4,8 @@
 input,
 textarea,
 select {
-  border: 1px solid hsla($hsl-clr-bg, 0.5);
-  border-radius: 0.5em;
+  border: 1.5px solid hsla($hsl-clr-bg, 0.5);
+  border-radius: 0.35em;
   padding: 0.4em 0.6em;
 }
 .create-resume {
@@ -141,8 +141,26 @@ select {
   &-card {
     border: 1px solid hsla($hsl-clr-bg, 0.5);
     padding: 0.5em;
-    border-radius: 0.5em;
+    border-radius: 0.4em;
     margin-bottom: 1em;
+
+    &.on_edit {
+      .ed_head {
+        display: none;
+      }
+      .ed_body {
+        display: block;
+      }
+    }
+    .ed_head {
+      display: block;
+    }
+    .ed_body {
+      display: none;
+    }
+  }
+  .col-span {
+    grid-column: span 2;
   }
 }
 
@@ -158,6 +176,6 @@ select {
   .intro-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5em;
+    gap: 0.25em;
   }
 }

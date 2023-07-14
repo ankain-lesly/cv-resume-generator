@@ -99,27 +99,58 @@
             <div class="head flex between">
               <p>Education</p>
               <button class="bbtn primary small area-botton">
-                <i class="fas fa-caret-down show"></i>
+                <i class="fas fa-caret-down drop-icon"></i>
               </button>
             </div>
             <div class="form-content education">
               <div class="education-main">
+                <!-- EDUCATIONS HERE -->
                 <div class="education-1 education-card">
-                  <div class="intro-group">
-                    <div class="form-group mb-1">
-                      <label for="headline">Headline</label>
-                      <input type="text" id="headline" data-inp-reff=".reff-headline" />
+                  <!-- HEAD -->
+                  <div class="flex between gap-1">
+                    <p>Education</p>
+                    <span class="bbtn primary small btn_education_edit"><i class="fas fa-pencil-alt"></i></span>
+                  </div>
+                  <!-- BODY -->
+                  <div class="intro-group body">
+                    <div class="form-group">
+                      <label for="education">Education</label>
+                      <input type="text" id="education" data-inp-reff=".reff-education" />
                     </div>
-                    <div class="form-group mb-1">
-                      <label for="headline">Headline</label>
-                      <input type="text" id="headline" data-inp-reff=".reff-headline" />
+                    <div class="form-group">
+                      <label for="school">School</label>
+                      <input type="text" id="school" data-inp-reff=".reff-school" />
+                    </div>
+                    <div class="form-group">
+                      <label for="start_date">Start date</label>
+                      <input type="date" id="start_date" data-inp-reff=".reff-start_date" />
+                    </div>
+                    <div class="form-group">
+                      <label for="end_date">End date</label>
+                      <input type="date" id="end_date" data-inp-reff=".reff-end_date" />
+                    </div>
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <input type="text" id="city" data-inp-reff=".reff-city" />
+                    </div>
+                    <div class="form-group flex">
+                      <input type="checkbox" id="present" data-inp-reff=".reff-present" />
+                      <label for="present">Present</label>
+                    </div>
+                    <div class="form-group col-span">
+                      <label for="description">Description</label>
+                      <textarea id="description" data-inp-reff=".reff-description" cols="30" rows="2"></textarea>
+                    </div>
+                    <div class="card-options flex end gap-1 mt-1 col-span">
+                      <span class="bbtn primary small btn_education_delete"><i class="fas fa-trash"></i></span>
+                      <span class="bbtn secondary small btn_education_done"><i class="fas fa-check"></i> Done</span>
                     </div>
                   </div>
                 </div>
 
               </div>
               <div class="actions">
-                <span class="bbtn primary small w-fit flex gap-x">
+                <span class="bbtn primary small w-fit flex gap-x btn_education_add">
                   <i class="fas fa-plus"></i>
                   <small class="text">Add education</small>
                 </span>
@@ -131,7 +162,7 @@
             <div class="head flex between">
               <p>Work Experience</p>
               <button class="bbtn primary small area-botton">
-                <i class="fas fa-caret-down show"></i>
+                <i class="fas fa-caret-down drop-icon"></i>
               </button>
             </div>
             <div class="form-content">
