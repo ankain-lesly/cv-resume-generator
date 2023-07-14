@@ -8,7 +8,7 @@ const FORM_OBJECTS = {
     form_object: "edu_object",
   },
   OBJECT_EXP: {
-    title: "W Experience",
+    title: "Experience",
     className: "experience",
     form_object: "exp_object",
   },
@@ -21,6 +21,11 @@ const FORM_OBJECTS = {
     title: "Skill",
     className: "skill",
     form_object: "skill_object",
+  },
+  OBJECT_HOB: {
+    title: "Hobby",
+    className: "hobby",
+    form_object: "hobby_object",
   },
 };
 // Form Sections Accord
@@ -35,25 +40,12 @@ $(".area-step .head").on("click", function (e) {
     $content.addClass("c-shown").slideDown();
   }
 });
-
+// Set Accordion
 function setAccordion(Elements, targetEl, className = "active") {
   $(Elements).removeClass(className);
   targetEl.addClass(className);
   $(".form_card").removeClass("on_edit");
 }
-
-// const div = document.createElement("div");
-// const design = generateFormCard();
-// div.innerHTML = design;
-
-// console.log(div);
-setTimeout(() => {
-  $(".education-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_EDU"]));
-  $(".experience-main").append(
-    generateFormCard("", FORM_OBJECTS["OBJECT_EXP"])
-  );
-}, 1000);
-// console.log(generateFormCard());
 
 // Form Action Logic
 // Done
@@ -77,7 +69,6 @@ $(document).on("click", ".btn_form_card_add", function (e) {
   const target = $btn.data("target");
   const object = $btn.data("form-object");
 
-  console.log(target, object);
   $(target).append(generateFormCard(null, FORM_OBJECTS[object], "on_edit"));
 });
 
@@ -91,12 +82,21 @@ const RANGE_OBJECT = {
   100: "Excellent",
 };
 
+// Hobbie
+$(document).on("keyup", ".hobby_input", function (e) {
+  $(this)
+    .closest(".form_card")
+    .find(".hobby_heading")
+    .text(e.target.value.trim());
+});
+// ON Range Input Text
 $(document).on("keyup", ".range_title_input", function (e) {
   $(this)
     .closest(".form_card")
     .find(".range_title")
     .text(e.target.value.trim());
 });
+// Range Input range
 $(document).on("input", ".range_input", function (e) {
   const $target = $(this);
   const val = $target.val();
@@ -111,3 +111,9 @@ $(document).on("input", ".range_input", function (e) {
   $parent.find(".pro_caption").text(label);
   $parent.find(".range_proficiency").text(label);
 });
+setTimeout(() => {
+  $(".education-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_EDU"]));
+  $(".experience-main").append(
+    generateFormCard("", FORM_OBJECTS["OBJECT_EXP"])
+  );
+}, 1000);

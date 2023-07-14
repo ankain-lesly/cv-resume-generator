@@ -36,15 +36,18 @@ const FORM_TEMPLATE = {
     proficiency: { label: "Proficiency", type: "range" },
   },
   // SKILL
-  lang_object: {
+  skill_object: {
     skill: { label: "Skill", type: "text", option: "class" },
     proficiency: { label: "Proficiency", type: "range" },
+  },
+  hobby_object: {
+    hobby: { label: "Hobby", type: "text", classes: "col-span" },
   },
 };
 
 // Generate Form Group
 const generateFormGroup = (name, value, object) => {
-  console.log(object);
+  // console.log(object);
   if (!object[name]["type"]) {
     return `<div class="form-group ${object[name]["classes"] ?? ""}">
         <label for="${name}">${object[name]["label"]}</label>
@@ -82,7 +85,7 @@ const generateFormGroup = (name, value, object) => {
     object[name]["option"] && object[name]["option"] === "class"
       ? 'class="font-size-small range_title_input"'
       : ""
-  } value="${value}" />
+  } ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
     </div>`;
 };
 
@@ -117,7 +120,13 @@ const generateFormCard = (data = null, config, className = "") => {
     <!-- HEAD -->
     <div class="ed_head">
       <div class="flex between gap-1">
-        ${headContent ? headContent : `<p>${config.title}</p>`}
+        ${
+          headContent
+            ? headContent
+            : `<p class="${
+                config.className === "hobby" ? "hobby_heading" : ""
+              }">${config.title}</p>`
+        }
         <span class="bbtn primary small btn_form_card_edit"><i class="fas fa-pencil-alt"></i></span>
       </div>
       <input type="hidden" id="ed_key" value="">

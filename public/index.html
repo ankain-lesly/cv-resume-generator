@@ -39,7 +39,7 @@
               <div class="head flex between">
                 <p>Personal Infomation</p>
                 <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down show"></i>
+                  <i class="fas fa-caret-down drop-icon"></i>
                 </button>
               </div>
               <div class="form-content personal">
@@ -174,11 +174,11 @@
               </div>
             </div>
             <!-- item step LANGUAGE -->
-            <div class="area-step active">
+            <div class="area-step">
               <div class="head flex between">
                 <p>Languages</p>
                 <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down show"></i>
+                  <i class="fas fa-caret-down drop-icon"></i>
                 </button>
               </div>
               <div class="form-content language">
@@ -198,17 +198,17 @@
                 </div>
               </div>
             </div>
-            <!-- item step LANGUAGE -->
+            <!-- item step SKILL -->
             <div class="area-step">
               <div class="head flex between">
                 <p>Skills</p>
                 <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down show"></i>
+                  <i class="fas fa-caret-down drop-icon"></i>
                 </button>
               </div>
               <div class="form-content skill">
                 <!-- CONTAINER -->
-                <div class="language-main"></div>
+                <div class="skill-main"></div>
                 <!-- ACTIONS -->
                 <div class="actions">
                   <span
@@ -218,6 +218,31 @@
                   >
                     <i class="fas fa-plus"></i>
                     <small class="text">Add skill</small>
+                  </span>
+                  <input type="hidden" id="ed_key" />
+                </div>
+              </div>
+            </div>
+            <!-- item step HOBBIES -->
+            <div class="area-step">
+              <div class="head flex between">
+                <p>Hobbies</p>
+                <button class="bbtn primary small area-botton">
+                  <i class="fas fa-caret-down drop-icon"></i>
+                </button>
+              </div>
+              <div class="form-content hobby">
+                <!-- CONTAINER -->
+                <div class="hobby-main"></div>
+                <!-- ACTIONS -->
+                <div class="actions">
+                  <span
+                    data-target=".hobby-main"
+                    data-form-object="OBJECT_HOB"
+                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
+                  >
+                    <i class="fas fa-plus"></i>
+                    <small class="text">Add hobby</small>
                   </span>
                   <input type="hidden" id="ed_key" />
                 </div>
