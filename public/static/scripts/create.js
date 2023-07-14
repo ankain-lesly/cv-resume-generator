@@ -1,12 +1,12 @@
 import { generateFormCard } from "./form_objects.js";
 
 // Form section Objects
-const form_object_edu = {
+const FORM_OBJECT_EDU = {
   title: "Education",
   className: "education",
   form_object: "edu_object",
 };
-const form_object_exp = {
+const FORM_OBJECT_EXP = {
   title: "W Experience",
   className: "experience",
   form_object: "exp_object",
@@ -36,8 +36,8 @@ function setAccordion(Elements, targetEl, className = "active") {
 
 // console.log(div);
 setTimeout(() => {
-  $(".education-main").append(generateFormCard("", form_object_edu));
-  $(".experience-main").append(generateFormCard("", form_object_exp));
+  $(".education-main").append(generateFormCard("", FORM_OBJECT_EDU));
+  $(".experience-main").append(generateFormCard("", FORM_OBJECT_EXP));
 }, 1000);
 // console.log(generateFormCard());
 
@@ -57,7 +57,7 @@ $(document).on("click", ".btn_education_delete", function (e) {
 $(document).on("click", ".btn_education_add", function (e) {
   $(".education-card").removeClass("on_edit");
   $(".education-main").append(
-    generateFormCard(null, form_object_edu, "on_edit")
+    generateFormCard(null, FORM_OBJECT_EDU, "on_edit")
   );
 });
 
@@ -79,6 +79,27 @@ $(document).on("click", ".btn_experience_delete", function (e) {
 $(document).on("click", ".btn_experience_add", function (e) {
   $(".experience-card").removeClass("on_edit");
   $(".experience-main").append(
-    generateFormCard(null, form_object_exp, "on_edit")
+    generateFormCard(null, FORM_OBJECT_EXP, "on_edit")
   );
 });
+
+// Range
+const RANGE_OBJECT = {
+  0: "Make a choice",
+  20: "Beginner",
+  40: "Moderate",
+  60: "Good",
+  80: "Very good",
+  100: "Excellent",
+};
+function handleInputChange(e) {
+  const target = e.target;
+  const val = target.value;
+
+  const size = val + "% 100%";
+  target.style.backgroundSize = size;
+
+  numberInput.textContent = val;
+
+  pro_caption.textContent = rangeObject[val] ?? "Make a choise";
+}

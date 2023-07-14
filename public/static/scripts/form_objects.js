@@ -32,7 +32,6 @@ const exp_object = {
 
 // Generate Form Group
 const generateFormGroup = (name, value, object) => {
-
   if (!object[name]["type"]) {
     return `<div class="form-group ${object[name]["classes"] ?? ""}">
         <label for="${name}">${object[name]["label"]}</label>
@@ -76,7 +75,7 @@ const generateFormCard = (data = null, config, className = "") => {
     </div>
     <!-- BODY -->
     <div class="ed_body">
-      <div class="intro-group body">
+      <div class="intro-group">
         ${dataGroup}        
         <div class="card-options flex end gap-1 mt-1 col-span">
           <span class="bbtn primary small btn_${config.className}_delete"><i class="fas fa-trash"></i></span>
