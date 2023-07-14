@@ -41,6 +41,8 @@ select {
   // }
   .area-step {
     border-bottom: 2px solid hsla($hsl-clr-bg, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
     // border-top: 2px solid hsla($hsl-clr-bg, 0.5);
     &.active,
     &:hover {
@@ -50,9 +52,18 @@ select {
     }
     &.active {
       .head {
-        // border-color: $clr-primary;
-
         color: $clr-bg;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          left: 5px;
+          height: 50%;
+          width: 5px;
+          background-color: $clr-primary;
+          border-radius: 2px;
+          box-shadow: $bs;
+        }
       }
 
       .area-botton {
@@ -66,7 +77,6 @@ select {
     }
     .head {
       padding: 0.65em 1rem;
-      border-left: 5px solid transparent;
       color: hsla($hsl-clr-bg, 0.5);
       cursor: pointer;
       p {

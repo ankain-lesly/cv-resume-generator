@@ -139,13 +139,20 @@ const LoadDefaultForm = () =>
     $(".hobby-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_HOB"]));
   }, 1000);
 
-// LoadDefaultForm();
+LoadDefaultForm();
 
-// const data = {};
-// $.each($(".personal [data-inp-reff]"), (key, input) => {
-//   data[input.dataset.inpReff] = input.value;
-//   console.log(key, input.id, input);
-// });
-// console.log(data);
-// FORM_DATA[".personal"] = data;
-// console.log(FORM_DATA);
+const getSectionInputData = (section) => {
+  const collection = {};
+  $.each($(".personal [data-inp-reff]"), (key, input) => {
+    collection[input.dataset.inpReff] = input.value;
+  });
+  FORM_DATA[`.${section}`] = { data: collection };
+};
+getSectionInputData("personal");
+getSectionInputData("education");
+getSectionInputData("language");
+getSectionInputData("skill");
+getSectionInputData("hobby");
+
+// saving form-data
+$(".btn_save_resume").on("click", () => console.log(FORM_DATA));
