@@ -42,6 +42,7 @@ select {
   .area-step {
     border-bottom: 2px solid hsla($hsl-clr-bg, 0.5);
     // border-top: 2px solid hsla($hsl-clr-bg, 0.5);
+    &.active,
     &:hover {
       .head {
         background-color: hsla($hsl-clr-primary, 0.1);
@@ -49,29 +50,30 @@ select {
     }
     &.active {
       .head {
-        border-color: $clr-primary;
-        color: $clr-primary;
+        // border-color: $clr-primary;
+
+        color: $clr-bg;
       }
-      .form-content {
-        display: block;
+
+      .area-botton {
+        background-color: $clr-primary;
+        color: $clr-light;
+      }
+      .drop-icon {
+        transform: rotate(360deg);
+        transition: $transition;
       }
     }
     .head {
-      padding: 1rem;
+      padding: 0.65em 1rem;
       border-left: 5px solid transparent;
+      color: hsla($hsl-clr-bg, 0.5);
       cursor: pointer;
       p {
-        font-weight: 500;
-        font-size: 1.3rem;
+        font-weight: 600;
+        font-size: 1rem;
       }
-
-      // .area-botton {
-      //   // color: $hsl-clr-bg;
-      // }
     }
-    // &.active .form-content {
-    //   display: block;
-    // }
     .form-content {
       padding: 1rem;
       display: none;
@@ -115,8 +117,8 @@ select {
   }
   .picture {
     transition: $transition;
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
     border-radius: 0.5em;
     overflow: hidden;
     border: 2px solid hsla($hsl-clr-bg, 0.4);
@@ -229,5 +231,21 @@ select {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.25em;
+  }
+  .add_extras {
+    margin-top: 1rem;
+    li {
+      padding: 0.65em 1em;
+      background-color: hsla($hsl-clr-bg, 0.3);
+      border-radius: 0.25em;
+      cursor: pointer;
+
+      &:nth-child(odd) {
+        padding-inline: 2rem;
+      }
+      &.child {
+        padding-inline: 3rem;
+      }
+    }
   }
 }

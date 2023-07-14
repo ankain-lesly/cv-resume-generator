@@ -1,5 +1,6 @@
 import { generateFormCard } from "./form_objects.js";
-
+// MY RESUME DATA
+const FORM_DATA = {};
 // Form section Objects
 const FORM_OBJECTS = {
   OBJECT_EDU: {
@@ -29,24 +30,21 @@ const FORM_OBJECTS = {
   },
 };
 // Form Sections Accord
+$(".area-step.active .form-content").addClass("c-shown").slideDown();
+// Accord
 $(".area-step .head").on("click", function (e) {
-  $(".area-step .form-content").slideUp();
-  setAccordion(".area-step", $(this).closest(".area-step"));
+  $(".area-step").removeClass("active");
+  $(".form-content").slideUp();
 
+  $(this).closest(".area-step").addClass("active");
   let $content = $(this).siblings(".form-content");
-  if ($content.hasClass("c-shown")) {
-    $content.removeClass("c-shown").slideUp();
-  } else {
+
+  if (!$content.hasClass("c-shown")) {
     $content.addClass("c-shown").slideDown();
+  } else {
+    $content.removeClass("c-shown").slideUp();
   }
 });
-// Set Accordion
-function setAccordion(Elements, targetEl, className = "active") {
-  $(Elements).removeClass(className);
-  targetEl.addClass(className);
-  $(".form_card").removeClass("on_edit");
-}
-
 // Form Action Logic
 // Done
 $(document).on("click", ".btn_form_card_done", function (e) {
@@ -82,7 +80,21 @@ const RANGE_OBJECT = {
   100: "Excellent",
 };
 
-// Hobbie
+// Education
+$(document).on("keyup", "#education, #position", function (e) {
+  $(this)
+    .closest(".form_card")
+    .find(".group_caption")
+    .text(e.target.value.trim());
+});
+// Experience
+// $(document).on("keyup", "", function (e) {
+//   $(this)
+//     .closest(".form_card")
+//     .find(".group_caption")
+//     .text(e.target.value.trim());
+// });
+// Hobbie Inputs name
 $(document).on("keyup", ".hobby_input", function (e) {
   $(this)
     .closest(".form_card")
@@ -111,9 +123,29 @@ $(document).on("input", ".range_input", function (e) {
   $parent.find(".pro_caption").text(label);
   $parent.find(".range_proficiency").text(label);
 });
-setTimeout(() => {
-  $(".education-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_EDU"]));
-  $(".experience-main").append(
-    generateFormCard("", FORM_OBJECTS["OBJECT_EXP"])
-  );
-}, 1000);
+
+const LoadDefaultForm = () =>
+  setTimeout(() => {
+    $(".education-main").append(
+      generateFormCard("", FORM_OBJECTS["OBJECT_EDU"])
+    );
+    $(".experience-main").append(
+      generateFormCard("", FORM_OBJECTS["OBJECT_EXP"])
+    );
+    $(".language-main").append(
+      generateFormCard("", FORM_OBJECTS["OBJECT_LANG"])
+    );
+    $(".skill-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_SKILL"]));
+    $(".hobby-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_HOB"]));
+  }, 1000);
+
+// LoadDefaultForm();
+
+// const data = {};
+// $.each($(".personal [data-inp-reff]"), (key, input) => {
+//   data[input.dataset.inpReff] = input.value;
+//   console.log(key, input.id, input);
+// });
+// console.log(data);
+// FORM_DATA[".personal"] = data;
+// console.log(FORM_DATA);

@@ -35,7 +35,7 @@
           <h3 class="section-title">Resume Details</h3>
           <div class="form-area">
             <!-- item step PERSONAL -->
-            <div class="area-step">
+            <div class="area-step active">
               <div class="head flex between">
                 <p>Personal Infomation</p>
                 <button class="bbtn primary small area-botton">
@@ -48,12 +48,18 @@
                 <div class="personal-1 flex gap-2 top">
                   <div class="form-goup">
                     <input
-                      type="file"
-                      id="photo"
+                      type="text"
+                      id="picture"
+                      style="display: none"
                       data-inp-reff=".reff-picture"
+                    />
+                    <input
+                      type="file"
+                      id="resume_photo"
+                      data-placeholder=".photo_placeholder"
                       accept="images/*"
                     />
-                    <label for="photo" class="picture_holder">
+                    <label for="resume_photo" class="picture_holder">
                       <div class="picture">
                         <img
                           src="/static/media/user.png"
@@ -122,6 +128,22 @@
                     <label for="phone">Phone number</label>
                     <input type="tel" id="phone" data-inp-reff=".reff-phone" />
                   </div>
+                </div>
+                <div class="add_extras">
+                  <ul class="extras_container flex wrap gap-x">
+                    <li title="Add new field"></li>
+                    <li class="child" title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li class="child" title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                  </ul>
                 </div>
               </div>
             </div>

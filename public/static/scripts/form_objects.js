@@ -124,7 +124,7 @@ const generateFormCard = (data = null, config, className = "") => {
           headContent
             ? headContent
             : `<p class="${
-                config.className === "hobby" ? "hobby_heading" : ""
+                config.className === "hobby" ? "hobby_heading" : "group_caption"
               }">${config.title}</p>`
         }
         <span class="bbtn primary small btn_form_card_edit"><i class="fas fa-pencil-alt"></i></span>
