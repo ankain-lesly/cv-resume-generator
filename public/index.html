@@ -34,10 +34,10 @@
     <div class="container-main">
       <!-- create Forms -->
       <section class="create-form">
-        <h2 class="section-title">Resume Details</h2>
+        <h3 class="section-title">Resume Details</h3>
         <div class="form-area">
-          <!-- item step -->
-          <div class="area-step active">
+          <!-- item step PERSONAL-->
+          <div class="area-step">
             <div class="head flex between">
               <p>Personal Infomation</p>
               <button class="bbtn primary small area-botton">
@@ -78,18 +78,52 @@
                   </div>
                 </div>
               </div>
+              <div class="form-group mb-1">
+                <label for="headline">Headline</label>
+                <input type="text" id="headline" data-inp-reff=".reff-headline" />
+              </div>
+              <div class="personal-2 intro-group">
+                <div class="form-group mb-1">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" data-inp-reff=".reff-email" />
+                </div>
+                <div class="form-group mb-1">
+                  <label for="phone">Phone number</label>
+                  <input type="tel" id="phone" data-inp-reff=".reff-phone" />
+                </div>
+              </div>
             </div>
           </div>
-          <!-- item step -->
-          <div class="area-step">
+          <!-- item step EDUCATION -->
+          <div class="area-step active">
             <div class="head flex between">
               <p>Education</p>
               <button class="bbtn primary small area-botton">
                 <i class="fas fa-caret-down show"></i>
               </button>
             </div>
-            <div class="form-content">
-              content here
+            <div class="form-content education">
+              <div class="education-main">
+                <div class="education-1 education-card">
+                  <div class="intro-group">
+                    <div class="form-group mb-1">
+                      <label for="headline">Headline</label>
+                      <input type="text" id="headline" data-inp-reff=".reff-headline" />
+                    </div>
+                    <div class="form-group mb-1">
+                      <label for="headline">Headline</label>
+                      <input type="text" id="headline" data-inp-reff=".reff-headline" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="actions">
+                <span class="bbtn primary small w-fit flex gap-x">
+                  <i class="fas fa-plus"></i>
+                  <small class="text">Add education</small>
+                </span>
+              </div>
             </div>
           </div>
           <!-- item step -->

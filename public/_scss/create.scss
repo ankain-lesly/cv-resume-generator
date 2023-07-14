@@ -1,6 +1,13 @@
 @import "index.scss";
 @import "variables";
 
+input,
+textarea,
+select {
+  border: 1px solid hsla($hsl-clr-bg, 0.5);
+  border-radius: 0.5em;
+  padding: 0.4em 0.6em;
+}
 .create-resume {
   .main-header {
     background-color: $color-bg;
@@ -92,6 +99,7 @@
   .picture_holder {
     position: relative;
     display: block;
+    margin-bottom: 1.2em;
     cursor: pointer;
 
     &:hover {
@@ -126,5 +134,30 @@
     font-size: 0.9rem;
     color: $clr-danger;
     transition: $transition;
+  }
+}
+// EDUCATION
+.education {
+  &-card {
+    border: 1px solid hsla($hsl-clr-bg, 0.5);
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+  }
+}
+
+.form-content {
+  label {
+    font-size: smaller;
+    font-weight: 600;
+  }
+
+  label ~ input {
+    margin-top: 4px;
+  }
+  .intro-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
   }
 }
