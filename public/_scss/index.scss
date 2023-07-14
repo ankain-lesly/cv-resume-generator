@@ -258,8 +258,9 @@ h3 {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.25rem;
-
   color: $clr-bg;
+  cursor: pointer;
+
   &:hover {
     opacity: 0.8;
   }
@@ -349,6 +350,9 @@ h3 {
 }
 .flex.column {
   flex-direction: column;
+}
+.flex.row-reverse {
+  flex-direction: row-reverse;
 }
 .flex-1 {
   flex: 1 0;
