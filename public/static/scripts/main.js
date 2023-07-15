@@ -1,41 +1,92 @@
-let dropBtn = document.querySelectorAll('.drop-menu')
+// User Authentication - JS API Endpoints
+import { useFetch, useToken, useStorage } from "./custom_hooks.js";
+let isLoading = false;
+// Handle Signup
+$("#signup_form").on("submit", async (e) => {
+  e.preventDefault();
 
-dropBtn.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.target.classList.toggle('active')
-    })
-})
+  const formData = {};
+  formData.username = e.target.username.value.trim();
+  formData.email = e.target.email.value.trim();
+  formData.phone = e.target.phone.value.trim();
+  formData.password = e.target.password.value.trim();
+  formData.confirm_password = e.target.confirm_password.value.trim();
+  formData.keep_alive = e.target.keep_alive.checked;
 
-let closeNavBtn = document.querySelector('.close-nav')
-let openNavBtn = document.querySelector('.open-menu')
-let navMenu = document.querySelector('.nav-menu')
-closeNavBtn.onclick = function () {
-    navMenu.classList.remove('active')
+  submitFormData(formData, "http://localhost:8500/api/auth/register");
+});
+// Handle Login
+$("#login_form").on("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = {};
+  formData.username = e.target.username.value.trim();
+  formData.password = e.target.password.value.trim();
+  formData.keep_alive = e.target.keep_alive.checked;
+
+  submitFormData(formData, "http://localhost:8500/api/auth/login");
+});
+const submitFormData = async (formData, endpoint, redirect_route = "/") => {
+  if (isLoading) return;
+  setBtnLoading();
+  const res = await useFetch("POST", endpoint, formData);
+
+  if (!res) {
+    const message = "Error making requests, please try again";
+    return errorMessage(message);
+  }
+  const { data, response } = res;
+
+  if (data.errors) return displayFormErrors(data.errors);
+  if (!data.errors && data.message) return errorMessage(data.message);
+
+  if (response.ok && response.status === 200) {
+    // resolve_form() && Redirect()
+    useToken(data._sess_token);
+    useStorage("_reff", data._reff ?? false);
+
+    window.location = redirect_route;
+  }
+};
+// Remove Form Errors on key
+$("form input").on("keyup", function (e) {
+  setTimeout(() => {
+    $(this).closest(".form-group").removeClass("error");
+  }, 500);
+});
+
+// Toggle Visibility
+$("[data-toggle-type]").on("click", function (e) {
+  const key = $(this)[0].dataset.toggleType;
+  const inputType = $(key).attr("type") === "text" ? "password" : "text";
+  $(key).attr("type", inputType);
+  $(this).toggleClass("fa-eye-slash");
+});
+
+// Display Form Errors
+function displayFormErrors(errors) {
+  $.each(errors, (key, array) => {
+    const $parent = $(`#${key}`).closest(".form-group");
+    $parent.addClass("error");
+    $parent.find(".status-msg").text(array.errors[0]);
+  });
+  $(".form-message").removeClass("error");
+  setBtnDone();
 }
-openNavBtn.onclick = function () {
-    navMenu.classList.add('active')
+
+// Display Error Messages
+function errorMessage(message) {
+  const $msgBox = $(".form-message");
+  $msgBox.addClass("error").text(message);
+  $(".form-message")[0].scrollIntoView();
+  setBtnDone();
 }
 
-let searchBtn = document.querySelector('.search-btn')
-searchBtn.addEventListener('click', e => {
-    let searchItem = prompt('Search Something')
-    let popup = `<div class="box">
-    <div class="head">
-        <img src="images/icon.png">
-        <button>&times;</button>
-    </div>
-    <div class="content">
-        <h3>Search Results</h3>
-        <p>Your search result from Bamenda Regional Hopital topic "<a href="index.html">${searchItem}</a>" is...</p>
-    </div>`
-    let box = document.createElement('div')
-    box.innerHTML = popup
-    box.classList.add('toastMe')
-
-    let toast = document.querySelector('.toast')
-    toast.appendChild(box)
-
-    box.querySelector('button').onclick = () => {
-        box.style.display = 'none'
-    }
-})
+function setBtnLoading() {
+  isLoading = true;
+  $(".form_btn").addClass("process");
+}
+function setBtnDone() {
+  isLoading = false;
+  $(".form_btn").removeClass("process");
+}

@@ -46,17 +46,17 @@ const FORM_TEMPLATE = {
 };
 
 // Generate Form Group
-const generateFormGroup = (name, value, object) => {
-  // console.log(object);
-  if (!object[name]["type"]) {
-    return `<div class="form-group ${object[name]["classes"] ?? ""}">
-        <label for="${name}">${object[name]["label"]}</label>
+const generateFormGroup = (name, value, {inp_type, inp_label, inp_classes} => {
+
+  if (!inp_type) {
+    return `<div class="form-group ${inp_classes ?? ""}">
+        <label for="${name}">${inp_label}</label>
         <textarea id="${name}" data-inp-reff=".reff-${name}" cols="30" rows="2">${value}</textarea>
       </div>`;
-  } else if (object[name]["type"] === "range") {
+  } else if (inp_type === "range") {
     return `
       <div class="form-group mt-1">
-        <label for="${name}">${object[name]["label"]}</label>
+        <label for="${name}">${inp_label}</label>
         <div class="rang_setup flex gap-2 start">
           <input
             type="range"
@@ -77,12 +77,12 @@ const generateFormGroup = (name, value, object) => {
     `;
   }
 
-  return `<div class="form-group ${object[name]["classes"] ?? ""}">
-      <label for="${name}">${object[name]["label"]}</label>
+  return `<div class="form-group ${inp_classes ?? ""}">
+      <label for="${name}">${inp_label}</label>
       <input type="${
-        object[name]["type"]
+        inp_type
       }" id="${name}" data-inp-reff=".reff-${name}" ${
-    object[name]["option"] && object[name]["option"] === "class"
+    inp_name]["option"] && inp_name]["option"] === "class"
       ? 'class="font-size-small range_title_input"'
       : ""
   } ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />

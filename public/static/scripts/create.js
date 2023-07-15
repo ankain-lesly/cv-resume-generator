@@ -1,6 +1,13 @@
+// Custom Objects
 import { generateFormCard } from "./form_objects.js";
+import { useFetch, useToken, useStorage } from "./custom_hooks.js";
+
+// RESUME KEY
+const RESUME_KEY = "123XXX";
+
 // MY RESUME DATA
 const FORM_DATA = {};
+
 // Form section Objects
 const FORM_OBJECTS = {
   OBJECT_EDU: {
@@ -87,13 +94,6 @@ $(document).on("keyup", "#education, #position", function (e) {
     .find(".group_caption")
     .text(e.target.value.trim());
 });
-// Experience
-// $(document).on("keyup", "", function (e) {
-//   $(this)
-//     .closest(".form_card")
-//     .find(".group_caption")
-//     .text(e.target.value.trim());
-// });
 // Hobbie Inputs name
 $(document).on("keyup", ".hobby_input", function (e) {
   $(this)
@@ -139,7 +139,7 @@ const LoadDefaultForm = () =>
     $(".hobby-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_HOB"]));
   }, 1000);
 
-LoadDefaultForm();
+// LoadDefaultForm();
 
 const generateSectionData = (section, isMultiple = false) => {
   const collection = [];
@@ -153,30 +153,53 @@ const generateSectionData = (section, isMultiple = false) => {
       collection.push(resource);
     });
 
-    FORM_DATA[`.${section}`] = collection;
+    return collection;
   }else {
     $.each($(`.${section} [data-inp-reff]`), (key, input) => {
       resource[input.dataset.inpReff] = input.value;
     });
 
-    FORM_DATA[`.${section}`] = { data: resource };
+    return { data: resource };
   }
 };
 const generateResumeData = () => {
-  generateSectionData("personal");
-  generateSectionData("education", true);
-  generateSectionData("experience", true);
-  generateSectionData("language", true);
-  generateSectionData("skill", true);
-  generateSectionData("hobby", true);
+  FORM_DATA[`.personal`] = generateSectionData("personal");
+  FORM_DATA[`.education`] = generateSectionData("education", true);
+  FORM_DATA[`.experience`] = generateSectionData("experience", true);
+  FORM_DATA[`.language`] = generateSectionData("language", true);
+  FORM_DATA[`.skill`] = generateSectionData("skill", true);
+  FORM_DATA[`.hobby`] = generateSectionData("hobby", true);
 
   return FORM_DATA;
 }
 
 
-setTimeout(() => {
-  console.log(JSON.stringify(generateResumeData()));
-}, 1000);
+// setTimeout(() => {
+//   console.log(JSON.stringify(generateResumeData()));
+// }, 1000);
 
 // saving form-data
-$(".btn_save_resume").on("click", () => console.log(JSON.stringify(generateResumeData())));
+$("[data-inp-reff]").on("blur", (e) => {
+  console.log('Typing stopped...')
+  setTimeout(() => {
+    console.log(generateResumeData());
+  }, 5000)
+}) 
+
+/*
+**   saveToLocalStorage()
+*     -> on_section
+*
+**   updateResumeTemplate()
+*     -> on_section
+*
+**   saveToDatabase()
+*     -> complete_resume
+*
+*/
+
+// setTimeout(() => {
+//   console.log(JSON.stringify(generateResumeData()));
+// }, 1000)
+// on click
+$(".btn_save_resume").on("click", () => console.log(generateResumeData()));
