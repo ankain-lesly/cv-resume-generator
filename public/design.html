@@ -4,16 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Resume</title>
-    <link rel="stylesheet" href="/static/styles/create.css" />
+    <link rel="stylesheet" href="/static/styles/create_new.css" />
     <link rel="stylesheet" href="/00FA/css/all.css" />
   </head>
 
   <body>
     <div class="create-resume">
       <header class="main-header flex between gap-1">
-        <a href="/dashboard/" class="bbtn primary">
-          <i class="fas fa-arrow-left pr-1"></i> Resume
-        </a>
+        <h3><span class="clr-danger">Res</span>ume</h3>
 
         <div class="title flex-1 txt-center" style="overflow: hidden">
           <p class="txt-ellipsis">Resume Title</p>
@@ -31,268 +29,130 @@
           </button>
         </div>
       </header>
-      <div class="container-main">
+      <main class="container-main">
         <!-- create Forms -->
         <section class="create-form">
-          <h3 class="section-title">Resume Details</h3>
-          <div class="form-area">
-            <!-- item step PERSONAL -->
-            <div class="area-step active">
-              <div class="head flex between">
-                <p>Personal Infomation</p>
-                <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down drop-icon"></i>
-                </button>
-              </div>
-              <div class="form-content personal">
-                <!-- // Personal Details -->
-                <!-- Photo and details -->
-                <div class="personal-1 flex gap-2 top">
-                  <div class="form-goup">
-                    <input
-                      type="text"
-                      id="picture"
-                      style="display: none"
-                      data-inp-reff=".reff-picture"
-                    />
-                    <input
-                      type="file"
-                      id="resume_photo"
-                      data-placeholder=".photo_placeholder"
-                      accept="images/*"
-                    />
-                    <label for="resume_photo" class="picture_holder">
-                      <div class="picture">
-                        <img
-                          src="/static/media/user.png"
-                          class="img-cover"
-                          alt="Profile Picture"
-                        />
-                      </div>
-                      <span class="btn_camera flex">
-                        <i class="fas fa-camera"></i>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="intro-group flex-1">
-                    <div class="form-group">
-                      <label for="firstname">First name</label>
-                      <input
-                        type="text"
-                        id="firstname"
-                        data-inp-reff=".reff-firstname"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="lastname">Last name</label>
-                      <input
-                        type="text"
-                        id="lastname"
-                        data-inp-reff=".reff-lastname"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="address">Address</label>
-                      <input
-                        type="text"
-                        id="address"
-                        data-inp-reff=".reff-address"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="date_of_birth">Date of birth</label>
-                      <input
-                        type="date"
-                        id="date_of_birth"
-                        data-inp-reff=".reff-date_of_birth"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group mb-1">
-                  <label for="headline">Headline</label>
-                  <input
-                    type="text"
-                    id="headline"
-                    data-inp-reff=".reff-headline"
-                  />
-                </div>
-                <div class="personal-2 intro-group">
-                  <div class="form-group mb-1">
-                    <label for="email">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      data-inp-reff=".reff-email"
-                    />
-                  </div>
-                  <div class="form-group mb-1">
-                    <label for="phone">Phone number</label>
-                    <input type="tel" id="phone" data-inp-reff=".reff-phone" />
-                  </div>
-                </div>
-                <div class="add_extras">
-                  <ul class="extras_container flex wrap gap-x">
-                    <li title="Add new field"></li>
-                    <li class="child" title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li class="child" title="Add new field"></li>
-                    <li title="Add new field"></li>
-                    <li title="Add new field"></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- item step EDUCATION -->
-            <div class="area-step">
-              <div class="head flex between">
-                <p>Education</p>
-                <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down drop-icon"></i>
-                </button>
-              </div>
-              <div class="form-content education">
-                <div class="education-main"></div>
-                <div class="actions">
-                  <span
-                    data-target=".education-main"
-                    data-form-object="OBJECT_EDU"
-                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
-                  >
-                    <i class="fas fa-plus"></i>
-                    <small class="text">Add education</small>
-                  </span>
-                  <input type="hidden" id="ed_key" />
-                </div>
-              </div>
-            </div>
-            <!-- item step EXPERIENCE -->
-            <div class="area-step">
-              <div class="head flex between">
-                <p>Work Experience</p>
-                <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down drop-icon"></i>
-                </button>
-              </div>
-              <div class="form-content experience">
-                <div class="experience-main"></div>
-                <div class="actions">
-                  <span
-                    data-target=".experience-main"
-                    data-form-object="OBJECT_EXP"
-                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
-                  >
-                    <i class="fas fa-plus"></i>
-                    <small class="text">Add experience</small>
-                  </span>
-                  <input type="hidden" id="ed_key" />
-                </div>
-              </div>
-            </div>
-            <!-- item step LANGUAGE -->
-            <div class="area-step">
-              <div class="head flex between">
-                <p>Languages</p>
-                <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down drop-icon"></i>
-                </button>
-              </div>
-              <div class="form-content language">
-                <!-- CONTAINER -->
-                <div class="language-main"></div>
-                <!-- ACTIONS -->
-                <div class="actions">
-                  <span
-                    data-target=".language-main"
-                    data-form-object="OBJECT_LANG"
-                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
-                  >
-                    <i class="fas fa-plus"></i>
-                    <small class="text">Add Language</small>
-                  </span>
-                  <input type="hidden" id="ed_key" />
-                </div>
-              </div>
-            </div>
-            <!-- item step SKILL -->
-            <div class="area-step">
-              <div class="head flex between">
-                <p>Skills</p>
-                <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down drop-icon"></i>
-                </button>
-              </div>
-              <div class="form-content skill">
-                <!-- CONTAINER -->
-                <div class="skill-main"></div>
-                <!-- ACTIONS -->
-                <div class="actions">
-                  <span
-                    data-target=".skill-main"
-                    data-form-object="OBJECT_SKILL"
-                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
-                  >
-                    <i class="fas fa-plus"></i>
-                    <small class="text">Add skill</small>
-                  </span>
-                  <input type="hidden" id="ed_key" />
-                </div>
-              </div>
-            </div>
-            <!-- item step HOBBIES -->
-            <div class="area-step">
-              <div class="head flex between">
-                <p>Hobbies</p>
-                <button class="bbtn primary small area-botton">
-                  <i class="fas fa-caret-down drop-icon"></i>
-                </button>
-              </div>
-              <div class="form-content hobby">
-                <!-- CONTAINER -->
-                <div class="hobby-main"></div>
-                <!-- ACTIONS -->
-                <div class="actions">
-                  <span
-                    data-target=".hobby-main"
-                    data-form-object="OBJECT_HOB"
-                    class="bbtn primary small w-fit flex gap-x btn_form_card_add"
-                  >
-                    <i class="fas fa-plus"></i>
-                    <small class="text">Add hobby</small>
-                  </span>
-                  <input type="hidden" id="ed_key" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <br />
-          <br />
-          <br />
-          <div class="actions flex gap-2 end">
-            <button class="bbtn secondary w-fit mr-2 btn_save_resume">
-              SAVE RESUME
-              <i class="pl-1 fas fa-angle-double-right"></i>
+          <div class="side_panel">
+            <button class="btn_close_panel btn_panel" title="close side panel">
+              <i class="fas fa-angle-double-left"></i>
             </button>
+            <ul class="actions_lists">
+              <li data-target="create_forms" class="panel_action active">
+                <i class="fas fa-radiation icon"></i>
+                <p class="text">Create</p>
+              </li>
+              <li data-target="templates" class="panel_action">
+                <i class="fas fa-radiation icon"></i>
+                <p class="text">Templates</p>
+              </li>
+              <li data-target="settings" class="panel_action">
+                <i class="fas fa-radiation icon"></i>
+                <p class="text">Settings</p>
+              </li>
+              <li data-target="create_forms" class="panel_action">
+                <i class="fas fa-radiation icon"></i>
+                <p class="text">Content</p>
+              </li>
+              <li data-target="create_forms" class="panel_action">
+                <i class="fas fa-radiation icon"></i>
+                <p class="text">Content</p>
+              </li>
+              <li class="theme_btn flex gap-x">
+                <i class="fas fa-moon icon"></i>
+                <span class="text"> Dark</span>
+              </li>
+            </ul>
+          </div>
+          <div class="main_content">
+            <div class="pages">
+              <div class="head">
+                <button
+                  class="btn_close_panel btn_panel"
+                  title="close side panel"
+                >
+                  <i class="fas fa-angle-double-right"></i>
+                </button>
+              </div>
+              <!-- // CREATE -->
+              <div class="create_forms page_section on_page">
+                <div class="container actions">
+                  <button data-section-main="personal" class="control_action">
+                    Personal
+                  </button>
+                  <button data-section-main="education" class="control_action">
+                    Eduction
+                  </button>
+                  <button data-section-main="experience" class="control_action">
+                    Work experience
+                  </button>
+                  <button data-section-main="skills" class="control_action">
+                    Skills
+                  </button>
+                  <button data-section-main="hobbies" class="control_action">
+                    Hobbies
+                  </button>
+                </div>
+                <div class="content_display">
+                  <div class="area-step personal">PERSONAL</div>
+                  <div class="area-step education">EDUCATION</div>
+                  <div class="page_footer">
+                    <div class="container flex end gap-2">
+                      <button class="btn_page_section bbtn primary small">
+                        close
+                      </button>
+                      <button class="btn_page_section bbtn secondary small">
+                        <i class="fas fa-check pr-x"></i> Done
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- // SETTINGS  -->
+              <div class="settings page_section">SETTINGS</div>
+              <!-- // TEMPLATES -->
+              <div class="templates page_section">TEMPLATES</div>
+            </div>
           </div>
         </section>
-        <!-- <section class="create-preview">
-        <div class="preview-container flex">
-          <main class="preview">
-            <img src="/static/media/t3.jpg" alt="">
-          </main>
-        </div>
-      </section> -->
-      </div>
+        <section class="create-preview">
+          <div class="preview-container flex">
+            <main class="preview">Preview</main>
+          </div>
+        </section>
+      </main>
     </div>
 
     <script src="/static/scripts/jQuery.min.js"></script>
-    <script type="module" src="/static/scripts/create.js"></script>
+    <script>
+      // Panel Pages
+      $(".panel_action").on("click", function (e) {
+        $(".panel_action").removeClass("active");
+        $(this).addClass("active");
+        const section = $(this).data("target");
+        $(".page_section").removeClass("on_page");
+        $(`.${section}`).addClass("on_page");
+        $(".area-step").removeClass("active");
+      });
+      // Internal Sections
+      $(".control_action").on("click", function (e) {
+        $(".area-step").removeClass("active");
+        const section = $(this).data("section-main");
+        $(`.${section}`).addClass("active");
+      });
+      // Page Sections
+      $(".btn_page_section").on("click", function (e) {
+        $(".area-step").removeClass("active");
+      });
+
+      $(".btn_panel").on("click", function (e) {
+        let $panel = $(".side_panel");
+
+        if ($panel.hasClass("active")) {
+          $panel.removeClass("active");
+        } else {
+          $panel.addClass("active");
+        }
+      });
+    </script>
   </body>
 </html>

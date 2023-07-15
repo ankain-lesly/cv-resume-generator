@@ -1,5 +1,3 @@
-@import "variables";
-
 /* ROOT VARIABLES */
 :root {
   // HSL
@@ -182,6 +180,7 @@ button {
   color: inherit;
   font: inherit;
   cursor: pointer;
+  transform: var(--transition);
 }
 a {
   color: var(--clr-primary);
@@ -215,12 +214,13 @@ h3 {
   border-radius: 5px;
   padding: 6px;
   display: inherit;
+  transition: var(--transition);
 
   &:active,
   &:hover {
-    border-color: $clr-bg;
-    background-color: $clr-bg;
-    color: $clr-white !important;
+    border-color: var(--clr-bg);
+    background-color: var(--clr-bg);
+    color: var(--clr-white) !important;
   }
 }
 
@@ -258,18 +258,23 @@ h3 {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.25rem;
-  color: $clr-bg;
+  color: var(--clr-bg);
+  transition: var(--transition);
   cursor: pointer;
-
+  &.white {
+    color: var(--clr-light);
+    border-color: var(--clr-light);
+  }
   &:hover {
     opacity: 0.8;
   }
 
   &.primary {
-    border-color: var(--clr-bg);
+    border-color: var(--clr-bg) !important;
   }
 
   &.secondary {
+    border-color: var(--clr-bg) !important;
     background-color: var(--clr-primary);
     color: var(--clr-white);
   }
