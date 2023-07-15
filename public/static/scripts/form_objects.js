@@ -46,17 +46,17 @@ const FORM_TEMPLATE = {
 };
 
 // Generate Form Group
-const generateFormGroup = (name, value, {inp_type, inp_label, inp_classes} => {
-
-  if (!inp_type) {
-    return `<div class="form-group ${inp_classes ?? ""}">
-        <label for="${name}">${inp_label}</label>
+const generateFormGroup = (name, value, object) => {
+  // console.log(object);
+  if (!object[name]["type"]) {
+    return `<div class="form-group ${object[name]["classes"] ?? ""}">
+        <label for="${name}">${object[name]["label"]}</label>
         <textarea id="${name}" data-inp-reff=".reff-${name}" cols="30" rows="2">${value}</textarea>
       </div>`;
-  } else if (inp_type === "range") {
+  } else if (object[name]["type"] === "range") {
     return `
       <div class="form-group mt-1">
-        <label for="${name}">${inp_label}</label>
+        <label for="${name}">${object[name]["label"]}</label>
         <div class="rang_setup flex gap-2 start">
           <input
             type="range"
@@ -77,12 +77,12 @@ const generateFormGroup = (name, value, {inp_type, inp_label, inp_classes} => {
     `;
   }
 
-  return `<div class="form-group ${inp_classes ?? ""}">
-      <label for="${name}">${inp_label}</label>
+  return `<div class="form-group ${object[name]["classes"] ?? ""}">
+      <label for="${name}">${object[name]["label"]}</label>
       <input type="${
-        inp_type
+        object[name]["type"]
       }" id="${name}" data-inp-reff=".reff-${name}" ${
-    inp_name]["option"] && inp_name]["option"] === "class"
+    object[name]["option"] && object[name]["option"] === "class"
       ? 'class="font-size-small range_title_input"'
       : ""
   } ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
@@ -113,8 +113,10 @@ const generateFormCard = (data = null, config, className = "") => {
       <p class="range_title">[${config.title}]</p>
       <small class="range_proficiency"></small>
     </div>`;
-  }else {
-    headContent = `<p class="${ config.className === "hobby" ? "hobby_heading" : "group_caption"}">${config.title}</p>`
+  } else {
+    headContent = `<p class="${
+      config.className === "hobby" ? "hobby_heading" : "group_caption"
+    }">${config.title}</p>`;
   }
 
   return `<!-- EDUCATIONS -->
