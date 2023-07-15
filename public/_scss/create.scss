@@ -8,6 +8,19 @@ select {
   border-radius: 0.35em;
   padding: 0.3em 0.6em;
 }
+
+/*
+  inputs on hover
+  area step on hover -> remove bg on active
+
+*/
+
+
+input::hover,
+textarea::hover,
+select::hover {
+  border-color:$clr-bg;
+}
 .create-resume {
   .main-header {
     background-color: $color-bg;

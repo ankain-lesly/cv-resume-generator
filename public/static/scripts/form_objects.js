@@ -106,13 +106,15 @@ const generateFormCard = (data = null, config, className = "") => {
       dataGroup += generateFormGroup(key, "", object);
     });
 
-  let headContent = null;
+  let headContent = "";
 
   if (config.className === "language" || config.className === "skill") {
     headContent = `<div class="head_caption">
       <p class="range_title">[${config.title}]</p>
       <small class="range_proficiency"></small>
     </div>`;
+  }else {
+    headContent = `<p class="${ config.className === "hobby" ? "hobby_heading" : "group_caption"}">${config.title}</p>`
   }
 
   return `<!-- EDUCATIONS -->
@@ -120,13 +122,7 @@ const generateFormCard = (data = null, config, className = "") => {
     <!-- HEAD -->
     <div class="ed_head">
       <div class="flex between gap-1">
-        ${
-          headContent
-            ? headContent
-            : `<p class="${
-                config.className === "hobby" ? "hobby_heading" : "group_caption"
-              }">${config.title}</p>`
-        }
+        ${headContent}
         <span class="bbtn primary small btn_form_card_edit"><i class="fas fa-pencil-alt"></i></span>
       </div>
       <input type="hidden" id="ed_key" value="">

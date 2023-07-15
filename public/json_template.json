@@ -1,0 +1,44 @@
+{
+  ".personal": {
+    "data": {
+      ".reff-picture": "",
+      ".reff-firstname": "",
+      ".reff-lastname": "",
+      ".reff-address": "",
+      ".reff-date_of_birth": "",
+      ".reff-headline": "",
+      ".reff-email": "",
+      ".reff-phone": ""
+    },
+    "extras": {
+      ".reff-extra-name1": "",
+      ".reff-extra-name2": "",
+      ".reff-extra-name3": ""
+    }
+  },
+  ".education": [
+    {
+      ".reff-education": "",
+      ".reff-school": "",
+      ".reff-start_date": "",
+      ".reff-end_date": "",
+      ".reff-city": "",
+      ".reff-present": "",
+      ".reff-description": ""
+    }
+  ],
+  ".experience": [
+    {
+      ".reff-position": "",
+      ".reff-employer": "",
+      ".reff-start_date": "",
+      ".reff-end_date": "",
+      ".reff-city": "",
+      ".reff-present": "",
+      ".reff-description": ""
+    }
+  ],
+  ".language": [{ ".reff-language": "", ".reff-proficiency": "0" }],
+  ".skill": [{ ".reff-skill": "", ".reff-proficiency": "80" }],
+  ".hobby": [{ ".reff-hobby": "" }]
+}

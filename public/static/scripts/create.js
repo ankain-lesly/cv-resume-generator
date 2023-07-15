@@ -141,18 +141,42 @@ const LoadDefaultForm = () =>
 
 LoadDefaultForm();
 
-const getSectionInputData = (section) => {
-  const collection = {};
-  $.each($(".personal [data-inp-reff]"), (key, input) => {
-    collection[input.dataset.inpReff] = input.value;
-  });
-  FORM_DATA[`.${section}`] = { data: collection };
+const generateSectionData = (section, isMultiple = false) => {
+  const collection = [];
+  const resource = {};
+
+  if(isMultiple) {
+    $.each($(`.${section} .form_card`), (key, group) => {
+      $.each($(group).find('[data-inp-reff]'), (key, input) => {
+        resource[input.dataset.inpReff] = input.value;
+      });
+      collection.push(resource);
+    });
+
+    FORM_DATA[`.${section}`] = collection;
+  }else {
+    $.each($(`.${section} [data-inp-reff]`), (key, input) => {
+      resource[input.dataset.inpReff] = input.value;
+    });
+
+    FORM_DATA[`.${section}`] = { data: resource };
+  }
 };
-getSectionInputData("personal");
-getSectionInputData("education");
-getSectionInputData("language");
-getSectionInputData("skill");
-getSectionInputData("hobby");
+const generateResumeData = () => {
+  generateSectionData("personal");
+  generateSectionData("education", true);
+  generateSectionData("experience", true);
+  generateSectionData("language", true);
+  generateSectionData("skill", true);
+  generateSectionData("hobby", true);
+
+  return FORM_DATA;
+}
+
+
+setTimeout(() => {
+  console.log(JSON.stringify(generateResumeData()));
+}, 1000);
 
 // saving form-data
-$(".btn_save_resume").on("click", () => console.log(FORM_DATA));
+$(".btn_save_resume").on("click", () => console.log(JSON.stringify(generateResumeData())));
