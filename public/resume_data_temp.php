@@ -105,10 +105,6 @@
   </div>
   <script src="/static/jQuery.min.js"></script>
   <script>
-    // 445550339
-    // 50339
-    // 0.45
-
     //Responsive Scaling
     let wrapper = document.getElementById("wrapper"),
       content = document.getElementById("content"),
@@ -126,6 +122,7 @@
         isMax = width >= maxWidth;
 
       if (!isMax) {
+        // Update this calculation
         // scale = Math.min(width / maxWidth, height / maxHeight);
         scale = Math.min(width / maxWidth);
         content.style.transform = `scale(${scale - 0.04})`;
