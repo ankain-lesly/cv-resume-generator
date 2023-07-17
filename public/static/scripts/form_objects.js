@@ -96,32 +96,42 @@ const generateFormGroup = (name, value, options) => {
 
 // Generate Card
 const generateFormCard = (data = null, config, className = "") => {
-  const object =
-    FORM_TEMPLATE[config.form_object] ?? alert("Error getting object data...");
+  const object = FORM_TEMPLATE[config.form_object] ?? [];
 
-  let dataGroup = "";
-  if (data)
-    $.each(data, (key, value) => {
-      // console.log(key, value);
-      dataGroup += generateFormGroup(key, value, object);
-    });
-  else
-    $.each(object, (key, value) => {
-      // console.log(key, value);
-      dataGroup += generateFormGroup(key, "", object);
-    });
+  let key_id = new Date().getTime();
+      // rand_id = Math.floor(Math.random() * 100);
 
-  let headContent = "";
+  let dataGroup = "", headContent = "", sectionTitle = "";
 
-  if (config.className === "language" || config.className === "skill") {
+
+  $.each(object, (key, options) => {
+    let input_value = data[key] ?? '';
+    dataGroup += generateFormGroup(key, input_value, options);
+    // console.log(generateFormGroup(key, input_value, options));
+  });
+
+  // console.log(dataGroup);
+
+  if(config.className === "education") {
+    sectionTitle = data.education ?? '['+config.title+']';
+  }else if(config.className === "experience") {
+    sectionTitle = data.experience ?? '['+config.title+']';
+  }else if(config.className === "language") {
+    sectionTitle = data.language ?? '['+config.title+']';
+  }else if(config.className === "skill") {
+    sectionTitle = data.skill ?? '['+config.title+']';
+  }else if(config.className === "hobby") {
+    sectionTitle = data.hobby ?? '['+config.title+']';
+  } 
+
+
+  if (object.proficiency) {
     headContent = `<div class="head_caption">
-      <p class="range_title">[${config.title}]</p>
+      <p class="range_title">${sectionTitle}</p>
       <small class="range_proficiency"></small>
     </div>`;
-  } else {
-    headContent = `<p class="${
-      config.className === "hobby" ? "hobby_heading" : "group_caption"
-    }">${config.title}</p>`;
+  }else {
+    headContent = `<p class="${ config.className === "hobby" ? "hobby_heading" : "group_caption"}">${sectionTitle}</p>`
   }
 
   return `<!-- EDUCATIONS -->
@@ -132,11 +142,11 @@ const generateFormCard = (data = null, config, className = "") => {
         ${headContent}
         <span class="bbtn primary small btn_form_card_edit"><i class="fas fa-pencil-alt"></i></span>
       </div>
-      <input type="hidden" id="ed_key" value="">
+      <input type="hidden" class="unique_key" value="UU-${config.unique_key ?? key_id}">
     </div>
     <!-- BODY -->
     <div class="ed_body">
-      <div class="intro-group${headContent ? "-2" : ""}">
+      <div class="intro-group${object.proficiency ? "-2" : ""}">
         ${dataGroup}        
         <div class="card-options flex end gap-1 mt-1 col-span">
           <span class="bbtn primary small btn_form_card_delete"><i class="fas fa-trash"></i></span>
@@ -146,7 +156,6 @@ const generateFormCard = (data = null, config, className = "") => {
     </div>
   </div>`;
 };
-// module.exports = {
-//   makeFetch,
-// };
+
 export { generateFormCard };
+
