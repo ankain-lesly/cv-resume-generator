@@ -45,26 +45,30 @@ const FORM_TEMPLATE = {
   },
 };
 
+
 // Generate Form Group
-const generateFormGroup = (name, value, object) => {
-  // console.log(object);
-  if (!object[name]["type"]) {
-    return `<div class="form-group ${object[name]["classes"] ?? ""}">
-        <label for="${name}">${object[name]["label"]}</label>
-        <textarea id="${name}" data-inp-reff=".reff-${name}" cols="30" rows="2">${value}</textarea>
+const generateFormGroup = (name, value, options) => {
+  // console.log(name, value, options);
+  if (!options["type"]) {
+    
+    return `<div class="form-group ${options["classes"] ?? ""}">
+        <label for="${name}">${options["label"]}</label>
+        <textarea id="${name}" data-inp-reff="${name}" cols="30" rows="2">${value}</textarea>
       </div>`;
-  } else if (object[name]["type"] === "range") {
+
+  } else if (options["type"] === "range") {
+
     return `
       <div class="form-group mt-1">
-        <label for="${name}">${object[name]["label"]}</label>
+        <label for="${name}">${options["label"]}</label>
         <div class="rang_setup flex gap-2 start">
           <input
             type="range"
             class="range_input flex-1"
             id="${name}"
-            value="0"
+            value="${value}"
             step="20"
-            data-inp-reff=".reff-${name}"
+            data-inp-reff="${name}"
           />
           <div class="info flex start gap-1">
             <span class="detail bubble" id="test_input"
@@ -77,17 +81,18 @@ const generateFormGroup = (name, value, object) => {
     `;
   }
 
-  return `<div class="form-group ${object[name]["classes"] ?? ""}">
-      <label for="${name}">${object[name]["label"]}</label>
+  return `<div class="form-group ${options["classes"] ?? ""}">
+      <label for="${name}">${options["label"]}</label>
       <input type="${
-        object[name]["type"]
-      }" id="${name}" data-inp-reff=".reff-${name}" ${
-    object[name]["option"] && object[name]["option"] === "class"
+        options["type"]
+      }" id="${name}" data-inp-reff="${name}" ${
+    options["option"] && options["option"] === "class"
       ? 'class="font-size-small range_title_input"'
       : ""
   } ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
     </div>`;
 };
+
 
 // Generate Card
 const generateFormCard = (data = null, config, className = "") => {
