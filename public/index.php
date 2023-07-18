@@ -50,4 +50,5 @@ $router->get("/resume/create/{resume_id}", [ResumeController::class, 'create']);
 // Get Resume Setup on edit
 $router->post("/resume/on_edit/{template_id}", [ResumeController::class, 'setupResume']);
 
+// Router resolve
 $router->resolve();
