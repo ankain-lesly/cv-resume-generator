@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 header('Access-Control-Allow-Origin:*');
 // header("Content-Type: application/json; charset=UTF-8");
@@ -11,6 +12,7 @@ use Devlee\XRouter\Router;
 use Devlee\mvccore\DB\DBModel;
 use App\controllers\SiteController;
 use App\controllers\AuthController;
+use App\controllers\ResumeController;
 
 $router = new Router(__DIR__);
 
@@ -39,5 +41,13 @@ $router->get("/api/auth/logout", [AuthController::class, 'logout']);
 
 $router->get("/register", [AuthController::class, 'register']);
 $router->post("/api/auth/register", [AuthController::class, 'register']);
+
+
+
+// Get Resume Data
+$router->get("/resume/{resume_key}/", [ResumeController::class, 'getData']);
+$router->get("/resume/create/{resume_id}", [ResumeController::class, 'create']);
+// Get Resume Setup on edit
+$router->post("/resume/on_edit/{template_id}", [ResumeController::class, 'setupResume']);
 
 $router->resolve();

@@ -39,3 +39,10 @@ public function interceptRequest($path = null)
 
 ## Database
 ## BaseModel
+
+## Router -> root_folder()
+## Request -> sanitizeData() -> string
+
+## Router Confused
+    "/resume/{resume_id}"
+    "/resume/create/{resume_id}"

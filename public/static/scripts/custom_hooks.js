@@ -10,9 +10,10 @@ const useToken = (value = "") => {
 // Set and Get user
 const useStorage = (key, value) => {
   if (value) {
-    localStorage.setItem(key, value);
+    localStorage.setItem(key, JSON.stringify(value));
   } else {
-    return localStorage.getItem(key);
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : false;
   }
 };
 

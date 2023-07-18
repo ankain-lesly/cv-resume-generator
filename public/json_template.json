@@ -1,44 +1,199 @@
 {
-  ".personal": {
-    "data": {
-      ".reff-picture": "",
-      ".reff-firstname": "",
-      ".reff-lastname": "",
-      ".reff-address": "",
-      ".reff-date_of_birth": "",
-      ".reff-headline": "",
-      ".reff-email": "",
-      ".reff-phone": ""
+  "widthData": {
+    "personal": {
+      "firstname": "<h1>Ankain </h1>",
+      "lastname": "Lesly",
+      "address": "Bamenda Cameroon, <h1>Bambili<h1>",
+      "date_of_birth": "2202-05-05",
+      "headline": "Front End UI Designer",
+      "email": "leex@gmail.com",
+      "phone": "+23670740"
     },
-    "extras": {
-      ".reff-extra-name1": "",
-      ".reff-extra-name2": "",
-      ".reff-extra-name3": ""
+    "education": {
+      "UU-1689627865042": {
+        "education": "O Levels",
+        "school": "GBHS Fundong",
+        "description": "My adventure into olevel was greate..."
+      },
+      "UU-1689628365151": {
+        "education": "A Levels",
+        "school": "GBHS DSCHANG",
+        "start_date": "2023-07-26",
+        "end_date": "2023-07-19",
+        "city": "Dchang",
+        "present": "",
+        "description": "I worked so hard to achieve greate result and actually, This shool guided me on my programming life till date"
+      }
+    },
+    "experience": {
+      "UU-1689627865701": {
+        "position": "Web Developer",
+        "employer": "LeTECH CG",
+        "start_date": "2023-07-20",
+        "end_date": "2023-07-26",
+        "city": "Bamenda",
+        "present": "",
+        "description": "I was a student worker by  the it strived me through my career as a ui expert"
+      },
+      "UU-1689628579217": {
+        "position": "Backed Developer",
+        "employer": "CivilSalt",
+        "start_date": "2023-07-18",
+        "end_date": "2023-07-18",
+        "city": "Bamenda Nkwen",
+        "present": "",
+        "description": "I has serios inflow on backend development"
+      }
+    },
+    "skill": {
+      "UU-1689627865725": {
+        "skill": "Judo",
+        "proficiency": "60"
+      },
+      "UU-1689628711646": {
+        "skill": "Gymnast",
+        "proficiency": "100"
+      },
+      "UU-1689628711446": {
+        "skill": "Sporting",
+        "proficiency": "100"
+      }
+    },
+    "hobby": ["Coding", "Spanking", "Coding", "Dancing", "Just for fun"]
+  },
+
+  "new": {
+    "education": {
+      "UU-1689618390349": {
+        "education": "GBA Bamenda",
+        "school": "O Levels"
+      },
+      "UU-1689618573136": {
+        "education": "Computer Engineering",
+        "school": "Uba"
+      }
+    },
+    "personal": {
+      "firstname": "Ankain ",
+      "lastname": "Lesly",
+      "address": "Bamenda Cameroon, Bambili"
+    },
+    "experience": {
+      "UU-1689618390722": {
+        "position": "UI/UX Designer",
+        "employer": "LeTECH CG"
+      }
+    },
+    "skill": {
+      "UU-1689618390755": {
+        "skill": "English",
+        "proficiency": "80"
+      },
+      "UU-1689618655316": {
+        "skill": "French",
+        "proficiency": "20"
+      }
+    },
+    "hobby": {
+      "UU-1689618390759": {
+        "hobby": "Football"
+      },
+      "UU-1689618684104": {
+        "hobby": "Basket Ball"
+      }
+    },
+    "language": {
+      "UU-1689618390753": {
+        "language": "Dancer",
+        "proficiency": "80"
+      },
+      "UU-1689618741622": {
+        "language": "Singer",
+        "proficiency": "100"
+      }
     }
   },
-  ".education": [
-    {
-      ".reff-education": "",
-      ".reff-school": "",
-      ".reff-start_date": "",
-      ".reff-end_date": "",
-      ".reff-city": "",
-      ".reff-present": "",
-      ".reff-description": ""
-    }
-  ],
-  ".experience": [
-    {
-      ".reff-position": "",
-      ".reff-employer": "",
-      ".reff-start_date": "",
-      ".reff-end_date": "",
-      ".reff-city": "",
-      ".reff-present": "",
-      ".reff-description": ""
-    }
-  ],
-  ".language": [{ ".reff-language": "", ".reff-proficiency": "0" }],
-  ".skill": [{ ".reff-skill": "", ".reff-proficiency": "80" }],
-  ".hobby": [{ ".reff-hobby": "" }]
+  "resume": {
+    ".personal": {
+      "data": {
+        ".reff-picture": "",
+        ".reff-firstname": "",
+        ".reff-lastname": "",
+        ".reff-address": "",
+        ".reff-date_of_birth": "",
+        ".reff-headline": "",
+        ".reff-email": "",
+        ".reff-phone": ""
+      },
+      "extras": {
+        ".reff-extra-name1": "",
+        ".reff-extra-name2": "",
+        ".reff-extra-name3": ""
+      }
+    },
+    ".education": [
+      {
+        ".reff-education": "",
+        ".reff-school": "",
+        ".reff-start_date": "",
+        ".reff-end_date": "",
+        ".reff-city": "",
+        ".reff-present": "",
+        ".reff-description": ""
+      }
+    ],
+    ".experience": [
+      {
+        ".reff-position": "",
+        ".reff-employer": "",
+        ".reff-start_date": "",
+        ".reff-end_date": "",
+        ".reff-city": "",
+        ".reff-present": "",
+        ".reff-description": ""
+      }
+    ],
+    ".language": [{ ".reff-language": "", ".reff-proficiency": "0" }],
+    ".skill": [{ ".reff-skill": "", ".reff-proficiency": "80" }],
+    ".hobby": [{ ".reff-hobby": "" }]
+  },
+  "resume-2": {
+    "personal": {
+      "data": {
+        "picture": "",
+        "firstname": "",
+        "lastname": "",
+        "address": "",
+        "date_of_birth": "",
+        "headline": "",
+        "email": "",
+        "phone": ""
+      }
+    },
+    "education": [
+      {
+        "education": "",
+        "school": "",
+        "start_date": "",
+        "end_date": "",
+        "city": "",
+        "present": "",
+        "description": ""
+      }
+    ],
+    "experience": [
+      {
+        "position": "",
+        "employer": "",
+        "start_date": "",
+        "end_date": "",
+        "city": "",
+        "present": "",
+        "description": ""
+      }
+    ],
+    "language": [{ "language": "", "proficiency": "0" }],
+    "skill": [{ "skill": "", "proficiency": "0" }],
+    "hobby": [{ "hobby": "" }]
+  }
 }

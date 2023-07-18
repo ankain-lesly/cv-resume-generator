@@ -46,25 +46,25 @@ const FORM_TEMPLATE = {
 };
 
 // Generate Form Group
-const generateFormGroup = (name, value, object) => {
-  // console.log(object);
-  if (!object[name]["type"]) {
-    return `<div class="form-group ${object[name]["classes"] ?? ""}">
-        <label for="${name}">${object[name]["label"]}</label>
-        <textarea id="${name}" data-inp-reff=".reff-${name}" cols="30" rows="2">${value}</textarea>
+const generateFormGroup = (name, value, options) => {
+  // console.log(name, value, options);
+  if (!options["type"]) {
+    return `<div class="form-group ${options["classes"] ?? ""}">
+        <label for="${name}">${options["label"]}</label>
+        <textarea id="${name}" data-inp-reff="${name}" cols="30" rows="2">${value}</textarea>
       </div>`;
-  } else if (object[name]["type"] === "range") {
+  } else if (options["type"] === "range") {
     return `
       <div class="form-group mt-1">
-        <label for="${name}">${object[name]["label"]}</label>
+        <label for="${name}">${options["label"]}</label>
         <div class="rang_setup flex gap-2 start">
           <input
             type="range"
             class="range_input flex-1"
             id="${name}"
-            value="0"
+            value="${value}"
             step="20"
-            data-inp-reff=".reff-${name}"
+            data-inp-reff="${name}"
           />
           <div class="info flex start gap-1">
             <span class="detail bubble" id="test_input"
@@ -77,12 +77,10 @@ const generateFormGroup = (name, value, object) => {
     `;
   }
 
-  return `<div class="form-group ${object[name]["classes"] ?? ""}">
-      <label for="${name}">${object[name]["label"]}</label>
-      <input type="${
-        object[name]["type"]
-      }" id="${name}" data-inp-reff=".reff-${name}" ${
-    object[name]["option"] && object[name]["option"] === "class"
+  return `<div class="form-group ${options["classes"] ?? ""}">
+      <label for="${name}">${options["label"]}</label>
+      <input type="${options["type"]}" id="${name}" data-inp-reff="${name}" ${
+    options["option"] && options["option"] === "class"
       ? 'class="font-size-small range_title_input"'
       : ""
   } ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
@@ -90,33 +88,45 @@ const generateFormGroup = (name, value, object) => {
 };
 
 // Generate Card
-const generateFormCard = (data = null, config, className = "") => {
-  const object =
-    FORM_TEMPLATE[config.form_object] ?? alert("Error getting object data...");
+const generateFormCard = (data = {}, config, className = "") => {
+  const object = FORM_TEMPLATE[config.form_object] ?? [];
 
-  let dataGroup = "";
-  if (data)
-    $.each(data, (key, value) => {
-      // console.log(key, value);
-      dataGroup += generateFormGroup(key, value, object);
-    });
-  else
-    $.each(object, (key, value) => {
-      // console.log(key, value);
-      dataGroup += generateFormGroup(key, "", object);
-    });
+  let key_id = new Date().getTime();
+  // rand_id = Math.floor(Math.random() * 100);
 
-  let headContent = "";
+  let dataGroup = "",
+    headContent = "",
+    sectionTitle = "";
 
-  if (config.className === "language" || config.className === "skill") {
+  $.each(object, (key, options) => {
+    let input_value = data[key] ? data[key] : "";
+    dataGroup += generateFormGroup(key, input_value, options);
+    // console.log(generateFormGroup(key, input_value, options));
+  });
+
+  // console.log(dataGroup);
+
+  if (config.className === "education") {
+    sectionTitle = data.education ?? "[" + config.title + "]";
+  } else if (config.className === "experience") {
+    sectionTitle = data.position ?? "[" + config.title + "]";
+  } else if (config.className === "language") {
+    sectionTitle = data.language ?? "[" + config.title + "]";
+  } else if (config.className === "skill") {
+    sectionTitle = data.skill ?? "[" + config.title + "]";
+  } else if (config.className === "hobby") {
+    sectionTitle = data ?? "[" + config.title + "]";
+  }
+
+  if (object.proficiency) {
     headContent = `<div class="head_caption">
-      <p class="range_title">[${config.title}]</p>
+      <p class="range_title">${sectionTitle}</p>
       <small class="range_proficiency"></small>
     </div>`;
   } else {
     headContent = `<p class="${
       config.className === "hobby" ? "hobby_heading" : "group_caption"
-    }">${config.title}</p>`;
+    }">${sectionTitle}</p>`;
   }
 
   return `<!-- EDUCATIONS -->
@@ -127,11 +137,13 @@ const generateFormCard = (data = null, config, className = "") => {
         ${headContent}
         <span class="bbtn primary small btn_form_card_edit"><i class="fas fa-pencil-alt"></i></span>
       </div>
-      <input type="hidden" id="ed_key" value="">
+      <input type="hidden" class="unique_key" value="UU-${
+        config.unique_key ?? key_id
+      }">
     </div>
     <!-- BODY -->
     <div class="ed_body">
-      <div class="intro-group${headContent ? "-2" : ""}">
+      <div class="intro-group${object.proficiency ? "-2" : ""}">
         ${dataGroup}        
         <div class="card-options flex end gap-1 mt-1 col-span">
           <span class="bbtn primary small btn_form_card_delete"><i class="fas fa-trash"></i></span>
