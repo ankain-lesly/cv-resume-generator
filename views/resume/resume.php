@@ -12,7 +12,7 @@
       margin: auto;
       overflow: hidden;
       margin: auto;
-      width:100%;
+      width: 100%;
       max-width: 550px;
       border: 2px solid #333333ae;
       border-radius: 0.5em;
@@ -32,32 +32,37 @@
       display: grid;
       grid-template-columns: repeat(2, 50%);
       z-index: 1500;
-      top:0;
+      top: 0;
     }
+
     #page_loader.loaded {
-      display: none!important;
+      display: none !important;
     }
-    #page_loader .load_page{
+
+    #page_loader .load_page {
       height: 100vh;
       /*pointer-events: none;*/
     }
+
     #page_loader .layer_content {
       cursor: wait;
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0, 0, 0, 0.4);
     }
+
     #page_loader .sync {
       padding: 0.5em 1em;
       border-radius: 0.35em;
       background-color: var(--clr-white);
       color: var(--clr-bg);
-      font-size: : 0.8rem;
-      box-shadow:6px 10px 28px 0px rgba(0,0,0,0.4);
+      font-size: 0.8rem;
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
     }
+
     #page_loader .layer_preview {
-      box-shadow:6px 10px 28px 0px rgba(0,0,0,0.4);
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
       background-color: var(--clr-white);
       /*color: var(--clr-bg);*/
-      cursor: alias; 
+      cursor: alias;
     }
   </style>
 </head>
@@ -80,7 +85,7 @@
         <button class="bbtn primary flex gap-x">
           CV <i class="pl-1 fas fa-caret-down"></i>
         </button>
-        <button class="bbtn secondary pre flex gap-x">
+        <button class="bbtn secondary pre flex gap-x btn_resume_dd">
           <i class="fas fa-download pr-x"></i> Download
         </button>
       </div>
@@ -192,8 +197,7 @@
             <div class="form-content education">
               <div class="education-main"></div>
               <div class="actions">
-                <span data-target=".education-main" data-form-object="OBJECT_EDUCATION"
-                  class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                <span data-target=".education-main" data-form-object="OBJECT_EDUCATION" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                   <i class="fas fa-plus"></i>
                   <small class="text">Add education</small>
                 </span>
@@ -212,8 +216,7 @@
             <div class="form-content experience">
               <div class="experience-main"></div>
               <div class="actions">
-                <span data-target=".experience-main" data-form-object="OBJECT_EXPERIENCE"
-                  class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                <span data-target=".experience-main" data-form-object="OBJECT_EXPERIENCE" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                   <i class="fas fa-plus"></i>
                   <small class="text">Add experience</small>
                 </span>
@@ -234,8 +237,7 @@
               <div class="language-main"></div>
               <!-- ACTIONS -->
               <div class="actions">
-                <span data-target=".language-main" data-form-object="OBJECT_LANGUAGE"
-                  class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                <span data-target=".language-main" data-form-object="OBJECT_LANGUAGE" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                   <i class="fas fa-plus"></i>
                   <small class="text">Add Language</small>
                 </span>
@@ -256,8 +258,7 @@
               <div class="skill-main"></div>
               <!-- ACTIONS -->
               <div class="actions">
-                <span data-target=".skill-main" data-form-object="OBJECT_SKILL"
-                  class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                <span data-target=".skill-main" data-form-object="OBJECT_SKILL" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                   <i class="fas fa-plus"></i>
                   <small class="text">Add skill</small>
                 </span>
@@ -278,8 +279,7 @@
               <div class="hobby-main"></div>
               <!-- ACTIONS -->
               <div class="actions">
-                <span data-target=".hobby-main" data-form-object="OBJECT_HOBBY"
-                  class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                <span data-target=".hobby-main" data-form-object="OBJECT_HOBBY" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                   <i class="fas fa-plus"></i>
                   <small class="text">Add hobby</small>
                 </span>
@@ -304,7 +304,7 @@
           <nav class="mobile-nav mobile-test">Nav Items</nav>
           <article id="my_resume_wrapper">
             <div id="my_resume_main" class="resume_previewer">
-              // RESUME 
+              // RESUME
             </div>
           </article>
         </div>
@@ -315,7 +315,7 @@
   <script src="/static/scripts/jQuery.min.js"></script>
   <script type="module" src="/static/scripts/create.js"></script>
 
-<!-- <script>
+  <!-- <script>
     let wrapper = document.getElementById("my_resume_wrapper"),
         content = document.getElementById("my_resume_main"),
         wrapperWidth, contentWidth, scale;

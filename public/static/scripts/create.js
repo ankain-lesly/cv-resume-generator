@@ -269,6 +269,17 @@ $(document).ready(function (e) {
     LoadFormData(formData);
     updatePreviewer(formData);
   }
-
   loadSavedData();
+
+  // Download Resume
+  $(".btn_resume_dd").on("click", async function (e) {
+    const res = await useFetch(
+      "POST",
+      "/resume/on_edit/" + TEMPLATE_MAIN + "?dd=true",
+      FORM_DATA
+    );
+    if (res) {
+      alert("CV Downloaded Succ..");
+    }
+  });
 });

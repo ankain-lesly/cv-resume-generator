@@ -44,33 +44,35 @@ class ResumeController
 
 
     $template_id = $req->params('template_id');
-    $folder = Router::root_folder()."/resumes/";
+    $folder = Router::root_folder() . "/resumes/";
 
-    $isDownload = $req->body('dd');
+    $isDownload = $req->query('dd');
 
     // Process to get resume info and template Design;
-    $design = $folder.$template_id.'.php';
+    $design = $folder . $template_id . '.php';
 
-    if(!file_exists($design)) {
+    if (!file_exists($design)) {
       // send default template
-      $design = $folder.'default.php';
+      $design = $folder . 'default.php';
     }
 
     // $isDownload = true;
-    if(!$isDownload) {
-      require ($design);
+    if (!$isDownload) {
+      require($design);
       exit;
     }
 
     ob_start();
-    require ($design);
+    require($design);
     $template = ob_get_clean();
 
+    exit("Generating RESUME PDF");
     $this->generatePDF($template);
   }
 
 
-  public function generatePDF(string $template) {
+  public function generatePDF(string $template)
+  {
     /**
      * Set the Dompdf options
      */
@@ -89,7 +91,7 @@ class ResumeController
     /**
      * Load the HTML and replace placeholders with values from the form
      */
-    
+
     // $dompdf->loadHtmlFile($template);
     $dompdf->loadHtml($template);
 
@@ -111,11 +113,11 @@ class ResumeController
      */
     $output = $dompdf->output();
     file_put_contents("My_resume.pdf", $output);
-
   }
 
 
-  public function getData() {
+  public function getData()
+  {
     $data = '{"personal": {
                 "firstname": "<h1>Ankain </h1>",
                 "lastname": "Lesly",
@@ -185,7 +187,4 @@ class ResumeController
             }';
     echo ($data);
   }
-
-
-
 }

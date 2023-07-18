@@ -54,6 +54,7 @@ const generateFormGroup = (name, value, options) => {
         <textarea id="${name}" data-inp-reff="${name}" cols="30" rows="2">${value}</textarea>
       </div>`;
   } else if (options["type"] === "range") {
+    console.log(value);
     return `
       <div class="form-group mt-1">
         <label for="${name}">${options["label"]}</label>
@@ -99,7 +100,13 @@ const generateFormCard = (data = {}, config, className = "") => {
     sectionTitle = "";
 
   $.each(object, (key, options) => {
-    let input_value = data[key] ? data[key] : "";
+    let input_value;
+    // console.log(key);
+    if (object.hobby) {
+      input_value = data ? data : "";
+    } else {
+      input_value = data[key] ? data[key] : "";
+    }
     dataGroup += generateFormGroup(key, input_value, options);
     // console.log(generateFormGroup(key, input_value, options));
   });

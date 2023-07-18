@@ -9,7 +9,6 @@ require_once __DIR__ . "/../vendor/autoload.php";
 require_once __DIR__ . "/../Config/config.php";
 
 use Devlee\XRouter\Router;
-use Devlee\mvccore\DB\DBModel;
 use App\controllers\SiteController;
 use App\controllers\AuthController;
 use App\controllers\ResumeController;
