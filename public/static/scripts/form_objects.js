@@ -63,7 +63,7 @@ const generateFormGroup = (name, value, options) => {
             type="range"
             class="range_input flex-1"
             id="${name}"
-            value="${value}"
+            value="${value ? value : 0}"
             step="20"
             data-inp-reff="${name}"
           />

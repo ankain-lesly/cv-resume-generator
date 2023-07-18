@@ -40,21 +40,20 @@ $(document).ready(function (e) {
   };
 
   // Form Sections Accord
-  $(".area-step .form-content").slideDown();
-  // $(".area-step.active .form-content").addClass("c-shown").slideDown();
-  // $(".area-step .head").on("click", function (e) {
-  //   $(".area-step").removeClass("active");
-  //   $(".form-content").slideUp();
+  $(".area-step.active .form-content").addClass("c-shown").slideDown();
+  $(".area-step .head").on("click", function (e) {
+    $(".area-step").removeClass("active");
+    $(".form-content").slideUp();
 
-  //   $(this).closest(".area-step").addClass("active");
-  //   let $content = $(this).siblings(".form-content");
+    $(this).closest(".area-step").addClass("active");
+    let $content = $(this).siblings(".form-content");
 
-  //   if (!$content.hasClass("c-shown")) {
-  //     $content.addClass("c-shown").slideDown();
-  //   } else {
-  //     $content.removeClass("c-shown").slideUp();
-  //   }
-  // });
+    if (!$content.hasClass("c-shown")) {
+      $content.addClass("c-shown").slideDown();
+    } else {
+      $content.removeClass("c-shown").slideUp();
+    }
+  });
 
   // Form Action Logic
   // Done
