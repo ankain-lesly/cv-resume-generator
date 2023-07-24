@@ -44,8 +44,8 @@ $router->post("/api/auth/register", [AuthController::class, 'register']);
 
 
 // Get Resume Data
-$router->get("/resume/{resume_key}/", [ResumeController::class, 'getData']);
-$router->get("/resume/create/{resume_id}", [ResumeController::class, 'create']);
+$router->get("/resume/{resume_key}/", [ResumeController::class, 'getResumeData']);
+$router->get("/resume/create/{resume_id}", [ResumeController::class, 'createResume']);
 // Get Resume Setup on edit
 $router->post("/resume/on_edit/{template_id}", [ResumeController::class, 'setupResume']);
 

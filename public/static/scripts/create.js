@@ -1,5 +1,5 @@
 // Custom Objects
-import { generateFormCard } from "./form_objects.js";
+import { generateFormCard, RANGE_OBJECT } from "./form_objects.js";
 import { useFetch, useToken, useStorage } from "./custom_hooks.js";
 
 $(document).ready(function (e) {
@@ -39,23 +39,7 @@ $(document).ready(function (e) {
     },
   };
 
-  // Form Sections Accord
-  $(".area-step.active .form-content").addClass("c-shown").slideDown();
-  $(".area-step .head").on("click", function (e) {
-    $(".area-step").removeClass("active");
-    $(".form-content").slideUp();
-
-    $(this).closest(".area-step").addClass("active");
-    let $content = $(this).siblings(".form-content");
-
-    if (!$content.hasClass("c-shown")) {
-      $content.addClass("c-shown").slideDown();
-    } else {
-      $content.removeClass("c-shown").slideUp();
-    }
-  });
-
-  // Form Action Logic
+  // Form Actions Logic
   // Done
   $(document).on("click", ".btn_form_card_done", function (e) {
     $(this).closest(".form_card").removeClass("on_edit");
@@ -77,18 +61,8 @@ $(document).ready(function (e) {
     const target = $btn.data("target");
     const object = $btn.data("form-object");
 
-    $(target).append(generateFormCard({}, FORM_OBJECTS[object], "on_edit"));
+    $(target).append(generateFormCard("", {}, FORM_OBJECTS[object], "on_edit"));
   });
-
-  // Range
-  const RANGE_OBJECT = {
-    0: "Make a choice",
-    20: "Beginner",
-    40: "Moderate",
-    60: "Good",
-    80: "Very good",
-    100: "Excellent",
-  };
 
   // Education
   $(document).on("keyup", "#education, #position", function (e) {
@@ -129,21 +103,26 @@ $(document).ready(function (e) {
 
   // Load Default form
   const LoadDefaultForm = () => {
-    $(".education-main").append(
-      generateFormCard("", FORM_OBJECTS["OBJECT_EDUCATION"])
+    // $(".education-main").append(
+    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_EDUCATION"], "on_edit")
+    // );
+    // $(".experience-main").append(
+    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_EXPERIENCE"], "on_edit")
+    // );
+    // $(".language-main").append(
+    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_LANGUAGE"], "on_edit")
+    // );
+    $(".skill-main").append(
+      generateFormCard("", [], FORM_OBJECTS["OBJECT_SKILL"], "on_edit")
     );
-    $(".experience-main").append(
-      generateFormCard("", FORM_OBJECTS["OBJECT_EXPERIENCE"])
-    );
-    $(".language-main").append(
-      generateFormCard("", FORM_OBJECTS["OBJECT_LANGUAGE"])
-    );
-    $(".skill-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_SKILl"]));
-    $(".hobby-main").append(generateFormCard("", FORM_OBJECTS["OBJECT_HOBBY"]));
+    // $(".hobby-main").append(
+    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_HOBBY"], "on_edit")
+    // );
   };
 
   // Load form with Data
   const LoadFormData = (formObject) => {
+    LoadDefaultForm();
     $.each(formObject, (section_key, data) => {
       // console.log(section_key)
       if (section_key === "personal") {
@@ -154,11 +133,11 @@ $(document).ready(function (e) {
       } else {
         const formObjectReff =
           FORM_OBJECTS[`OBJECT_${section_key.toUpperCase()}`];
+        $(`.${section_key}-main`).html("");
         $.each(data, (key, object) => {
-          formObjectReff["unique_key"] = key;
-          // console.log(formObjectReff)
+          // console.log(formObjectReff);
           $(`.${section_key}-main`).append(
-            generateFormCard(object, formObjectReff)
+            generateFormCard(key, object, formObjectReff)
           );
         });
       }
@@ -171,28 +150,27 @@ $(document).ready(function (e) {
     console.log("Typing stopped...");
     const section = $(this).closest(".area-step").data("section-title");
     const formObject = FORM_DATA[section] ?? {};
-
-    if (section === "hobby") {
-      const hobbyData = FORM_DATA[section] ?? [];
-
-      hobbyData.push($(this).val());
-      FORM_DATA[section] = hobbyData;
-    } else if (section === "personal") {
+    console.log(formObject);
+    // return;
+    if ($(this).val() === "") return;
+    if (section === "personal") {
       formObject[$(this).data("inp-reff")] = $(this).val();
-      FORM_DATA[section] = formObject;
     } else {
       const section_key = $(this)
         .closest(".form_card")
         .find(".unique_key")
         .val();
-      const section_data = formObject[section_key] ?? {};
+      if (section === "hobby") {
+        formObject[section_key] = $(this).val();
+      } else {
+        const section_data = formObject[section_key] ?? {};
 
-      section_data[$(this).data("inp-reff")] = $(this).val();
+        section_data[$(this).data("inp-reff")] = $(this).val();
 
-      formObject[section_key] = section_data;
-
-      FORM_DATA[section] = formObject;
+        formObject[section_key] = section_data;
+      }
     }
+    FORM_DATA[section] = formObject;
 
     updatePreviewer(FORM_DATA);
     useStorage(STORAGE_KEY, FORM_DATA);
@@ -215,6 +193,7 @@ $(document).ready(function (e) {
       }
     );
   }
+  $("#page_loader").addClass("loaded");
 
   // On window resize
   window.addEventListener("resize", resizePreviewer);
@@ -249,7 +228,9 @@ $(document).ready(function (e) {
       const res = await useFetch("GET", "/resume/design_123/");
 
       if (!res) {
-        return alert("Connections error: Please try again..");
+        alert("Connections error: Please try again..");
+        LoadDefaultForm();
+        return;
       }
 
       const { data, response } = res;
@@ -257,13 +238,11 @@ $(document).ready(function (e) {
       if (data) {
         formData = data;
       } else if (!response.ok || response.status !== 200) {
-        return alert("Connections error: Please try again..");
+        alert("Error getting data please try again..");
       } else {
-        // if -> set default layout
         LoadDefaultForm();
       }
     }
-
     FORM_DATA = formData;
     LoadFormData(formData);
     updatePreviewer(formData);

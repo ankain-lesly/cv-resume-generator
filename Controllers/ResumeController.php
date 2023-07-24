@@ -2,7 +2,7 @@
 
 namespace App\controllers;
 
-use App\models\Post;
+use App\models\Resume;
 use Devlee\XRouter\Request;
 use Devlee\XRouter\Response;
 use Devlee\XRouter\Router;
@@ -13,12 +13,14 @@ use Dompdf\Options;
 
 class ResumeController
 {
+  private Resume $resumeObj;
   public function __construct()
   {
+    // $this->resumeObj = new Resume();
     Router::$router->setLayout('');
   }
 
-  public function create(Request $req, Response $res)
+  public function createResume(Request $req, Response $res)
   {
     $resume_id = $req->params('resume_id');
 
@@ -116,7 +118,7 @@ class ResumeController
   }
 
 
-  public function getData()
+  public function getResumeData()
   {
     $data = '{"personal": {
                 "firstname": "<h1>Ankain </h1>",

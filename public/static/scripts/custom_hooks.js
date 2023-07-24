@@ -49,7 +49,5 @@ const useFetch = async (method, url, data) => {
     console.log(err);
   }
 };
-// module.exports = {
-//   makeFetch,
-// };
+
 export { useFetch, useToken, useStorage };

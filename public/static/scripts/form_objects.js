@@ -1,5 +1,14 @@
 // import { token_id } from "./config.js";
 
+// input range response
+const RANGE_OBJECT = {
+  0: "Make a choice",
+  20: "Beginner",
+  40: "Moderate",
+  60: "Good",
+  80: "Very good",
+  100: "Excellent",
+};
 // EDUCATION
 const FORM_TEMPLATE = {
   edu_object: {
@@ -44,7 +53,6 @@ const FORM_TEMPLATE = {
     hobby: { label: "Hobby", type: "text", classes: "col-span" },
   },
 };
-
 // Generate Form Group
 const generateFormGroup = (name, value, options) => {
   // console.log(name, value, options);
@@ -54,7 +62,7 @@ const generateFormGroup = (name, value, options) => {
         <textarea id="${name}" data-inp-reff="${name}" cols="30" rows="2">${value}</textarea>
       </div>`;
   } else if (options["type"] === "range") {
-    console.log(value);
+    // console.log(value);
     return `
       <div class="form-group mt-1">
         <label for="${name}">${options["label"]}</label>
@@ -69,9 +77,11 @@ const generateFormGroup = (name, value, options) => {
           />
           <div class="info flex start gap-1">
             <span class="detail bubble" id="test_input"
-              >0</span
+              >${value ? value : 0}</span
             >
-            <small class="pro_caption">Make a choice</small>
+            <small class="pro_caption">${
+              value ? RANGE_OBJECT[value] : "Make a choice"
+            }</small>
           </div>
         </div>
       </div>
@@ -89,7 +99,7 @@ const generateFormGroup = (name, value, options) => {
 };
 
 // Generate Card
-const generateFormCard = (data = {}, config, className = "") => {
+const generateFormCard = (unique_key, data = [], config, className = "") => {
   const object = FORM_TEMPLATE[config.form_object] ?? [];
 
   let key_id = new Date().getTime();
@@ -100,29 +110,26 @@ const generateFormCard = (data = {}, config, className = "") => {
     sectionTitle = "";
 
   $.each(object, (key, options) => {
-    let input_value;
-    // console.log(key);
+    let input_value = "";
     if (object.hobby) {
-      input_value = data ? data : "";
+      input_value = data.length ? data : "";
     } else {
       input_value = data[key] ? data[key] : "";
     }
+    // console.log(data);
     dataGroup += generateFormGroup(key, input_value, options);
-    // console.log(generateFormGroup(key, input_value, options));
   });
 
-  // console.log(dataGroup);
-
   if (config.className === "education") {
-    sectionTitle = data.education ?? "[" + config.title + "]";
+    sectionTitle = data.education ? data.education : "[" + config.title + "]";
   } else if (config.className === "experience") {
-    sectionTitle = data.position ?? "[" + config.title + "]";
+    sectionTitle = data.position ? data.position : "[" + config.title + "]";
   } else if (config.className === "language") {
-    sectionTitle = data.language ?? "[" + config.title + "]";
+    sectionTitle = data.language ? data.language : "[" + config.title + "]";
   } else if (config.className === "skill") {
-    sectionTitle = data.skill ?? "[" + config.title + "]";
+    sectionTitle = data.skill ? data.skill : "[" + config.title + "]";
   } else if (config.className === "hobby") {
-    sectionTitle = data ?? "[" + config.title + "]";
+    sectionTitle = data ? data : "[" + config.title + "]";
   }
 
   if (object.proficiency) {
@@ -144,8 +151,8 @@ const generateFormCard = (data = {}, config, className = "") => {
         ${headContent}
         <span class="bbtn primary small btn_form_card_edit"><i class="fas fa-pencil-alt"></i></span>
       </div>
-      <input type="hidden" class="unique_key" value="UU-${
-        config.unique_key ?? key_id
+      <input type="hidden" class="unique_key" value="${
+        unique_key ? unique_key : "UU-" + key_id
       }">
     </div>
     <!-- BODY -->
@@ -160,7 +167,4 @@ const generateFormCard = (data = {}, config, className = "") => {
     </div>
   </div>`;
 };
-// module.exports = {
-//   makeFetch,
-// };
-export { generateFormCard };
+export { generateFormCard, RANGE_OBJECT };
