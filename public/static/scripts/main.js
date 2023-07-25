@@ -1,87 +1,162 @@
 // User Authentication - JS API Endpoints
-import { useFetch, useToken, useStorage } from "./custom_hooks.js";
+import { useFetch, useToken, useToast } from "./token.js";
+import { APP_ROOT } from "./config.js";
+
+// load templates
+let isLoaded = false;
 let isLoading = false;
-// Handle Signup
-$("#signup_form").on("submit", async (e) => {
-  e.preventDefault();
-
-  const formData = {};
-  formData.username = e.target.username.value.trim();
-  formData.email = e.target.email.value.trim();
-  formData.phone = e.target.phone.value.trim();
-  formData.password = e.target.password.value.trim();
-  formData.confirm_password = e.target.confirm_password.value.trim();
-  formData.keep_alive = e.target.keep_alive.checked;
-
-  submitFormData(formData, "http://localhost:8500/api/auth/register");
+let object = [
+  {
+    id: 134,
+    src: "t1.jpg",
+  },
+  {
+    id: 513,
+    src: "t2.jpg",
+  },
+  {
+    id: 133,
+    src: "t3.jpg",
+  },
+];
+// CREATE STEP
+$("[data-step]").on("click", function (e) {
+  const step = $(this).data("step");
+  if (!step) return;
+  $(".create-step").removeClass("active");
+  // console.log(step);
+  $(".create-step." + step).addClass("active");
+  if (step === "templates" && !isLoaded) LoadTemplates();
 });
-// Handle Login
-$("#login_form").on("submit", async (e) => {
+
+// TEMPLATE PREVIEWER
+$(document).on("click", ".btn_preview", function (e) {
+  const templates = [...$(".thumbnail")];
+  let reff = $(this).data("reff");
+  let input = $(this).closest(".card").find(".temp_input");
+
+  let currentImage = templates[reff];
+
+  $(".template_previewer").fadeIn();
+
+  $("#preview_image").attr("src", currentImage.src);
+
+  // BACKWARDS
+  $(".show_temp_left").on("click", function (e) {
+    if (reff <= 0) reff = templates.length;
+    reff--;
+
+    $("#preview_image").fadeOut();
+    currentImage = templates[reff];
+    $("#preview_image").fadeIn();
+
+    $("#preview_image").attr("src", currentImage.src);
+  });
+  // FORWARDS
+  $(".show_temp_right").on("click", function (e) {
+    if (reff >= templates.length - 1) reff = -1;
+    reff++;
+
+    $("#preview_image").fadeOut();
+    currentImage = templates[reff];
+    $("#preview_image").fadeIn();
+
+    $("#preview_image").attr("src", currentImage.src);
+  });
+  // SELECT
+  $(".btn_select").on("click", function (e) {
+    $(currentImage).closest(".card").find(".temp_input")[0].checked = true;
+    $(".template_previewer").fadeOut();
+  });
+  // CLOSE PREV
+  $(".close_previewer").on("click", function (e) {
+    $(".template_previewer").fadeOut();
+  });
+});
+
+// DROP DOWN NAVIGATIONS
+// $(".drop-down-head").on("click", function () {
+//   const $droptDown = $(this).closest(".drop-down");
+//   $droptDown.toggleClass("active");
+
+//   if ($droptDown.hasClass("active")) $(".drop-down-body").slideDown();
+//   else $(".drop-down-body").slideUp();
+// });
+
+function LoadTemplates() {
+  let reff = 0;
+  // object = null;
+  if (!object) {
+    $(".templates-main").html(`
+    <p class="txt-center clr-danger" style="grid-column: span 5">
+        <span>Error Loading templates</span><br><br>
+        <span class="btn btn-p reload_templates">Retry</span>
+      </p>`);
+
+    return;
+  }
+  setTimeout(() => {
+    $(".templates-main").html("");
+    $.each(object, (key, template) => {
+      let layout = `
+      <div class="card">
+        <input type="radio" id="${template.id}" id="meta_template" name="meta_template" class="temp_input" value="design_123" required>
+        <label for="${template.id}" class="temp_image">
+          <img class="thumbnail" src="/static/media/${template.src}" alt="Template Thumbnail">
+        </label>
+        <span class="btn_preview flex" data-reff="${reff}"><i class="fas fa-camera"></i></span>
+      </div>`;
+
+      $(".templates-main").append(layout);
+      reff++;
+      $(".templates-main ~ .actions").show();
+      isLoaded = true;
+    });
+  }, 800);
+}
+
+// close Pop
+$(".close-main").on("click", () => $(".popup-main").hide());
+$(".create_resume").on("click", () => $(".popup-main").show());
+// Create Meta
+$(".create_meta").on("click", async (e) => {
   e.preventDefault();
 
-  const formData = {};
-  formData.username = e.target.username.value.trim();
-  formData.password = e.target.password.value.trim();
-  formData.keep_alive = e.target.keep_alive.checked;
+  const formData = {
+    title: $("#meta_title").val().trim(),
+    description: $("#meta_description").val().trim(),
+    template: $("input[name='meta_template']:checked").val() ?? "".trim(),
+  };
 
-  submitFormData(formData, "http://localhost:8500/api/auth/login");
+  if (formData.title.length <= 0)
+    return useToast("Please enter your Resume Title.");
+  if (formData.description.length <= 0)
+    return useToast("Please enter your Resume Description.");
+  if (formData.template.length <= 0)
+    return useToast("Please select a Resume Design.");
+
+  formData.token = useToken();
+  const res = await submitFormData(formData, "/resume/meta");
+
+  console.log(res);
+  setBtnDone();
+  if (!res) return useToast("Error making requests, please try again");
+
+  const { data, response } = res;
+
+  // if (!data.success) return errorMessage(data.message);
+
+  if (response.ok && data.success) {
+    // resolve_form() && Redirect()
+    window.location = "/resume/create/" + formData.template;
+  }
 });
 const submitFormData = async (formData, endpoint, redirect_route = "/") => {
   if (isLoading) return;
   setBtnLoading();
-  const res = await useFetch("POST", endpoint, formData);
-
-  if (!res) {
-    const message = "Error making requests, please try again";
-    return errorMessage(message);
-  }
-  const { data, response } = res;
-
-  if (data.errors) return displayFormErrors(data.errors);
-  if (!data.errors && data.message) return errorMessage(data.message);
-
-  if (response.ok && response.status === 200) {
-    // resolve_form() && Redirect()
-    useToken(data._sess_token);
-    useStorage("_reff", data._reff ?? false);
-
-    window.location = redirect_route;
-  }
+  return await useFetch("POST", APP_ROOT + endpoint, formData);
 };
-// Remove Form Errors on key
-$("form input").on("keyup", function (e) {
-  setTimeout(() => {
-    $(this).closest(".form-group").removeClass("error");
-  }, 500);
-});
-
-// Toggle Visibility
-$("[data-toggle-type]").on("click", function (e) {
-  const key = $(this)[0].dataset.toggleType;
-  const inputType = $(key).attr("type") === "text" ? "password" : "text";
-  $(key).attr("type", inputType);
-  $(this).toggleClass("fa-eye-slash");
-});
-
-// Display Form Errors
-function displayFormErrors(errors) {
-  $.each(errors, (key, array) => {
-    const $parent = $(`#${key}`).closest(".form-group");
-    $parent.addClass("error");
-    $parent.find(".status-msg").text(array.errors[0]);
-  });
-  $(".form-message").removeClass("error");
-  setBtnDone();
-}
-
-// Display Error Messages
-function errorMessage(message) {
-  const $msgBox = $(".form-message");
-  $msgBox.addClass("error").text(message);
-  $(".form-message")[0].scrollIntoView();
-  setBtnDone();
-}
-
+// LOADING
 function setBtnLoading() {
   isLoading = true;
   $(".form_btn").addClass("process");
@@ -90,3 +165,13 @@ function setBtnDone() {
   isLoading = false;
   $(".form_btn").removeClass("process");
 }
+
+// GET pARAMS
+function useQueryParams(key = "") {
+  const url = new URL(window.location);
+  let params = url.search;
+  // if (key) return url.searchParams[0] ?? false;
+
+  if (params.includes("resume")) return $(".popup-main").show();
+}
+useQueryParams();

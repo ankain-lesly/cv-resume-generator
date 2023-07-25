@@ -35,7 +35,8 @@ $router->get("/account/logout", [AuthController::class, 'logout']);
 $router->post("/auth/login", [AuthController::class, 'login']);
 $router->post("/auth/signup", [AuthController::class, 'signup']);
 
-// Get Resume Data
+// Resume
+$router->post("/resume/meta", [ResumeController::class, 'createMeta']);
 $router->get("/resume/{resume_key}/", [ResumeController::class, 'getResumeData']);
 $router->get("/resume/create/{resume_id}", [ResumeController::class, 'createResume']);
 // Get Resume Setup on edit

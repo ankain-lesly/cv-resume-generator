@@ -48,7 +48,24 @@ const useFetch = async (method, url, data) => {
     console.log(err);
   }
 };
+
+// Toasts
+const useToast = (message) => {
+  let toast = `
+    <div class="Toastify_me_dev">
+      <div class="toast_box flex between gap-x">
+        <span class="toast_icon fas fa-bell"></span>
+        <div class="toast_text flex-1">
+          <p>${message}</p>
+        </div>
+        <span class="toast_close_btn">&times;</span>
+      </div>
+    </div>`;
+
+  $(".Toast_container").html(toast);
+  console.log("Toasting");
+};
 // module.exports = {
 //   makeFetch,
 // };
-export { useFetch, useToken, useStorage };
+export { useFetch, useToken, useStorage, useToast };

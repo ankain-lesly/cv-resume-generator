@@ -1,23 +1,4 @@
 @import "index.scss";
-@import "variables";
-
-input,
-textarea,
-select {
-  border: 2px solid hsla($hsl-clr-bg, 0.5);
-  border-radius: 0.35em;
-  padding: 0.3em 0.6em;
-}
-
-input:focus,
-textarea:focus,
-select:focus,
-input:hover,
-textarea:hover,
-select:hover {
-  // border-color: $clr-bg;
-  box-shadow: 0 0 1px 3px hsla($hsl-clr-danger, 0.5);
-}
 
 .create-resume {
   .main-header {

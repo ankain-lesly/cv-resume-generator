@@ -21,7 +21,7 @@ class AuthMiddleware extends BaseMiddleware
   {
     return "AuthMiddleware";
   }
-  public function isUser()
+  public function isUser($options = false)
   {
     if (!$this->session->get('user')) {
       $this->session->setToast("toast", "User not authorized or invalid token!");

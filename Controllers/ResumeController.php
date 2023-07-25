@@ -3,23 +3,67 @@
 namespace App\controllers;
 
 use App\models\Resume;
+use Devlee\mvccore\Library;
 use Devlee\XRouter\Request;
 use Devlee\XRouter\Response;
 use Devlee\XRouter\Router;
 
+use Devlee\mvccore\Session;
+// middlewares
+use App\Middlewares\AuthMiddleware;
 // PDF for Dompdf
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
 class ResumeController
 {
+  public Session $session;
   private Resume $resumeObj;
+
   public function __construct()
   {
-    // $this->resumeObj = new Resume();
+    $this->session = new Session();
+
+    $this->resumeObj = new Resume();
+    $AuthMiddleware = new AuthMiddleware();
+    $AuthMiddleware->isUser("options");
+
     Router::$router->setLayout('');
   }
 
+  public function createMeta(Request $req, Response $res)
+  {
+    $data = $req->body();
+    $meta_id = Library::generateToken(10);
+    $resume_id = Library::generateToken(10);
+
+    $user = $this->session->get('user') ?? exit('Not authorized...');
+
+    $sql_meta = "INSERT INTO tblresume_metadata 
+          (meta_id, user_id, resume_title, resume_description, resume_id)
+          VALUES (?,?,?,?,?)";
+
+    $meta = $this->resumeObj->DataAccess->insert(
+      $sql_meta,
+      [$meta_id, $user['userID'], $data['title'], $data['description'], $resume_id]
+    );
+
+    if ($meta) {
+      $sql_resume = "INSERT INTO tblresumes
+          (resume_id)
+          VALUES (?)";
+
+      $resume = $this->resumeObj->DataAccess->insert(
+        $sql_resume,
+        [$resume_id]
+      );
+
+      if ($resume) {
+        $this->session->setToast("toast", "Huureyu! Resume created, Welcome to your resume designer. Get started");
+        $res->json(['success' => true]);
+      }
+    }
+  }
   public function createResume(Request $req, Response $res)
   {
     $resume_id = $req->params('resume_id');

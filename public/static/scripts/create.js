@@ -147,10 +147,10 @@ $(document).ready(function (e) {
   /* *** METHOD ONE *** */
   // saving form-data
   $(document).on("blur", "[data-inp-reff]", function (e) {
-    console.log("Typing stopped...");
+    console.log("Typing ...");
     const section = $(this).closest(".area-step").data("section-title");
     const formObject = FORM_DATA[section] ?? {};
-    console.log(formObject);
+    // console.log(formObject);
     // return;
     if ($(this).val() === "") return;
     if (section === "personal") {

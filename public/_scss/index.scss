@@ -98,6 +98,7 @@
   --bs-sec: 0.5rem 0.1rem 2rem hsl(0deg 0% 76.22% / 14%);
 }
 
+@import "variables";
 *,
 *::before,
 *::after {
@@ -131,32 +132,32 @@ body {
 /*  Form items */
 .input:active,
 .input:focus,
-input:active,
-select:active,
-textarea:active,
 input:focus,
+textarea:focus,
 select:focus,
-textarea:focus {
-  /* box-shadow: 0 0 10px var(--clr-success); */
+input:hover,
+textarea:hover,
+select:hover {
+  // border-color: $clr-bg;
+  box-shadow: 0 0 1px 3px hsla($hsl-clr-danger, 0.5);
   border-color: var(--clr-warning);
-  /* border-color: inherit; */
 }
+
 .input,
 input,
 select,
 textarea {
-  border: 2px solid var(--clr-bg);
-  /* border: 0.15em solid var(--clr-pri); */
   background-color: transparent;
   width: 100%;
   border-radius: 0.3em;
   /* border-radius: 10px; */
-  padding: 0.7em 1em;
   /* padding: 10px 1rem; */
   font-size: 1rem;
   /* font-size: 1em; */
   font: inherit;
   color: var(--clr-bg);
+  border: 2px solid hsla($hsl-clr-bg, 0.5);
+  padding: 0.45em 0.6em;
 }
 li {
   display: block;

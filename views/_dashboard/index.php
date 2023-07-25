@@ -35,7 +35,7 @@
     <br><br>
     <div class="feeds-nav flex between mb-2">
       <h4>My Resumes</h4>
-      <a href="/dashboard/create.php" class="btn btn-pre w-fit">New CV <i class="pl-1 fas fa-plus"></i></a>
+      <span class="create_resume btn btn-pre w-fit">New CV <i class="pl-1 fas fa-plus"></i></span>
     </div>
     <div class="feeds-container">
 

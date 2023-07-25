@@ -101,103 +101,108 @@ $danger: hsl(334, 100%, 67%);
 
     padding: 0.4em 1em;
     position: relative;
-    // .content {
-    //  position: relative;
-    // }
-    input:active,
-    input:focus {
-      box-shadow: none;
-      border-color: transparent;
+  }
+  // .content {
+  //  position: relative;
+  // }
+  input {
+    box-shadow: none !important;
+    border: none !important;
+    // border: 1px solid #fff;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    // border-radius: 0.3em;
+    padding: 0;
+    font-size: 0.95rem;
+    color: $clr-bg;
+    flex: 1 0;
+    &[type="checkbox"] {
+      width: max-content;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: none !important;
+      border: none !important;
       /* border-color: inherit; */
     }
+  }
 
-    input:not(:placeholder-shown) ~ .input-label,
-    input:active ~ .input-label,
-    input:focus ~ .input-label {
-      top: 4px;
-      font-size: 0.9rem;
-    }
-    input:focus ~ .input-label {
-      color: $clr-success;
-    }
-    input:active ~ .motion,
-    input:focus ~ .motion {
-      border-color: $clr-success;
-      width: 100%;
-    }
+  input:not(:placeholder-shown) ~ .input-label,
+  input:active ~ .input-label,
+  input:focus ~ .input-label {
+    top: 4px;
+    font-size: 0.9rem;
+  }
+  input:focus ~ .input-label {
+    color: $clr-success;
+  }
+  input:active ~ .motion,
+  input:focus ~ .motion {
+    border-color: $clr-success;
+    width: 100%;
+  }
 
-    input {
-      border: none;
-      // border: 1px solid #fff;
-      background-color: transparent;
-      width: 100%;
-      height: 100%;
-      // border-radius: 0.3em;
-      padding: 0;
-      font-size: 0.95rem;
-      color: $clr-bg;
-      flex: 1 0;
-    }
-    // input::placeholder {
-    //   opacity: 0;
-    // }
-    input::-webkit-autofil,
-    input::-webkit-autofil:focus,
-    input:-webkit-autofil:active {
-      background-color: transparent !important;
-      -webkit-box-shadow: 0 0 0 100px inset red !important;
-      border: 1px solid green !important;
-      -webkit-text-fill-color: red !important;
-      transition: background-color 5000s ease-in-out 0s !important;
-    }
-    .input:-internal-autofill-selected {
-      background-color: transparent !important;
-    }
-    .input-label,
-    .icon {
-      color: $clr-text-muted;
-    }
-    .icon {
-      margin-right: 5px;
-      // margin-bottom: 5px;
-      width: 20 px;
-      font-size: 1.25rem;
-    }
-    .input-label {
-      position: absolute;
-      top: 18px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .input-label,
-    .status-msg {
-      left: 1.5em;
-      // left: 0;
-    }
-    .status-msg {
-      line-height: 0.9;
-      position: absolute;
-      top: 106%;
-      color: $clr-danger;
-      font-weight: bold;
-      font-size: 0.85rem;
-      transition: var(--transition);
-      display: none;
-      text-overflow: ellipsis;
-      z-index: 20;
-    }
-    input:focus ~ .status-msg {
-      background-color: $color-bg;
-      color: $clr-light;
-    }
-    &.error .info {
-      visibility: visible;
-    }
-    .info {
-      color: $clr-danger;
-      font-size: small;
-      visibility: hidden;
-    }
+  // input::placeholder {
+  //   opacity: 0;
+  // }
+  input::-webkit-autofil,
+  input::-webkit-autofil:focus,
+  input:-webkit-autofil:active {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 100px inset red !important;
+    border: 1px solid green !important;
+    -webkit-text-fill-color: red !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }
+  .input:-internal-autofill-selected {
+    background-color: transparent !important;
+  }
+  .input-label,
+  .icon {
+    color: $clr-text-muted;
+  }
+  .icon {
+    margin-right: 5px;
+    // margin-bottom: 5px;
+    width: 20 px;
+    font-size: 1.25rem;
+  }
+  .input-label {
+    position: absolute;
+    top: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .input-label,
+  .status-msg {
+    left: 1.5em;
+    // left: 0;
+  }
+  .status-msg {
+    line-height: 0.9;
+    position: absolute;
+    top: 106%;
+    color: $clr-danger;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: none;
+    text-overflow: ellipsis;
+    z-index: 20;
+  }
+  input:focus ~ .status-msg {
+    background-color: $color-bg;
+    color: $clr-light;
+  }
+  &.error .info {
+    visibility: visible;
+  }
+  .info {
+    color: $clr-danger;
+    font-size: small;
+    visibility: hidden;
   }
   .form_btn {
     width: 100%;
