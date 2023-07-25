@@ -14,6 +14,7 @@ use Devlee\XRouter\Router;
 use App\controllers\SiteController;
 use App\controllers\AuthController;
 use App\controllers\ResumeController;
+use App\controllers\MainController;
 
 $router = new Router(__DIR__);
 
@@ -39,6 +40,9 @@ $router->get("/resume/{resume_key}/", [ResumeController::class, 'getResumeData']
 $router->get("/resume/create/{resume_id}", [ResumeController::class, 'createResume']);
 // Get Resume Setup on edit
 $router->post("/resume/on_edit/{template_id}", [ResumeController::class, 'setupResume']);
+
+// Dashboard
+$router->get("/dashboard/", [MainController::class, 'index']);
 
 // Router resolve
 $router->resolve();

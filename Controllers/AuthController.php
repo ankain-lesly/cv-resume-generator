@@ -2,9 +2,7 @@
 
 namespace App\Controllers;
 
-
 use App\Models\User;
-use App\Config\CustomErrorValidator;
 use Devlee\XRouter\Router;
 use Devlee\XRouter\Request;
 use Devlee\XRouter\Response;
@@ -109,7 +107,7 @@ class AuthController
         $this->setUser($user_data);
 
         // Setting Toast
-        $this->session->setToast("toast", 'Welcome back, ' . $data['username'] . '. 😎');
+        $this->session->setToast("toast", 'Welcome back, ' . $user_data['username'] . '. 😎');
         return $res->json([
           "_sess_token" => $user_data["_sess_token"],
           "_reff" => "_login",

@@ -7,7 +7,7 @@
     <button class="padd"><i class="fas fa-bell"></i></button>
     <button class="padd theme-btn"><i class="fas fa-sun"></i></button>
     <div class="flex ml-x">
-      <?php include_once "profile-links.php" ?>
+      <?php include_once "profile-nav.php" ?>
     </div>
   </nav>
 </header>

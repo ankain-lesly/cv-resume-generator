@@ -1,12 +1,11 @@
 <?php
-use App\Models\DataAccess;
 
-$admin  = $_SESSION['user']['role'];
-$DataAccess = new DataAccess();
+$admin  = 'role';
 
-$sql_notifications = "SELECT COUNT(*) AS count FROM tblnotifications WHERE status = 'UNREAD'";
+// $sql_notifications = "SELECT COUNT(*) AS count FROM tblnotifications WHERE status = 'UNREAD'";
 
-$notifications = $DataAccess->fetchCount('', $sql_notifications)['count']; //status PENDING
+// $notifications = $DataAccess->fetchCount('', $sql_notifications)['count']; //status PENDING
+$notifications = 5;
 
 // $resumes = $DataAccess->fetchCount('tblpackages')['count']; //status PENDING
 $resumes = 0;
@@ -27,8 +26,8 @@ $resumes = 0;
       <p class="hero-icon ml-1 clr-warning mb-x">
         <i class="fas fa-book"></i>
       </p>
-      <h2 class="clr-warning txt-capitalize  mb-1"><?= $_SESSION['user']['username'] ?></h2>
-      <small class="detail">My Admin: <b class="status txt-upper clr-warning"><?= $_SESSION['user']['role'] ?></b></small>
+      <h2 class="clr-warning txt-capitalize  mb-1">Username</h2>
+      <small class="detail">My Admin: <b class="status txt-upper clr-warning">Role</b></small>
     </div>
   </div>
   <div class="side-bar-links">
