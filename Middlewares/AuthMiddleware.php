@@ -9,27 +9,22 @@ use App\models\User;
 class AuthMiddleware extends BaseMiddleware
 {
   private User $user;
-  private static $ware;
-
-  private Session $session;
-  // inherit properties from the parent ware
 
   public function __construct()
   {
+    parent::__construct();
     // $this->UserObj = new User();
-    $this->session = new Session();
     $this->user = new User();
-    self::$ware = $this;
   }
 
   public function caseName(): string
   {
     return "AuthMiddleware";
   }
-  public static function isUser()
+  public function isUser()
   {
-    if (!self::$ware->session->get('user')) {
-      self::$ware->session->setToast("toast", "User not authorized or invalid token!");
+    if (!$this->session->get('user')) {
+      $this->session->setToast("toast", "User not authorized or invalid token!");
       header("Location: /");
     }
   }
