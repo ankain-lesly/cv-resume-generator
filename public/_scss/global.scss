@@ -25,12 +25,13 @@
     z-index: 50;
   }
   .link {
-    padding: 8px 1rem;
+    padding: 8px;
     color: $clr-bg;
     justify-content: space-between;
     flex-direction: row-reverse;
-    gap: 1.5rem;
-
+    gap: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
     &:hover {
       background-color: #88888833;
     }

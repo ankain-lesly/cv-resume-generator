@@ -1,7 +1,7 @@
 // User Authentication - JS API Endpoints
 import { useFetch, useToken, useStorage } from "./token.js";
 // api root
-const APP_ROOT = "http://localhost:8080";
+const APP_ROOT = "http://localhost:8500";
 let isLoading = false;
 // Handle Signup
 $("#signup_form").on("submit", async (e) => {

@@ -18,13 +18,10 @@ $router = new Router(__DIR__);
 // Router Configurations
 $router->config("views", "layouts/main", "_404");
 
-$router->interceptRequest();
+// $router->interceptRequest();
 
 // Regular Views
 $router->get("/", [SiteController::class, 'index']);
-
-$router->get("/dashboard", "@dashboard");
-$router->get("/module", "Module");
 
 //API
 $router->get("/create/post", [SiteController::class, 'createPost']);
@@ -35,14 +32,12 @@ $router->get("/info", [AuthController::class, 'get_user_info']);
 
 $router->get("/account/login", [AuthController::class, 'login']);
 $router->get("/account/signup", [AuthController::class, 'signup']);
+// $router->get("/account/logout/", [AuthController::class, 'logout']);
+// $router->get("/account/logout/", [AuthController::class, 'logout']);
 // $router->get("/account/verification", [AuthController::class, 'verify']);
-
 
 $router->post("/auth/login", [AuthController::class, 'login']);
 $router->post("/auth/signup", [AuthController::class, 'signup']);
-$router->get("/auth/logout", [AuthController::class, 'logout']);
-
-
 
 // Get Resume Data
 $router->get("/resume/{resume_key}/", [ResumeController::class, 'getResumeData']);

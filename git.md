@@ -31,6 +31,7 @@ public function interceptRequest($path = null)
     $this->response->redirect($route, 200);
   }
 ```
+
 ## Use send to resent text content on reponse instead of content
 
 ## Delete Post File form mvc core
@@ -38,11 +39,16 @@ public function interceptRequest($path = null)
 ## Add session module to mvc core
 
 ## Database
+
 ## BaseModel
 
 ## Router -> root_folder()
+
 ## Request -> sanitizeData() -> string
 
 ## Router Confused
+
     "/resume/{resume_id}"
     "/resume/create/{resume_id}"
+
+## Use Sessions on registration to tack process and verificatoin with form handling

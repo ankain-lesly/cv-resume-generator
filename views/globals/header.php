@@ -1,16 +1,14 @@
 <?php
-session_start();
 
 use Devlee\mvccore\Session;
 
-$user = Session::get('user');
+$user = (new Session)->get('user');
 
 echo '<pre>';
 print_r($user);
 echo '</br>';
 echo '</pre>';
-exit();
-
+$user = false;
 ?>
 <!-- HEADER -->
 <header class="main-header">
@@ -118,16 +116,16 @@ exit();
         <button class="nav-menu-btn btnB mobile white">
           <i class="fas fa-bars"></i>
         </button>
-        <?php if (!isset($_SESSION['user']['name'])) : ?>
+        <?php if ($user) : ?>
+          <button class="notification-btn btnB white">
+            <i class="fas fa-bell"></i>
+          </button>
+          <?php include_once "profile-nav.php"; ?>
+        <?php else : ?>
           <div class="flex gap-x">
             <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
             <a href="/account/signup" class="btn btn-p">Signup</a>
           </div>
-        <?php else : ?>
-          <button class="notification-btn btnB white">
-            <i class="fas fa-bell"></i>
-          </button>
-          <?php include_once "profile-links.php"; ?>
         <?php endif; ?>
       </div>
     </div>

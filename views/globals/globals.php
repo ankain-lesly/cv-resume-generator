@@ -1,4 +1,5 @@
 <?php
+session_start();
 function createCSSLink($stylesheet)
 {
   if (is_array($stylesheet)) {
