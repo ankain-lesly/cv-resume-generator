@@ -51,8 +51,10 @@ class AuthController
   }
 
   // Register New User
-  public function register(Request $req, Response $res)
+  public function signup(Request $req, Response $res)
   {
+    // $res->sendPage('register');
+    // exit;
     if ($req->isPost()) {
       $data = $req->body();
       $data['userID'] = Library::generateToken(12);

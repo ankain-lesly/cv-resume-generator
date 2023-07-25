@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+use Devlee\mvccore\Session;
+
+$user = Session::get('user');
+
+echo '<pre>';
+print_r($user);
+echo '</br>';
+echo '</pre>';
+exit();
+
+?>
+<!-- HEADER -->
 <header class="main-header">
   <div class="container-x gap-2 flex between header-h">
     <a href="/" class="flex gap-x">
@@ -105,8 +120,8 @@
         </button>
         <?php if (!isset($_SESSION['user']['name'])) : ?>
           <div class="flex gap-x">
-            <a href="/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
-            <a href="/register" class="btn btn-p">Signup</a>
+            <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
+            <a href="/account/signup" class="btn btn-p">Signup</a>
           </div>
         <?php else : ?>
           <button class="notification-btn btnB white">

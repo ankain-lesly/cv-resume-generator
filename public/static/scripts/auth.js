@@ -1,5 +1,7 @@
 // User Authentication - JS API Endpoints
 import { useFetch, useToken, useStorage } from "./token.js";
+// api root
+const APP_ROOT = "http://localhost:8080";
 let isLoading = false;
 // Handle Signup
 $("#signup_form").on("submit", async (e) => {
@@ -13,7 +15,7 @@ $("#signup_form").on("submit", async (e) => {
   formData.confirm_password = e.target.confirm_password.value.trim();
   formData.keep_alive = e.target.keep_alive.checked;
 
-  submitFormData(formData, "http://localhost:8500/api/auth/register");
+  submitFormData(formData, "/auth/signup");
 });
 // Handle Login
 $("#login_form").on("submit", async (e) => {
@@ -24,12 +26,12 @@ $("#login_form").on("submit", async (e) => {
   formData.password = e.target.password.value.trim();
   formData.keep_alive = e.target.keep_alive.checked;
 
-  submitFormData(formData, "http://localhost:8500/api/auth/login");
+  submitFormData(formData, "/auth/login");
 });
 const submitFormData = async (formData, endpoint, redirect_route = "/") => {
   if (isLoading) return;
   setBtnLoading();
-  const res = await useFetch("POST", endpoint, formData);
+  const res = await useFetch("POST", APP_ROOT + endpoint, formData);
 
   if (!res) {
     const message = "Error making requests, please try again";
@@ -50,6 +52,11 @@ const submitFormData = async (formData, endpoint, redirect_route = "/") => {
 };
 // Remove Form Errors on key
 $("form input").on("keyup", function (e) {
+  setTimeout(() => {
+    $(this).closest(".form-group").removeClass("error");
+  }, 500);
+});
+$("form input").on("blur", function (e) {
   setTimeout(() => {
     $(this).closest(".form-group").removeClass("error");
   }, 500);

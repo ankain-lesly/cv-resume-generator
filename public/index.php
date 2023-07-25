@@ -33,13 +33,14 @@ $router->post("/api/create/post", [SiteController::class, 'createPost']);
 //Auth Test
 $router->get("/info", [AuthController::class, 'get_user_info']);
 
-$router->get("/login", [AuthController::class, 'login']);
-$router->post("/api/auth/login", [AuthController::class, 'login']);
+$router->get("/account/login", [AuthController::class, 'login']);
+$router->get("/account/signup", [AuthController::class, 'signup']);
+// $router->get("/account/verification", [AuthController::class, 'verify']);
 
-$router->get("/api/auth/logout", [AuthController::class, 'logout']);
 
-$router->get("/register", [AuthController::class, 'register']);
-$router->post("/api/auth/register", [AuthController::class, 'register']);
+$router->post("/auth/login", [AuthController::class, 'login']);
+$router->post("/auth/signup", [AuthController::class, 'signup']);
+$router->get("/auth/logout", [AuthController::class, 'logout']);
 
 
 

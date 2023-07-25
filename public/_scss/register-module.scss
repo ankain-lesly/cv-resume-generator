@@ -12,8 +12,16 @@ $danger: hsl(334, 100%, 67%);
     grid-template-columns: repeat(2, 1fr);
   }
   .layout {
-    min-height: calc(100vh - 60px);
+    height: calc(100vh - 60px);
     padding: 3rem 1.5rem;
+    overflow: auto;
+  }
+  .reg_avater img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 1rem auto 0;
+    display: block;
   }
   .meta {
     background-color: $color-bg;
@@ -88,11 +96,10 @@ $danger: hsl(334, 100%, 67%);
       }
     }
     margin-bottom: 1em;
-
     border: 2px solid hsla($hsl-clr-bg, 0.5);
-    border-radius: 0.5em;
+    border-radius: 1.5em;
 
-    padding: 0.4em 0.6em;
+    padding: 0.4em 1em;
     position: relative;
     // .content {
     //  position: relative;
@@ -164,19 +171,16 @@ $danger: hsl(334, 100%, 67%);
     }
     .input-label,
     .status-msg {
-      left: 0.5em;
+      left: 1.5em;
       // left: 0;
     }
     .status-msg {
       line-height: 0.9;
       position: absolute;
-      top: 100%;
-      background-color: $clr-danger;
-      color: $clr-dark;
-      border-radius: 0 0 0.25em 0.25em;
-      font-weight: 500;
-      padding: 3px 0.5rem;
-      font-size: 0.8rem;
+      top: 106%;
+      color: $clr-danger;
+      font-weight: bold;
+      font-size: 0.85rem;
       transition: var(--transition);
       display: none;
       text-overflow: ellipsis;
@@ -197,7 +201,7 @@ $danger: hsl(334, 100%, 67%);
   }
   .form_btn {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 1.5em;
     padding: 8px;
     background-color: $color-bg;
     color: $clr-light;
