@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types=1);
+
+session_start();
 header('Access-Control-Allow-Origin:*');
 // header("Content-Type: application/json; charset=UTF-8");
 
@@ -23,19 +25,12 @@ $router->config("views", "layouts/main", "_404");
 // Regular Views
 $router->get("/", [SiteController::class, 'index']);
 
-//API
-$router->get("/create/post", [SiteController::class, 'createPost']);
-$router->post("/api/create/post", [SiteController::class, 'createPost']);
-
-//Auth Test
-$router->get("/info", [AuthController::class, 'get_user_info']);
-
 $router->get("/account/login", [AuthController::class, 'login']);
 $router->get("/account/signup", [AuthController::class, 'signup']);
-// $router->get("/account/logout/", [AuthController::class, 'logout']);
-// $router->get("/account/logout/", [AuthController::class, 'logout']);
+$router->get("/account/logout", [AuthController::class, 'logout']);
 // $router->get("/account/verification", [AuthController::class, 'verify']);
 
+//APIs
 $router->post("/auth/login", [AuthController::class, 'login']);
 $router->post("/auth/signup", [AuthController::class, 'signup']);
 

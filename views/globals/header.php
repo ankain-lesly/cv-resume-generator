@@ -2,13 +2,7 @@
 
 use Devlee\mvccore\Session;
 
-$user = (new Session)->get('user');
-
-echo '<pre>';
-print_r($user);
-echo '</br>';
-echo '</pre>';
-$user = false;
+$user = (new Session())->get('user');
 ?>
 <!-- HEADER -->
 <header class="main-header">

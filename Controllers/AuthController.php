@@ -131,16 +131,10 @@ class AuthController
   public function logout(Request $req, Response $res)
   {
     // Clearing user data
-    $user = $this->session->clear('user');
-
-    echo '<pre>';
-    var_dump($user);
-    echo '</br>';
-    echo '</pre>';
-    exit();
+    $this->session->clear('user');
     // Setting Toast
     $this->session->setToast("toast", 'You have been logged out: ✔');
-    $res->redirect('/about');
+    $res->redirect('/');
   }
 
   private function setUser(array $data)
