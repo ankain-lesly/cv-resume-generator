@@ -7,10 +7,23 @@ use Devlee\XRouter\Request;
 use Devlee\XRouter\Response;
 use Devlee\XRouter\Router;
 
+// middlewares
+use App\Middlewares\AuthMiddleware;
+
 class MainController
 {
   public function __construct()
   {
+    /**
+     * Introducing middle wares
+     *
+     * Middleware => AuthMiddleware
+     *  ::isUser(token);
+     *  ::isAdmin(role);
+     *
+     */
+    $AuthMiddleware = new AuthMiddleware();
+    $AuthMiddleware->isUser();
     Router::$router->setLayout('layouts/dashboard');
   }
   public function index(Request $req, Response $res)
