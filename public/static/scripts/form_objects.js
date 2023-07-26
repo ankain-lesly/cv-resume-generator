@@ -49,6 +49,10 @@ const FORM_TEMPLATE = {
     skill: { label: "Skill", type: "text", option: "class" },
     proficiency: { label: "Proficiency", type: "range" },
   },
+  social_object: {
+    social: { label: "Social", type: "select", option: "class" },
+    handle: { label: "Handle", type: "text" },
+  },
   hobby_object: {
     hobby: { label: "Hobby", type: "text", classes: "col-span" },
   },
@@ -60,6 +64,25 @@ const generateFormGroup = (name, value, options) => {
     return `<div class="form-group ${options["classes"] ?? ""}">
         <label for="${name}">${options["label"]}</label>
         <textarea id="${name}" data-inp-reff="${name}" cols="30" rows="2">${value}</textarea>
+      </div>`;
+  } else if (options["type"] === "select") {
+    // console.log(value);
+    return `<div class="form-group ${options["classes"] ?? ""}">
+        <label for="${name}">${options["label"]}</label>
+        <select id="${name}" data-inp-reff="${name}" class="font-size-small range_title_input mb-1">
+          <option></option>
+          <option ${value === "Facebook" ? "selected" : ""}>Facebook</option>
+          <option ${value === "Instagram" ? "selected" : ""}>Instagram</option>
+          <option ${value === "Twitter" ? "selected" : ""}>Twitter</option>
+          <option ${value === "LinkedIn" ? "selected" : ""}>LinkedIn</option>
+          <option ${value === "Tiktok" ? "selected" : ""}>Tiktok</option>
+          <option ${value === "Pinterest" ? "selected" : ""}>Pinterest</option>
+          <option ${value === "YouTube" ? "selected" : ""}>YouTube</option>
+          <option ${value === "Reddit" ? "selected" : ""}>Reddit</option>
+          <option ${value === "WhatsApp" ? "selected" : ""}>WhatsApp</option>
+          <option ${value === "Website" ? "selected" : ""}>Website</option>
+          <option ${value === "Others" ? "selected" : ""}>Others</option>
+        </select>
       </div>`;
   } else if (options["type"] === "range") {
     // console.log(value);
@@ -90,12 +113,25 @@ const generateFormGroup = (name, value, options) => {
 
   return `<div class="form-group ${options["classes"] ?? ""}">
       <label for="${name}">${options["label"]}</label>
-      <input type="${options["type"]}" id="${name}" data-inp-reff="${name}" ${
-    options["option"] && options["option"] === "class"
-      ? 'class="font-size-small range_title_input"'
-      : ""
-  } ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
+      <input type="${options["type"]}" id="${name}" data-inp-reff="${name}" 
+      class="font-size-small 
+      ${
+        options["option"] && options["option"] === "class"
+          ? "range_title_input"
+          : ""
+      }
+      
+      "
+      ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
     </div>`;
+  // return `<div class="form-group ${options["classes"] ?? ""}">
+  //     <label for="${name}">${options["label"]}</label>
+  //     <input type="${options["type"]}" id="${name}" data-inp-reff="${name}" ${
+  //   options["option"] && options["option"] === "class"
+  //     ? 'class="font-size-small range_title_input"'
+  //     : ""
+  // } ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
+  //   </div>`;
 };
 
 // Generate Card
@@ -128,6 +164,8 @@ const generateFormCard = (unique_key, data = [], config, className = "") => {
     sectionTitle = data.language ? data.language : "[" + config.title + "]";
   } else if (config.className === "skill") {
     sectionTitle = data.skill ? data.skill : "[" + config.title + "]";
+  } else if (config.className === "social") {
+    sectionTitle = data.social ? data.social : "[" + config.title + "]";
   } else if (config.className === "hobby") {
     sectionTitle = data ? data : "[" + config.title + "]";
   }
@@ -157,7 +195,9 @@ const generateFormCard = (unique_key, data = [], config, className = "") => {
     </div>
     <!-- BODY -->
     <div class="ed_body">
-      <div class="intro-group${object.proficiency ? "-2" : ""}">
+      <div class="intro-group${
+        object.proficiency || object.social ? "-2" : ""
+      }">
         ${dataGroup}        
         <div class="card-options flex end gap-1 mt-1 col-span">
           <span class="bbtn primary small btn_form_card_delete"><i class="fas fa-trash"></i></span>

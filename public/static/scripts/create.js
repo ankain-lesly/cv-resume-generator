@@ -1,6 +1,6 @@
 // Custom Objects
 import { generateFormCard, RANGE_OBJECT } from "./form_objects.js";
-import { useFetch, useToken, useStorage } from "./app_hooks.js";
+import { useFetch, useStorage } from "./app_hooks.js";
 import { STORAGE_KEY } from "./config.js";
 
 $(document).ready(function (e) {
@@ -35,6 +35,11 @@ $(document).ready(function (e) {
       title: "Hobby",
       className: "hobby",
       form_object: "hobby_object",
+    },
+    OBJECT_SOCIAL: {
+      title: "Social",
+      className: "social",
+      form_object: "social_object",
     },
   };
 
@@ -78,6 +83,12 @@ $(document).ready(function (e) {
       .text(e.target.value.trim());
   });
   // ON Range Input Text
+  $(document).on("change", ".range_title_input", function (e) {
+    $(this)
+      .closest(".form_card")
+      .find(".range_title")
+      .text(e.target.value.trim());
+  });
   $(document).on("keyup", ".range_title_input", function (e) {
     $(this)
       .closest(".form_card")
@@ -99,24 +110,27 @@ $(document).ready(function (e) {
     $parent.find(".pro_caption").text(label);
     $parent.find(".range_proficiency").text(label);
   });
-
+  // LoadDefaultForm
   // Load Default form
   const LoadDefaultForm = () => {
-    // $(".education-main").append(
-    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_EDUCATION"], "on_edit")
-    // );
-    // $(".experience-main").append(
-    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_EXPERIENCE"], "on_edit")
-    // );
-    // $(".language-main").append(
-    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_LANGUAGE"], "on_edit")
-    // );
+    $(".education-main").append(
+      generateFormCard("", [], FORM_OBJECTS["OBJECT_EDUCATION"], "on_edit")
+    );
+    $(".experience-main").append(
+      generateFormCard("", [], FORM_OBJECTS["OBJECT_EXPERIENCE"], "on_edit")
+    );
+    $(".language-main").append(
+      generateFormCard("", [], FORM_OBJECTS["OBJECT_LANGUAGE"], "on_edit")
+    );
     $(".skill-main").append(
       generateFormCard("", [], FORM_OBJECTS["OBJECT_SKILL"], "on_edit")
     );
-    // $(".hobby-main").append(
-    //   generateFormCard("", [], FORM_OBJECTS["OBJECT_HOBBY"], "on_edit")
-    // );
+    $(".hobby-main").append(
+      generateFormCard("", [], FORM_OBJECTS["OBJECT_HOBBY"], "on_edit")
+    );
+    $(".social-main").append(
+      generateFormCard("", [], FORM_OBJECTS["OBJECT_SOCIAL"], "on_edit")
+    );
   };
 
   // Load form with Data

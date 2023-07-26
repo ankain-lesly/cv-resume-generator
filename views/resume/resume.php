@@ -75,6 +75,9 @@
 
           <div class="actions flex gap-1">
             <button class="bbtn primary flex gap-x btn_save_resume">
+              <i class="fas fa-trash"></i> Clear
+            </button>
+            <button class="bbtn primary flex gap-x btn_save_resume">
               <i class="fas fa-save"></i> Save
             </button>
             <button class="bbtn primary flex gap-x">
@@ -155,19 +158,19 @@
                     <span class="text">Eduction</span>
                   </button>
                   <button data-form-section="experience" class="control_action">
-                    <i class="fas fa-check icon"></i>
+                    <i class="fas fa-briefcase icon"></i>
                     <span class="text">Work experience</span>
                   </button>
-                  <button data-form-section="experience" class="control_action">
+                  <button data-form-section="social" class="control_action">
                     <i class="fas fa-globe icon"></i>
                     <span class="text">Social media</span>
                   </button>
                   <button data-form-section="skill" class="control_action">
-                    <i class="fas fa-running icon"></i>
+                    <i class="fas fa-tasks icon"></i>
                     <span class="text">Skills</span>
                   </button>
                   <button data-form-section="hobby" class="control_action">
-                    <i class="fas fa-heart icon"></i>
+                    <i class="fas fa-star icon"></i>
                     <span class="text">Hobbies</span>
                   </button>
                   <button data-form-section="add" class="control_action">
@@ -222,32 +225,36 @@
                     <label for="headline">Headline</label>
                     <input type="text" id="headline" data-inp-reff="headline" />
                   </div>
-                  <div class="personal-2 intro-group">
-                    <div class="form-group mb-1">
-                      <label for="email">Email</label>
-                      <input type="email" id="email" data-inp-reff="email" />
-                    </div>
-                    <div class="form-group mb-1">
-                      <label for="phone">Phone number</label>
-                      <input type="tel" id="phone" data-inp-reff="phone" />
-                    </div>
+                </div>
+                <div class="form-group mb-1">
+                  <label for="about">About me</label>
+                  <textarea id="about" data-inp-reff="about" cols="30" rows="3"></textarea>
+                </div>
+                <div class="personal-2 intro-group">
+                  <div class="form-group mb-1">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" data-inp-reff="email" />
                   </div>
-                  <div class="add_extras">
-                    <ul class="extras_container flex wrap gap-x">
-                      <li title="Add new field"></li>
-                      <li class="child" title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li class="child" title="Add new field"></li>
-                      <li title="Add new field"></li>
-                      <li title="Add new field"></li>
-                    </ul>
+                  <div class="form-group mb-1">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" data-inp-reff="phone" />
                   </div>
+                </div>
+                <div class="add_extras">
+                  <ul class="extras_container flex wrap gap-x">
+                    <li title="Add new field"></li>
+                    <li class="child" title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li class="child" title="Add new field"></li>
+                    <li title="Add new field"></li>
+                    <li title="Add new field"></li>
+                  </ul>
                 </div>
               </div>
               <!-- item step EDUCATION -->
@@ -281,6 +288,26 @@
                       class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add experience</small>
+                    </span>
+                    <input type="hidden" id="ed_key" />
+                  </div>
+                </div>
+              </div>
+              <!-- item step SKILL -->
+              <div data-section-title="social" class="area-step">
+                <div class="head flex start">
+                  <div class="icon"></div>
+                  <p>Social Media</p>
+                </div>
+                <div class="form-content social">
+                  <!-- CONTAINER -->
+                  <div class="social-main"></div>
+                  <!-- ACTIONS -->
+                  <div class="actions">
+                    <span data-target=".social-main" data-form-object="OBJECT_SOCIAL"
+                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                      <i class="fas fa-plus"></i>
+                      <small class="text">Add social</small>
                     </span>
                     <input type="hidden" id="ed_key" />
                   </div>

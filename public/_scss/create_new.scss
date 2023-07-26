@@ -1,5 +1,18 @@
 @import "index.scss";
 
+/*  Form items */
+.input:active,
+.input:focus,
+input:focus,
+textarea:focus,
+select:focus,
+input:hover,
+textarea:hover,
+select:hover {
+  // border-color: $clr-bg;
+  box-shadow: $bs;
+  border-color: var(--clr-bg);
+}
 .create-resume {
   .main-header {
     box-shadow: $bs;
@@ -187,7 +200,9 @@
     display: none;
     padding-right: 0.35em;
     .bbtn {
-      transform: translateY(4px) scale(0.8);
+      transform: translate(-8px, 4px) scale(0.8);
+      background-color: $clr-danger;
+      box-shadow: $bs;
     }
   }
   &.active {
