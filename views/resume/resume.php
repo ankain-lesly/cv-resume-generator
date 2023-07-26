@@ -67,7 +67,7 @@
     <div class="root">
       <div class="create-resume">
         <header class="main-header flex between gap-1">
-          <h3><span class="clr-danger">Res</span>ume</h3>
+          <a href="/dashboard/"><span class="clr-danger">Res</span>ume</a>
 
           <div class="title flex-1 txt-center" style="overflow: hidden">
             <p class="txt-ellipsis">Resume Title</p>

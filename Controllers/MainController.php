@@ -31,6 +31,26 @@ class MainController
     // Rendering home view
     $res->render("_dashboard/index");
   }
+  public function profile(Request $req, Response $res)
+  {
+    // Rendering home view
+    $res->render("_dashboard/profile");
+  }
+  public function resumes(Request $req, Response $res)
+  {
+    $resume = new ResumeController('nolayout');
+    $meta = $resume->getMetaData();
+    // Rendering home view
+    $res->render("_dashboard/my-resumes", ['metadata' => $meta]);
+  }
+  public function templates(Request $req, Response $res)
+  {
+    $res->render("_dashboard/my-templates");
+  }
+  public function settings(Request $req, Response $res)
+  {
+    $res->render("_dashboard/settings");
+  }
 
   public function contact(Request $req, Response $res)
   {

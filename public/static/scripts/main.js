@@ -1,6 +1,6 @@
 // User Authentication - JS API Endpoints
-import { useFetch, useToken, useToast } from "./token.js";
-import { APP_ROOT } from "./config.js";
+import { APP_ROOT, STORAGE_KEY } from "./config.js";
+import { useFetch, useToken, useToast, useStorage } from "./app_hooks.js";
 
 // load templates
 let isLoaded = false;
@@ -148,7 +148,13 @@ $(".create_meta").on("click", async (e) => {
 
   if (response.ok && data.success) {
     // resolve_form() && Redirect()
-    window.location = "/resume/create/" + formData.template;
+    useToast("Resume created successfully. Setting up interface 🐱‍🏍");
+    useStorage(STORAGE_KEY, {});
+    setTimeout(() => {
+      console.log("Using storage...");
+      window.location =
+        "/resume/create/" + formData.template + "?reff=new-resume";
+    }, 2000);
   }
 });
 const submitFormData = async (formData, endpoint, redirect_route = "/") => {
@@ -170,6 +176,16 @@ function setBtnDone() {
 function useQueryParams(key = "") {
   const url = new URL(window.location);
   let params = url.search;
+  let path = url.href;
+
+  $.each($(".side-bar-links a"), (key, link) => {
+    console.log(link.href, path);
+    if (link.href === path) {
+      console.log(path);
+      console.log(link.href);
+      link.classList.add("active");
+    }
+  });
   // if (key) return url.searchParams[0] ?? false;
 
   if (params.includes("resume")) return $(".popup-main").show();

@@ -1,14 +1,13 @@
 // Custom Objects
 import { generateFormCard, RANGE_OBJECT } from "./form_objects.js";
-import { useFetch, useToken, useStorage } from "./custom_hooks.js";
+import { useFetch, useToken, useStorage } from "./app_hooks.js";
+import { STORAGE_KEY } from "./config.js";
 
 $(document).ready(function (e) {
-  // RESUME KEY
-  let TEMPLATE_MAIN = $("#resume_id").val();
-
+  // TEMPLATE KEY
+  const TEMPLATE_MAIN = $("#resume_id").val();
   // MY RESUME DATA
   let FORM_DATA = {};
-  const STORAGE_KEY = "my_resume";
 
   // Form section Objects
   const FORM_OBJECTS = {
@@ -148,6 +147,7 @@ $(document).ready(function (e) {
   // saving form-data
   $(document).on("blur", "[data-inp-reff]", function (e) {
     console.log("Typing ...");
+    console.log(FORM_DATA);
     const section = $(this).closest(".area-step").data("section-title");
     const formObject = FORM_DATA[section] ?? {};
     // console.log(formObject);
@@ -225,7 +225,7 @@ $(document).ready(function (e) {
 
     if (!formData) {
       // if -> get from database
-      const res = await useFetch("GET", "/resume/design_123/");
+      const res = await useFetch("GET", "/resume/" + TEMPLATE_MAIN + "/");
 
       if (!res) {
         alert("Connections error: Please try again..");

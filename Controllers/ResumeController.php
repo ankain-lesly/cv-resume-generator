@@ -20,7 +20,7 @@ class ResumeController
   public Session $session;
   private Resume $resumeObj;
 
-  public function __construct()
+  public function __construct($option = null)
   {
     $this->session = new Session();
 
@@ -28,7 +28,7 @@ class ResumeController
     $AuthMiddleware = new AuthMiddleware();
     $AuthMiddleware->isUser("options");
 
-    Router::$router->setLayout('');
+    if ($option !== 'nolayout') Router::$router->setLayout('');
   }
 
   public function createMeta(Request $req, Response $res)
@@ -40,12 +40,12 @@ class ResumeController
     $user = $this->session->get('user') ?? exit('Not authorized...');
 
     $sql_meta = "INSERT INTO tblresume_metadata 
-          (meta_id, user_id, resume_title, resume_description, resume_id)
-          VALUES (?,?,?,?,?)";
+          (meta_id, user_id, template_id, title, description, resume_id)
+          VALUES (?,?,?,?,?,?)";
 
     $meta = $this->resumeObj->DataAccess->insert(
       $sql_meta,
-      [$meta_id, $user['userID'], $data['title'], $data['description'], $resume_id]
+      [$meta_id, $user['userID'], $data['template'], $data['title'], $data['description'], $resume_id]
     );
 
     if ($meta) {
@@ -63,6 +63,20 @@ class ResumeController
         $res->json(['success' => true]);
       }
     }
+  }
+  // public function getMetaData(Request $req, Response $res)
+  public function getMetaData()
+  {
+    $user = $this->session->get('user') ?? exit('Not authorized...');
+    $sql_meta = "SELECT *
+                FROM tblresume_metadata WHERE user_id = ?";
+
+    $meta = $this->resumeObj->DataAccess->findAll(
+      $sql_meta,
+      [$user['userID']]
+    );
+
+    return $meta;
   }
   public function createResume(Request $req, Response $res)
   {

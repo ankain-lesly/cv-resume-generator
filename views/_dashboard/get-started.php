@@ -9,7 +9,7 @@
   margin: 2rem;
 }
 </style>
- <main>
+<main class="section-p">
   <!-- Page View Start -->
   <div class="get_started">
     <h2>We will provide helpful links to resources that will guide you on how to use</h2>
