@@ -43,7 +43,7 @@ class MainController
   }
   public function templates(Request $req, Response $res)
   {
-    $res->render("_dashboard/my-templates");
+    $res->render("_dashboard/templates");
   }
   public function settings(Request $req, Response $res)
   {

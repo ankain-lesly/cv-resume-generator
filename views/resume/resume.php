@@ -70,21 +70,33 @@
           <a href="/dashboard/"><span class="clr-danger">Res</span>ume</a>
 
           <div class="title flex-1 txt-center" style="overflow: hidden">
-            <p class="txt-ellipsis">Resume Title</p>
+            <!-- on_edit -->
+            <div class="resume_title flex gap-x">
+              <p class="txt-ellipsis"><?= $title ?> </p>
+              <input type="text" id="update_title" value="<?= $title ?>">
+              <button class="fas fa-pencil-alt font-size-small"></button>
+            </div>
           </div>
 
           <div class="actions flex gap-1">
-            <button class="bbtn primary flex gap-x btn_save_resume">
-              <i class="fas fa-trash"></i> Clear
+            <button class="bbtn primary flex gap-x btn_clear">
+              <span class="spin loader inline-text"></span>
+              <i class="icon fas fa-trash"></i>
+              <span class="txt">Clear</span>
             </button>
             <button class="bbtn primary flex gap-x btn_save_resume">
-              <i class="fas fa-save"></i> Save
+              <span class="spin loader inline-text"></span>
+              <i class="icon fas fa-save"></i>
+              <span class="txt">Save</span>
             </button>
             <button class="bbtn primary flex gap-x">
-              CV <i class="pl-1 fas fa-caret-down"></i>
+              <span class="spin loader inline-text"></span>
+              CV <i class="icon pl-1 fas fa-caret-down"></i>
             </button>
-            <button class="bbtn secondary pre flex gap-x">
-              <i class="fas fa-download pr-x"></i> Download
+            <button class="bbtn secondary pre flex gap-x btn_resume_dd">
+              <span class="spin loader inline-text"></span>
+              <i class="icon fas fa-download pr-x"></i>
+              <span class="txt">Download</span>
             </button>
           </div>
         </header>
@@ -145,7 +157,8 @@
                   <h3>Create resume</h3>
                   <small>Select a section form below to</small>
                   <div class="resume_info" style="display: none">
-                    <input type="hidden" id="resume_id" value="<?= $resume['resume_id'] ?>" />
+                    <input type="hidden" id="resume_main" value="<?= $resume_id ?>" />
+                    <input type="hidden" id="template_main" value="<?= $template_id ?>" />
                   </div>
                 </div>
                 <div class="container actions flex wrap start gap-1">

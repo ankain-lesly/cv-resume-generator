@@ -1,6 +1,7 @@
 // User Authentication - JS API Endpoints
 import { APP_ROOT, STORAGE_KEY } from "./config.js";
 import { useFetch, useToken, useToast, useStorage } from "./app_hooks.js";
+import { setBtnAction as BA } from "./button_actions.js";
 
 // load templates
 let isLoaded = false;
@@ -151,7 +152,9 @@ $(".create_meta").on("click", async (e) => {
   formData.token = useToken();
   const res = await submitFormData(formData, "/resume/meta");
 
-  setBtnDone();
+  BA.done();
+
+  isLoading = false;
   if (!res) return useToast("Error making requests, please try again");
 
   const { data, response } = res;
@@ -168,18 +171,13 @@ $(".create_meta").on("click", async (e) => {
 });
 const submitFormData = async (formData, endpoint, redirect_route = "/") => {
   if (isLoading) return;
-  setBtnLoading();
+
+  BA.name();
+  BA.loading();
+
+  isLoading = true;
   return await useFetch("POST", APP_ROOT + endpoint, formData);
 };
-// LOADING
-function setBtnLoading() {
-  isLoading = true;
-  $(".form_btn").addClass("process");
-}
-function setBtnDone() {
-  isLoading = false;
-  $(".form_btn").removeClass("process");
-}
 
 // GET pARAMS
 function useQueryParams(key = "") {

@@ -6,22 +6,35 @@
 input:focus,
 textarea:focus,
 select:focus,
-input:hover,
-textarea:hover,
-select:hover {
+input:active,
+textarea:active,
+select:active {
   // border-color: $clr-bg;
   box-shadow: $bs;
   border-color: var(--clr-bg);
 }
-.create-resume {
-  .main-header {
-    box-shadow: $bs;
-    border-bottom: 2px solid hsla($hsl-clr-bg, 0.4);
-    background-color: $clr-white;
-    padding: 0 1rem;
-    height: 60px;
-    // --clr-bg: #fff;
-    // color: #fff;
+.main-header {
+  box-shadow: $bs;
+  border-bottom: 2px solid hsla($hsl-clr-bg, 0.4);
+  background-color: $clr-white;
+  padding: 0 1rem;
+  height: 60px;
+
+  .actions {
+    button {
+      &.process {
+        .spin {
+          display: block;
+        }
+        .icon {
+          display: none;
+        }
+      }
+    }
+    .spin {
+      display: none;
+      border-bottom-color: $clr-bg !important;
+    }
   }
 }
 

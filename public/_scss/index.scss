@@ -135,9 +135,9 @@ body {
 input:focus,
 textarea:focus,
 select:focus,
-input:hover,
-textarea:hover,
-select:hover {
+input:active,
+textarea:active,
+select:active {
   // border-color: $clr-bg;
   box-shadow: 0 0 1px 3px hsla($hsl-clr-danger, 0.5);
   border-color: var(--clr-warning);

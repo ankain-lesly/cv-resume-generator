@@ -1,11 +1,15 @@
 // Custom Objects
+import { STORAGE_KEY } from "./config.js";
 import { generateFormCard, RANGE_OBJECT } from "./form_objects.js";
 import { useFetch, useStorage } from "./app_hooks.js";
-import { STORAGE_KEY } from "./config.js";
+import { setBtnAction as BA } from "./button_actions.js";
 
 $(document).ready(function (e) {
   // TEMPLATE KEY
-  const TEMPLATE_MAIN = $("#resume_id").val();
+  const META_DATA = {
+    resume: $("#resume_main").val(),
+    template: $("#template_main").val(),
+  };
   // MY RESUME DATA
   let FORM_DATA = {};
 
@@ -146,9 +150,11 @@ $(document).ready(function (e) {
       } else {
         const formObjectReff =
           FORM_OBJECTS[`OBJECT_${section_key.toUpperCase()}`];
+
+        if (!formObjectReff) return;
+
         $(`.${section_key}-main`).html("");
         $.each(data, (key, object) => {
-          // console.log(formObjectReff);
           $(`.${section_key}-main`).append(
             generateFormCard(key, object, formObjectReff)
           );
@@ -161,7 +167,7 @@ $(document).ready(function (e) {
   // saving form-data
   $(document).on("blur", "[data-inp-reff]", function (e) {
     console.log("Typing ...");
-    console.log(FORM_DATA);
+    // console.log(FORM_DATA);
     const section = $(this).closest(".area-step").data("section-title");
     const formObject = FORM_DATA[section] ?? {};
     // console.log(formObject);
@@ -178,28 +184,22 @@ $(document).ready(function (e) {
         formObject[section_key] = $(this).val();
       } else {
         const section_data = formObject[section_key] ?? {};
-
         section_data[$(this).data("inp-reff")] = $(this).val();
-
         formObject[section_key] = section_data;
       }
     }
     FORM_DATA[section] = formObject;
-
     updatePreviewer(FORM_DATA);
     useStorage(STORAGE_KEY, FORM_DATA);
   });
 
-  $(".btn_save_resume").on("click", () => {
-    updatePreviewer(FORM_DATA);
-  });
-
   //- updatePreviewer()
   function updatePreviewer(data = {}) {
+    // data["meta"] = META_DATA;
     $(".resume_previewer").load(
-      "/resume/on_edit/" + TEMPLATE_MAIN,
+      "/resume/on_edit/" + META_DATA.template,
       data,
-      function () {
+      () => {
         resizePreviewer();
 
         if (!$("#page_loader").hasClass("loaded"))
@@ -239,7 +239,7 @@ $(document).ready(function (e) {
 
     if (!formData) {
       // if -> get from database
-      const res = await useFetch("GET", "/resume/" + TEMPLATE_MAIN + "/");
+      const res = await useFetch("GET", "/resume/" + META_DATA.resume + "/");
 
       if (!res) {
         alert("Connections error: Please try again..");
@@ -262,16 +262,25 @@ $(document).ready(function (e) {
     updatePreviewer(formData);
   }
   loadSavedData();
-
+  // Clear Resume Form
+  $(".btn_clear").on("click", () => {
+    BA.name(".btn_clear");
+    BA.loading();
+    alert("Clearing Resume form..");
+    BA.done();
+  });
+  // Save Resume
+  $(".btn_save_resume").on("click", () => {
+    BA.name(".btn_save_resume");
+    alert("Saving Resume..");
+    BA.loading();
+    BA.done();
+  });
   // Download Resume
-  $(".btn_resume_dd").on("click", async function (e) {
-    const res = await useFetch(
-      "POST",
-      "/resume/on_edit/" + TEMPLATE_MAIN + "?dd=true",
-      FORM_DATA
-    );
-    if (res) {
-      alert("CV Downloaded Succ..");
-    }
+  $(".btn_resume_dd").on("click", function (e) {
+    BA.name(".btn_resume_dd");
+    alert("Downloading Resume..");
+    BA.loading();
+    BA.done();
   });
 });

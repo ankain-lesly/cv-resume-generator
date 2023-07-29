@@ -14,11 +14,13 @@
             </h5>
           </div>
           <div class="media">
-            <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Welcome cart item" style="max-height: 460px;">
+            <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Welcome cart item"
+              style="max-height: 460px;">
           </div>
         </div>
       </div>
     </div>
+    <!-- // rESUME STEPS -->
     <section class="steps">
       <div class="container-x section-p">
         <h2>Lets Get Started</h2>
@@ -54,5 +56,11 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <!-- // Templates -->
+    <section id="templates">
+      <div class="container-x section-p">
+        <h1>TEMPLATES...</h1>
       </div>
     </section>
