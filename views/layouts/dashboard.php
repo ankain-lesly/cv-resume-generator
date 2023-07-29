@@ -38,9 +38,9 @@
                   <textarea id="meta_description" cols="30" rows="5" required
                     placeholder="Enter description.."></textarea>
                 </div>
-                <div class="actions flex end w-full">
-                  <!-- <button type="button" class="close-main btn-s btn">Cancel</button> -->
-                  <button type="button" data-step="templates" class="btn-p btn">Next Step</button>
+                <div class="actions flex between w-full">
+                  <span class="close-main btn">Cancel</span>
+                  <span data-step="templates" class="btn-p btn">Next Step</span>
                 </div>
               </div>
             </div>

@@ -7,10 +7,13 @@
 .side-bar {
   background-color: $color-bg;
   height: 100vh;
+  overflow: hidden;
   overflow-y: auto;
+  .btn-close-sidebar {
+    visibility: hidden;
+  }
 
   .side-bar-hero {
-    padding: 1rem;
     padding-top: 0.25rem;
     text-align: center;
     background-color: var(--clr-dark);
@@ -27,10 +30,33 @@
       color: $clr-light;
     }
   }
-  // .side-bar-links {
-  //   // padding: 0 0.5rem;
-  // }
 
+  .stats-main {
+    overflow-x: auto;
+  }
+  .stats {
+    padding: 0.5em;
+    width: max-content;
+    cursor: all-scroll;
+
+    .stat {
+      &.right {
+        width: max-content;
+        background-color: transparent;
+        color: $clr-white;
+        padding: 0;
+        border: 1px solid hsla($hsl-clr-white, 0.5);
+        flex: auto;
+        padding-inline: 0.35em;
+      }
+      padding: 0.5em;
+      height: 30px;
+      background-color: hsla($hsl-clr-white, 0.2);
+      flex: 1 0;
+      border-radius: 0.35em;
+      flex-basis: 50px;
+    }
+  }
   .menu-title {
     margin: 2rem 0.5rem 0.5em;
     color: $clr-warning;
@@ -241,10 +267,10 @@
     // color: $clr-white;
     border: 1px solid hsla(var(--hsl-clr-bg), 0.5);
   }
-  input.disabled {
-    background-color: hsla($hsl-clr-bg, 0.11);
-  }
   .profile-image {
+    .save-profile-btn {
+      display: none;
+    }
     .image-holder {
       position: relative;
     }

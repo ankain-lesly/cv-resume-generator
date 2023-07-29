@@ -1,33 +1,42 @@
 <?php
 
-$admin  = 'role';
-
 // $sql_notifications = "SELECT COUNT(*) AS count FROM tblnotifications WHERE status = 'UNREAD'";
 
+use Devlee\mvccore\DB\DataAccess;
+use Devlee\mvccore\Session;
+
+$session = new Session();
+$DataAccess = new DataAccess();
+
+$user = $session->get('user');
 // $notifications = $DataAccess->fetchCount('', $sql_notifications)['count']; //status PENDING
-$notifications = 5;
-
-// $resumes = $DataAccess->fetchCount('tblpackages')['count']; //status PENDING
-$resumes = 0;
-
+$resumes = $DataAccess->findCount('tblresume_metadata', ['user_id' => $user['userID']])['count'];
+$notifications = 1;
 ?>
 <aside class="side-bar  scroll-bar">
   <div class="side-bar-hero">
     <nav class="flex between mb-1">
-      <!-- <a href="/" class="padd font-size-small clr-success btn-back">
+      <button class="padd btn-close-sidebar clr-success" style="color: #fff">
         <i class="fas fa-arrow-left"></i>
-      </a> -->
-      <button class="padd btn-close-sidebar mobile">
-        <!-- <i class="fas fa-times"></i> -->
-        <i class="fa`s fa-arrow-left"></i>
       </button>
     </nav>
-    <div class="content">
-      <p class="hero-icon ml-1 clr-warning mb-x">
-        <i class="fas fa-book"></i>
+    <div class="content ">
+      <p class="hero-icon clr-warning mb-x">
+        <i class="fas fa-briefcase"></i>
       </p>
-      <h2 class="clr-warning txt-capitalize  mb-1">Username</h2>
-      <small class="detail">My Admin: <b class="status txt-upper clr-warning">Role</b></small>
+      <!-- <h2 class="clr-warning txt-capitalize  mb-1"><?= $user['name'] ?></h2> -->
+      <!-- <small class="detail">My Admin: <b class="status txt-upper clr-warning">Role</b></small> -->
+    </div>
+    <div class="stats-main no-scroll-bar">
+      <ul class="stats flex between gap-x">
+        <li class="stat right flex"><i class="fas fa-angle-left"></i></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+      </ul>
     </div>
   </div>
   <div class="side-bar-links">
@@ -72,7 +81,7 @@ $resumes = 0;
         </ul>
       </li> -->
       <li>
-        <a class="" href="/dashboard/#notifications">
+        <a class="" href="#notifications">
           <i class="fas fa-bell icon"></i>
           <span class="text">Notifications</span>
           <?php if ($notifications > 0) { ?>
@@ -115,7 +124,7 @@ $resumes = 0;
           <span class="text">My Trash <i class="ml-1 fas fa-trash font-size-small clr-warning"></i></span></a>
       </li> -->
       <li style="margin-top: 2rem;">
-        <a href="/dashboard/?logout=true">
+        <a href="/account/logout" onclick="return confirm('Do you want to logout?')">
           <i class="fas fa-sign-in-alt icon"></i>
           <span class="text">Log out</span></a>
       </li>

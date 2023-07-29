@@ -152,8 +152,10 @@ class AuthController
   public function profile(Request $req, Response $res)
   {
     Router::setLayout('layouts/dashboard');
-    $user_id = $this->session->get('user')['userID'];
-    $user_email = $this->session->get('user')['email'];
+    $user = $this->session->get('user');
+    $user_id = $user['userID'];
+    $user_email = $user['email'];
+    $username = $user['name'];
 
     if ($req->isPost()) {
       $data = $req->body();
@@ -165,24 +167,18 @@ class AuthController
 
         $file_options = [
           "path" => Router::root_folder() . "/uploads/profiles/",
+          "filename" => "IMG-" . strtoupper(str_replace(" ", "-", $username)) . "-" . $user_id,
         ];
 
         $FileHandler = new FileUpload();
         $FileHandler->options($file_options);
         $file = $FileHandler->upload($image);
 
-        echo '<pre>';
-        print_r($data);
-        print_r($image);
-        print_r($file);
-        echo '</br>';
-        echo '</pre>';
-        exit();
-
+        $data['profile'] = $file;
 
         $update = $this->UserObj->update($data, ["userID", "email"]);
 
-        $this->session->setToast('toast', "Profile updated successfully 🐱‍🏍");
+        $this->session->setToast('toast', "Profile Photo changed successfully 🐱‍🏍");
       } elseif (isset($data['update_profile'])) {
         $update = $this->UserObj->update($data, ["userID", "email"]);
 
@@ -212,6 +208,7 @@ class AuthController
 
     $user_info = $this->UserObj->findOne(["email" => $user_email, "userID" => $user_id]);
 
+    $user_info['profile'] = $user_info['profile'] ? "/uploads/profiles/" . $user_info['profile'] : "/static/media/user.png";
     // Rendering profile view
     $res->render("_dashboard/profile", $user_info);
   }

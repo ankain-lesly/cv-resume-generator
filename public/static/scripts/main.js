@@ -19,6 +19,19 @@ let object = [
     src: "t3.jpg",
   },
 ];
+// Dashboard
+// Menu -- sidebar
+$(".btn-sitebar").on("click", () => {
+  $(".side-bar").toggleClass("active");
+});
+$(".btn-close-sidebar").on("click", () => {
+  $(".side-bar").toggleClass("active");
+});
+// TOAST ACTION
+$(document).on("click", ".toast_close_btn", (e) =>
+  $(".Toast_container").html("")
+);
+
 // CREATE STEP
 $("[data-step]").on("click", function (e) {
   const step = $(this).data("step");
@@ -138,22 +151,18 @@ $(".create_meta").on("click", async (e) => {
   formData.token = useToken();
   const res = await submitFormData(formData, "/resume/meta");
 
-  // console.log(res);
   setBtnDone();
   if (!res) return useToast("Error making requests, please try again");
 
   const { data, response } = res;
-
-  // if (!data.success) return errorMessage(data.message);
+  if (!data.success) return useToast("Error creating resume, please try again");
 
   if (response.ok && data.success) {
     // resolve_form() && Redirect()
     useToast("Resume created successfully. Setting up interface 🐱‍🏍");
     useStorage(STORAGE_KEY, {});
     setTimeout(() => {
-      // console.log("Using storage...");
-      window.location =
-        "/resume/create/" + formData.template + "?reff=new-resume";
+      window.location = "/resume/create/" + data.resume + "?reff=new-resume";
     }, 2000);
   }
 });
@@ -199,5 +208,6 @@ $("#profile_photo").change(function (e) {
   if (file) {
     let source = window.URL.createObjectURL(file);
     $(this).siblings(".image-holder").find("img").attr("src", source);
+    $(".save-profile-btn").show();
   }
 });

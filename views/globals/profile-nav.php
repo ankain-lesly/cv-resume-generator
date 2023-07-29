@@ -29,7 +29,8 @@
           <span class="text">Home</span></a>
       </li>
       <li class="mt-2">
-        <a class="bbtn secondary w-full" href="/account/logout">Logout</a>
+        <a class="bbtn secondary w-full" href="/account/logout"
+          onclick="return confirm('Do you want to logout?')">Logout</a>
       </li>
     </ul>
   </nav>

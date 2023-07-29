@@ -37,10 +37,11 @@ class ResumeController
   public function createMeta(Request $req, Response $res)
   {
     $data = $req->body();
-    $meta_id = Library::generateToken(10);
-    $resume_id = Library::generateToken(10);
+    $meta_id = Library::generateToken(16);
+    $resume_id = Library::generateToken(16);
 
     $user = $this->session->get('user') ?? exit('Not authorized...');
+    if ($user['_sess_token'] !== $data['token']) exit('Not authorized...');
 
     $sql_meta = "INSERT INTO tblresume_metadata 
           (meta_id, user_id, template_id, title, description, resume_id)
@@ -63,7 +64,11 @@ class ResumeController
 
       if ($resume) {
         $this->session->setToast("toast", "Huureyu! Resume created, Welcome to your resume designer. Get started");
-        $res->json(['success' => true]);
+        $meta_data = array(
+          'success' => true,
+          "resume" => $resume_id
+        );
+        $res->json($meta_data);
       }
     }
   }
@@ -85,9 +90,9 @@ class ResumeController
   {
     $resume_id = $req->params('resume_id');
 
-    $resume = array('resume' => [
-      'resume_id' => $resume_id,
-    ]);
+    $resume = $this->DataAccess->findOne("SELECT * FROM tblresume_metadata WHERE resume_id = ?", [$resume_id]);
+
+    if (!$resume) return $res->render("resume/resume-not-found");
 
     $res->render("resume/resume", $resume);
   }

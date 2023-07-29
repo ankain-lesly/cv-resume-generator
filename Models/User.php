@@ -11,6 +11,7 @@ class User extends DBModel
     public string $username = '';
     public string $email = '';
     public string $phone = '';
+    public string $profile = '';
     public string $address = '';
     public string $password = '';
     public string $confirm_password = '';

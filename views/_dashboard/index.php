@@ -1,12 +1,8 @@
 <?php
 
-$cars = ['count' => 8];
-$brands = ['count' => 8];
-$parts = ['count' => 8];
-$categories = ['count' => 8];
-$years = ['count' => 8];
-$users = ['count' => 8];
+use Devlee\mvccore\Session;
 
+$user = (new Session())->get('user');
 ?>
 <main>
   <!-- Page View Start -->
@@ -18,10 +14,10 @@ $users = ['count' => 8];
       <div class="feed user-details">
         <div class="box flex txt-center">
           <div class="group">
-            <img src="/static/media/user.png" alt="Profile AnkainDa" />
-            <h3>username</h3>
-            <p>email</p>
-            <a class="btn btn-p mt-1" href="/dashboard/">Pofile</a>
+            <img src="/static/media/user.png" alt="Profile" />
+            <h3><?= $user['name'] ?> </h3>
+            <p><?= $user['email'] ?> </p>
+            <a class="btn btn-p mt-1" href="/user/profile">Profile</a>
           </div>
         </div>
       </div>

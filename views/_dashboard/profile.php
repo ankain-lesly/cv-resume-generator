@@ -47,7 +47,7 @@
                      <input type="file" name="profile" id="profile_photo" accept="image/*">
                      <div class="image-holder">
                        <div class="image">
-                         <img src="/static//media/user.png" alt="Profile picture" class="img-cover profile_cover">
+                         <img src="<?= $profile ?>" alt="Profile picture" class="img-cover profile_cover">
                          <label for="profile_photo" class="edit-btn flex">
                            <i class="fas fa-camera"></i>
                          </label>

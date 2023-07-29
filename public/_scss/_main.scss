@@ -13,6 +13,9 @@
 
     &.active {
       left: 0;
+      .btn-close-sidebar {
+        visibility: visible;
+      }
     }
   }
 
