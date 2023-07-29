@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use Devlee\mvccore\FileUpload;
 use Devlee\XRouter\Router;
 use Devlee\XRouter\Request;
 use Devlee\XRouter\Response;
