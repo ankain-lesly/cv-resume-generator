@@ -9,9 +9,11 @@ use Devlee\XRouter\Router;
 
 // middlewares
 use App\Middlewares\AuthMiddleware;
+use Devlee\mvccore\Session;
 
 class MainController
 {
+  private Session $session;
   public function __construct()
   {
     /**
@@ -25,16 +27,12 @@ class MainController
     $AuthMiddleware = new AuthMiddleware();
     $AuthMiddleware->isUser();
     Router::$router->setLayout('layouts/dashboard');
+    $this->session = new Session();
   }
   public function index(Request $req, Response $res)
   {
     // Rendering home view
     $res->render("_dashboard/index");
-  }
-  public function profile(Request $req, Response $res)
-  {
-    // Rendering home view
-    $res->render("_dashboard/profile");
   }
   public function resumes(Request $req, Response $res)
   {

@@ -11,6 +11,7 @@ use Devlee\XRouter\Router;
 use Devlee\mvccore\Session;
 // middlewares
 use App\Middlewares\AuthMiddleware;
+use Devlee\mvccore\DB\DataAccess;
 // PDF for Dompdf
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -19,10 +20,12 @@ class ResumeController
 {
   public Session $session;
   private Resume $resumeObj;
+  private DataAccess $DataAccess;
 
   public function __construct($option = null)
   {
     $this->session = new Session();
+    $this->DataAccess = new DataAccess();
 
     $this->resumeObj = new Resume();
     $AuthMiddleware = new AuthMiddleware();
@@ -43,7 +46,7 @@ class ResumeController
           (meta_id, user_id, template_id, title, description, resume_id)
           VALUES (?,?,?,?,?,?)";
 
-    $meta = $this->resumeObj->DataAccess->insert(
+    $meta = $this->DataAccess->insert(
       $sql_meta,
       [$meta_id, $user['userID'], $data['template'], $data['title'], $data['description'], $resume_id]
     );
@@ -53,7 +56,7 @@ class ResumeController
           (resume_id)
           VALUES (?)";
 
-      $resume = $this->resumeObj->DataAccess->insert(
+      $resume = $this->DataAccess->insert(
         $sql_resume,
         [$resume_id]
       );
@@ -71,7 +74,7 @@ class ResumeController
     $sql_meta = "SELECT *
                 FROM tblresume_metadata WHERE user_id = ?";
 
-    $meta = $this->resumeObj->DataAccess->findAll(
+    $meta = $this->DataAccess->findAll(
       $sql_meta,
       [$user['userID']]
     );

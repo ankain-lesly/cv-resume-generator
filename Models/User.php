@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use Devlee\mvccore\DB\DBModel;
@@ -10,6 +11,7 @@ class User extends DBModel
     public string $username = '';
     public string $email = '';
     public string $phone = '';
+    public string $address = '';
     public string $password = '';
     public string $confirm_password = '';
 
@@ -21,7 +23,7 @@ class User extends DBModel
     public function attributes(): array
     {
         // attr: user_id
-        return ["userID", "username","email","phone","password"];
+        return ["userID", "username", "email", "phone", "password"];
     }
 
     public function rules()
@@ -46,10 +48,18 @@ class User extends DBModel
         return $this->insert();
     }
 
-    public static function hashString(string $string) {
+    public static function hashString(string $string)
+    {
         return password_hash($string, PASSWORD_DEFAULT);
     }
-    public static function verifyHashed(string $string, string $hashedString) {
+    public static function verifyHashed(string $string, string $hashedString)
+    {
         return password_verify($string, $hashedString);
     }
+
+    // public function update_profile() {} 
+    // use the update method
+
+    // public function change_password(){}
+    // use the update method
 }

@@ -604,6 +604,7 @@ h3 {
 
 .disabled {
   pointer-events: none;
+  background-color: hsla(var(--hsl-clr-bg), 0.1);
 }
 
 /*

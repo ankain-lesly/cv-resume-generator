@@ -1,12 +1,5 @@
  <?php
-  include_once __DIR__ . "/../globals/globals.php";
-
-  $id = '';
-  $username = '';
-  $email = '';
-  $phone = '';
-  $address = '';
-
+  include_once __DIR__ . "/../globals/globals.php"
   ?>
  </head>
 
@@ -17,13 +10,7 @@
        <header class="mt-2">
          <div class="container-x flex between">
            <a href="
-        <?php
-        if (isset($_GET['password'])) {
-          echo '/dashboard/profile.php';
-        } else {
-          echo '/dashboard';
-        }
-        ?>
+        <?= isset($_GET['password']) ? '/user/profile' : '/dashboard/'; ?>
         " class="btn btn-s">Back</a>
            <h4>Edit Account</h4>
          </div>
@@ -39,9 +26,9 @@
              <a href="?password=true"><small class="btn btn-p">change password</small></a>
            </div>
          </div>
-         <?php if (isset($update['errors'])) { ?>
+         <?php if (isset($errors) && !empty($errors)) { ?>
          <div class="form-errors">
-           <p class="mt-2 mb-2"><?= $update['errors'][0] ?></p>
+           <p class="mt-2 mb-2"><?= $errors[0] ?></p>
          </div>
          <?php } ?>
 
@@ -57,16 +44,16 @@
                <div class="body">
                  <div class="input-group">
                    <div class="profile-image flex column">
+                     <input type="file" name="profile" id="profile_photo" accept="image/*">
                      <div class="image-holder">
                        <div class="image">
-                         <img src="/static//media/user.png" alt="Profile picture" class="img-cover">
-                         <label for="profile" class="edit-btn flex">
+                         <img src="/static//media/user.png" alt="Profile picture" class="img-cover profile_cover">
+                         <label for="profile_photo" class="edit-btn flex">
                            <i class="fas fa-camera"></i>
                          </label>
                        </div>
                      </div>
-                     <input type="file" name="profile" id="profile" accept="image/*">
-                     <button class="save-profile-btn btn btn-s">save</button>
+                     <button class="save-profile-btn btn btn-s mt-2 w-full" name="change_profile">save</button>
                    </div>
                    <!-- CUSTOM SELECT -->
                  </div>
@@ -78,18 +65,16 @@
              <div class="form-section">
                <div class="head">
                  <h3>Profile info</h3>
-                 <input type="hidden" name="user_id" id="user_id" value="<?= $id ?>" />
+                 <!-- <input type="hidden" name="user_id" id="user_id" value="<?= $id ?>" /> -->
                </div>
                <div class="body">
                  <div class="input-group">
-                   <label for="username">Full Name</label>
-                   <input type="text" name="username" id="username" placeholder="Full name" required
-                     value="<?= $username ?>" />
+                   <label for="username">Username</label>
+                   <div class="input disabled"><?= $username ?></div>
                  </div>
                  <div class="input-group">
                    <label for="email">Email Address</label>
-                   <input type="text" name="email" class="disabled" id="email" placeholder="Email address.." required
-                     value="<?= $email ?>" />
+                   <div class="input disabled"><?= $email ?></div>
                  </div>
                  <div class="input-group">
                    <label for="tel">Mobile number</label>
@@ -97,7 +82,7 @@
                      value="<?= $phone ?>" />
                  </div>
                  <div class="input-group">
-                   <label for="address">Your address infor..</label>
+                   <label for="address">Your address</label>
                    <textarea name="address" id="address" placeholder="About this appointment" required
                      style="height: 100px;"><?= $address ?></textarea>
                  </div>
@@ -139,19 +124,19 @@
                <div class="body">
                  <div class="input-group">
                    <label for="old_password">Old Password</label>
-                   <input type="text" name="old_password" id="old_password" placeholder="Enter old password..."
+                   <input type="password" name="old_password" id="old_password" placeholder="Enter old password..."
                      required />
                  </div>
 
                  <div class="input-group">
                    <label for="password">New Password</label>
-                   <input type="text" name="password" id="password" placeholder="Enter New password..." required />
+                   <input type="password" name="password" id="password" placeholder="Enter New password..." required />
                  </div>
 
                  <div class="input-group">
                    <label for="confirm_password">Confirm new Password</label>
-                   <input type="text" name="confirm_password" id="confirm_password" placeholder="Enter old password..."
-                     required />
+                   <input type="password" name="confirm_password" id="confirm_password"
+                     placeholder="Enter old password..." required />
                  </div>
 
                  <div class="actions flex mt-2 end gap-2 pb-2 wrap mr-2">

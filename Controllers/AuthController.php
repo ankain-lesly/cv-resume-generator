@@ -147,4 +147,71 @@ class AuthController
     );
     $this->session->set('user', $user_data);
   }
+
+  public function profile(Request $req, Response $res)
+  {
+    Router::setLayout('layouts/dashboard');
+    $user_id = $this->session->get('user')['userID'];
+    $user_email = $this->session->get('user')['email'];
+
+    if ($req->isPost()) {
+      $data = $req->body();
+      $data['userID'] = $user_id;
+      $data['email'] = $user_email;
+
+      if (isset($_FILES['profile'])) {
+        $image = $_FILES['profile'];
+
+        $file_options = [
+          "path" => Router::root_folder() . "/uploads/profiles/",
+        ];
+
+        $FileHandler = new FileUpload();
+        $FileHandler->options($file_options);
+        $file = $FileHandler->upload($image);
+
+        echo '<pre>';
+        print_r($data);
+        print_r($image);
+        print_r($file);
+        echo '</br>';
+        echo '</pre>';
+        exit();
+
+
+        $update = $this->UserObj->update($data, ["userID", "email"]);
+
+        $this->session->setToast('toast', "Profile updated successfully 🐱‍🏍");
+      } elseif (isset($data['update_profile'])) {
+        $update = $this->UserObj->update($data, ["userID", "email"]);
+
+        $this->session->setToast('toast', "Profile updated successfully 🐱‍🏍");
+      } elseif (isset($data['change_password'])) {
+
+        $user =  $this->UserObj->findOne(["userID" => $user_id, "email" => $user_email], ['password']);
+
+        if ($user && $this->UserObj->verifyHashed($data["old_password"], $user['password'])) {
+          $status = ['errors' => []];
+          if ($data["password"] === $data["confirm_password"]) {
+            $passEncypt = $this->UserObj->hashString($data["password"]);
+
+            $form_data = ['password' => $passEncypt, "userID", $user_id, "email" => $user_email];
+            $this->UserObj->update($form_data, ["userID", "email"]);
+
+            $this->session->setToast('toast', 'Password Changed Successfully. 😎');
+          } else {
+            $status['errors'][] = 'New passwords do not match!';
+          }
+        } else {
+          $status['errors'][] = 'Incorrect password. Please try again!';
+        }
+        $res->render("_dashboard/profile", $status);
+      }
+    }
+
+    $user_info = $this->UserObj->findOne(["email" => $user_email, "userID" => $user_id]);
+
+    // Rendering profile view
+    $res->render("_dashboard/profile", $user_info);
+  }
 }

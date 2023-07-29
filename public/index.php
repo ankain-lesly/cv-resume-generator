@@ -50,7 +50,8 @@ $router->get("/dashboard/resumes", [MainController::class, 'resumes']);
 $router->get("/dashboard/templates", [MainController::class, 'templates']);
 $router->get("/account/settings", [MainController::class, 'settings']);
 $router->get("/dashboard/get-started", '@_dashboard/get-started');
-$router->get("/user/profile", [MainController::class, 'profile']);
+$router->get("/user/profile", [AuthController::class, 'profile']);
+$router->post("/user/profile", [AuthController::class, 'profile']);
 
 // Router resolve
 $router->resolve();

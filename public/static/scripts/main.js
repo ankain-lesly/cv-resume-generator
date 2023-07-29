@@ -138,7 +138,7 @@ $(".create_meta").on("click", async (e) => {
   formData.token = useToken();
   const res = await submitFormData(formData, "/resume/meta");
 
-  console.log(res);
+  // console.log(res);
   setBtnDone();
   if (!res) return useToast("Error making requests, please try again");
 
@@ -151,7 +151,7 @@ $(".create_meta").on("click", async (e) => {
     useToast("Resume created successfully. Setting up interface 🐱‍🏍");
     useStorage(STORAGE_KEY, {});
     setTimeout(() => {
-      console.log("Using storage...");
+      // console.log("Using storage...");
       window.location =
         "/resume/create/" + formData.template + "?reff=new-resume";
     }, 2000);
@@ -179,10 +179,9 @@ function useQueryParams(key = "") {
   let path = url.href;
 
   $.each($(".side-bar-links a"), (key, link) => {
-    console.log(link.href, path);
     if (link.href === path) {
-      console.log(path);
-      console.log(link.href);
+      // console.log(path);
+      // console.log(link.href);
       link.classList.add("active");
     }
   });
@@ -191,3 +190,14 @@ function useQueryParams(key = "") {
   if (params.includes("resume")) return $(".popup-main").show();
 }
 useQueryParams();
+
+// profile photo
+
+$("#profile_photo").change(function (e) {
+  const file = $(this).prop("files")[0];
+  // const file = document.getElementById('p_img').files[0]
+  if (file) {
+    let source = window.URL.createObjectURL(file);
+    $(this).siblings(".image-holder").find("img").attr("src", source);
+  }
+});
