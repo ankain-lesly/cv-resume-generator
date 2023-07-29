@@ -12,6 +12,7 @@ use Devlee\mvccore\Session;
 // middlewares
 use App\Middlewares\AuthMiddleware;
 use Devlee\mvccore\DB\DataAccess;
+use Devlee\mvccore\FileUpload;
 // PDF for Dompdf
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -88,13 +89,52 @@ class ResumeController
   }
   public function createResume(Request $req, Response $res)
   {
+    if ($req->isPost()) {
+      $data = $req->body();
+      if (isset($data['cover_photo']) && !empty($_FILES)) {
+        $image = $_FILES['image'];
+
+        $file_options = [
+          "path" => Router::root_folder() . "/uploads/covers/",
+          "filename" => "RESUME-" . $data['resume_id'],
+        ];
+
+        $FileHandler = new FileUpload();
+        $FileHandler->options($file_options);
+
+        $data['cover_photo'] = $FileHandler->upload($image);
+
+        if ($data['cover_photo']) {
+          $update = $this->resumeObj->update($data, ['resume_id']);
+          if ($update) $res->json(['success' => true, 'cover' => $data['cover_photo']]);
+          exit;
+        }
+      }
+      // Getting Resume Data
+      $data['personal'] = json_encode($data['personal']  ?? "");
+      $data['extras'] = json_encode($data['extras']  ?? "");
+      $data['education'] = json_encode($data['education']  ?? "");
+      $data['experience'] = json_encode($data['experience']  ?? "");
+      $data['social'] = json_encode($data['social']  ?? "");
+      $data['language'] = json_encode($data['language']  ?? "");
+      $data['skill'] = json_encode($data['skill']  ?? "");
+      $data['hobby'] = json_encode($data['hobby']  ?? "");
+
+      $meta = $data['meta'] ?? false;
+
+      $data['resume_id'] = $meta['resume'];
+
+      $update = $this->resumeObj->update($data, ['resume_id']);
+
+      if ($update) $res->json(['success' => true]);
+      exit;
+    }
     $user = $this->session->get('user');
     $resume_id = $req->params('resume_id');
 
     $resume = $this->DataAccess->findOne("SELECT * FROM tblresume_metadata WHERE resume_id = ?", [$resume_id]);
 
     if (!$resume) return $res->render("resume/resume-not-found", ['user' => $user]);
-
     $res->render("resume/resume", $resume);
   }
 
@@ -104,9 +144,13 @@ class ResumeController
     $resume = $req->body();
 
     // Getting Resume Data
+    $cover = $resume['cover_photo'] ?? false;
+
     $personal = $resume['personal'] ?? [];
+    $extras = $resume['extras'] ?? [];
     $education = $resume['education'] ?? [];
     $experience = $resume['experience'] ?? [];
+    $social = $resume['social'] ?? [];
     $languages = $resume['language'] ?? [];
     $skills = $resume['skill'] ?? [];
     $hobbies = $resume['hobby'] ?? [];
@@ -136,54 +180,53 @@ class ResumeController
     $template = ob_get_clean();
 
     exit("Generating RESUME PDF");
-    $this->generatePDF($template);
+    // $this->generatePDF($template);
   }
 
 
-  public function generatePDF(string $template)
-  {
-    /**
-     * Set the Dompdf options
-     */
+  // public function generatePDF(string $template)
+  // {
+  //   /**
+  //    * Set the Dompdf options
+  //    */
 
-    $options = new Options;
-    $options->setChroot(Router::root_folder());
-    $options->setIsRemoteEnabled(true);
+  //   $options = new Options;
+  //   $options->setChroot(Router::root_folder());
+  //   $options->setIsRemoteEnabled(true);
 
-    $dompdf = new Dompdf($options);
+  //   $dompdf = new Dompdf($options);
 
-    /**
-     * Set the paper size and orientation
-     */
-    $dompdf->setPaper("A4", "portrait");
+  //   /**
+  //    * Set the paper size and orientation
+  //    */
+  //   $dompdf->setPaper("A4", "portrait");
 
-    /**
-     * Load the HTML and replace placeholders with values from the form
-     */
+  //   /**
+  //    * Load the HTML and replace placeholders with values from the form
+  //    */
 
-    // $dompdf->loadHtmlFile($template);
-    $dompdf->loadHtml($template);
+  //   // $dompdf->loadHtmlFile($template);
+  //   $dompdf->loadHtml($template);
 
-    /**
-     * Create the PDF and set attributes
-     */
-    $dompdf->render();
+  //   /**
+  //    * Create the PDF and set attributes
+  //    */
+  //   $dompdf->render();
 
-    // set title or user defualt web title
-    $dompdf->addInfo("Title", "An Example PDF"); // "add_info" in earlier versions of Dompdf
+  //   // set title or user defualt web title
+  //   $dompdf->addInfo("Title", "An Example PDF"); // "add_info" in earlier versions of Dompdf
 
-    /**
-     * Send the PDF to the browser
-     */
-    $dompdf->stream("design_123.pdf", ["Attachment" => 0]);
+  //   /**
+  //    * Send the PDF to the browser
+  //    */
+  //   $dompdf->stream("design_123.pdf", ["Attachment" => 0]);
 
-    /**
-     * Save the PDF file locally
-     */
-    $output = $dompdf->output();
-    file_put_contents("My_resume.pdf", $output);
-  }
-
+  //   /**
+  //    * Save the PDF file locally
+  //    */
+  //   $output = $dompdf->output();
+  //   file_put_contents("My_resume.pdf", $output);
+  // }
 
   public function getResumeData()
   {

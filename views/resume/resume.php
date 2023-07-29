@@ -73,7 +73,7 @@
             <!-- on_edit -->
             <div class="resume_title flex gap-x">
               <p class="txt-ellipsis"><?= $title ?> </p>
-              <input type="text" id="update_title" value="<?= $title ?>">
+              <input type="hidden" id="update_title" value="<?= $title ?>">
               <button class="fas fa-pencil-alt font-size-small"></button>
             </div>
           </div>
@@ -208,7 +208,7 @@
                       <input type="file" id="resume_photo" data-placeholder=".photo_placeholder" accept="images/*" />
                       <label for="resume_photo" class="picture_holder">
                         <div class="picture">
-                          <img src="/static/media/user.png" class="img-cover" alt="Profile Picture" />
+                          <img src="/static/media/user.png" class="img-cover img-cover-profile" alt="Cover Picture" />
                         </div>
                         <span class="btn_camera flex">
                           <i class="fas fa-camera"></i>

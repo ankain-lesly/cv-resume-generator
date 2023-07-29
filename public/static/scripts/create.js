@@ -1,11 +1,16 @@
 // Custom Objects
 import { STORAGE_KEY } from "./config.js";
 import { generateFormCard, RANGE_OBJECT } from "./form_objects.js";
-import { useFetch, useStorage } from "./app_hooks.js";
-import { setBtnAction as BA } from "./button_actions.js";
+import {
+  useFetch,
+  useStorage,
+  useToast,
+  setBtnAction as BA,
+} from "./app_hooks.js";
 
 $(document).ready(function (e) {
-  // TEMPLATE KEY
+  let isLoading = false;
+  // META DATA
   const META_DATA = {
     resume: $("#resume_main").val(),
     template: $("#template_main").val(),
@@ -147,6 +152,8 @@ $(document).ready(function (e) {
           // data-inp-reff="picture"
           $(`[data-inp-reff="${key}"]`).val(value);
         });
+      } else if (section_key === "cover_photo") {
+        $(".img-cover-profile").attr("src", "/uploads/covers/" + data);
       } else {
         const formObjectReff =
           FORM_OBJECTS[`OBJECT_${section_key.toUpperCase()}`];
@@ -197,7 +204,7 @@ $(document).ready(function (e) {
   function updatePreviewer(data = {}) {
     // data["meta"] = META_DATA;
     $(".resume_previewer").load(
-      "/resume/on_edit/" + META_DATA.template,
+      "/resume/edit/" + META_DATA.template,
       data,
       () => {
         resizePreviewer();
@@ -271,16 +278,73 @@ $(document).ready(function (e) {
   });
   // Save Resume
   $(".btn_save_resume").on("click", () => {
+    if (isLoading) return;
+    isLoading = true;
     BA.name(".btn_save_resume");
-    alert("Saving Resume..");
     BA.loading();
-    BA.done();
+
+    setTimeout(() => {
+      saveResume(FORM_DATA);
+
+      BA.done();
+      isLoading = false;
+    }, 500);
   });
   // Download Resume
   $(".btn_resume_dd").on("click", function (e) {
     BA.name(".btn_resume_dd");
-    alert("Downloading Resume..");
     BA.loading();
+    alert("Downloading Resume..");
     BA.done();
   });
+
+  // CHANGE COVER PHOTO
+  $("#resume_photo").on("change", function (e) {
+    const file = $(this).prop("files")[0];
+
+    if (!file) return;
+
+    let source = window.URL.createObjectURL(file);
+    $(".img-cover-profile").attr("src", source);
+
+    const formObj = new FormData();
+    formObj.append("image", file);
+    formObj.append("cover_photo", "cover photo");
+    formObj.append("resume_id", META_DATA.resume);
+
+    $.ajax({
+      url: "/resume/create/" + META_DATA.resume,
+      method: "post",
+      contentType: false,
+      processData: false,
+      cache: false,
+      data: formObj,
+      success: function (res) {
+        const data = JSON.parse(res) ?? false;
+        if (data && data.success) {
+          FORM_DATA["cover_photo"] = data.cover;
+          useStorage(STORAGE_KEY, FORM_DATA);
+        }
+      },
+    });
+    // saveResume(formObj);
+  });
+  // Download Resume
+  $(".change_template").on("click", function (e) {});
+
+  // Save Resume
+  const saveResume = async (data) => {
+    const formData = data;
+    formData.meta = META_DATA;
+
+    const res = await useFetch(
+      "POST",
+      "/resume/create/" + META_DATA.resume,
+      formData
+    );
+
+    if (res.data && res.data.success) {
+      useToast("Resume saved.. 😊");
+    }
+  };
 });

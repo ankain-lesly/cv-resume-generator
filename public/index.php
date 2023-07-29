@@ -41,8 +41,9 @@ $router->get("/resume/{resume_key}/", [ResumeController::class, 'getResumeData']
 // $router->get("/resume/meta/", [ResumeController::class, 'getMetaData']);
 // $router->get("/resume/meta/{resume_key}/", [ResumeController::class, 'getResumeData']);
 $router->get("/resume/create/{resume_id}", [ResumeController::class, 'createResume']);
+$router->post("/resume/create/{resume_id}", [ResumeController::class, 'createResume']);
 // Get Resume Setup on edit
-$router->post("/resume/on_edit/{template_id}", [ResumeController::class, 'setupResume']);
+$router->post("/resume/edit/{template_id}", [ResumeController::class, 'setupResume']);
 
 // Dashboard
 $router->get("/dashboard/", [MainController::class, 'index']);

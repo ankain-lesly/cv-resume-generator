@@ -6,24 +6,29 @@ use Devlee\mvccore\DB\DBModel;
 
 class Resume extends DBModel
 {
-  public int $resume_id = 0;
-  public string $personal = '';
-  public string $education = '';
-  public string $experience = '';
-  public string $emexperience = '';
-  public string $skill = '';
-  public string $extras = '';
+  public string $resume_id = "";
+
+  public string $cover_photo  = "";
+
+  public string $personal = "";
+  public string $extras = "";
+  public string $education = "";
+  public string $experience = "";
+  public string $social = "";
+  public string $languages = "";
+  public string $skills = "";
+  public string $hobbies = "";
 
   public static function tableName(): string
   {
-    return 'tblusers';
+    return 'tblresumes';
   }
 
-  public function attributes(): array
-  {
-    // attr: user_id
-    return ["personal", "education", "experience", "emexperience", "skill", "extras"];
-  }
+  // public function attributes(): array
+  // {
+  //   // attr: user_id
+  //   return ["personal", "education", "experience", "emexperience", "skill", "extras"];
+  // }
 
   // public function rules()
   // {

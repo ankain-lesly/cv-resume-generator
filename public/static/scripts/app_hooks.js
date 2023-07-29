@@ -64,9 +64,16 @@ const useToast = (message) => {
     </div>`;
 
   $(".Toast_container").html(toast);
-  console.log("Toasting");
+  console.log("Toasting...");
 };
-// module.exports = {
-//   makeFetch,
-// };
-export { useFetch, useToken, useStorage, useToast };
+// LOADING
+let selected = "";
+
+// action
+const setBtnAction = {
+  name: (selector = ".form_btn") => (selected = selector),
+  loading: () => $(selected).addClass("process"),
+  done: () => setTimeout(() => $(selected).removeClass("process"), 800),
+};
+
+export { useFetch, useToken, useStorage, useToast, setBtnAction };
