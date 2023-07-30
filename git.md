@@ -52,3 +52,19 @@ public function interceptRequest($path = null)
     "/resume/create/{resume_id}"
 
 ## Use Sessions on registration to tack process and verificatoin with form handling
+
+## Final Touches
+
+- Setup design with global variable in css
+- sample touched on generate pdf
+- sanitize data on_edit
+
+- final touches
+
+- Complete Touches
+
+- Design Resume Templates
+- Integrate with helper functions
+- install in application;
+
+- Proceed with Final Touches

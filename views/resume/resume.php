@@ -17,7 +17,7 @@
 }
 
 #my_resume_main {
-  width: 1000px;
+  width: 1350px;
   transform-origin: 0 0;
 }
 
@@ -407,8 +407,10 @@
             <div class="preview-container">
               <nav class="mobile-nav mobile-test">Nav Items</nav>
               <article id="my_resume_wrapper">
-                <div id="my_resume_main" class="resume_previewer">
-                  <!-- // RESUME HERE-->
+                <div id="my_resume_main">
+                  <div id="resume_design" class="resume_previewer">
+                    <!-- // RESUME HERE-->
+                  </div>
                 </div>
               </article>
             </div>
@@ -420,6 +422,8 @@
     </div>
 
     <script src="/static/scripts/jQuery.min.js"></script>
+    <script src="/static/scripts/html2canvas.min.js"></script>
+    <script src="/static/scripts/jspdf.umd.min.js"></script>
     <script type="module" src="/static/scripts/create.js"></script>
     <script>
     // Panel Pages

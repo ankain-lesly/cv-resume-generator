@@ -119,7 +119,6 @@ $(document).ready(function (e) {
     $parent.find(".pro_caption").text(label);
     $parent.find(".range_proficiency").text(label);
   });
-  // LoadDefaultForm
   // Load Default form
   const LoadDefaultForm = () => {
     // Clearing...
@@ -305,8 +304,19 @@ $(document).ready(function (e) {
   $(".btn_resume_dd").on("click", function (e) {
     BA.name(".btn_resume_dd");
     BA.loading();
-    alert("Downloading Resume..");
-    BA.done();
+    const { jsPDF } = window.jspdf;
+    var doc = new jsPDF("p", "mm", [1500, 1400]);
+
+    var pdfjs = document.querySelector("#resume_design");
+
+    doc.html(pdfjs, {
+      callback: function (doc) {
+        doc.save("My-Resume-USERNAME.pdf");
+        BA.done();
+      },
+      x: 20,
+      y: 20,
+    });
   });
 
   // CHANGE COVER PHOTO
