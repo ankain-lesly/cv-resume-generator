@@ -200,57 +200,59 @@
                   <div class="icon"></div>
                   <p>Personal Infomation</p>
                 </div>
-                <div class="form-content personal">
-                  <!-- // Personal Details -->
-                  <div class="personal-1 flex gap-2 top">
-                    <div class="form-goup">
-                      <input type="text" id="picture" style="display: none" data-inp-reff="picture" />
-                      <input type="file" id="resume_photo" data-placeholder=".photo_placeholder" accept="images/*" />
-                      <label for="resume_photo" class="picture_holder">
-                        <div class="picture">
-                          <img src="/static/media/user.png" class="img-cover img-cover-profile" alt="Cover Picture" />
+                <div class="personal">
+                  <div class="form-content">
+                    <!-- // Personal Details -->
+                    <div class="personal-1 flex gap-2 top">
+                      <div class="form-goup">
+                        <input type="text" id="picture" style="display: none" data-inp-reff="picture" />
+                        <input type="file" id="resume_photo" data-placeholder=".photo_placeholder" accept="images/*" />
+                        <label for="resume_photo" class="picture_holder">
+                          <div class="picture">
+                            <img src="/static/media/user.png" class="img-cover img-cover-profile" alt="Cover Picture" />
+                          </div>
+                          <span class="btn_camera flex">
+                            <i class="fas fa-camera"></i>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="intro-group flex-1">
+                        <div class="form-group">
+                          <label for="firstname">First name</label>
+                          <input type="text" id="firstname" data-inp-reff="firstname" />
                         </div>
-                        <span class="btn_camera flex">
-                          <i class="fas fa-camera"></i>
-                        </span>
-                      </label>
+                        <div class="form-group">
+                          <label for="lastname">Last name</label>
+                          <input type="text" id="lastname" data-inp-reff="lastname" />
+                        </div>
+                        <div class="form-group">
+                          <label for="address">Address</label>
+                          <input type="text" id="address" data-inp-reff="address" />
+                        </div>
+                        <div class="form-group">
+                          <label for="date_of_birth">Date of birth</label>
+                          <input type="date" id="date_of_birth" data-inp-reff="date_of_birth" />
+                        </div>
+                      </div>
                     </div>
-                    <div class="intro-group flex-1">
-                      <div class="form-group">
-                        <label for="firstname">First name</label>
-                        <input type="text" id="firstname" data-inp-reff="firstname" />
-                      </div>
-                      <div class="form-group">
-                        <label for="lastname">Last name</label>
-                        <input type="text" id="lastname" data-inp-reff="lastname" />
-                      </div>
-                      <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" data-inp-reff="address" />
-                      </div>
-                      <div class="form-group">
-                        <label for="date_of_birth">Date of birth</label>
-                        <input type="date" id="date_of_birth" data-inp-reff="date_of_birth" />
-                      </div>
+                    <div class="form-group mb-1">
+                      <label for="headline">Headline</label>
+                      <input type="text" id="headline" data-inp-reff="headline" />
                     </div>
                   </div>
                   <div class="form-group mb-1">
-                    <label for="headline">Headline</label>
-                    <input type="text" id="headline" data-inp-reff="headline" />
+                    <label for="about">About me</label>
+                    <textarea id="about" data-inp-reff="about" cols="30" rows="3"></textarea>
                   </div>
-                </div>
-                <div class="form-group mb-1">
-                  <label for="about">About me</label>
-                  <textarea id="about" data-inp-reff="about" cols="30" rows="3"></textarea>
-                </div>
-                <div class="personal-2 intro-group">
-                  <div class="form-group mb-1">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" data-inp-reff="email" />
-                  </div>
-                  <div class="form-group mb-1">
-                    <label for="phone">Phone number</label>
-                    <input type="tel" id="phone" data-inp-reff="phone" />
+                  <div class="personal-2 intro-group">
+                    <div class="form-group mb-1">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" data-inp-reff="email" />
+                    </div>
+                    <div class="form-group mb-1">
+                      <label for="phone">Phone number</label>
+                      <input type="tel" id="phone" data-inp-reff="phone" />
+                    </div>
                   </div>
                 </div>
                 <div class="add_extras">
@@ -390,7 +392,7 @@
               <div class="page_options_btn">
                 <div class="container flex end gap-2">
                   <button class="btn_page_section bbtn secondary small">
-                    <i class="fas fa-times pr-x"></i> Close
+                    <i class="fas fa-arrow-left pr-x"></i> Back
                   </button>
                 </div>
               </div>

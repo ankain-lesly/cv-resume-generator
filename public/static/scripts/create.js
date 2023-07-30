@@ -122,6 +122,15 @@ $(document).ready(function (e) {
   // LoadDefaultForm
   // Load Default form
   const LoadDefaultForm = () => {
+    // Clearing...
+    $(".education-main").html("");
+    $(".experience-main").html("");
+    $(".language-main").html("");
+    $(".skill-main").html("");
+    $(".hobby-main").html("");
+    $(".social-main").html("");
+
+    // Loading Default structure
     $(".education-main").append(
       generateFormCard("", [], FORM_OBJECTS["OBJECT_EDUCATION"], "on_edit")
     );
@@ -254,11 +263,9 @@ $(document).ready(function (e) {
         return;
       }
 
-      const { data, response } = res;
-
-      if (data) {
-        formData = data;
-      } else if (!response.ok || response.status !== 200) {
+      if (res.data) {
+        formData = res.data;
+      } else if (!res.response.ok || res.response.status !== 200) {
         alert("Error getting data please try again..");
       } else {
         LoadDefaultForm();
@@ -273,7 +280,11 @@ $(document).ready(function (e) {
   $(".btn_clear").on("click", () => {
     BA.name(".btn_clear");
     BA.loading();
-    alert("Clearing Resume form..");
+
+    $.each($(".personal [data-inp-reff]"), (index, input) => {
+      input.value = "";
+    });
+    LoadDefaultForm();
     BA.done();
   });
   // Save Resume
@@ -300,6 +311,8 @@ $(document).ready(function (e) {
 
   // CHANGE COVER PHOTO
   $("#resume_photo").on("change", function (e) {
+    BA.name(".btn_save_resume");
+    BA.loading();
     const file = $(this).prop("files")[0];
 
     if (!file) return;
@@ -324,13 +337,19 @@ $(document).ready(function (e) {
         if (data && data.success) {
           FORM_DATA["cover_photo"] = data.cover;
           useStorage(STORAGE_KEY, FORM_DATA);
+
+          BA.name(".btn_save_resume");
+          BA.loading();
+
+          setTimeout(() => {
+            BA.done();
+          }, 500);
         }
       },
     });
-    // saveResume(formObj);
   });
   // Download Resume
-  $(".change_template").on("click", function (e) {});
+  // $(".change_template").on("click", function (e) {});
 
   // Save Resume
   const saveResume = async (data) => {

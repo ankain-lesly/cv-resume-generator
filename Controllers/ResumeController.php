@@ -183,6 +183,27 @@ class ResumeController
     // $this->generatePDF($template);
   }
 
+  public function  getResumeData(Request $req, Response $res)
+  {
+    $key = $req->params("resume_id");
+
+    $attr = ["cover_photo", "personal", "extras", "education", "experience", "social", "language", "skill", "hobby"];
+    $resume = $this->resumeObj->findOne(['resume_id' => $key], $attr);
+
+    if ($resume) {
+      // Getting Resume Data
+      $resume['personal'] = json_decode($resume['personal']);
+      $resume['extras'] = json_decode($resume['extras']);
+      $resume['education'] = json_decode($resume['education']);
+      $resume['experience'] = json_decode($resume['experience']);
+      $resume['social'] = json_decode($resume['social']);
+      $resume['language'] = json_decode($resume['language']);
+      $resume['skill'] = json_decode($resume['skill']);
+      $resume['hobby'] = json_decode($resume['hobby']);
+
+      $res->json($resume);
+    }
+  }
 
   // public function generatePDF(string $template)
   // {
@@ -228,75 +249,4 @@ class ResumeController
   //   file_put_contents("My_resume.pdf", $output);
   // }
 
-  public function getResumeData()
-  {
-    $data = '{"personal": {
-                "firstname": "<h1>Ankain </h1>",
-                "lastname": "Lesly",
-                "address": "Bamenda Cameroon, <h1>Bambili<h1>",
-                "date_of_birth": "2202-05-05",
-                "headline": "Front End UI Designer",
-                "email": "leex@gmail.com",
-                "phone": "+23670740"
-              },
-              "education": {
-                "UU-1689627865042": {
-                  "education": "O Levels",
-                  "school": "GBHS Fundong",
-                  "description": "My adventure into olevel was greate..."
-                },
-                "UU-1689628365151": {
-                  "education": "A Levels",
-                  "school": "GBHS DSCHANG",
-                  "start_date": "2023-07-26",
-                  "end_date": "2023-07-19",
-                  "city": "Dchang",
-                  "present": "",
-                  "description": "I worked so hard to achieve greate result and actually, This shool guided me on my programming life till date"
-                }
-              },
-              "experience": {
-                "UU-1689627865701": {
-                  "position": "Web Developer",
-                  "employer": "LeTECH CG",
-                  "start_date": "2023-07-20",
-                  "end_date": "2023-07-26",
-                  "city": "Bamenda",
-                  "present": "",
-                  "description": "I was a student worker by  the it strived me through my career as a ui expert"
-                },
-                "UU-1689628579217": {
-                  "position": "Backed Developer",
-                  "employer": "CivilSalt",
-                  "start_date": "2023-07-18",
-                  "end_date": "2023-07-18",
-                  "city": "Bamenda Nkwen",
-                  "present": "",
-                  "description": "I has serios inflow on backend development"
-                }
-              },
-              "skill": {
-                "UU-1689627865725": {
-                  "skill": "Judo",
-                  "proficiency": "60"
-                },
-                "UU-1689628711646": {
-                  "skill": "Gymnast",
-                  "proficiency": "100"
-                },
-                "UU-1689628711446": {
-                  "skill": "Sporting",
-                  "proficiency": "100"
-                }
-              },
-              "hobby": [
-                "Coding",
-                "Spanking",
-                "Coding",
-                "Dancing",
-                "Just for fun"
-              ]
-            }';
-    echo ($data);
-  }
 }
