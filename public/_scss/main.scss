@@ -398,7 +398,7 @@
     gap: 2rem;
     width: 100%;
 
-    .feed .box {
+    .box {
       box-shadow: $bs;
       background-color: $clr-white;
       // min-height: 230px;
@@ -406,7 +406,18 @@
       padding: 1rem;
       position: relative;
       overflow: hidden;
-
+      .cfx {
+        &:hover {
+          span {
+            display: block;
+          }
+        }
+        span {
+          display: none;
+          cursor: pointer;
+          transition: $transition;
+        }
+      }
       .count {
         color: #fff;
         z-index: 50;
@@ -422,22 +433,6 @@
         border-radius: 50%;
         color: #fff;
       }
-    }
-    .feed.books-feed .box-btn {
-      color: $clr-bg;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-    .feed.books-feed .circle {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 8px solid $clr-success;
-      border-left-color: $color-bg-variant;
-      text-align: center;
-      line-height: 80px;
-      margin: 0 auto;
     }
     .feed.user-details img {
       width: 100px;
