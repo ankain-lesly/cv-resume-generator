@@ -16,7 +16,7 @@ include_once __DIR__ . "/../globals/main-headTags.php";
   </div>
   <!-- // Scripts -->
   <script src="/static/scripts/jQuery.min.js"></script>
-  <script src="/static/scripts/home.js"></script>
+  <script type="module" src="/static/scripts/home.js"></script>
 </body>
 
 </html>

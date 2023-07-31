@@ -255,13 +255,13 @@ h3 {
 /* d: default, p: primary, s: secondary */
 
 .bbtn {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 5px;
   text-align: center;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  line-height: 1.25rem;
+  line-height: 1rem;
   color: var(--clr-bg);
   transition: var(--transition);
   cursor: pointer;
@@ -278,9 +278,9 @@ h3 {
   }
 
   &.secondary {
-    border-color: var(--clr-bg) !important;
+    border-color: var(--clr-primary) !important;
     background-color: var(--clr-primary);
-    color: var(--clr-white);
+    color: var(--clr-light);
   }
 
   &.small {

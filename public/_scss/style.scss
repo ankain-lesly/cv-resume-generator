@@ -1,20 +1,26 @@
 @import "variables";
+@import "index";
 // HEADER
 
 .hero-container {
   // color: $clr-light;
   // min-height: 80vh;
   // background: #351c15 url(/static/media/hero-bg-pattern.png) !important;
+  padding-top: 50px;
   background: url(/static/media/hero-bg-pattern.png),
     linear-gradient(to left, #2980b9, #2eb187) !important;
 }
 .main-header {
-  // border-bottom: 2px solid hsla(var(--hsl-clr-bg), 0.3);
-  // color: #fff;
-  background: $color-bg;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 500;
+  transition: background 330ms ease-in-out;
 
   &.active {
-    background-color: $clr-dark;
+    background-color: $color-bg;
+    border-bottom: 2px solid hsla(var(--hsl-clr-bg), 0.3);
   }
 
   .main-header-title {
@@ -69,16 +75,11 @@
     color: #fff;
     padding: 5px 10px;
     border-radius: 10px;
-    font-weight: 800;
-    // border-bottom: 2px solid transparent;
+    font-weight: bold;
     min-width: max-content;
 
-    .text {
-      font-size: smaller;
-    }
-
     &:hover {
-      background-color: $color-bg;
+      color: $clr-warning;
     }
   }
   .search-component {

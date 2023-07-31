@@ -18,7 +18,7 @@ select:active {
   border-bottom: 2px solid hsla($hsl-clr-bg, 0.4);
   background: $gradient-bar;
   padding: 0 1rem;
-  height: 60px;
+  height: 50px;
 
   .actions {
     button {
@@ -33,7 +33,7 @@ select:active {
     }
     .spin {
       display: none;
-      border-bottom-color: $clr-bg !important;
+      border-bottom-color: $color-bg !important;
     }
   }
 }
@@ -59,16 +59,16 @@ select:active {
   &.active ~ .main_content {
     width: 100%;
     .btn_close_panel {
-      // visibility: visible;
-      display: block;
+      visibility: visible;
+      pointer-events: all;
     }
   }
   &.active {
     transform: translateX(-100%);
   }
   ~ .main_content .btn_close_panel {
-    display: none;
-    // visibility: hidden;
+    pointer-events: none;
+    visibility: hidden;
   }
   overflow: auto;
   transition: $transition;
@@ -99,8 +99,8 @@ select:active {
       border-radius: 50%;
       font-size: 0.8rem;
       line-height: 25px;
-      background-color: hsla($hsl-clr-white, 0.2);
-      color: hsla($hsl-clr-white, 0.65);
+      background-color: hsla($hsl-clr-light, 0.2);
+      color: hsla($hsl-clr-light, 0.65);
     }
     .text {
       font-size: 0.75rem;
@@ -116,16 +116,15 @@ select:active {
       background: $gradient-bar;
 
       .icon {
-        color: $clr-success;
         background-color: $color-bg-variant;
-        color: $clr-white;
+        color: $clr-light;
       }
       .text {
         color: $clr-light;
       }
     }
   }
-  .theme_btn {
+  .theme-btn {
     margin-top: 1rem;
     color: $clr-success;
     cursor: pointer;
@@ -149,7 +148,7 @@ select:active {
     transition: $transition;
     // transition-delay: 300ms;
     // background-color: $clr-success;
-    height: 25px;
+    height: 32px;
     padding-inline: 1rem;
     cursor: pointer;
 
@@ -159,11 +158,10 @@ select:active {
   }
 }
 
-.side_panel {
-  &.active ~ .main_content .page_section {
-    top: 25px;
-  }
-}
+// .side_panel {
+//   &.active ~ .main_content .page_section {
+//   }
+// }
 .page_section {
   &.on_page {
     transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
@@ -172,7 +170,7 @@ select:active {
   }
   opacity: 0;
   position: absolute;
-  top: 0;
+  top: 30px;
   left: 0;
   width: 100%;
   // height: calc(100% - 30px);
@@ -187,7 +185,7 @@ select:active {
   // }
   .control_action {
     padding: 1rem;
-    border: 1px solid $clr-bg;
+    border: 2px solid hsla($hsl-clr-bg, 0.5);
     border-radius: 5px;
     transition: $transition;
     flex: 1 0;
@@ -195,7 +193,7 @@ select:active {
 
     &:hover {
       color: $clr-white;
-      background-color: $clr-bg;
+      background-color: hsla($hsl-clr-bg, 0.8);
     }
   }
   .text {
@@ -208,7 +206,7 @@ select:active {
   ~ .page_options_btn {
     position: absolute;
     z-index: 100;
-    top: 1rem;
+    top: 0.7rem;
     right: 0;
     // background-color: $clr-bg;
     display: none;
@@ -408,7 +406,7 @@ select:active {
 }
 // Extra infomation
 .add_extras {
-  margin-top: 1rem;
+  margin-block: 1rem;
   li {
     padding: 0.65em 1em;
     background-color: hsla($hsl-clr-bg, 0.3);

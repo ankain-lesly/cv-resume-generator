@@ -55,8 +55,6 @@ public function interceptRequest($path = null)
 
 ## Final Touches
 
-- Setup design with global variable in css
-- sample touched on generate pdf
 - sanitize data on_edit
 
 - final touches

@@ -1,4 +1,5 @@
 @import "variables";
+@import "index";
 
 .dashboard-main > .container {
   display: grid;
@@ -43,15 +44,15 @@
       &.right {
         width: max-content;
         background-color: transparent;
-        color: $clr-white;
+        color: $clr-light;
         padding: 0;
-        border: 1px solid hsla($hsl-clr-white, 0.5);
+        border: 1px solid hsla($hsl-clr-light, 0.5);
         flex: auto;
         padding-inline: 0.35em;
       }
       padding: 0.5em;
       height: 30px;
-      background-color: hsla($hsl-clr-white, 0.2);
+      background-color: hsla($hsl-clr-light, 0.2);
       flex: 1 0;
       border-radius: 0.35em;
       flex-basis: 50px;

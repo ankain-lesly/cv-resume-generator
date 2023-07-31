@@ -149,7 +149,7 @@
                   <i class="fas fa-save icon"></i>
                   <p class="text">Save</p>
                 </li>
-                <li class="theme_btn flex gap-x">
+                <li class="theme-btn flex gap-x">
                   <i class="fas fa-moon icon"></i>
                   <span class="text"> Dark</span>
                 </li>
@@ -158,14 +158,15 @@
             </div>
             <div class="main_content pages">
               <div class="head">
-                <button class="btn_close_panel btn_panel" title="close side panel">
+                <button class="btn_close_panel btn_panel flex gap-1 clr-warning" title="close side panel">
                   <i class="fas fa-angle-double-right"></i>
+                  <small class="text"> sidebar</small>
                 </button>
               </div>
               <!-- // CREATE -->
               <div class="create_forms page_section on_page">
                 <div class="intro mb-1">
-                  <h2 class="clr-gradient mt-1">Create resume</h2>
+                  <h3 class="">Create resume</h3>
                   <!-- <small>Select a section form below to</small> -->
                   <div class="resume_info" style="display: none">
                     <input type="hidden" id="resume_main" value="<?= $resume['resume_id'] ?>" />
@@ -401,11 +402,10 @@
               </div>
 
               <div class="page_options_btn">
-                <div class="container flex end gap-2">
-                  <button class="btn_page_section bbtn secondary small">
-                    <i class="fas fa-arrow-left pr-x"></i> Back
-                  </button>
-                </div>
+                <button class="btn_page_section bbtn secondary">
+                  <i class="fas fa-arrow-left pr-x"></i>
+                  <span class="text">Back</span>
+                </button>
               </div>
               <!-- // SETTINGS  -->
               <div class="settings page_section">SETTINGS</div>

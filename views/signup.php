@@ -74,7 +74,7 @@
 
     <div class="txt-center">
       <span class="me">Already have account</span>
-      <a href="/account/login" class="clr-danger ml-1">Sign Up</a>
+      <a href="/account/login" class="clr-danger ml-1">Login</a>
     </div>
   </form>
 </div>

@@ -6,8 +6,11 @@ import {
   useStorage,
   useToast,
   setBtnAction as BA,
+  handleAppTheme,
 } from "./app_hooks.js";
 
+// App Theme()
+handleAppTheme();
 $(document).ready(function (e) {
   let isLoading = false;
   // META DATA

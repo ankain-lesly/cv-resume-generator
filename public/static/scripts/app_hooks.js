@@ -75,5 +75,31 @@ const setBtnAction = {
   loading: () => $(selected).addClass("process"),
   done: () => setTimeout(() => $(selected).removeClass("process"), 800),
 };
+// App theme
+const handleAppTheme = (preset = null) => {
+  $(".theme-btn").on("click", () =>
+    setupTheme(document.documentElement.dataset.appTheme ?? "light")
+  );
 
-export { useFetch, useToken, useStorage, useToast, setBtnAction };
+  function setupTheme(forcePreset = null) {
+    let theme = null;
+
+    if (forcePreset !== null) {
+      theme = forcePreset === "light" ? "dark" : "light";
+      window.localStorage.setItem("app-theme", theme);
+    } else {
+      theme = window.localStorage.getItem("app-theme") ?? "light";
+    }
+    document.documentElement.dataset.appTheme = theme;
+  }
+  setupTheme(preset);
+};
+
+export {
+  useFetch,
+  useToken,
+  useStorage,
+  useToast,
+  setBtnAction,
+  handleAppTheme,
+};

@@ -6,8 +6,11 @@ import {
   useToast,
   useStorage,
   setBtnAction as BA,
+  handleAppTheme,
 } from "./app_hooks.js";
 
+// App Theme()
+handleAppTheme();
 // load templates
 let isLoaded = false;
 let isLoading = false;
