@@ -13,31 +13,19 @@
   display: block;
   position: relative;
   margin: auto;
-  top: ;
-  left: ;
-  right: ;
-  bottom: ;
 }
 
 .rela-inline {
   display: inline-block;
   position: relative;
   margin: auto;
-  top: ;
-  left: ;
-  right: ;
-  bottom: ;
 }
 
 .floated {
   display: inline-block;
   position: relative;
   margin: false;
-  top: ;
-  left: ;
-  right: ;
-  bottom: ;
-  float: left;
+  /* float: left; */
 }
 
 .abs-center {

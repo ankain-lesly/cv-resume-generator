@@ -8,7 +8,8 @@ header('Access-Control-Allow-Origin:*');
 
 /** User: Dev Lee ... */
 require_once __DIR__ . "/../vendor/autoload.php";
-require_once __DIR__ . "/../Config/config.php";
+// App Configurations
+require_once "config.php";
 
 use Devlee\XRouter\Router;
 use App\controllers\SiteController;

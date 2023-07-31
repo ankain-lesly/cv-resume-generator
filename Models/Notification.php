@@ -1,100 +1,34 @@
-<?php 
-namespace App\Models;
+<?php
 
+namespace app\models;
 
-include_once __DIR__."/../Models/DataAccess.php";
-include_once __DIR__."/../Config/CustomErrorValidator.php";
+use Devlee\mvccore\DB\DBModel;
 
-use App\Config\CustomErrorValidator;
-use App\Config\CustomLibrary;
-use App\Models\DataAccess;
+class Notification extends DBModel
+{
+  public string $notification_id = "";
+  public string $title = "";
+  public string $body = "";
+  public string $target = "";
 
-class Notification {
-  private $DataAccess;
-
-  public function __construct() {
-    $this->DataAccess = new DataAccess();
+  public static function tableName(): string
+  {
+    return 'tblnotification';
   }
 
+  // public function attributes(): array
+  // {
+  //   // attr: user_id
+  //   return ["personal", "education", "experience", "emexperience", "skill", "extras"];
+  // }
 
-  // GET ALL Notif
-  public function index() {
-    $sql = "SELECT * FROM tblnotifications";
-    $result = $this->DataAccess->fetchAll($sql);
-    return $result;
-  }
-  // GET User Notif
-  public function getUserNotiv() {
-    $user = $_SESSION['user']['token'];
-    
-    $sql = "SELECT * FROM tblnotifications WHERE userID = :userID";
-    $result = $this->DataAccess->fetchCustomDataArray($sql, [$user]);
-    return $result;
-  }
+  // public function rules()
+  // {
+  //   return [];
+  // }
 
-  // GET a book
-  public function get($key = null) {
-    $sql = "SELECT * FROM tblnotifications WHERE notivID = :keyword";
-
-    return $this->DataAccess->fetchCustomData($sql,[$key]);
-  }
-
-  // CREATE a book
-  public function create($title, $body, $user) {
-    $data = $_POST;
-    $newData = CustomErrorValidator::validateData($data, 'sanitize')['data'];
-    
-    $token = CustomLibrary::generateKey();
-
-    $sql = "INSERT INTO tblnotifications (title, body, userID, authorID, notivID)
-            VALUES(:title, :body, :userID, :authorID, :notivID)";
-
-    $result = $this->DataAccess->insertCustomData($sql,
-              [
-                $title, 
-                $body, 
-                $user, 
-                $_SESSION['user']['token'],
-                $token,
-              ]);
-
-    return $result;
-  }
-
-  public function checkExist(string $param, $data) {
-    $sql = "SELECT * FROM tblnotifications WHERE $param = :title";
-   
-    $result = $this->DataAccess->fetchCustomData($sql, [$data]);
-    
-    if($result) { 
-      return array(
-        'error' => [
-          'message' => 'Data alreay exists', 
-          'data' => $data
-        ]);
-
-    }else return false;
-  }
-
-
-  public function delete($key) {
-    $sql = "DELETE FROM tblnotifications WHERE id = :key";
-
-    $result = $this->DataAccess->queryCustomData($sql, [$key]);
-    return $result;
-  }
-
-
-  public function update() {
-    $data = $_POST;
-    $newData = CustomErrorValidator::validateData($data, 'sanitize')['data'];
-
-    $exists = $this->checkExist('title', $newData['brand_title']); 
-    if($exists) return $exists;
-
-    $sql = "UPDATE tblnotifications SET title = :title WHERE id = :id";
-
-    $result = $this->DataAccess->queryCustomData($sql, [$data['brand_title'],$data['brand_id']]);
-    return $result;
+  public function create()
+  {
+    return $this->insert();
   }
 }
