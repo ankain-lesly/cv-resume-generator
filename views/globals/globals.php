@@ -34,5 +34,5 @@ function createCSSLink($stylesheet)
   <link rel="icon" href="/favicon.ico" />
 
   <?php
-  echo createCSSLink(["index", "global", "module-custom-select", "module-custom-tables"]);
+  echo createCSSLink(["global"]);
   ?>

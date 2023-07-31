@@ -1,6 +1,6 @@
 <?php include_once __DIR__ . "/../globals/globals.php"; ?>
 <title>Account Registration | Resume</title>
-<link rel="stylesheet" href="/static/styles/register-module.css" />
+<link rel="stylesheet" href="/static/styles/register.css" />
 </head>
 
 <body>

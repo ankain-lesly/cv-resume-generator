@@ -1,8 +1,16 @@
   <!-- GLOBALS -->
   <?php include_once __DIR__ . "/../globals/globals.php" ?>
+  <?php
 
-  <title>Untitled | Resume</title>
-  <link rel="stylesheet" href="/static/styles/create_new.css" />
+  // echo '<pre>';
+  // print_r($resume);
+  // print_r($user);
+  // echo '</br>';
+  // echo '</pre>';
+  // 
+  ?>
+  <title><?= $resume['title'] ?? "Untitled" ?> | Resume Maker</title>
+  <link rel="stylesheet" href="/static/styles/create.css" />
   <style type="text/css">
 #my_resume_wrapper {
   margin: auto;
@@ -17,7 +25,7 @@
 }
 
 #my_resume_main {
-  width: 1350px;
+  width: var(--design-width);
   transform-origin: 0 0;
 }
 
@@ -67,13 +75,15 @@
     <div class="root">
       <div class="create-resume">
         <header class="main-header flex between gap-1">
-          <a href="/dashboard/"><span class="clr-danger">Res</span>ume</a>
+          <a href="/dashboard/">
+            <h2><span class="clr-danger">Res</span>ume</h2>
+          </a>
 
           <div class="title flex-1 txt-center" style="overflow: hidden">
             <!-- on_edit -->
             <div class="resume_title flex gap-x">
-              <p class="txt-ellipsis"><?= $title ?> </p>
-              <input type="hidden" id="update_title" value="<?= $title ?>">
+              <p class="txt-ellipsis"><?= $resume['title'] ?> </p>
+              <input type="hidden" id="update_title" value="<?= $resume['title'] ?>">
               <button class="fas fa-pencil-alt font-size-small"></button>
             </div>
           </div>
@@ -144,6 +154,7 @@
                   <span class="text"> Dark</span>
                 </li>
               </ul>
+              <br><br><br>
             </div>
             <div class="main_content pages">
               <div class="head">
@@ -154,11 +165,11 @@
               <!-- // CREATE -->
               <div class="create_forms page_section on_page">
                 <div class="intro mb-1">
-                  <h3>Create resume</h3>
-                  <small>Select a section form below to</small>
+                  <h2 class="clr-gradient mt-1">Create resume</h2>
+                  <!-- <small>Select a section form below to</small> -->
                   <div class="resume_info" style="display: none">
-                    <input type="hidden" id="resume_main" value="<?= $resume_id ?>" />
-                    <input type="hidden" id="template_main" value="<?= $template_id ?>" />
+                    <input type="hidden" id="resume_main" value="<?= $resume['resume_id'] ?>" />
+                    <input type="hidden" id="template_main" value="<?= $resume['template_id'] ?>" />
                   </div>
                 </div>
                 <div class="container actions flex wrap start gap-1">

@@ -2,15 +2,15 @@
 
 function clean(string $value)
 {
-    $value = htmlspecialchars($value);
-    $value = strip_tags($value);
-    $value = trim($value);
-    return $value;
+  $value = htmlspecialchars($value);
+  $value = strip_tags($value);
+  $value = trim($value);
+  return $value;
 }
 function get(array $data, string $key)
 {
-    $value = $data[$key] ?? '';
-    return  empty($value) ? $value : clean($value);
+  $value = $data[$key] ?? '';
+  return  empty($value) ? $value : clean($value);
 }
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ function get(array $data, string $key)
 
 <body>
   <!-- PAGE STUFF -->
-  <div class="rela-block page">
+  <div class="rela-block design_page">
     <div class="rela-block top-bar">
       <div class="caps name">
         <div class="abs-center"><?= get($personal, 'firstname') ?> <?= get($personal, 'lastname') ?></div>
@@ -55,7 +55,7 @@ function get(array $data, string $key)
       <div class="group <?= empty($languages) ? 'section_hide' : '' ?>">
         <h3 class="rela-block caps side-header">Languages</h3>
         <?php foreach ($languages as $key => $language) { ?>
-        <p class="rela-block list-thing"><?= get($language, 'language') ?></p>
+          <p class="rela-block list-thing"><?= get($language, 'language') ?></p>
         <?php } ?>
       </div>
 
@@ -63,7 +63,7 @@ function get(array $data, string $key)
       <div class="group <?= empty($skills) ? 'section_hide' : '' ?>">
         <h3 class="rela-block caps side-header">Expertise</h3>
         <?php foreach ($skills as $key => $skill) { ?>
-        <p class="rela-block list-thing"><?= get($skill, 'skill') ?></p>
+          <p class="rela-block list-thing"><?= get($skill, 'skill') ?></p>
         <?php } ?>
       </div>
 
@@ -71,7 +71,7 @@ function get(array $data, string $key)
       <div class="group <?= empty($hobbies) ? 'section_hide' : '' ?>">
         <h3 class="rela-block caps side-header">Hobbies</h3>
         <?php foreach ($hobbies as $key => $hobby) { ?>
-        <p class="rela-block list-thing"><?= clean($hobby) ?></p>
+          <p class="rela-block list-thing"><?= clean($hobby) ?></p>
         <?php } ?>
       </div>
     </div>
@@ -88,10 +88,10 @@ function get(array $data, string $key)
       <div class="group <?= empty($education) ? 'section_hide' : '' ?>">
         <div class="rela-block caps greyed">Education</div>
         <?php foreach ($education as $key => $data) { ?>
-        <br>
-        <h3><?= get($data, 'education') ?></h3>
-        <p class="light"><?= get($data, 'school') ?></p>
-        <p class="justified"><?= get($data, 'description') ?></p>
+          <br>
+          <h3><?= get($data, 'education') ?></h3>
+          <p class="light"><?= get($data, 'school') ?></p>
+          <p class="justified"><?= get($data, 'description') ?></p>
         <?php } ?>
       </div>
 
@@ -99,10 +99,10 @@ function get(array $data, string $key)
       <div class="group <?= empty($experience) ? 'section_hide' : '' ?>">
         <div class="rela-block caps greyed">Experience</div>
         <?php foreach ($experience as $key => $data) { ?>
-        <br>
-        <h3><?= get($data, 'position') ?></h3>
-        <p class="light"><?= get($data, 'employer') . ', ' . get($data, 'city') ?></p>
-        <p class="justified"><?= get($data, 'description') ?></p>
+          <br>
+          <h3><?= get($data, 'position') ?></h3>
+          <p class="light"><?= get($data, 'employer') . ', ' . get($data, 'city') ?></p>
+          <p class="justified"><?= get($data, 'description') ?></p>
         <?php } ?>
       </div>
 

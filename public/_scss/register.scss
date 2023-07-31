@@ -1,102 +1,247 @@
+@import "index.scss";
+@import "variables";
+
 $p: hsl(213deg 85% 97%);
 $s: hsl(233deg 36% 38%);
 $warning: hsl(29, 100%, 67%);
 $danger: hsl(334, 100%, 67%);
-body {
-  font-size: 0.9rem;
-}
 
-.main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 50px 1rem;
-
-  background-color: hsl(218deg 50% 91%);
-  // background-image: url("/static/media/hero-bg.jpg");
-  // background-position: center;
-
-  // background-size: cover;
-  // background-blend-mode: soft-light;
-
-  .container {
-    width: 100%;
-    max-width: 450px;
+.register {
+  .layout-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .layout {
+    height: calc(100vh - 60px);
+    padding: 3rem 1.5rem;
+    overflow: auto;
+  }
+  .reg_avater img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 1rem auto 0;
+    display: block;
+  }
+  .meta {
+    background-color: $color-bg;
+    color: $clr-white;
   }
 }
-.form-logo {
-  display: block;
-  width: 120px;
-  margin: 0 auto;
-}
-.screen-1 {
-  background: $p;
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  box-shadow: 0 0 2em hsl(231deg 62% 94%);
-  gap: 2em;
 
-  .form-error {
-    border-radius: 5px;
-    border-left: 5px solid $danger;
-    background: hsl(0deg 0% 100%);
-    padding: 15px;
-    color: $danger;
-    font-weight: 400;
-    margin-bottom: 1rem;
+.main-header {
+  // border-bottom: 2px solid hsla(var(--hsl-clr-bg), 0.3);
+  // color: #fff;
+  background: $color-bg;
+
+  color: $clr-light;
+  border-bottom: 2px solid $clr-text-muted;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .main-header-title {
+    font-size: 1.2rem;
+    color: var(--clr-light);
+  }
+  .container {
+    padding-inline: 1rem;
+  }
+  .white {
+    color: #fff;
+    border-color: #fff;
+  }
+  .back-btn {
+    font-size: 0.8rem;
+  }
+}
+
+// Reg Forms
+.main-container {
+  width: 100%;
+  max-width: 550px;
+  padding: 1.5rem 0;
+  // border-radius: 5px;
+  margin: auto;
+  animation: form-display 300ms ease forwards;
+
+  @keyframes form-display {
+    to {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+  .form-message {
+    &.error {
+      display: block;
+    }
+    padding: 1em;
+    font-weight: bold;
+    color: brown;
+    background-color: hsla($hsl-clr-danger, 0.3);
+    border-radius: 0.5em;
+    margin-bottom: 0.5em;
+    display: none;
   }
   .form-group {
-    background: hsl(0deg 0% 100%);
-    box-shadow: 0 0 2em hsl(231deg 62% 94%);
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3em;
-    border-radius: 20px;
-    color: hsl(0deg 0% 30%);
-    margin-bottom: 1em;
-    input {
-      outline: none;
-      border: none;
-      &::placeholder {
-        color: hsl(0, 0%, 34%);
-        font-size: 0.9em;
+    &.error {
+      border-color: $clr-danger;
+
+      .icon {
+        color: $clr-danger;
+      }
+
+      .status-msg {
+        display: block;
       }
     }
-    .fas {
-      color: hsl(0deg 0% 30%);
+    margin-bottom: 1em;
+    border: 2px solid hsla($hsl-clr-bg, 0.5);
+    border-radius: 1.5em;
+
+    padding: 0.4em 1em;
+    position: relative;
+  }
+  // .content {
+  //  position: relative;
+  // }
+  input {
+    box-shadow: none !important;
+    border: none !important;
+    // border: 1px solid #fff;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    // border-radius: 0.3em;
+    padding: 0;
+    font-size: 0.95rem;
+    color: $clr-bg;
+    flex: 1 0;
+    &[type="checkbox"] {
+      width: max-content;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: none !important;
+      border: none !important;
+      /* border-color: inherit; */
     }
   }
-  .password {
-    .show-hide {
-      cursor: pointer;
-    }
+
+  input:not(:placeholder-shown) ~ .input-label,
+  input:active ~ .input-label,
+  input:focus ~ .input-label {
+    top: 4px;
+    font-size: 0.9rem;
   }
-  .login-btn {
-    padding: 1em;
-    background: hsl(233deg 36% 38%);
-    color: hsl(0 0 100);
-    border: none;
-    border-radius: 30px;
-    font-weight: 600;
+  input:focus ~ .input-label {
+    color: $clr-success;
+  }
+  input:active ~ .motion,
+  input:focus ~ .motion {
+    border-color: $clr-success;
     width: 100%;
   }
-}
 
-.footer {
-  font-size: 0.8rem;
-  padding-top: 2em;
-  padding-bottom: 3em;
-  a {
-    color: hsl(0deg 0% 37%);
+  // input::placeholder {
+  //   opacity: 0;
+  // }
+  input::-webkit-autofil,
+  input::-webkit-autofil:focus,
+  input:-webkit-autofil:active {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 100px inset red !important;
+    border: 1px solid green !important;
+    -webkit-text-fill-color: red !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }
+  .input:-internal-autofill-selected {
+    background-color: transparent !important;
+  }
+  .input-label,
+  .icon {
+    color: $clr-text-muted;
+  }
+  .icon {
+    margin-right: 5px;
+    // margin-bottom: 5px;
+    width: 20 px;
+    font-size: 1.25rem;
+  }
+  .input-label {
+    position: absolute;
+    top: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .input-label,
+  .status-msg {
+    left: 1.5em;
+    // left: 0;
+  }
+  .status-msg {
+    line-height: 0.9;
+    position: absolute;
+    top: 106%;
+    color: $clr-danger;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: none;
+    text-overflow: ellipsis;
+    z-index: 20;
+  }
+  input:focus ~ .status-msg {
+    background-color: $color-bg;
+    color: $clr-light;
+  }
+  &.error .info {
+    visibility: visible;
+  }
+  .info {
+    color: $clr-danger;
+    font-size: small;
+    visibility: hidden;
+  }
+  .form_btn {
+    width: 100%;
+    border-radius: 1.5em;
+    padding: 8px;
+    background-color: $color-bg;
+    color: $clr-light;
+    font-size: 0.9em;
+    .p-main {
+      display: block;
+    }
+    .p-odd {
+      display: none;
+    }
+
+    &.process {
+      pointer-events: none;
+      background-color: hsla($hsl-color-bg, 0.5);
+      .p-main {
+        display: none;
+      }
+      .p-odd {
+        display: block;
+      }
+    }
+  }
+  .form_btn:not(.process):hover {
+    background-color: $clr-bg;
+  }
+  .footer a:hover {
+    color: $clr-success;
   }
 }
 
-a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  color: inherit;
+@media (max-width: 750px) {
+  .register .layout-items {
+    grid-template-columns: 1fr;
+  }
+  .register .layout {
+    min-height: max-content;
+  }
 }

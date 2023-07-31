@@ -306,12 +306,14 @@ $(document).ready(function (e) {
     BA.loading();
     const { jsPDF } = window.jspdf;
     var doc = new jsPDF("p", "mm", [1500, 1400]);
+    let date = new Date();
+    let timeSpanFileName = "Resume-" + date.toLocaleString() + ".pdf";
+    console.log(timeSpanFileName);
+    const resume = document.querySelector("#resume_design");
 
-    var pdfjs = document.querySelector("#resume_design");
-
-    doc.html(pdfjs, {
+    doc.html(resume, {
       callback: function (doc) {
-        doc.save("My-Resume-USERNAME.pdf");
+        doc.save(timeSpanFileName);
         BA.done();
       },
       x: 20,

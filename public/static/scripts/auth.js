@@ -28,7 +28,11 @@ $("#login_form").on("submit", async (e) => {
 
   submitFormData(formData, "/auth/login");
 });
-const submitFormData = async (formData, endpoint, redirect_route = "/") => {
+const submitFormData = async (
+  formData,
+  endpoint,
+  redirect_route = "/dashboard/"
+) => {
   if (isLoading) return;
   setBtnLoading();
   const res = await useFetch("POST", APP_ROOT + endpoint, formData);

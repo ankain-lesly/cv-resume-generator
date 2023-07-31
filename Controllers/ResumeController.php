@@ -135,7 +135,7 @@ class ResumeController
     $resume = $this->DataAccess->findOne("SELECT * FROM tblresume_metadata WHERE resume_id = ?", [$resume_id]);
 
     if (!$resume) return $res->render("resume/resume-not-found", ['user' => $user]);
-    $res->render("resume/resume", $resume);
+    $res->render("resume/resume", ['resume' => $resume]);
   }
 
 
