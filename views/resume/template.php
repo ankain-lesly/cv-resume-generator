@@ -32,8 +32,9 @@
             <input type="text" name="title" placeholder="Enter title" required>
             <!-- Image -->
             <div class="form-group">
-              <label for="image" class="flex">[ Image Thumbnail ]</label>
-              <input type="file" id="image" placeholder="Template thumbnail" name="image" accept=".png" required>
+              <label for="file_image" class="flex">[ Image Thumbnail ]</label>
+              <input type="file" id="file_image" placeholder="Template thumbnail" name="file_image" accept=".png"
+                required>
             </div>
             <!-- // Files -->
             <div class="group flex gap-2">

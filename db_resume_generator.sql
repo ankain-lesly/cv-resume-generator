@@ -27,6 +27,22 @@ SET time_zone = "+00:00";
 -- Table structure for table `tblnotifications`
 --
 
+CREATE TABLE `tbltemplates` (
+  `id` int(11) NOT NULL,
+  `template_id` varchar(30) NOT NULL,
+  `thumbnail` varchar(50) NOT NULL,
+  `php_file` varchar(30) NOT NULL,
+  `css_file` varchar(30) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `setting` varchar(80) NOT NULL,
+
+  `user_id` varchar(20) NOT NULL,
+  `status` int(2) NOT NULL DEFAULT 0,
+  `created_on` datetime NOT NULL DEFAULT current_timestamp()
+);
+
+
+
 CREATE TABLE `tblnotifications` (
   `id` int(11) NOT NULL,
   `title` varchar(250) NOT NULL,

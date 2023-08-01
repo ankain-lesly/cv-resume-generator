@@ -95,6 +95,7 @@ class ResumeController
         $file_options = [
           "path" => Router::root_folder() . "/uploads/covers/",
           "filename" => "RESUME-" . $data['resume_id'],
+          "accept" => ['jpg', 'jpeg', 'png']
         ];
 
         $FileHandler = new FileUpload();
@@ -202,49 +203,4 @@ class ResumeController
       $res->json($resume);
     }
   }
-
-  // public function generatePDF(string $template)
-  // {
-  //   /**
-  //    * Set the Dompdf options
-  //    */
-
-  //   $options = new Options;
-  //   $options->setChroot(Router::root_folder());
-  //   $options->setIsRemoteEnabled(true);
-
-  //   $dompdf = new Dompdf($options);
-
-  //   /**
-  //    * Set the paper size and orientation
-  //    */
-  //   $dompdf->setPaper("A4", "portrait");
-
-  //   /**
-  //    * Load the HTML and replace placeholders with values from the form
-  //    */
-
-  //   // $dompdf->loadHtmlFile($template);
-  //   $dompdf->loadHtml($template);
-
-  //   /**
-  //    * Create the PDF and set attributes
-  //    */
-  //   $dompdf->render();
-
-  //   // set title or user defualt web title
-  //   $dompdf->addInfo("Title", "An Example PDF"); // "add_info" in earlier versions of Dompdf
-
-  //   /**
-  //    * Send the PDF to the browser
-  //    */
-  //   $dompdf->stream("design_123.pdf", ["Attachment" => 0]);
-
-  //   /**
-  //    * Save the PDF file locally
-  //    */
-  //   $output = $dompdf->output();
-  //   file_put_contents("My_resume.pdf", $output);
-  // }
-
 }

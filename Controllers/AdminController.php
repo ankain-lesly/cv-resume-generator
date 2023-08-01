@@ -10,7 +10,7 @@ use Devlee\XRouter\Router;
 use Devlee\mvccore\Session;
 // middlewares
 use App\Middlewares\AuthMiddleware;
-use App\Models\TemplateDesign;
+use App\Models\Template;
 use Devlee\mvccore\DB\DataAccess;
 use Devlee\mvccore\FileUpload;
 // PDF for Dompdf 
@@ -18,7 +18,7 @@ use Devlee\mvccore\FileUpload;
 class AdminController
 {
   public Session $session;
-  private TemplateDesign $templateObj;
+  private Template $templateObj;
   private DataAccess $DataAccess;
 
   public function __construct()
@@ -26,7 +26,7 @@ class AdminController
     $this->session = new Session();
     $this->DataAccess = new DataAccess();
 
-    $this->templateObj = new TemplateDesign();
+    $this->templateObj = new Template();
     $AuthMiddleware = new AuthMiddleware();
     $AuthMiddleware->isAdmin();
 
@@ -39,42 +39,62 @@ class AdminController
 
     if ($req->isPost()) {
       $data = $req->body();
-      if (isset($data['cover_photo']) && !empty($_FILES)) {
-        $image = $_FILES['image'];
+      $file_image = $_FILES['file_image'];
+      $file_php = $_FILES['file_php'];
+      $file_css = $_FILES['file_css'];
 
-        $file_options = [
-          "path" => Router::root_folder() . "/uploads/covers/",
-          "filename" => "RESUME-" . $data['resume_id'],
-        ];
+      $FileHandler = new FileUpload();
 
-        $FileHandler = new FileUpload();
-        $FileHandler->options($file_options);
+      $template_id = Library::generateToken(10);
 
-        $data['cover_photo'] = $FileHandler->upload($image);
+      $file_options_image = [
+        "path" => "/resumes/thumbnails/",
+        "filename" => "TEMPLATE-" . $template_id,
+        "accept" => ['jpg', 'jpeg', 'png']
+      ];
+      $file_options_php = [
+        "path" => "/resumes\/",
+        "filename" => "Design-" . $template_id,
+        "accept" => [".phpp"]
+      ];
+      $file_options_css = [
+        "path" => "/resumes/design/",
+        "filename" => "Design-" . $template_id,
+        "accept" => [".csss"]
+      ];
 
-        // if ($data['cover_photo']) {
-        //   $update = $this->templateObj->update($data, ['resume_id']);
-        //   if ($update) $res->json(['success' => true, 'cover' => $data['cover_photo']]);
-        //   exit;
-        // }
-      }
-      // Getting Resume Data
-      $data['personal'] = json_encode($data['personal']  ?? "");
-      $data['extras'] = json_encode($data['extras']  ?? "");
-      $data['education'] = json_encode($data['education']  ?? "");
-      $data['experience'] = json_encode($data['experience']  ?? "");
-      $data['social'] = json_encode($data['social']  ?? "");
-      $data['language'] = json_encode($data['language']  ?? "");
-      $data['skill'] = json_encode($data['skill']  ?? "");
-      $data['hobby'] = json_encode($data['hobby']  ?? "");
+
+      // settings: Image
+      $data['cover_photo'] = $FileHandler->setup($file_options_image, $file_image);
+      // settings: PHP
+      $data['cover_photo'] = $FileHandler->setup($file_options_image, $file_image);
+      // settings: CSS
+      $data['cover_photo'] = $FileHandler->setup($file_options_image, $file_image);
+
+      $FileHandler->upload();
+
+
+      echo '<pre>';
+      print_r($data);
+      print_r($_FILES);
+      echo '</br>';
+      echo '</pre>';
+      exit();
+
+      // if ($data['cover_photo']) {
+      //   $update = $this->templateObj->update($data, ['template_id']);
+      //   if ($update) $res->json(['success' => true, 'cover' => $data['cover_photo']]);
+      //   exit;
+      // }
+      // Getting Resume Data 
 
       $meta = $data['meta'] ?? false;
 
-      $data['resume_id'] = $meta['resume'];
+      $data['template_id'] = $meta['resume'];
 
-      // $update = $this->templateObj->update($data, ['resume_id']);
+      $update = $this->templateObj->update($data, ['template_id']);
 
-      // if ($update) $res->json(['success' => true]);
+      if ($update) $res->json(['success' => true]);
       exit;
     }
 
