@@ -99,9 +99,11 @@ class ResumeController
         ];
 
         $FileHandler = new FileUpload();
-        $FileHandler->options($file_options);
 
-        $data['cover_photo'] = $FileHandler->upload($image);
+        // settings
+        $data['cover_photo'] = $FileHandler->setup($file_options, $image);
+
+        $FileHandler->upload();
 
         if ($data['cover_photo']) {
           $update = $this->resumeObj->update($data, ['resume_id']);

@@ -65,11 +65,11 @@ class AdminController
 
 
       // settings: Image
-      $data['cover_photo'] = $FileHandler->setup($file_options_image, $file_image);
+      $data['thumbnail'] = $FileHandler->setup($file_options_image, $file_image);
       // settings: PHP
-      $data['cover_photo'] = $FileHandler->setup($file_options_image, $file_image);
+      $data['php_file'] = $FileHandler->setup($file_options_image, $file_php);
       // settings: CSS
-      $data['cover_photo'] = $FileHandler->setup($file_options_image, $file_image);
+      $data['css_file'] = $FileHandler->setup($file_options_image, $file_css);
 
       $FileHandler->upload();
 
