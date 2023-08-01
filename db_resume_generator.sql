@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbltemplates` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `template_id` varchar(30) NOT NULL,
   `thumbnail` varchar(50) NOT NULL,
   `php_file` varchar(30) NOT NULL,

@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload Resume Templates</title>
-  <link rel="stylesheet" href="/static/styles/index.css">
   <link rel="stylesheet" href="/static/styles/template-upload.css">
   <link rel="stylesheet" href="/00FA/css/all.css">
 </head>
@@ -20,7 +19,7 @@
       <div class="layer previewer">
         <h3>Preview</h3>
         <div class="content flex">
-          <img src="/static/media/profile2.jpg" alt="Template">
+          <img src="#" alt="Template">
           <div class="text">PREVIEWER</div>
         </div>
       </div>
@@ -49,7 +48,6 @@
                   required>
               </div>
             </div>
-            <input type="hidden" name="key" value="">
             <div class="setup_area input">
               <div class="x-layout-setup flex wrap start gap-x mb-1">
                 <p class="setting">
@@ -63,7 +61,7 @@
                   <span class="label">
                     Add settings
                   </span>
-                  <input type="hidden" id="selected_info" name="settings" value="" required />
+                  <input type="hidden" id="selected_info" name="settings" value="" />
                   <i class="fas fa-caret-down"></i>
                 </div>
 
@@ -93,6 +91,7 @@
         </div>
       </div>
     </main>
+    <?php include_once __DIR__ . "/../globals/toast-module.php" ?>
   </div>
   <script src="/static/scripts/jQuery.min.js"></script>
   <script>

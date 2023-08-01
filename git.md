@@ -68,3 +68,7 @@ public function interceptRequest($path = null)
 - Proceed with Final Touches
 
 ## Creating Templates...
+
+# -#- PRO ME -#-
+
+-> Generate Tokens on client side to ensure signle upload basis

@@ -69,12 +69,13 @@ body {
     border: none;
     .setting {
       background-color: $clr-danger;
-      padding: 0.1em 0.35em;
       border-radius: 1em;
-      color: $clr-bg;
+      color: $clr-white;
 
       .text {
         font-weight: 600;
+        padding-left: 6px;
+        font-size: small;
       }
       .icon {
         display: inline-block;
@@ -85,7 +86,7 @@ body {
         font-size: small;
         background-color: $clr-bg;
         border-radius: 1rem;
-        color: $clr-white;
+        transform: scale(0.8);
       }
     }
   }
@@ -97,5 +98,3 @@ body {
     margin-left: auto;
   }
 }
-
-@import "select";

@@ -47,6 +47,8 @@ class AdminController
       $FileHandler = new FileUpload();
 
       $template_id = Library::generateToken(10);
+      $data['template_id'] = $template_id;
+      $data['user_id'] = $this->session->get('user')['userID'];
 
       $file_options_image = [
         "path" => "/resumes/thumbnails/",
@@ -74,29 +76,23 @@ class AdminController
 
       $FileHandler->upload();
 
+      if ($FileHandler->errors()) {
+        //handling upload errors
+        echo "UPLOAD ERROR! \\n";
 
-      echo '<pre>';
-      print_r($data);
-      print_r($FileHandler->errors());
-      echo '</br>';
-      echo '</pre>';
-      exit();
+        echo '<pre>';
+        print_r($FileHandler->errors());
+        echo '</br>';
+        exit;
+      }
 
-      // if ($data['cover_photo']) {
-      //   $update = $this->templateObj->update($data, ['template_id']);
-      //   if ($update) $res->json(['success' => true, 'cover' => $data['cover_photo']]);
-      //   exit;
-      // }
-      // Getting Resume Data 
+      $this->templateObj->loadData($data);
+      $response = $this->templateObj->insert();
 
-      $meta = $data['meta'] ?? false;
-
-      $data['template_id'] = $meta['resume'];
-
-      $update = $this->templateObj->update($data, ['template_id']);
-
-      if ($update) $res->json(['success' => true]);
-      exit;
+      // if ($response) $res->json(['success' => true]);
+      if ($response) $this->session->setToast("toast", "Template added successfully");
+      else $this->session->setToast("toast", "Ooops failed to create template 🚩");
+      $res->redirect("/new/template");
     }
 
     $res->render("resume/template");
