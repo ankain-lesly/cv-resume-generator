@@ -97,6 +97,11 @@ $notifications = 1;
           <i class="fas fa-fill icon"></i>
           <span class="text">New Resume <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
       </li>
+      <li>
+        <a class="" href="/new/template">
+          <i class="fas fa-edit icon"></i>
+          <span class="text">Add Template <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
+      </li>
     </ul>
     <p class="menu-title">Resources</p>
     <ul class="menu-list">

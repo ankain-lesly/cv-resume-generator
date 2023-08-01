@@ -73,6 +73,7 @@ const generateFormGroup = (name, value, options) => {
           <option></option>
           <option ${value === "Facebook" ? "selected" : ""}>Facebook</option>
           <option ${value === "Instagram" ? "selected" : ""}>Instagram</option>
+          <option ${value === "Telegram" ? "selected" : ""}>Telegram</option>
           <option ${value === "Twitter" ? "selected" : ""}>Twitter</option>
           <option ${value === "LinkedIn" ? "selected" : ""}>LinkedIn</option>
           <option ${value === "Tiktok" ? "selected" : ""}>Tiktok</option>

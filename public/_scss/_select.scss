@@ -1,0 +1,136 @@
+.custom_select {
+  position: relative;
+  flex: 1 1;
+
+  .custome_select_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: hsla(120, 100%, 25%, 0.171);
+    transition: all 1s ease;
+  }
+  .select_btn {
+    cursor: pointer;
+    background-color: lighten(hsl(240, 29%, 17%), $amount: 5%);
+  }
+  .selected_info {
+    display: none;
+  }
+  &.active .data_container {
+    display: block;
+  }
+  .data_container {
+    display: none;
+  }
+  .select_content {
+    position: absolute;
+    width: 100%;
+    // background-color: red;
+    z-index: 20;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: form-anim 500ms ease forwards;
+  }
+
+  @keyframes form-anim {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .select_content {
+    .options,
+    .select_search {
+      border-radius: 5px;
+      box-shadow: $bs-sec;
+      padding: 10px;
+      background: $clr-bg;
+      border: 2px solid #ffffff55;
+    }
+    .select_search {
+      position: relative;
+      margin-bottom: 10px;
+    }
+  }
+  input:hover,
+  input:focus,
+  input:active {
+    & ~ .search_icon {
+      color: var(--clr-success);
+    }
+  }
+  input:hover,
+  input:focus,
+  input:active {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    // border-bottom: 1px solid var(--clr-success);
+  }
+  input {
+    margin: 0;
+    padding: 0;
+    padding-left: 30px;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: transparent;
+    // border-bottom: 1px solid var(--clr-white);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .select_icon {
+    transition: transform 400ms ease;
+    &.active {
+      transform: rotate(180deg);
+    }
+  }
+  .search_icon {
+    position: absolute;
+    left: 12px;
+    bottom: 13px;
+  }
+  .search-close {
+    position: absolute;
+    right: 0.5em;
+    width: 35px;
+    height: 35px;
+    background-color: $clr-danger;
+    color: $clr-white;
+    border-radius: 50%;
+    line-height: 35px;
+    text-align: center;
+    top: 0.2em;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .options {
+    max-height: 150px;
+    overflow: auto;
+    padding: 0 10px;
+    li {
+      padding: 6px 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-bottom: 0.5em;
+      &.selected,
+      &:hover {
+        background: var(--clr-danger);
+      }
+    }
+  }
+  #null-value {
+    padding: 10px;
+    background: #333;
+    color: $clr-white;
+    text-align: center;
+    font-size: 0.89rem;
+    border-radius: 10px;
+  }
+}

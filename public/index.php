@@ -11,6 +11,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 // App Configurations
 require_once "config.php";
 
+use App\controllers\AdminController;
 use Devlee\XRouter\Router;
 use App\controllers\SiteController;
 use App\controllers\AuthController;
@@ -46,6 +47,9 @@ $router->post("/resume/create/{resume_id}", [ResumeController::class, 'createRes
 // Get Resume Setup on edit
 $router->post("/resume/edit/{template_id}", [ResumeController::class, 'setupResume']);
 
+// Templates
+$router->get("/new/template", [AdminController::class, 'createTemplate']);
+$router->post("/new/template", [AdminController::class, 'createTemplate']);
 // Dashboard
 $router->get("/dashboard/", [MainController::class, 'index']);
 $router->get("/dashboard/resumes", [MainController::class, 'resumes']);

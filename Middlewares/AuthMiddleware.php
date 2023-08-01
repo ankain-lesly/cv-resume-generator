@@ -28,7 +28,12 @@ class AuthMiddleware extends BaseMiddleware
       header("Location: /");
     }
   }
-  public function isAdmin()
+  public function isAdmin(string $role = 'ADMIN')
   {
+    $user = $this->session->get('user');
+    if ($user['role'] !== $role) {
+      $this->session->setToast("toast", "User not authorized or invalid token!");
+      header("Location: /dashboard/");
+    }
   }
 }

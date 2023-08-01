@@ -13,9 +13,7 @@ use Devlee\mvccore\Session;
 use App\Middlewares\AuthMiddleware;
 use Devlee\mvccore\DB\DataAccess;
 use Devlee\mvccore\FileUpload;
-// PDF for Dompdf
-use Dompdf\Dompdf;
-use Dompdf\Options;
+// PDF for Dompdf 
 
 class ResumeController
 {
