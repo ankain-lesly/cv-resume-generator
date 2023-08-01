@@ -39,6 +39,7 @@ class AdminController
 
     if ($req->isPost()) {
       $data = $req->body();
+
       $file_image = $_FILES['file_image'];
       $file_php = $_FILES['file_php'];
       $file_css = $_FILES['file_css'];
@@ -50,33 +51,33 @@ class AdminController
       $file_options_image = [
         "path" => "/resumes/thumbnails/",
         "filename" => "TEMPLATE-" . $template_id,
-        "accept" => ['jpg', 'jpeg', 'png']
+        "accept" => [".jpg", ".jpeg", ".png"]
       ];
       $file_options_php = [
         "path" => "/resumes\/",
         "filename" => "Design-" . $template_id,
-        "accept" => [".phpp"]
+        "accept" => [".php"]
       ];
       $file_options_css = [
         "path" => "/resumes/design/",
         "filename" => "Design-" . $template_id,
-        "accept" => [".csss"]
+        "accept" => [".css"]
       ];
 
 
       // settings: Image
       $data['thumbnail'] = $FileHandler->setup($file_options_image, $file_image);
       // settings: PHP
-      $data['php_file'] = $FileHandler->setup($file_options_image, $file_php);
+      $data['php_file'] = $FileHandler->setup($file_options_php, $file_php);
       // settings: CSS
-      $data['css_file'] = $FileHandler->setup($file_options_image, $file_css);
+      $data['css_file'] = $FileHandler->setup($file_options_css, $file_css);
 
       $FileHandler->upload();
 
 
       echo '<pre>';
       print_r($data);
-      print_r($_FILES);
+      print_r($FileHandler->errors());
       echo '</br>';
       echo '</pre>';
       exit();

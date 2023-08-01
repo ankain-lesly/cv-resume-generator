@@ -1,0 +1,315 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+}
+header {
+    background-color: #333;
+    padding:10px 1rem;
+}
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo {
+    border-left: 3px solid rgb(0, 145, 255);
+    border-right: 3px solid rgb(0, 145, 255);
+    border-bottom: 3px solid rgb(0, 145, 255);
+    color: orangered;
+    padding:4px 10px;
+    border-radius:10px;
+    font-size: 0.81rem;
+}
+header nav > ul > li{
+    display: inline-block;
+}
+header .search-btn {
+    width:30px;
+    margin-left:10px;
+    transform: translateY(5px);
+    cursor: pointer;
+}
+header .nav {
+    color: #fff;
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-left:10px;
+    position: relative;
+}
+header .nav:hover {
+    color: red;
+}
+@media (min-width:700px) {
+.item-list {
+    position: fixed;
+    top: 60p;
+    left: 20vw;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-image: url(image.png) 2rem round;
+    border-left: 2rem solid;
+    padding:2rem 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    z-index: 50;
+    display: none;
+}
+.item-list::before {
+    content:'Item List';
+    position: absolute;
+    left:50px;
+    top:0;
+    color:rgb(0, 145, 255);
+    font-weight: bold;
+    font-size:0,85rem;
+}
+.item-list li{
+    background-color: rgba(0, 0, 0, 0.05);
+    flex-basis: 48%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding:5px;
+    color: #333;
+}
+header .menu-item:hover  .item-list{
+    display: flex;
+}
+}
+.item-list li a{
+    color: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.item-list li:hover {
+    background-color: #333;
+    color:#fff;
+}
+header .down-arrow {
+    display: inline-block;
+    width:7px;
+    height:7px;
+    border: 1px solid transparent;
+    border-bottom-color: inherit;
+    border-left-color: inherit;
+    transform: rotate(-45deg) translateY(-5px);
+    margin-left:10px;
+}
+.btn {
+    font-size:0.85rem;
+    border:1px solid rgb(0, 145, 255);
+    padding:0.4rem 1rem;
+    border-radius:1rem;
+    transition: all 350ms ease-in-out;
+    display: inline-block;
+}
+.btn-pre {
+    background-color: rgb(0, 145, 255);
+}
+.btn:hover {
+    transform: scale(0.8);
+    opacity:0.755
+}
+/* ACTIVE ELEMENTS */
+.mobile {
+    display: none;
+}
+
+section {
+    min-height: 50vh;
+    background-color: #eee;
+}
+section > h2 {
+    text-align: center;
+    margin:1rem auto 2rem;
+    display: inline-block;
+    width: 100%;
+}
+section:nth-child(odd) {
+    background-color: #ccc;
+}
+
+@media (max-width:700px) {
+    .mobile {
+        display: block;
+    }
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right:-100%;
+        width:80vh;
+        background-color: #eee;
+        height:100vh;
+        padding:1rem 2rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        overflow: auto;
+        transition: all 350ms ease-in-out;
+    }
+    .nav-menu.active {
+        right:0;
+    }
+    .nav-menu li {
+        display: block;
+    }
+    .nav-menu .nav{
+        color: #333;
+        margin: 10px 0;
+        font-size:1.3rem;
+        cursor: pointer;
+    }
+    header .down-arrow {
+        position:absolute;
+        left: 40vw;
+        top:10px;
+    }
+    .item-list li{
+        margin-left:1rem;
+        margin-bottom:5px;
+        padding:5px 1rem;
+    }
+    .nav-menu .close-nav {
+        display: block;
+        margin-left: auto;
+        margin-right: 1rem;
+        font-size: 2rem;
+        cursor: pointer;
+        border: none;
+        padding: 5px 1rem;
+    }
+    .nav-menu .close-nav:hover {color: red;}
+    .nav.drop-menu.active ~ .item-list{
+        display: none;
+    }
+    .nav-actions {
+        display: flex;
+        align-items: center;
+    }
+    .open-menu {
+        width:40px;
+        background-color: transparent;
+        border: none;
+        margin-left:2rem;
+        cursor: pointer;
+    }
+    .open-menu span{
+        display: block;
+        height:2px;
+        margin-bottom: 5px;
+        background-color: #ccc;
+    }
+}
+
+footer {
+    background-color: #333;
+    padding:50px;
+}
+footer .row {
+    display: flex;
+    gap: 50px 2rem;
+    justify-content: space-between;
+}
+footer .col {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 200px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    flex-basis: 20%;
+}
+/* HERO SECTION */
+.hero {
+    background-color:#333;
+    background-image:url(images/present-bamenda-regional-hospital-3.jpg);
+    background-size:cover;
+    background-blend-mode: soft-light;
+    color: #fff;   
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h2 {
+    font-size:1.98rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.hero p {
+    max-width:400px;
+    font-size: 1.15rem;
+}
+.links {
+    margin-top: 3rem;
+}
+.text {
+    text-align: center;
+}
+.text ~ img {
+    max-width:300px;
+    margin-top:1rem;
+    display: block;
+    margin: 1rem auto 0;
+}
+section:nth-child(odd) .text ~ img {
+    border-radius:50%;
+    opacity:0.5;
+}
+
+
+/* creating a popup */
+.toast {
+    position: fixed;
+    top: 0; left:0;
+}
+.toast .toastMe {
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:rgba(0, 0, 0, 0.5);   
+}
+.toastMe .box{
+    width:95%;
+    border-radius:10px;
+    max-width:350px;
+    background:#fff;   
+}
+.toastMe .box .head {
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+.toastMe .box .head img{
+    width:50px;
+    border-radius:50%;
+}
+.toastMe .box button{
+    border: none;
+    background: none;
+    font-size:2.15rem;
+    line-height:15px;
+}
+.toastMe .box button:hover{color: red}
+
+.toastMe .box .content{
+    padding:10px;
+}
+.toastMe .box .content h3{
+    margin-bottom:1rem;
+}
+.toastMe a {
+    color: rgb(0, 145, 255)
+}
+
+
