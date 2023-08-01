@@ -1,6 +1,6 @@
 <?php
 
-namespace App\controllers;
+namespace App\Controllers;
 
 use Devlee\XRouter\Request;
 use Devlee\XRouter\Response;

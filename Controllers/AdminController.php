@@ -1,6 +1,6 @@
 <?php
 
-namespace App\controllers;
+namespace App\Controllers;
 
 use Devlee\mvccore\Library;
 use Devlee\XRouter\Request;
@@ -10,9 +10,7 @@ use Devlee\XRouter\Router;
 use Devlee\mvccore\Session;
 // middlewares
 use App\Middlewares\AuthMiddleware;
-use app\models\Resume;
-use app\models\TemplateDesign;
-// use app\models\Template;
+use App\Models\TemplateDesign;
 use Devlee\mvccore\DB\DataAccess;
 use Devlee\mvccore\FileUpload;
 // PDF for Dompdf 

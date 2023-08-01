@@ -11,12 +11,12 @@ require_once __DIR__ . "/../vendor/autoload.php";
 // App Configurations
 require_once "config.php";
 
-use App\controllers\AdminController;
+use App\Controllers\AdminController;
 use Devlee\XRouter\Router;
-use App\controllers\SiteController;
-use App\controllers\AuthController;
-use App\controllers\ResumeController;
-use App\controllers\MainController;
+use App\Controllers\SiteController;
+use App\Controllers\AuthController;
+use App\Controllers\ResumeController;
+use App\Controllers\MainController;
 
 $router = new Router(__DIR__);
 

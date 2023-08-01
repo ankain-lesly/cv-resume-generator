@@ -1,6 +1,6 @@
 <?php
 
-namespace App\controllers;
+namespace App\Controllers;
 
 use App\models\Resume;
 use Devlee\mvccore\Library;
