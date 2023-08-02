@@ -55,6 +55,7 @@ $router->get("/app", [MainController::class, 'index']);
 $router->get("/app/", [MainController::class, 'index']);
 $router->get("/app/resumes", [MainController::class, 'resumes']);
 $router->get("/templates/{type}", [MainController::class, 'templates']);
+$router->get("/api/templates/{type}", [MainController::class, 'templates']);
 $router->get("/account/settings", [MainController::class, 'settings']);
 $router->get("/app/get-started", '@_dashboard/get-started');
 $router->get("/user/profile", [AuthController::class, 'profile']);

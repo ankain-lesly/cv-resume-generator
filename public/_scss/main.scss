@@ -549,6 +549,8 @@
       max-height: calc(100vh - 40px);
       overflow-y: auto;
       border-radius: 0.5rem 0.5rem 0 0;
+      width: 100%;
+      // max-width: 1250px;
     }
   }
 
@@ -558,6 +560,13 @@
     border-radius: 0.5rem;
     display: none;
     box-shadow: $bs-sec;
+    margin: auto;
+    &.details {
+      max-width: 550px;
+    }
+    &.templates {
+      max-width: 1024px;
+    }
 
     &.active {
       display: block;
@@ -576,19 +585,23 @@
     color: $clr-danger;
     font-weight: bold;
   }
-
+  .templates-main-cover {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
   .templates-main {
+    min-width: max-content;
+    width: 100%;
     & ~ .actions {
       display: none;
     }
-    display: grid;
-    grid-template-columns: repeat(4, 200px);
-    gap: 0.5rem;
+    display: flex;
+    gap: 1rem;
     margin: 1rem 0;
     .card {
       position: relative;
-      width: max-content;
-      margin: auto;
+      width: 200px;
+      // margin: auto;
       overflow: hidden;
     }
     .btn_preview {
@@ -597,23 +610,19 @@
       right: 0;
       height: 30px;
       width: 30px;
+      padding: 20px;
       cursor: pointer;
-      color: $clr-white;
+      color: $clr-dark;
       z-index: 10;
-      // position: relative;
+      border-radius: 0.5em;
+
+      &:hover {
+        background-color: hsla($hsl-clr-bg, 0.7);
+      }
 
       i {
         position: absolute;
         z-index: 20;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        width: 80px;
-        height: 40px;
-        background-color: hsla($hsl-clr-bg, 0.7);
-        transform: rotate(-45deg);
-        z-index: 5;
       }
     }
     .temp_input {
@@ -631,16 +640,16 @@
       border: 5px solid hsla($hsl-clr-bg, 0.7);
     }
 
-    .temp_input:checked ~ .btn_preview {
-      &::after {
-        background-color: $clr-danger;
+    .temp_input:checked {
+      & ~ .btn_preview {
+        color: $clr-danger;
       }
-    }
-    .temp_input:checked ~ .temp_image {
-      border-color: $clr-danger;
+      & ~ .temp_image {
+        border-color: $clr-danger;
 
-      img {
-        transform: scale(1.2);
+        img {
+          transform: scale(1.2);
+        }
       }
     }
   }

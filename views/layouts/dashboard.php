@@ -54,9 +54,11 @@
                 </div>
                 <h3>Select A Template</h3>
               </div>
-              <div class="templates-main">
-                <div class="wait flex" style="grid-column: span 5">
-                  <div class="loader"></div>
+              <div class="templates-main-cover">
+                <div class="templates-main">
+                  <div class="wait flex w-full">
+                    <div class="loader"></div>
+                  </div>
                 </div>
               </div>
               <div class="actions">

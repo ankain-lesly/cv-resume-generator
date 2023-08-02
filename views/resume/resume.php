@@ -1,14 +1,5 @@
   <!-- GLOBALS -->
   <?php include_once __DIR__ . "/../globals/globals.php" ?>
-  <?php
-
-  // echo '<pre>';
-  // print_r($resume);
-  // print_r($user);
-  // echo '</br>';
-  // echo '</pre>';
-  // 
-  ?>
   <title><?= $resume['title'] ?? "Untitled" ?> | Resume Maker</title>
   <link rel="stylesheet" href="/static/styles/create.css" />
   <style type="text/css">
@@ -68,15 +59,27 @@
   /*color: var(--clr-bg);*/
   cursor: alias;
 }
+
+.refresh_view {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: blue;
+  color: #fff;
+  border-radius: 50%;
+  padding: 1rem;
+}
   </style>
   </head>
 
   <body>
+    <button class="refresh_view"><i class="fas fa-undo"></i></button>
     <div class="root">
       <div class="create-resume">
         <header class="main-header flex between gap-1">
-          <a href="/dashboard/">
-            <h2><span class="clr-danger">Res</span>ume</h2>
+          <a href="/app/" class="flex gap-x">
+            <small class="fas fa-arrow-left" style="color: #fff"></small>
+            <img src="/static/media/logo.png" alt="Logo" width="25px">
           </a>
 
           <div class="title flex-1 txt-center" style="overflow: hidden">
@@ -129,19 +132,19 @@
                 <i class="fas fa-angle-double-left"></i>
               </button>
               <ul class="actions_lists">
-                <li data-target="create_forms" class="panel_action active">
+                <li data-target="create_forms" class="panel_action panel_btn active">
                   <i class="fas fa-pencil-alt icon"></i>
                   <p class="text">Create</p>
                 </li>
-                <li data-target="templates" class="panel_action">
+                <li data-target="templates" class="panel_action panel_btn">
                   <i class="fas fa-edit icon"></i>
                   <p class="text">Templates</p>
                 </li>
-                <li data-target="settings" class="panel_action">
+                <li data-target="settings" class="panel_action panel_btn">
                   <i class="fas fa-greater-than icon"></i>
                   <p class="text">Settings</p>
                 </li>
-                <li data-target="content" class="panel_action">
+                <li data-target="content" class="panel_action panel_btn">
                   <i class="fas fa-radiation icon"></i>
                   <p class="text">Content</p>
                 </li>
@@ -150,8 +153,8 @@
                   <p class="text">Save</p>
                 </li>
                 <li class="theme-btn flex gap-x">
-                  <i class="fas fa-moon icon"></i>
-                  <span class="text"> Dark</span>
+                  <i class="fas fa-moon icon _theme_icon"></i>
+                  <span class="text _theme_text txt-capitalize"> Dark</span>
                 </li>
               </ul>
               <br><br><br>
@@ -193,6 +196,10 @@
                   <button data-form-section="skill" class="control_action">
                     <i class="fas fa-tasks icon"></i>
                     <span class="text">Skills</span>
+                  </button>
+                  <button data-form-section="language" class="control_action">
+                    <i class="fas fa-language icon"></i>
+                    <span class="text">Languages</span>
                   </button>
                   <button data-form-section="hobby" class="control_action">
                     <i class="fas fa-star icon"></i>
@@ -438,8 +445,8 @@
     <script type="module" src="/static/scripts/create.js"></script>
     <script>
     // Panel Pages
-    $(".panel_action").on("click", function(e) {
-      $(".panel_action").removeClass("active");
+    $(".panel_btn").on("click", function(e) {
+      $(".panel_btn").removeClass("active");
       $(this).addClass("active");
       const section = $(this).data("target");
       $(".page_section").removeClass("on_page");

@@ -69,7 +69,7 @@ const generateFormGroup = (name, value, options) => {
     // console.log(value);
     return `<div class="form-group ${options["classes"] ?? ""}">
         <label for="${name}">${options["label"]}</label>
-        <select id="${name}" data-inp-reff="${name}" class="font-size-small range_title_input mb-1">
+        <select id="${name}" data-inp-reff="${name}" class="font-size-small range_title_input mb-1 social_input">
           <option></option>
           <option ${value === "Facebook" ? "selected" : ""}>Facebook</option>
           <option ${value === "Instagram" ? "selected" : ""}>Instagram</option>
@@ -120,10 +120,8 @@ const generateFormGroup = (name, value, options) => {
         options["option"] && options["option"] === "class"
           ? "range_title_input"
           : ""
-      }
-      
-      "
-      ${name === "hobby" ? "class='hobby_input'" : ""} value="${value}" />
+      } 
+      ${name === "hobby" ? "hobby_input" : ""}" value="${value}" />
     </div>`;
   // return `<div class="form-group ${options["classes"] ?? ""}">
   //     <label for="${name}">${options["label"]}</label>
@@ -183,7 +181,7 @@ const generateFormCard = (unique_key, data = [], config, className = "") => {
   }
 
   return `<!-- EDUCATIONS -->
-  <div class="education-1 form_card ${config.className}-card ${className}">
+  <div class="form_card ${config.className}-card ${className}">
     <!-- HEAD -->
     <div class="ed_head">
       <div class="flex between gap-1">

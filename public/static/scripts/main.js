@@ -14,20 +14,20 @@ handleAppTheme();
 // load templates
 let isLoaded = false;
 let isLoading = false;
-let object = [
-  {
-    id: 134,
-    src: "t1.jpg",
-  },
-  {
-    id: 513,
-    src: "t2.jpg",
-  },
-  {
-    id: 133,
-    src: "t3.jpg",
-  },
-];
+// let object = [
+//   {
+//     id: 134,
+//     src: "t1.jpg",
+//   },
+//   {
+//     id: 513,
+//     src: "t2.jpg",
+//   },
+//   {
+//     id: 133,
+//     src: "t3.jpg",
+//   },
+// ];
 // Dashboard
 // Menu -- sidebar
 $(".btn-sitebar").on("click", () => {
@@ -104,27 +104,29 @@ $(document).on("click", ".btn_preview", function (e) {
 //   if ($droptDown.hasClass("active")) $(".drop-down-body").slideDown();
 //   else $(".drop-down-body").slideUp();
 // });
-
-function LoadTemplates() {
+$(document).on("click", ".reload_templates", (e) => LoadTemplates());
+async function LoadTemplates() {
   let reff = 0;
+  const object = await useFetch("GET", "/api/templates/resume?api=true");
   // object = null;
-  if (!object) {
+  if (!object || !object.data) {
     $(".templates-main").html(`
     <p class="txt-center clr-danger" style="grid-column: span 5">
-        <span>Error Loading templates</span><br><br>
-        <span class="btn btn-p reload_templates">Retry</span>
-      </p>`);
+    <span>Error Loading templates</span><br><br>
+    <span class="btn btn-p reload_templates">Retry</span>
+    </p>`);
 
     return;
   }
   setTimeout(() => {
     $(".templates-main").html("");
-    $.each(object, (key, template) => {
+    $.each(object.data, (key, data) => {
+      console.log(data);
       let layout = `
       <div class="card">
-        <input type="radio" id="${template.id}" id="meta_template" name="meta_template" class="temp_input" value="design_123" required>
-        <label for="${template.id}" class="temp_image">
-          <img class="thumbnail" src="/static/media/${template.src}" alt="Template Thumbnail">
+        <input type="radio" id="${data.template_id}" id="meta_template" name="meta_template" class="temp_input" value="${data.template_id}" required>
+        <label for="${data.template_id}" class="temp_image">
+          <img class="thumbnail" src="/resumes/thumbnails/${data.thumbnail}" alt="Template Thumbnail">
         </label>
         <span class="btn_preview flex" data-reff="${reff}"><i class="fas fa-camera"></i></span>
       </div>`;

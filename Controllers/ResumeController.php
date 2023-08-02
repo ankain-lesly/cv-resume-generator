@@ -92,10 +92,18 @@ class ResumeController
       if (isset($data['cover_photo']) && !empty($_FILES)) {
         $image = $_FILES['image'];
 
+        $key = $data['resume_id'];
+
+        if ($data['current']) {
+          $current = Router::root_folder() . "/uploads/covers/" . $data['current'];
+          if (file_exists($current)) unlink($current);
+          $key = Library::generateToken(12);
+        }
+
         $file_options = [
-          "path" => Router::root_folder() . "/uploads/covers/",
-          "filename" => "RESUME-" . $data['resume_id'],
-          "accept" => ['jpg', 'jpeg', 'png']
+          "path" => "/uploads/covers/",
+          "filename" => "RESUME-" . $key,
+          "accept" => ['.jpg', '.jpeg', '.png']
         ];
 
         $FileHandler = new FileUpload();
@@ -103,13 +111,13 @@ class ResumeController
         // settings
         $data['cover_photo'] = $FileHandler->setup($file_options, $image);
 
+        if ($FileHandler->errors()) return;
+
         $FileHandler->upload();
 
-        if ($data['cover_photo']) {
-          $update = $this->resumeObj->update($data, ['resume_id']);
-          if ($update) $res->json(['success' => true, 'cover' => $data['cover_photo']]);
-          exit;
-        }
+        $update = $this->resumeObj->update($data, ['resume_id']);
+        if ($update) $res->json(['success' => true, 'cover' => $data['cover_photo']]);
+        exit;
       }
       // Getting Resume Data
       $data['personal'] = json_encode($data['personal']  ?? "");
@@ -144,44 +152,19 @@ class ResumeController
   {
     $resume = $req->body();
 
-    // Getting Resume Data
-    $cover = $resume['cover_photo'] ?? false;
-
-    $personal = $resume['personal'] ?? [];
-    $extras = $resume['extras'] ?? [];
-    $education = $resume['education'] ?? [];
-    $experience = $resume['experience'] ?? [];
-    $social = $resume['social'] ?? [];
-    $languages = $resume['language'] ?? [];
-    $skills = $resume['skill'] ?? [];
-    $hobbies = $resume['hobby'] ?? [];
-
-
     $template_id = $req->params('template_id');
-    $folder = Router::root_folder() . "/resumes/";
 
-    $isDownload = $req->query('dd');
+    $php_file = "Design-" . $template_id . ".php";
+    $css_file = "Design-" . $template_id . ".css";
 
-    // Process to get resume info and template Design;
-    $design = $folder . $template_id . '.php';
+    $folder = Router::root_folder() . "/resumes\/";
+    $design = $folder . $php_file;
 
-    if (!file_exists($design)) {
-      // send default template
+    // send default template
+    if (!file_exists($design))
       $design = $folder . 'default.php';
-    }
 
-    // $isDownload = true;
-    if (!$isDownload) {
-      require($design);
-      exit;
-    }
-
-    ob_start();
     require($design);
-    $template = ob_get_clean();
-
-    exit("Generating RESUME PDF");
-    // $this->generatePDF($template);
   }
 
   public function  getResumeData(Request $req, Response $res)

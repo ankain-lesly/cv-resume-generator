@@ -11,6 +11,17 @@ import {
 
 // App Theme()
 handleAppTheme();
+const displayThemeBtns = () => {
+  let theme = localStorage.getItem("app-theme") ?? "light";
+  let icon = theme === "dark" ? "fa-sun" : "fa-moon";
+  $("._theme_text").text(theme);
+  $("._theme_icon").removeClass("fa-sun");
+  $("._theme_icon").removeClass("fa-moon");
+  $("._theme_icon").addClass(icon);
+};
+displayThemeBtns;
+$(".theme-btn").on("click", () => displayThemeBtns());
+
 $(document).ready(function (e) {
   let isLoading = false;
   // META DATA
@@ -67,7 +78,21 @@ $(document).ready(function (e) {
   });
   // Delete
   $(document).on("click", ".btn_form_card_delete", function (e) {
-    $(this).closest(".form_card").remove();
+    let key = $(this).closest(".form_card").find(".unique_key").val();
+
+    if (key) {
+      const section = $(this).closest(".area-step").data("section-title");
+      const formObject = FORM_DATA[section];
+      const newObject = {};
+
+      $.each(formObject, (a, b) => {
+        if (key != a) newObject[a] = b;
+      });
+      FORM_DATA[section] = newObject;
+      useStorage(STORAGE_KEY, FORM_DATA);
+      updatePreviewer(FORM_DATA);
+      $(this).closest(".form_card").remove();
+    }
   });
 
   // Add FORM GROUP
@@ -81,32 +106,32 @@ $(document).ready(function (e) {
   });
 
   // Education
-  $(document).on("keyup", "#education, #position", function (e) {
-    $(this)
-      .closest(".form_card")
-      .find(".group_caption")
-      .text(e.target.value.trim());
-  });
+  // $(this)
+  //   .closest(".form_card")
+  //   .find(".group_caption")
+  //   .text(e.target.value.trim());
+  $(document).on(
+    "keyup, change",
+    "#education, #position, .social_input",
+    function (e) {
+      console.log("Logging..");
+      changeCaptionOnEdit($(this), "group_caption");
+    }
+  );
   // Hobbie Inputs name
   $(document).on("keyup", ".hobby_input", function (e) {
-    $(this)
-      .closest(".form_card")
-      .find(".hobby_heading")
-      .text(e.target.value.trim());
+    changeCaptionOnEdit($(this), "hobby_heading");
   });
   // ON Range Input Text
   $(document).on("change", ".range_title_input", function (e) {
-    $(this)
-      .closest(".form_card")
-      .find(".range_title")
-      .text(e.target.value.trim());
+    changeCaptionOnEdit($(this), "range_title");
   });
   $(document).on("keyup", ".range_title_input", function (e) {
-    $(this)
-      .closest(".form_card")
-      .find(".range_title")
-      .text(e.target.value.trim());
+    changeCaptionOnEdit($(this), "range_title");
   });
+  const changeCaptionOnEdit = ($el, $target) =>
+    $el.closest(".form_card").find(`.${$target}`).text($el.val().trim());
+
   // Range Input range
   $(document).on("input", ".range_input", function (e) {
     const $target = $(this);
@@ -165,7 +190,7 @@ $(document).ready(function (e) {
         });
       } else if (section_key === "cover_photo") {
         $(".img-cover-profile").attr("src", "/uploads/covers/" + data);
-      } else {
+      } else if (data) {
         const formObjectReff =
           FORM_OBJECTS[`OBJECT_${section_key.toUpperCase()}`];
 
@@ -185,12 +210,13 @@ $(document).ready(function (e) {
   // saving form-data
   $(document).on("blur", "[data-inp-reff]", function (e) {
     console.log("Typing ...");
-    // console.log(FORM_DATA);
+
     const section = $(this).closest(".area-step").data("section-title");
-    const formObject = FORM_DATA[section] ?? {};
-    // console.log(formObject);
-    // return;
-    if ($(this).val() === "") return;
+    const formObject =
+      FORM_DATA[section] == null || FORM_DATA[section] == ""
+        ? {}
+        : FORM_DATA[section];
+
     if (section === "personal") {
       formObject[$(this).data("inp-reff")] = $(this).val();
     } else {
@@ -202,15 +228,25 @@ $(document).ready(function (e) {
         formObject[section_key] = $(this).val();
       } else {
         const section_data = formObject[section_key] ?? {};
-        section_data[$(this).data("inp-reff")] = $(this).val();
+
+        // console.log(e.target.checked);
+
+        section_data[$(this).data("inp-reff")] = e.target.checked
+          ? "true"
+          : $(this).val()
+          ? $(this).val()
+          : "";
+
+        // console.log(section_data);
         formObject[section_key] = section_data;
       }
     }
     FORM_DATA[section] = formObject;
-    updatePreviewer(FORM_DATA);
     useStorage(STORAGE_KEY, FORM_DATA);
+    updatePreviewer(FORM_DATA);
   });
 
+  $(".refresh_view").on("click", () => updatePreviewer(FORM_DATA));
   //- updatePreviewer()
   function updatePreviewer(data = {}) {
     // data["meta"] = META_DATA;
@@ -258,19 +294,19 @@ $(document).ready(function (e) {
     if (!formData) {
       // if -> get from database
       const res = await useFetch("GET", "/resume/" + META_DATA.resume + "/");
-
       if (!res) {
         alert("Connections error: Please try again..");
-        LoadDefaultForm();
-        return;
+        return LoadDefaultForm();
       }
 
       if (res.data) {
         formData = res.data;
+        // $.each(formData, (a, b) => (formData[a] = !b || b === "" ? {} : b));
+        // console.log(formData);
       } else if (!res.response.ok || res.response.status !== 200) {
         alert("Error getting data please try again..");
       } else {
-        LoadDefaultForm();
+        return LoadDefaultForm();
       }
     }
     FORM_DATA = formData;
@@ -333,12 +369,11 @@ $(document).ready(function (e) {
     if (!file) return;
 
     let source = window.URL.createObjectURL(file);
-    $(".img-cover-profile").attr("src", source);
-
     const formObj = new FormData();
     formObj.append("image", file);
     formObj.append("cover_photo", "cover photo");
     formObj.append("resume_id", META_DATA.resume);
+    formObj.append("current", FORM_DATA["cover_photo"] ?? false);
 
     $.ajax({
       url: "/resume/create/" + META_DATA.resume,
@@ -351,10 +386,12 @@ $(document).ready(function (e) {
         const data = JSON.parse(res) ?? false;
         if (data && data.success) {
           FORM_DATA["cover_photo"] = data.cover;
+          updatePreviewer(FORM_DATA);
           useStorage(STORAGE_KEY, FORM_DATA);
-
           BA.name(".btn_save_resume");
           BA.loading();
+
+          $(".img-cover-profile").attr("src", source);
 
           setTimeout(() => {
             BA.done();

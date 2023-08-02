@@ -45,6 +45,8 @@ class MainController
   }
   public function templates(Request $req, Response $res)
   {
+    $api = $req->query('api');
+
     $useTemplate = $req->query('use');
     $unuseTemplate = $req->query('unuse');
 
@@ -66,6 +68,8 @@ class MainController
       ["thumbnail", "status", "template_id"]
     );
     $templates = $templates['data'] ?? [];
+
+    if ($api) return $res->json($templates);
 
     $res->render("_dashboard/show-templates", ["user" => $this->session, "templates" => $templates]);
   }

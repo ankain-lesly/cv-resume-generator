@@ -7,35 +7,35 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <title>Design 5 | Resume Template</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/static/styles/index.css">
-  <link rel="stylesheet" href="/static/styles/Design_5.css">
+  <!-- <link rel="stylesheet" href="/static/styles/index.css"> -->
+  <link rel="stylesheet" href="/resumes/design/<?= $css_file ?>">
 </head>
 
 <body>
   <article id="template_main">
     <div class="head">
-      <h1><?= getP("firstname") ?> <?= getP("lastname") ?> </h1>
-      <div class="headline flex gap-3 <?= getP("phone") ? "" : 'section_hide' ?>">
+      <h1><?= get($personal, "firstname") ?> <?= get($personal, "lastname") ?> </h1>
+      <div class="headline flex gap-3 <?= get($personal, "phone") ? "" : 'section_hide' ?>">
         <div class=" line flex-1"></div>
-        <h3><?= getP("headline") ?></h3>
+        <h3><?= get($personal, "headline") ?></h3>
         <div class="line flex-1"></div>
       </div>
       <div class="info flex top">
-        <li class="section flex mb-x gap-1 column <?= getP('address') ? '' : 'section_hide' ?>">
+        <li class="section flex mb-x gap-1 column <?= get($personal, 'address') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("address") ?></span>
-          <div class="text"><?= getP('address') ?></div>
+          <div class="text"><?= get($personal, 'address') ?></div>
         </li>
-        <li class="section flex mb-x gap-1 column <?= getP('phone') ? '' : 'section_hide' ?>">
+        <li class="section flex mb-x gap-1 column <?= get($personal, 'phone') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("phone") ?></span>
-          <div class="text"><?= getP('phone') ?></div>
+          <div class="text"><?= get($personal, 'phone') ?></div>
         </li>
-        <li class="section flex mb-x gap-1 column <?= getP('email') ? '' : 'section_hide' ?>">
+        <li class="section flex mb-x gap-1 column <?= get($personal, 'email') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("email") ?></span>
-          <div class="text"><?= getP('email') ?></div>
+          <div class="text"><?= get($personal, 'email') ?></div>
         </li>
-        <li class="section flex mb-x gap-1 column <?= getP('date_of_birth') ? '' : 'section_hide' ?>">
+        <li class="section flex mb-x gap-1 column <?= get($personal, 'date_of_birth') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("date") ?></span>
-          <div class="text"><?= getP('date_of_birth') ?></div>
+          <div class="text"><?= get($personal, 'date_of_birth') ?></div>
         </li>
       </div>
     </div>
@@ -43,7 +43,7 @@
       <div class="layer side">
 
         <div class="profile <?= $cover ? '' : 'section_hide' ?>">
-          <img src="<?= $cover ?>" class="img-cover" alt="Profile image">
+          <img src="<?= $cover ?>" class="img-cover" alt="Profile image" width="300px">
         </div>
         <!-- personal -->
         <ul class="personal">
@@ -86,7 +86,7 @@
         </div>
       </div>
       <div class="layer content">
-        <div><?= getP('about') ?></div>
+        <div><?= get($personal, 'about') ?></div>
 
         <!-- EDUCATION -->
         <div class="section-group <?= !empty($education) ? '' : 'section_hide' ?>">

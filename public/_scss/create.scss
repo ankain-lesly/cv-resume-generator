@@ -39,7 +39,7 @@ select:active {
 }
 
 .container-main {
-  // display: grid;
+  display: grid;
   grid-template-columns: repeat(2, 50%);
 
   .create-form,
@@ -73,7 +73,7 @@ select:active {
   overflow: auto;
   transition: $transition;
   position: absolute;
-  background-color: $color-bg;
+  background-color: $clr-white-l;
   width: var(--panel-with);
   height: 100%;
 
@@ -99,13 +99,13 @@ select:active {
       border-radius: 50%;
       font-size: 0.8rem;
       line-height: 25px;
-      background-color: hsla($hsl-clr-light, 0.2);
-      color: hsla($hsl-clr-light, 0.65);
+      background-color: hsla($hsl-clr-bg, 0.2);
+      color: hsla($hsl-clr-bg, 0.65);
     }
     .text {
       font-size: 0.75rem;
       margin-top: 3px;
-      color: hsla($hsl-clr-light, 0.65);
+      color: hsla($hsl-clr-bg, 0.65);
     }
 
     &:hover {
