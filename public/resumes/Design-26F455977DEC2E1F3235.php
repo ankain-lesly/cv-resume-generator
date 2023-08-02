@@ -7,8 +7,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <title>Design 4 | Resume Template</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/static/styles/index.css">
-  <link rel="stylesheet" href="/static/styles/Design_4.css">
+  <link rel="stylesheet" href="/resumes/design/<?= $css_file ?>">
 </head>
 
 <body>
@@ -19,21 +18,21 @@
       </div>
       <!-- personal -->
       <ul class="personal">
-        <li class="flex mb-x gap-1 start top <?= getP('phone') ? '' : 'section_hide' ?>">
+        <li class="flex mb-x gap-1 start top <?= get($personal, 'phone') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("phone") ?></span>
-          <div class="text"><?= getP('phone') ?></div>
+          <div class="text"><?= get($personal, 'phone') ?></div>
         </li>
-        <li class="flex mb-x gap-1 start top <?= getP('email') ? '' : 'section_hide' ?>">
+        <li class="flex mb-x gap-1 start top <?= get($personal, 'email') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("email") ?></span>
-          <div class="text"><?= getP('email') ?></div>
+          <div class="text"><?= get($personal, 'email') ?></div>
         </li>
-        <li class="flex mb-x gap-1 start top <?= getP('address') ? '' : 'section_hide' ?>">
+        <li class="flex mb-x gap-1 start top <?= get($personal, 'address') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("address") ?></span>
-          <div class="text"><?= getP('address') ?></div>
+          <div class="text"><?= get($personal, 'address') ?></div>
         </li>
-        <li class="flex mb-x gap-1 start top <?= getP('date_of_birth') ? '' : 'section_hide' ?>">
+        <li class="flex mb-x gap-1 start top <?= get($personal, 'date_of_birth') ? '' : 'section_hide' ?>">
           <span class="on-icon flex"><?= getIcon("date") ?></span>
-          <div class="text"><?= getP('date_of_birth') ?></div>
+          <div class="text"><?= get($personal, 'date_of_birth') ?></div>
         </li>
 
         <?php
@@ -84,11 +83,11 @@
     </div>
     <div class="layer content">
       <div class="about">
-        <h1><?= getP('firstname') . ' ' . getP('lastname') ?></h1>
-        <h3 class="pb-1"><?= getP('headline') ?></h3>
+        <h1><?= get($personal, 'firstname') . ' ' . get($personal, 'lastname') ?></h1>
+        <h3 class="pb-1"><?= get($personal, 'headline') ?></h3>
         <div class="info mt-2">
           <h4>Profile</h4>
-          <p><?= getP('about') ?></p>
+          <p><?= get($personal, 'about') ?></p>
         </div>
       </div>
 

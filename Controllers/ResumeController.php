@@ -11,6 +11,7 @@ use Devlee\XRouter\Router;
 use Devlee\mvccore\Session;
 // middlewares
 use App\Middlewares\AuthMiddleware;
+use App\Models\Template;
 use Devlee\mvccore\DB\DataAccess;
 use Devlee\mvccore\FileUpload;
 // PDF for Dompdf 
@@ -36,8 +37,23 @@ class ResumeController
   public function createMeta(Request $req, Response $res)
   {
     $data = $req->body();
-    $meta_id = Library::generateToken(16);
-    $resume_id = Library::generateToken(16);
+    $user = $this->session->get('user')['userID'];
+    if (isset($data['update_meta'])) {
+      $sql_resume = "UPDATE tblresume_metadata SET template_id = ? WHERE user_id = ? AND resume_id = ?";
+
+      $resume = $this->DataAccess->query(
+        $sql_resume,
+        [$data['template_id'], $user, $data['resume_id']]
+      );
+
+      if ($resume) $res->json(['success' => true, "template" => $data['template_id']]);
+      exit;
+    }
+
+
+
+    $meta_id = Library::generateToken(12);
+    $resume_id = Library::generateToken(12);
 
     $user = $this->session->get('user') ?? exit('Not authorized...');
     if ($user['_sess_token'] !== $data['token']) exit('Not authorized...');
@@ -138,13 +154,16 @@ class ResumeController
       if ($update) $res->json(['success' => true]);
       exit;
     }
+    $templates = (new Template())->findAll(['status' => 1], ["template_id", "thumbnail"]);
+    $templates = $templates['data'] ?? [];
+
     $user = $this->session->get('user');
     $resume_id = $req->params('resume_id');
 
     $resume = $this->DataAccess->findOne("SELECT * FROM tblresume_metadata WHERE resume_id = ?", [$resume_id]);
 
     if (!$resume) return $res->render("resume/resume-not-found", ['user' => $user]);
-    $res->render("resume/resume", ['resume' => $resume]);
+    $res->render("resume/resume", ['templates' => $templates, 'resume' => $resume]);
   }
 
 

@@ -73,7 +73,6 @@
   </head>
 
   <body>
-    <button class="refresh_view"><i class="fas fa-undo"></i></button>
     <div class="root">
       <div class="create-resume">
         <header class="main-header flex between gap-1">
@@ -167,7 +166,7 @@
                 </button>
               </div>
               <!-- // CREATE -->
-              <div class="create_forms page_section on_page">
+              <div class="create_forms page_section">
                 <div class="intro mb-1">
                   <h3 class="">Create resume</h3>
                   <!-- <small>Select a section form below to</small> -->
@@ -417,7 +416,26 @@
               <!-- // SETTINGS  -->
               <div class="settings page_section">SETTINGS</div>
               <!-- // TEMPLATES -->
-              <div class="templates page_section">TEMPLATES</div>
+              <div class="templates page_section on_page">
+
+                <div class="template-component">
+                  <!-- FEEDs -->
+                  <h3 class="txt-center">Templates</h3>
+                  <div class="main mt-2">
+                    <?php foreach ($templates as $data) { ?>
+                    <div class="item">
+                      <img src="/resumes/thumbnails/<?= $data['thumbnail'] ?>" class="img-cover" alt="Design">
+                      <div class="options py-1 px-x">
+                        <a href="#" class="bbtn secondary small use_template">
+                          Use Template <i class="pl-1 fas fa-angle-double-right"></i>
+                        </a>
+                        <input type="hidden" value="<?= $data["template_id"] ?>" id="use_main">
+                      </div>
+                    </div>
+                    <?php } ?>
+                  </div>
+                </div>
+              </div>
               <div class="content page_section">CONTENT</div>
             </div>
           </section>
@@ -435,6 +453,7 @@
           </section>
         </main>
       </div>
+      <button class="refresh_view"><i class="fas fa-undo"></i></button>
       <!-- Toast Modul -->
       <?php include_once __DIR__ . "/../globals/toast-module.php" ?>
     </div>

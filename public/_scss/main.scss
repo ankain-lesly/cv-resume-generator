@@ -520,6 +520,69 @@
     }
   }
 }
+
+.template-component {
+  overflow-x: auto;
+  padding-block: 2rem;
+
+  .main {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+  }
+  .item {
+    border-radius: 0.5em;
+    border: 2px solid hsla($hsl-clr-bg, 0.7);
+    width: 220px;
+    min-height: 200px;
+    position: relative;
+    box-shadow: $bs;
+    overflow: hidden;
+    &:hover {
+      img {
+        transform-origin: top left;
+        transform: scale(1.5);
+      }
+      .options {
+        background-color: hsla($hsl-color-bg, 0.2);
+        a {
+          bottom: 2rem;
+        }
+      }
+    }
+    img {
+      border-radius: 0.5em;
+      transition: $transition;
+    }
+    .options {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transition: $transition;
+      background-color: transparent;
+
+      a {
+        transition: $transition;
+        position: absolute;
+        left: 50%;
+        bottom: -5rem;
+        transition-delay: 300ms;
+        display: block;
+        border: none;
+        box-shadow: $bs;
+        transform: translate(-50%, 0);
+        width: max-content;
+        background-color: $clr-danger !important;
+        &:hover {
+          background-color: $color-bg !important;
+          color: $clr-light;
+        }
+      }
+    }
+  }
+}
 // POpups
 .popup-main {
   display: none;

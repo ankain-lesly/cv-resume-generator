@@ -418,4 +418,21 @@ $(document).ready(function (e) {
       useToast("Resume saved.. 😊");
     }
   };
+
+  $(".use_template").on("click", async function (e) {
+    let template_id = $(this).siblings("#use_main").val();
+    // console.log(template);
+
+    const res = await useFetch("POST", "/resume/meta", {
+      resume_id: META_DATA.resume,
+      template_id: template_id,
+      update_meta: "true",
+    });
+
+    if (res.data && res.data.success) {
+      useToast("Template changed.. 😊");
+      META_DATA.template = res.data.template;
+      updatePreviewer(FORM_DATA);
+    }
+  });
 });

@@ -8,8 +8,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <title>Design 2 | Resume Template</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/static/styles/index.css">
-  <link rel="stylesheet" href="/static/styles/Design_2.css">
+  <link rel="stylesheet" href="/resumes/design/<?= $css_file ?>">
 </head>
 
 <body>
@@ -22,20 +21,20 @@
           <div class="image">
             <img src="<?= $cover ?>" class="img-cover" alt="Profile image">
           </div>
-          <h3 class="pt-2"><?= getP('headline') ?></h3>
+          <h3 class="pt-2"><?= get($personal, 'headline') ?></h3>
         </div>
         <div class="details">
           <ul>
-            <li><b>NAME:</b> <?= getP('firstname') . ' ' . getP('lastname')  ?></li>
+            <li><b>NAME:</b> <?= get($personal, 'firstname') . ' ' . get($personal, 'lastname')  ?></li>
 
             <li><b>DATE OF BIRTH:</b> 12/09/2012</li>
             <li><b>PLACE OF BIRTH:</b> Bamend Fundon</li>
             <li><b>MARITAL STATUS:</b> Single</li>
             <li><b>NATIONALITY:</b> Cameroon</li>
 
-            <li><b>TEL:</b> <?= getP('phone') ?></li>
-            <li><b>EMAIL:</b> <?= getP('email') ?></li>
-            <li class="mb-1"><b>ADDRESS:</b> <?= getP('address') ?></li>
+            <li><b>TEL:</b> <?= get($personal, 'phone') ?></li>
+            <li><b>EMAIL:</b> <?= get($personal, 'email') ?></li>
+            <li class="mb-1"><b>ADDRESS:</b> <?= get($personal, 'address') ?></li>
             <!-- 
             <?php
             foreach ($extras as $key => $data) { ?>
@@ -62,12 +61,12 @@
         </thead>
         <tbody>
           <?php foreach ($education as $key => $data) { ?>
-            <tr>
-              <td><?= get($data, 'start_date') ?></td>
-              <td><?= get($data, 'school') ?></td>
-              <td><?= get($data, 'education') ?></td>
-              <td><?= get($data, 'city') ?></td>
-            </tr>
+          <tr>
+            <td><?= get($data, 'start_date') ?></td>
+            <td><?= get($data, 'school') ?></td>
+            <td><?= get($data, 'education') ?></td>
+            <td><?= get($data, 'city') ?></td>
+          </tr>
           <?php } ?>
         </tbody>
       </table>
@@ -89,12 +88,12 @@
         </thead>
         <tbody>
           <?php foreach ($experience as $key => $data) { ?>
-            <tr>
-              <td><?= get($data, 'start_date') ?></td>
-              <td><?= get($data, 'employer') ?></td>
-              <td><?= get($data, 'position') ?></td>
-              <td><?= get($data, 'city') ?></td>
-            </tr>
+          <tr>
+            <td><?= get($data, 'start_date') ?></td>
+            <td><?= get($data, 'employer') ?></td>
+            <td><?= get($data, 'position') ?></td>
+            <td><?= get($data, 'city') ?></td>
+          </tr>
           <?php } ?>
         </tbody>
       </table>
@@ -115,10 +114,10 @@
           </thead>
           <tbody>
             <?php foreach ($language as $key => $data) { ?>
-              <tr>
-                <td><?= get($data, 'language') ?></td>
-                <td><?= get($data, 'proficiency') ?></td>
-              </tr>
+            <tr>
+              <td><?= get($data, 'language') ?></td>
+              <td><?= get($data, 'proficiency') ?></td>
+            </tr>
             <?php } ?>
           </tbody>
         </table>
@@ -138,10 +137,10 @@
           </thead>
           <tbody>
             <?php foreach ($skill as $key => $data) { ?>
-              <tr>
-                <td><?= get($data, 'skill') ?></td>
-                <td><?= get($data, 'proficiency') ?></td>
-              </tr>
+            <tr>
+              <td><?= get($data, 'skill') ?></td>
+              <td><?= get($data, 'proficiency') ?></td>
+            </tr>
             <?php } ?>
           </tbody>
         </table>
@@ -161,10 +160,10 @@
           </thead>
           <tbody>
             <?php foreach ($hobby as $key => $data) { ?>
-              <tr>
-                <td><?= $data ?></td>
-                <td><?= $data ?></td>
-              </tr>
+            <tr>
+              <td><?= $data ?></td>
+              <td><?= $data ?></td>
+            </tr>
             <?php } ?>
           </tbody>
         </table>

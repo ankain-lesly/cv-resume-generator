@@ -261,6 +261,74 @@ select:active {
     }
   }
 }
+// Templates
+
+.template-component {
+  .main {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .item {
+    border-radius: 0.15em;
+    border: 1px solid hsla($hsl-clr-bg, 0.7);
+    // width: 220px;
+    // min-height: 100px;
+    position: relative;
+    box-shadow: $bs;
+    overflow: hidden;
+    background-color: $clr-light;
+    &:hover {
+      img {
+        transform: scale(1.2);
+      }
+      .options {
+        background-color: hsla($hsl-color-bg, 0.2);
+        background-color: hsla($hsl-color-bg, 0.2);
+        background-color: hsla($hsl-color-bg, 0.2);
+        background-color: hsla($hsl-color-bg, 0.2);
+        background-color: hsla($hsl-color-bg, 0.2);
+        a {
+          bottom: 2rem;
+        }
+      }
+    }
+    img {
+      // border-radius: 0.5em;
+      transition: $transition;
+      transition-duration: 500ms;
+    }
+    .options {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transition: $transition;
+      background-color: transparent;
+
+      a {
+        transition: $transition;
+        position: absolute;
+        left: 50%;
+        bottom: -5rem;
+        transition-delay: 300ms;
+        display: block;
+        border: none;
+        box-shadow: $bs;
+        transform: translate(-50%, 0);
+        width: max-content;
+        background-color: $clr-danger !important;
+        &:hover {
+          background-color: $color-bg !important;
+          color: $clr-light;
+        }
+        font-size: 0.65rem;
+        padding: 0.25em 0.5em;
+      }
+    }
+  }
+}
 // PERSONAL SECTION
 .personal-1 {
   input[type="file"] {
