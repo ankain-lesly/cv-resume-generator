@@ -452,6 +452,60 @@ h3 {
 .mr-2 {
   margin-right: 1rem;
 }
+
+/* TOP*/
+.pt-x {
+  padding-top: 5px;
+}
+.pt-1 {
+  padding-top: 10px;
+}
+.pt-2 {
+  padding-top: 1rem;
+}
+.pt-4 {
+  padding-top: 4rem;
+}
+/* y*/
+.my-x {
+  padding-block: 5px;
+}
+.my-1 {
+  padding-block: 10px;
+}
+.my-2 {
+  padding-block: 1rem;
+}
+.my-4 {
+  padding-block: 4rem;
+}
+
+/* yx */
+.m-x {
+  padding: 5px;
+}
+.m-1 {
+  padding: 10px;
+}
+.m-2 {
+  padding: 1rem;
+}
+.m-4 {
+  padding: 4rem;
+}
+/* x */
+.mx-x {
+  padding-inline: 5px;
+}
+.mx-1 {
+  padding-inline: 10px;
+}
+.mx-2 {
+  padding-inline: 1rem;
+}
+.mx-4 {
+  padding-inline: 4rem;
+}
 /* RESET MARGIN*/
 .m-0 {
   margin: 0;
@@ -503,6 +557,45 @@ h3 {
 .pt-4 {
   padding-top: 4rem;
 }
+/* y  */
+.py-x {
+  padding-block: 5px;
+}
+.py-1 {
+  padding-block: 10px;
+}
+.py-2 {
+  padding-block: 1rem;
+}
+.py-4 {
+  padding-block: 4rem;
+}
+/* x */
+.px-x {
+  padding-inline: 5px;
+}
+.px-1 {
+  padding-inline: 10px;
+}
+.px-2 {
+  padding-inline: 1rem;
+}
+.px-4 {
+  padding-inline: 4rem;
+}
+/* yx */
+.p-x {
+  padding: 5px;
+}
+.p-1 {
+  padding: 10px;
+}
+.p-2 {
+  padding: 1rem;
+}
+.p-4 {
+  padding: 4rem;
+}
 
 /* RIGHT*/
 .pr-x {
@@ -529,7 +622,6 @@ h3 {
 .pr-0 {
   padding-right: 0;
 }
-
 .fs-small {
   font-size: smaller;
 }
@@ -623,6 +715,10 @@ green: rgb(22,243,117);
 // fonts
 .font-weight-1 {
   font-weight: 100;
+}
+// fonts
+.font-bold {
+  font-weight: bold;
 }
 
 .font-size-x {

@@ -9,17 +9,17 @@
   <nav class="drop_menu">
     <ul class="menu_container">
       <li>
-        <a class="link flex" href="/dashboard/">
+        <a class="link flex" href="/app/">
           <i class="fas fa-chart-pie icon" style="width:1.2rem"></i>
           <span class="text">Dashboard</span></a>
       </li>
       <li>
-        <a class="link flex" href="/dashboard/?create=resume">
+        <a class="link flex" href="/app/?create=resume">
           <i class="fas fa-edit icon" style="width:1.2rem"></i>
           <span class="text">Create Resume</span></a>
       </li>
       <li>
-        <a class="link flex" href="/dashboard/#notifications">
+        <a class="link flex" href="/app/#notifications">
           <i class="fas fa-bell icon" style="width:1.2rem"></i>
           <span class="text"> Notifications</span></a>
       </li>
@@ -29,7 +29,8 @@
           <span class="text">Home</span></a>
       </li>
       <li class="mt-2">
-        <a class="bbtn secondary w-full" href="/account/logout" onclick="return confirm('Do you want to logout?')">Logout</a>
+        <a class="bbtn secondary w-full" href="/account/logout"
+          onclick="return confirm('Do you want to logout?')">Logout</a>
       </li>
     </ul>
   </nav>

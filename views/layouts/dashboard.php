@@ -89,7 +89,7 @@
                 <span class="fas fa-angle-left"></span>
               </button>
               <div class="image">
-                <img src="/static/media/t1.jpg" id="preview_image" alt="Template">
+                <img src="#" id="preview_image" alt="Template">
               </div>
               <button class="arrow show_temp_right">
                 <span class="fas fa-angle-right"></span>

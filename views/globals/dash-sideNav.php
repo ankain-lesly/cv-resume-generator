@@ -43,19 +43,19 @@ $notifications = 1;
     <p class="menu-title">Manage</p>
     <ul class="menu-list">
       <li>
-        <a aria-current="page" href="/dashboard/">
+        <a aria-current="page" href="/app/">
           <i class="fas fa-chart-line icon"></i>
           <span class="text">Dashboard</span></a>
       </li>
       <li>
-        <a aria-current="page" href="/dashboard/resumes">
+        <a aria-current="page" href="/app/resumes">
           <i class="fas fa-coins icon"></i>
           <span class="text"><label class="notif_indicator"><?= $resumes ?></label> My Resumes</span></a>
       </li>
       <li>
-        <a aria-current="page" href="/dashboard/templates">
+        <a aria-current="page" href="/templates/resume">
           <i class="fas fa-bezier-curve icon"></i>
-          <span class="text">Templates</span></a>
+          <span class="text">Resume Templates</span></a>
       </li>
       <!-- <li class="drop-down">
         <a aria-current="page" class="drop-down-head"> 
@@ -93,7 +93,7 @@ $notifications = 1;
     <p class="menu-title">Create new</p>
     <ul class="menu-list">
       <li>
-        <a class="" href="/dashboard/?create=resume">
+        <a class="" href="/app/?create=resume">
           <i class="fas fa-fill icon"></i>
           <span class="text">New Resume <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
       </li>
@@ -106,7 +106,7 @@ $notifications = 1;
     <p class="menu-title">Resources</p>
     <ul class="menu-list">
       <li>
-        <a href="/dashboard/get-started">
+        <a href="/app/get-started">
           <i class="fas fa-network-wired icon"></i>
           <span class="text">Get Started</span></a>
       </li>
@@ -124,7 +124,7 @@ $notifications = 1;
           <span class="text">Settings</span></a>
       </li>
       <!-- <li>
-        <a href="/dashboard/show?view=trash">
+        <a href="/app/show?view=trash">
           <i class="fas fa-sort-amount-down icon"></i>
           <span class="text">My Trash <i class="ml-1 fas fa-trash font-size-small clr-warning"></i></span></a>
       </li> -->

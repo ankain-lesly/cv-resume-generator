@@ -1,3 +1,6 @@
+<?php
+$data = $edit_data ?? null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,11 +18,16 @@
       <i class="fas fa-radiation"></i>
     </div>
     <h2 class="pt-2 pb-2mt-2 mb-2 txt-center">Create a Template</h2>
+    <div class="links txt-center flex wrap">
+      <a class="btn font-size-small clr-warning" href="/app/"><i class="fas fa-arrow-left"></i> Dashboard</a>
+      <a class="btn font-size-small clr-warning" href="/templates/resume">Templates <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
     <main class="container-x main">
       <div class="layer previewer">
         <h3>Preview</h3>
-        <div class="content flex">
-          <img src="#" alt="Template">
+        <div class="content flex <?= $data ? 'data' : '' ?>">
+          <img src="<?= $data ? "/resumes/thumbnails/" . $edit_data['thumbnail'] : '#' ?>" alt="Template">
           <div class="text">PREVIEWER</div>
         </div>
       </div>
@@ -28,22 +36,27 @@
         <div class="content">
           <form method="post" enctype="multipart/form-data">
             <!-- // Title -->
-            <input type="text" name="title" placeholder="Enter title" required>
+            <input type="text" name="title" placeholder="Enter title" value="<?= $data ? $data['title'] : '' ?>"
+              required>
             <!-- Image -->
             <div class="form-group">
-              <label for="file_image" class="flex">[ Image Thumbnail ]</label>
+              <label for="file_image" class="flex">[ Image Thumbnail ]
+                <?= $data ? "<i class='fas fa-dot-circle clr-danger pl-2'></i>" : '' ?>
+              </label>
               <input type="file" id="file_image" placeholder="Template thumbnail" name="file_image" accept=".png"
                 required>
             </div>
             <!-- // Files -->
             <div class="group flex gap-2">
               <div class="form-group">
-                <label for="file_php" class="flex">[ PHP File ]</label>
+                <label for="file_php" class="flex">[ PHP File ]
+                  <?= $data ? "<i class='fas fa-dot-circle clr-danger pl-2'></i>" : '' ?></label>
                 <input type="file" id="file_php" placeholder="Template thumbnail" name="file_php" accept=".php"
                   required>
               </div>
               <div class="form-group">
-                <label for="file_css" class="flex">[ CSS File ]</label>
+                <label for="file_css" class="flex">[ CSS File ]
+                  <?= $data ? "<i class='fas fa-dot-circle clr-danger pl-2'></i>" : '' ?></label>
                 <input type="file" id="file_css" placeholder="Template thumbnail" name="file_css" accept=".css"
                   required>
               </div>
@@ -51,7 +64,7 @@
             <div class="setup_area input">
               <div class="x-layout-setup flex wrap start gap-x mb-1">
                 <p class="setting">
-                  <span class="text">---</span>
+                  <span class="text">new</span>
                   <span class="icon ml-x"><i class="fas fa-times"></i></span>
                 </p>
               </div>
@@ -61,7 +74,8 @@
                   <span class="label">
                     Add settings
                   </span>
-                  <input type="hidden" id="selected_info" name="settings" value="" />
+                  <input type="hidden" id="selected_info" name="settings"
+                    value="<?= $data ? $data['settings'] : '' ?>" />
                   <i class="fas fa-caret-down"></i>
                 </div>
 
@@ -182,6 +196,20 @@
     });
   }
 
+  function runOnEdit() {
+
+    let settings = $("#selected_info").val();
+    if (!settings) return;
+
+    selectedSetting = settings.split(',').filter(val => val != "").map((value) => ({
+      name: value,
+    }))
+
+    renderSeleted(selectedSetting);
+  }
+
+  // Update Selection on edit
+  runOnEdit()
   settingsObj = [
     "picture",
     "firstname",
@@ -210,12 +238,12 @@
   ];
   loadOptions(settingsObj);
 
-  $("#template_main").change(function(e) {
+  $("#file_image").change(function(e) {
     const file = $(this).prop("files")[0];
     if (file) {
       let source = window.URL.createObjectURL(file);
-      $(".previewer .content").addClass("data");
       $(".previewer .content").find("img").attr("src", source);
+      $(".previewer .content").addClass("data");
     }
   });
   </script>

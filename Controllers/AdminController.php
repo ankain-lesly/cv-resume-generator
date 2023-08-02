@@ -35,7 +35,8 @@ class AdminController
 
   public function createTemplate(Request $req, Response $res)
   {
-    $key = $req->params('template_id');
+    $edit = $req->query('edit');
+    $on_data = [];
 
     if ($req->isPost()) {
       $data = $req->body();
@@ -46,7 +47,8 @@ class AdminController
 
       $FileHandler = new FileUpload();
 
-      $template_id = Library::generateToken(10);
+      $template_id = $edit ? $edit : Library::generateToken(10);
+
       $data['template_id'] = $template_id;
       $data['user_id'] = $this->session->get('user')['userID'];
 
@@ -87,14 +89,19 @@ class AdminController
       }
 
       $this->templateObj->loadData($data);
-      $response = $this->templateObj->insert();
+      $response = $edit ? $this->templateObj->update($data, ['user_id', 'template_id']) : $this->templateObj->insert();
 
       // if ($response) $res->json(['success' => true]);
-      if ($response) $this->session->setToast("toast", "Template added successfully");
-      else $this->session->setToast("toast", "Ooops failed to create template 🚩");
+      if ($response) $this->session->setToast("toast", "Templating successfully ✔");
+      else $this->session->setToast("toast", "Ooops failed to process template 🚩");
       $res->redirect("/new/template");
     }
 
-    $res->render("resume/template");
+    if ($edit) {
+      $data = $this->templateObj->findOne(['template_id' => $edit]);
+      $on_data = $data;
+    }
+
+    $res->render("resume/create-templates", ['edit_data' => $on_data]);
   }
 }

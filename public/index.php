@@ -51,11 +51,12 @@ $router->post("/resume/edit/{template_id}", [ResumeController::class, 'setupResu
 $router->get("/new/template", [AdminController::class, 'createTemplate']);
 $router->post("/new/template", [AdminController::class, 'createTemplate']);
 // Dashboard
-$router->get("/dashboard/", [MainController::class, 'index']);
-$router->get("/dashboard/resumes", [MainController::class, 'resumes']);
-$router->get("/dashboard/templates", [MainController::class, 'templates']);
+$router->get("/app", [MainController::class, 'index']);
+$router->get("/app/", [MainController::class, 'index']);
+$router->get("/app/resumes", [MainController::class, 'resumes']);
+$router->get("/templates/{type}", [MainController::class, 'templates']);
 $router->get("/account/settings", [MainController::class, 'settings']);
-$router->get("/dashboard/get-started", '@_dashboard/get-started');
+$router->get("/app/get-started", '@_dashboard/get-started');
 $router->get("/user/profile", [AuthController::class, 'profile']);
 $router->post("/user/profile", [AuthController::class, 'profile']);
 
