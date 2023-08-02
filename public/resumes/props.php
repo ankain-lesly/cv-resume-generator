@@ -99,10 +99,10 @@ function makeBody(string $string)
 
 <style>
 #template_main {
-  outline: 5px solid orange;
-  margin: 5px auto !important;
-  min-height: 1450px;
-  padding-bottom: 40px;
+  /* outline: 5px solid orange; */
+  /* margin: 5px auto !important; */
+  /* min-height: 1450px; */
+  /* padding-bottom: 40px; */
   position: relative;
 }
 </style>

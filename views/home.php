@@ -58,9 +58,29 @@
         </div>
       </div>
     </section>
-    <!-- // Templates -->
+
+    <!-- // TEMPLATES -->
     <section id="templates">
-      <div class="container-x section-p">
-        <h1>TEMPLATES...</h1>
+      <h2 class="txt-center">Recent Templates</h2>
+      <div class="design-container section-p container-x">
+        <div class="main">
+          <!-- FEEDs -->
+          <?php foreach ($templates as $data) { ?>
+          <div class="item">
+            <img src="/resumes/thumbnails/<?= $data['thumbnail'] ?>" class="img-cover" alt="Design">
+            <div class="options py-1 px-x">
+              <a href="/app/create/resume/<?= $data["template_id"] ?>/?reff=new&basis=no-auth"
+                class="bbtn secondary small use_template">
+                Use Template <i class="pl-1 fas fa-angle-double-right"></i>
+              </a>
+              <input type="hidden" value="<?= $data["template_id"] ?>" id="use_main">
+            </div>
+          </div>
+          <?php } ?>
+        </div>
       </div>
+    </section>
+    <!-- // Another -->
+    <section id="another">
+      <div class="contain-x section-p"></div>
     </section>

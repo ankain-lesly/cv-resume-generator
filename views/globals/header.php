@@ -8,7 +8,7 @@ $user = (new Session())->get('user');
 <header class="main-header">
   <div class="container-x gap-2 flex between header-h">
     <a href="/" class="flex gap-x">
-      <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Logo" width="30px">
+      <img src="/static/media/logo.png" alt="Logo" width="30px">
       <h1 class="main-header-title"><span class="clr-warning">CV </span> Maker</h1>
     </a>
     <nav class="nav-menu">
@@ -101,7 +101,8 @@ $user = (new Session())->get('user');
               <label for="search">Search </label>
               <div class="form-group flex relative">
                 <i class="fas fa-search icon-seach"></i>
-                <input class="search-module flex-1" type="search" name="keyword" id="search" placeholder="Search our collections" />
+                <input class="search-module flex-1" type="search" name="keyword" id="search"
+                  placeholder="Search our collections" />
                 <button class=" search-module">Go</button>
               </div>
             </form>
@@ -111,15 +112,15 @@ $user = (new Session())->get('user');
           <i class="fas fa-bars"></i>
         </button>
         <?php if ($user) : ?>
-          <button class="notification-btn btnB white">
-            <i class="fas fa-bell"></i>
-          </button>
-          <?php include_once "profile-nav.php"; ?>
+        <button class="notification-btn btnB white">
+          <i class="fas fa-bell"></i>
+        </button>
+        <?php include_once "profile-nav.php"; ?>
         <?php else : ?>
-          <div class="flex gap-x">
-            <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
-            <a href="/account/signup" class="btn btn-p">Signup</a>
-          </div>
+        <div class="flex gap-x">
+          <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
+          <a href="/account/signup" class="btn btn-p">Signup</a>
+        </div>
         <?php endif; ?>
       </div>
     </div>
