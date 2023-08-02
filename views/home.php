@@ -14,8 +14,7 @@
             </h5>
           </div>
           <div class="media">
-            <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Welcome cart item"
-              style="max-height: 460px;">
+            <img src="/static/media/logo.png" alt="Welcome cart item" style="max-height: 460px;">
           </div>
         </div>
       </div>

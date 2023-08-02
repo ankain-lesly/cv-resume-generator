@@ -1,8 +1,17 @@
   <!-- GLOBALS -->
   <?php include_once __DIR__ . "/../globals/globals.php" ?>
+  <script src="/static/scripts/jQuery.min.js"></script>
 
+  <script type="module">
+import {
+  handleAppTheme,
+} from "/static/scripts/app_hooks.js";
+
+// App Theme()
+handleAppTheme();
+  </script>
   <title>Untitled | Resume</title>
-  <link rel="stylesheet" href="/static/styles/create_new.css" />
+  <link rel="stylesheet" href="/static/styles/create.css" />
   <style type="text/css">
 #my_resume_wrapper {
   margin: auto;
@@ -58,6 +67,10 @@
 
 }
 
+#page_loader .content p {
+  font-size: 1.1rem;
+}
+
 #page_loader .content {
   margin-top: 2rem;
   padding: 1em;
@@ -70,28 +83,6 @@
   <body>
     <div class="root">
       <div class="create-resume">
-        <header class="main-header flex between gap-1">
-          <a href="/dashboard/"><span class="clr-danger">Res</span>ume</a>
-
-          <div class="title flex-1 txt-center" style="overflow: hidden">
-            <p class="txt-ellipsis">Untitled Resume</p>
-          </div>
-
-          <div class="actions flex gap-1">
-            <button class="bbtn primary flex gap-x btn_save_resume">
-              <i class="fas fa-trash"></i> Clear
-            </button>
-            <button class="bbtn primary flex gap-x btn_save_resume">
-              <i class="fas fa-save"></i> Save
-            </button>
-            <button class="bbtn primary flex gap-x">
-              CV <i class="pl-1 fas fa-caret-down"></i>
-            </button>
-            <button class="bbtn secondary pre flex gap-x">
-              <i class="fas fa-download pr-x"></i> Download
-            </button>
-          </div>
-        </header>
         <div id="page_loader">
           <div class="load_page layer_content flex column">
             <p class="sync flex gap-1">
@@ -402,8 +393,6 @@
       <!-- Toast Modul -->
       <?php include_once __DIR__ . "/../globals/toast-module.php" ?>
     </div>
-
-    <script src="/static/scripts/jQuery.min.js"></script>
   </body>
 
   </html>

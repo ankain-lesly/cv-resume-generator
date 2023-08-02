@@ -40,13 +40,14 @@ $router->post("/auth/signup", [AuthController::class, 'signup']);
 // Resume
 $router->post("/resume/meta", [ResumeController::class, 'createMeta']);
 $router->get("/resume/{resume_id}/", [ResumeController::class, 'getResumeData']);
-// $router->get("/resume/meta/", [ResumeController::class, 'getMetaData']);
-// $router->get("/resume/meta/{resume_key}/", [ResumeController::class, 'getResumeData']);
-$router->get("/app/create/resume/{resume_id}", [ResumeController::class, 'createResumeDemo']);
-$router->get("/resume/create/{resume_id}", [ResumeController::class, 'createResume']);
-$router->post("/resume/create/{resume_id}", [ResumeController::class, 'createResume']);
+
+// Resume workspace: user, client
+$router->get("/app/create/resume/{resume_id}/", [ResumeController::class, 'createResume']);
+$router->get("/resume/edit/{resume_id}", [ResumeController::class, 'createResume']);
+
 // Get Resume Setup on edit
-$router->post("/resume/edit/{template_id}", [ResumeController::class, 'setupResume']);
+$router->post("/resume/update/{resume_id}", [ResumeController::class, 'createResume']);
+$router->post("/resume/render/{template_id}", [ResumeController::class, 'setupResume']);
 
 // Templates
 $router->get("/new/template", [AdminController::class, 'createTemplate']);

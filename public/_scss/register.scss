@@ -84,6 +84,9 @@ $danger: hsl(334, 100%, 67%);
     display: none;
   }
   .form-group {
+    margin-bottom: 1.2em;
+    position: relative;
+
     &.error {
       border-color: $clr-danger;
 
@@ -94,80 +97,71 @@ $danger: hsl(334, 100%, 67%);
       .status-msg {
         display: block;
       }
-    }
-    margin-bottom: 1em;
-    border: 2px solid hsla($hsl-clr-bg, 0.5);
-    border-radius: 1.5em;
 
-    padding: 0.4em 1em;
-    position: relative;
+      .info {
+        visibility: visible;
+      }
+    }
   }
   // .content {
   //  position: relative;
   // }
   input {
-    box-shadow: none !important;
-    border: none !important;
+    box-shadow: none;
+    // border: none !important;
     // border: 1px solid #fff;
     background-color: transparent;
     width: 100%;
     height: 100%;
     // border-radius: 0.3em;
-    padding: 0;
-    font-size: 0.95rem;
-    color: $clr-bg;
-    flex: 1 0;
+    // padding: 0;
+    // font-size: 0.95rem;
+    // color: $clr-bg;
+    // flex: 1 0;
+
+    border: 2px solid hsla($hsl-clr-bg, 0.5);
+    border-radius: 1.5em;
+
+    padding: 0.7em 3em;
+    font-size: 1.05rem;
+
     &[type="checkbox"] {
       width: max-content;
     }
     &:hover,
     &:active,
     &:focus {
-      box-shadow: none !important;
-      border: none !important;
+      box-shadow: $bs;
+      // border: none !important;
       /* border-color: inherit; */
     }
   }
 
-  input:not(:placeholder-shown) ~ .input-label,
-  input:active ~ .input-label,
-  input:focus ~ .input-label {
-    top: 4px;
-    font-size: 0.9rem;
-  }
-  input:focus ~ .input-label {
-    color: $clr-success;
-  }
-  input:active ~ .motion,
-  input:focus ~ .motion {
-    border-color: $clr-success;
-    width: 100%;
+  input:active,
+  input:focus {
+    border-color: $clr-bg;
+    & ~ .icon {
+      border-color: $clr-success;
+      color: $clr-bg;
+    }
   }
 
-  // input::placeholder {
-  //   opacity: 0;
-  // }
-  input::-webkit-autofil,
-  input::-webkit-autofil:focus,
-  input:-webkit-autofil:active {
-    background-color: transparent !important;
-    -webkit-box-shadow: 0 0 0 100px inset red !important;
-    border: 1px solid green !important;
-    -webkit-text-fill-color: red !important;
-    transition: background-color 5000s ease-in-out 0s !important;
-  }
-  .input:-internal-autofill-selected {
-    background-color: transparent !important;
-  }
   .input-label,
   .icon {
     color: $clr-text-muted;
   }
   .icon {
     margin-right: 5px;
-    // margin-bottom: 5px;
     width: 20 px;
     font-size: 1.25rem;
+    position: absolute;
+    left: 1rem;
+    top: 12px;
+  }
+  .visibility {
+    position: absolute;
+    right: 1rem;
+    font-size: 1.1rem;
   }
   .input-label {
     position: absolute;
@@ -192,17 +186,12 @@ $danger: hsl(334, 100%, 67%);
     text-overflow: ellipsis;
     z-index: 20;
   }
-  input:focus ~ .status-msg {
-    background-color: $color-bg;
-    color: $clr-light;
-  }
-  &.error .info {
-    visibility: visible;
-  }
   .info {
     color: $clr-danger;
     font-size: small;
     visibility: hidden;
+    position: absolute;
+    right: 2rem;
   }
   .form_btn {
     width: 100%;

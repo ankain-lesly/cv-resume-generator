@@ -14,6 +14,8 @@ use App\Middlewares\AuthMiddleware;
 use App\Models\Template;
 use Devlee\mvccore\DB\DataAccess;
 use Devlee\mvccore\FileUpload;
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
+
 // PDF for Dompdf 
 
 class ResumeController
@@ -28,10 +30,10 @@ class ResumeController
     $this->DataAccess = new DataAccess();
 
     $this->resumeObj = new Resume();
-    $AuthMiddleware = new AuthMiddleware();
-    $AuthMiddleware->isUser("options");
+    // $AuthMiddleware = new AuthMiddleware();
+    // $AuthMiddleware->isUser("options");
 
-    if ($option !== 'nolayout') Router::$router->setLayout('');
+    Router::$router->setLayout('');
   }
 
   public function createMeta(Request $req, Response $res)
@@ -103,6 +105,9 @@ class ResumeController
   }
   public function createResume(Request $req, Response $res)
   {
+    $user = $this->session->get('user');
+    $resume_id = $req->params('resume_id');
+
     if ($req->isPost()) {
       $data = $req->body();
       if (isset($data['cover_photo']) && !empty($_FILES)) {
@@ -118,7 +123,7 @@ class ResumeController
 
         $file_options = [
           "path" => "/uploads/covers/",
-          "filename" => "RESUME-" . $key,
+          "filename" => $user ? "RESUME-" . $key : "Untited-R-" . $key,
           "accept" => ['.jpg', '.jpeg', '.png']
         ];
 
@@ -136,6 +141,8 @@ class ResumeController
         exit;
       }
       // Getting Resume Data
+      if (!$user) return  $res->json(['success' => false, 'unauthorised' => true]);
+
       $data['personal'] = json_encode($data['personal']  ?? "");
       $data['extras'] = json_encode($data['extras']  ?? "");
       $data['education'] = json_encode($data['education']  ?? "");
@@ -154,16 +161,23 @@ class ResumeController
       if ($update) $res->json(['success' => true]);
       exit;
     }
+    if ($user) {
+      $resume = $this->DataAccess->findOne("SELECT * FROM tblresume_metadata WHERE resume_id = ?", [$resume_id]);
+    } else {
+      $resume = $this->DataAccess->findOne("SELECT template_id FROM tbltemplates WHERE template_id = ?", [$resume_id]);
+
+      if ($resume) {
+        $resume["title"] = "Untitled";
+        $resume["resume_id"] = "XR-12345678-Lee";
+        $resume["demo"] = true;
+      }
+    }
+
     $templates = (new Template())->findAll(['status' => 1], ["template_id", "thumbnail"]);
     $templates = $templates['data'] ?? [];
 
-    $user = $this->session->get('user');
-    $resume_id = $req->params('resume_id');
-
-    $resume = $this->DataAccess->findOne("SELECT * FROM tblresume_metadata WHERE resume_id = ?", [$resume_id]);
-
     if (!$resume) return $res->render("resume/resume-not-found", ['user' => $user]);
-    $res->render("resume/resume", ['templates' => $templates, 'resume' => $resume]);
+    $res->render("resume/resume", ['templates' => $templates, 'resume' => $resume, 'user' => $user]);
   }
 
 

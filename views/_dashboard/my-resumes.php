@@ -33,7 +33,7 @@
           </div>
           <div class="foot flex between">
             <p class="clr-warning">App 13</p>
-            <a href="/resume/create/<?= $data['resume_id'] ?>" class="btn btn-p">Open</i></a>
+            <a href="/resume/edit/<?= $data['resume_id'] ?>" class="btn btn-p">Open</i></a>
           </div>
         </div>
       </div>

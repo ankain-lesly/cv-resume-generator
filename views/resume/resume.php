@@ -40,14 +40,17 @@
 }
 
 #page_loader .layer_content {
-  cursor: wait;
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+#page_loader .sync,
+#page_loader .content {
+  background-color: var(--clr-white);
 }
 
 #page_loader .sync {
   padding: 0.5em 1em;
   border-radius: 0.35em;
-  background-color: var(--clr-white);
   color: var(--clr-bg);
   font-size: 0.8rem;
   box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
@@ -58,6 +61,27 @@
   background-color: var(--clr-white);
   /*color: var(--clr-bg);*/
   cursor: alias;
+}
+
+
+#page_loader .content h2 {
+  border-bottom: 2px solid var(--clr-text-muted);
+  text-align: left;
+  padding-bottom: 0.5rem;
+}
+
+#page_loader .content p {
+  font-size: 1.1rem;
+}
+
+
+#page_loader.alert-unsigned {
+  display: none;
+  background-color: hsla(var(--hsl-color-bg), 0.8);
+}
+
+#page_loader.alert-unsigned.show {
+  display: flex;
 }
 
 .refresh_view {
@@ -84,17 +108,18 @@
           <div class="title flex-1 txt-center" style="overflow: hidden">
             <!-- on_edit -->
             <div class="resume_title flex gap-x">
-              <p class="txt-ellipsis"><?= $resume['title'] ?> </p>
+              <p class="txt-ellipsis"><?= $resume['title'] ?> | Resume</p>
               <input type="hidden" id="update_title" value="<?= $resume['title'] ?>">
               <button class="fas fa-pencil-alt font-size-small"></button>
             </div>
           </div>
 
           <div class="actions flex gap-1">
-            <button class="bbtn primary flex gap-x btn_clear">
+            <button class="bbtn primary flex gap-x btn_clear"
+              onclick="return confirm('Do you want to reset all form data?')">
               <span class="spin loader inline-text"></span>
               <i class="icon fas fa-trash"></i>
-              <span class="txt">Clear</span>
+              <span class="txt">Reset</span>
             </button>
             <button class="bbtn primary flex gap-x btn_save_resume">
               <span class="spin loader inline-text"></span>
@@ -166,7 +191,7 @@
                 </button>
               </div>
               <!-- // CREATE -->
-              <div class="create_forms page_section">
+              <div class="create_forms page_section on_page">
                 <div class="intro mb-1">
                   <h3 class="">Create resume</h3>
                   <!-- <small>Select a section form below to</small> -->
@@ -416,7 +441,7 @@
               <!-- // SETTINGS  -->
               <div class="settings page_section">SETTINGS</div>
               <!-- // TEMPLATES -->
-              <div class="templates page_section on_page">
+              <div class="templates page_section">
 
                 <div class="template-component">
                   <!-- FEEDs -->
@@ -453,6 +478,30 @@
           </section>
         </main>
       </div>
+
+      <!-- //welcome -->
+      <?php if (!$user) : ?>
+      <div id="page_loader" class="alert-unsigned">
+        <div class="load_page layer_content flex column w-full gap-2">
+          <p class="sync flex gap-1">
+            <span class="loader inline-text"></span>
+            <span>Syncing ...</span>
+          </p>
+
+          <div class="content p-1" style="max-width: 400px;">
+            <h2 class="flex between txt-left">Hi There 👍 <button class="p-x font-size-1 btn_close_unsigned"><i
+                  class="fas fa-times"></i></button></h2>
+            <p class="mt-2">Welcome to our Resume Generator, with high regard. Try creating an account to manages,
+              create and save your resumes with hight user support</p>
+          </div>
+
+          <div class="flex between w-full" style="max-width: 400px;">
+            <button class="bbtn primary clr-light btn_close_unsigned">Cancel</button>
+            <a href="" class="bbtn secondary flex gap-2">Proceed <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
       <button class="refresh_view"><i class="fas fa-undo"></i></button>
       <!-- Toast Modul -->
       <?php include_once __DIR__ . "/../globals/toast-module.php" ?>
@@ -464,6 +513,11 @@
     <script type="module" src="/static/scripts/create.js"></script>
     <script>
     // Panel Pages
+    $(".btn_close_unsigned").on("click", function(e) {
+      $(".alert-unsigned").fadeOut()
+    });
+    setTimeout(() => $('.alert-unsigned').addClass('show'), 10000)
+    // panels
     $(".panel_btn").on("click", function(e) {
       $(".panel_btn").removeClass("active");
       $(this).addClass("active");

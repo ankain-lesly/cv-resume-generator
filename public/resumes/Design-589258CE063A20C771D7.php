@@ -24,17 +24,23 @@
           <h3 class="pt-2"><?= get($personal, 'headline') ?></h3>
         </div>
         <div class="details">
-          <ul>
-            <li><b>NAME:</b> <?= get($personal, 'firstname') . ' ' . get($personal, 'lastname')  ?></li>
+          <ul class="<?= !empty($personal) ? '' : 'section_hide' ?>">
+            <li class="<?= get($personal, 'firstname') ? '' : "section_hide" ?>"><b>NAME:</b>
+              <?= get($personal, 'firstname') . ' ' . get($personal, 'lastname')  ?></li>
 
-            <li><b>DATE OF BIRTH:</b> 12/09/2012</li>
+            <!-- <li><b>DATE OF BIRTH:</b> 12/09/2012</li>
             <li><b>PLACE OF BIRTH:</b> Bamend Fundon</li>
             <li><b>MARITAL STATUS:</b> Single</li>
-            <li><b>NATIONALITY:</b> Cameroon</li>
+            <li><b>NATIONALITY:</b> Cameroon</li> -->
 
-            <li><b>TEL:</b> <?= get($personal, 'phone') ?></li>
-            <li><b>EMAIL:</b> <?= get($personal, 'email') ?></li>
-            <li class="mb-1"><b>ADDRESS:</b> <?= get($personal, 'address') ?></li>
+            <li class="<?= get($personal, 'date_of_birth') ? '' : "section_hide" ?>"><b>DATE OF BIRTH:</b>
+              <?= get($personal, 'date_of_birth') ?></li>
+            <li class="<?= get($personal, 'phone') ? '' : "section_hide" ?>"><b>TEL:</b> <?= get($personal, 'phone') ?>
+            </li>
+            <li class="<?= get($personal, 'email') ? '' : "section_hide" ?>"><b>EMAIL:</b>
+              <?= get($personal, 'email') ?></li>
+            <li class="<?= get($personal, 'address') ? '' : "section_hide" ?>" class="mb-1"><b>ADDRESS:</b>
+              <?= get($personal, 'address') ?></li>
             <!-- 
             <?php
             foreach ($extras as $key => $data) { ?>

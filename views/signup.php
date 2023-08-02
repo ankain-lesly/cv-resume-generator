@@ -9,53 +9,54 @@
   <form id="signup_form">
     <!-- // username -->
     <div class="form-group flex gap-x">
+      <input type="text" id="username" placeholder="Username " autocomplete="on" />
       <label for="username" class="icon">
         <i class="fas fa-user"></i>
       </label>
-      <input type="text" id="username" placeholder="Username " autocomplete="on" />
       <label for="username" class="status-msg shake_anim"></label>
       <label class="fas fa-info info"></label>
     </div>
 
     <!-- // Email -->
     <div class="form-group flex gap-x">
+      <input type="email" id="email" placeholder="Email address" autocomplete="on" />
       <label for="email" class="icon">
         <i class="fas fa-envelope"></i>
       </label>
-      <input type="email" id="email" placeholder="Email address" autocomplete="on" />
       <label for="email" class="status-msg shake_anim"></label>
       <label class="fas fa-info info"></label>
     </div>
 
     <!-- // Phone -->
     <div class="form-group flex gap-x">
+      <input type="tel" id="phone" placeholder="Phone number (optional)" autocomplete="on" />
       <label for="phone" class="icon">
         <i class="fas fa-phone"></i>
       </label>
-      <input type="tel" id="phone" placeholder="Phone number (optional)" autocomplete="on" />
       <label for="phone" class="status-msg shake_anim"></label>
       <label class="fas fa-info info"></label>
     </div>
 
     <!-- // Password -->
     <div class="form-group flex gap-x">
+      <input type="password" id="password" placeholder="Password" autocomplete="on" />
       <label for="password" class="icon">
         <i class="fas fa-lock"></i>
       </label>
-      <input type="password" id="password" placeholder="Password" autocomplete="on" />
       <label for="password" class="status-msg shake_anim"></label>
-      <label data-toggle-type="#password" for="password" title="toggle visibility" class="fas fa-eye">
+      <label data-toggle-type="#password" for="password" title="toggle visibility" class="fas fa-eye visibility">
       </label>
     </div>
 
     <!-- // Confirm password -->
     <div class="form-group flex gap-x">
+      <input type="password" id="confirm_password" placeholder="confirm_password" autocomplete="on" />
       <label for="confirm_password" class="icon">
         <i class="fas fa-lock"></i>
       </label>
-      <input type="password" id="confirm_password" placeholder="confirm_password" autocomplete="on" />
       <label for="confirm_password" class="status-msg shake_anim"></label>
-      <label data-toggle-type="#confirm_password" for="confirm_password" title="toggle visibility" class="fas fa-eye">
+      <label data-toggle-type="#confirm_password" for="confirm_password" title="toggle visibility"
+        class="fas fa-eye visibility">
       </label>
     </div>
 

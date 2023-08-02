@@ -251,7 +251,7 @@ $(document).ready(function (e) {
   function updatePreviewer(data = {}) {
     // data["meta"] = META_DATA;
     $(".resume_previewer").load(
-      "/resume/edit/" + META_DATA.template,
+      "/resume/render/" + META_DATA.template,
       data,
       () => {
         resizePreviewer();
@@ -322,6 +322,10 @@ $(document).ready(function (e) {
     $.each($(".personal [data-inp-reff]"), (index, input) => {
       input.value = "";
     });
+    $(".img-cover-profile").attr("src", "/static/media/user.png");
+    FORM_DATA = {};
+    useStorage(STORAGE_KEY, FORM_DATA);
+    updatePreviewer(FORM_DATA);
     LoadDefaultForm();
     BA.done();
   });
@@ -376,7 +380,7 @@ $(document).ready(function (e) {
     formObj.append("current", FORM_DATA["cover_photo"] ?? false);
 
     $.ajax({
-      url: "/resume/create/" + META_DATA.resume,
+      url: "/resume/update/" + META_DATA.resume,
       method: "post",
       contentType: false,
       processData: false,
@@ -405,17 +409,23 @@ $(document).ready(function (e) {
 
   // Save Resume
   const saveResume = async (data) => {
+    if (META_DATA.resume == "XR-12345678-Lee")
+      return useToast(
+        "Ooop, You cannot save an untitled resume. Login to dashboard and create one. 🐱‍🏍"
+      );
     const formData = data;
     formData.meta = META_DATA;
 
     const res = await useFetch(
       "POST",
-      "/resume/create/" + META_DATA.resume,
+      "/resume/update/" + META_DATA.resume,
       formData
     );
 
-    if (res.data && res.data.success) {
+    if ($res && res.data && res.data.success) {
       useToast("Resume saved.. 😊");
+    } else {
+      useToast("Failed to save data.. 🚩");
     }
   };
 

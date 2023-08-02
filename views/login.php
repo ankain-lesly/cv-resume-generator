@@ -23,7 +23,7 @@
       </label>
       <input type="password" id="password" placeholder="Password" autocomplete="on" />
       <label for="password" class="status-msg shake_anim"></label>
-      <label data-toggle-type="#password" for="password" title="toggle visibility" class="fas fa-eye">
+      <label data-toggle-type="#password" for="password" title="toggle visibility" class="fas fa-eye visibility">
       </label>
     </div>
 

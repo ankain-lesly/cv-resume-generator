@@ -9,7 +9,7 @@
     <header class="main-header">
       <div class="container gap-2 flex between header-h">
         <a href="/" class="flex gap-x btn">
-          <img src="/static/media/imac-online-cv-builder-cv-template.png" alt="Logo" width="30px" />
+          <img src="/static/media/logo.png" alt="Logo" width="30px" />
           <h1 class="main-header-title">
             <small class="">Resume</small>
           </h1>

@@ -658,6 +658,12 @@ h3 {
   }
 }
 /* COLORS */
+.color-bg {
+  color: var(--color-bg);
+}
+.clr-light {
+  color: var(--clr-light);
+}
 .clr-white {
   color: var(--clr-white);
 }

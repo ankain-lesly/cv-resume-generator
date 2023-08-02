@@ -14,336 +14,127 @@
 
   <link rel="icon" href="/public/favicon.ico">
 
+  <link rel="stylesheet" href="/public/static/styles/index.css">
   <link rel="stylesheet" href="/public/static/styles/global.css">
   <link rel="stylesheet" href="/public/static/styles/main.css">
   <title>Dashboard | Resume Maker</title>
+  <style type="text/css">
+    #my_resume_wrapper {
+      margin: auto;
+      overflow: hidden;
+      margin: auto;
+      width: 100%;
+      max-width: 550px;
+      border: 2px solid #333333ae;
+      border-radius: 0.5em;
+      box-shadow: 1px 2px 20px #333;
+      cursor: zoom-in;
+    }
+
+    #my_resume_main {
+      width: var(--design-width);
+      transform-origin: 0 0;
+    }
+
+    /*// Loader*/
+    #page_loader {
+      position: fixed;
+      width: 100vw;
+      display: grid;
+      grid-template-columns: repeat(2, 50%);
+      z-index: 1500;
+      top: 0;
+    }
+
+    #page_loader.loaded {
+      display: none !important;
+    }
+
+    #page_loader .load_page {
+      height: 100vh;
+      /*pointer-events: none;*/
+    }
+
+    #page_loader .layer_content {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    #page_loader .sync {
+      padding: 0.5em 1em;
+      border-radius: 0.35em;
+      background-color: var(--clr-white);
+      color: var(--clr-bg);
+      font-size: 0.8rem;
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+    }
+
+    #page_loader .layer_preview {
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+      background-color: var(--clr-white);
+      /*color: var(--clr-bg);*/
+      cursor: alias;
+    }
+
+    .refresh_view {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: blue;
+      color: #fff;
+      border-radius: 50%;
+      padding: 1rem;
+    }
+
+    #page_loader .sync,
+    #page_loader .content {
+      border-radius: 0.35em;
+      background-color: var(--clr-white);
+      color: var(--clr-bg);
+      font-size: 0.8rem;
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+
+
+
+    #page_loader .content h2 {
+      border-bottom: 2px solid var(--clr-text-muted);
+      text-align: left;
+      padding-bottom: 0.5rem;
+    }
+
+    #page_loader .content p {
+      font-size: 1.1rem;
+    }
+
+    #page_loader.alert-unsigned {
+      display: flex;
+      background-color: hsla(var(--hsl-color-bg), 0.8);
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root">
-    <div class="dashboard-main">
-      <div class="container">
-        <aside class="side-bar  scroll-bar">
-          <div class="side-bar-hero">
-            <nav class="flex between mb-1">
-              <button class="padd btn-close-sidebar clr-success" style="color: #fff">
-                <i class="fas fa-arrow-left"></i>
-              </button>
-            </nav>
-            <div class="content ">
-              <p class="hero-icon clr-warning mb-x">
-                <i class="fas fa-briefcase"></i>
-              </p>
-              <!-- <h2 class="clr-warning txt-capitalize  mb-1">Test name</h2> -->
-              <!-- <small class="detail">My Admin: <b class="status txt-upper clr-warning">Role</b></small> -->
-            </div>
-            <div class="stats-main no-scroll-bar">
-              <ul class="stats flex between gap-x">
-                <li class="stat right flex"><i class="fas fa-angle-left"></i></li>
-                <li class="stat"></li>
-                <li class="stat"></li>
-                <li class="stat"></li>
-                <li class="stat"></li>
-                <li class="stat"></li>
-                <li class="stat"></li>
-              </ul>
-            </div>
-          </div>
-          <div class="side-bar-links">
-            <p class="menu-title">Manage</p>
-            <ul class="menu-list">
-              <li>
-                <a aria-current="page" href="/app/">
-                  <i class="fas fa-chart-line icon"></i>
-                  <span class="text">Dashboard</span></a>
-              </li>
-              <li>
-                <a aria-current="page" href="/app/resumes">
-                  <i class="fas fa-coins icon"></i>
-                  <span class="text"><label class="notif_indicator">13</label> My Resumes</span></a>
-              </li>
-              <li>
-                <a aria-current="page" href="/templates/resume" class="active">
-                  <i class="fas fa-bezier-curve icon"></i>
-                  <span class="text">Resume Templates</span></a>
-              </li>
-              <!-- <li class="drop-down">
-        <a aria-current="page" class="drop-down-head"> 
-          <i class="fas fa-coins icon"></i>
-          <span class="text"><label class="notif_indicator">13</label> My Resumes</span>
-          <i class="fas fa-caret-down drop-caret"></i>
-        </a>
-        <ul class="drop-down-body">
-          <li><a href="#">New Resumes</a></li>
-          <li><a href="#">Old Resumes</a></li>
-        </ul>
-      </li> -->
-              <!-- <li class="drop-down">
-        <a aria-current="page" class="drop-down-head">
-          <i class="fas fa-bezier-curve icon"></i> 
-          <span class="text">Templates</span>
-          <i class="fas fa-caret-down drop-caret"></i>
-        </a>
-        <ul class="drop-down-body">
-          <li><a href="#">Template One</a></li>
-          <li><a href="#">Template Two</a></li>
-          <li><a href="#">Template Three</a></li>
-        </ul>
-      </li> -->
-              <li>
-                <a class="" href="#notifications">
-                  <i class="fas fa-bell icon"></i>
-                  <span class="text">Notifications</span>
-                  <small class="notif_indicator">01</small>
-                </a>
-              </li>
-            </ul>
-            <p class="menu-title">Create new</p>
-            <ul class="menu-list">
-              <li>
-                <a class="" href="/app/?create=resume">
-                  <i class="fas fa-fill icon"></i>
-                  <span class="text">New Resume <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
-              </li>
-              <li>
-                <a class="" href="/new/template">
-                  <i class="fas fa-edit icon"></i>
-                  <span class="text">Add Template <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
-              </li>
-            </ul>
-            <p class="menu-title">Resources</p>
-            <ul class="menu-list">
-              <li>
-                <a href="/app/get-started">
-                  <i class="fas fa-network-wired icon"></i>
-                  <span class="text">Get Started</span></a>
-              </li>
-            </ul>
-            <p class="menu-title">Settings</p>
-            <ul class="menu-list">
-              <li>
-                <a href="/user/profile">
-                  <i class="fas fa-user icon"></i>
-                  <span class="text">Profile/Account</span></a>
-              </li>
-              <li>
-                <a href="/account/settings">
-                  <i class="fas fa-cog icon"></i>
-                  <span class="text">Settings</span></a>
-              </li>
-              <!-- <li>
-        <a href="/app/show?view=trash">
-          <i class="fas fa-sort-amount-down icon"></i>
-          <span class="text">My Trash <i class="ml-1 fas fa-trash font-size-small clr-warning"></i></span></a>
-      </li> -->
-              <li style="margin-top: 2rem;">
-                <a href="/account/logout" onclick="return confirm('Do you want to logout?')">
-                  <i class="fas fa-sign-in-alt icon"></i>
-                  <span class="text">Log out</span></a>
-              </li>
-            </ul>
+  <div id="page_loader" class="alert-unsigned">
+    <div class="load_page layer_content flex column w-full gap-2">
+      <p class="sync flex gap-1">
+        <span class="loader inline-text"></span>
+        <span>Syncing ...</span>
+      </p>
 
-            <div class="bottom-gap" style="margin-bottom: 50px;"></div>
-          </div>
-        </aside>
-        <section class="main-content">
-          <header class="header-h flex between main-header">
-            <div class="left-caption flex">
-              <button class="btn-sitebar padd"><i class="fas fa-bars"></i></button>
-              <h3>Dashboard</h3>
-            </div>
-            <nav class="flex">
-              <button class="padd"><i class="fas fa-bell"></i></button>
-              <button class="padd theme-btn"><i class="fas fa-sun"></i></button>
-              <div class="flex ml-x">
-                <div class="user_profile flex">
-                  <!-- <h4>username</h4> -->
-                  <div class="thumbnail">
-                    <img class="ml-x mr-x profile-icon-x" src="/static/media/user.png" alt=" user profile">
-                  </div>
-                  <span class="padd">
-                    <i class="fas fa-caret-down"></i>
-                  </span>
-                  <nav class="drop_menu">
-                    <ul class="menu_container">
-                      <li>
-                        <a class="link flex" href="/app/">
-                          <i class="fas fa-chart-pie icon" style="width:1.2rem"></i>
-                          <span class="text">Dashboard</span></a>
-                      </li>
-                      <li>
-                        <a class="link flex" href="/app/?create=resume">
-                          <i class="fas fa-edit icon" style="width:1.2rem"></i>
-                          <span class="text">Create Resume</span></a>
-                      </li>
-                      <li>
-                        <a class="link flex" href="/app/#notifications">
-                          <i class="fas fa-bell icon" style="width:1.2rem"></i>
-                          <span class="text"> Notifications</span></a>
-                      </li>
-                      <li>
-                        <a class="link flex" href="/">
-                          <i class="fas fa-arrow-left icon" style="width:1.2rem"></i>
-                          <span class="text">Home</span></a>
-                      </li>
-                      <li class="mt-2">
-                        <a class="bbtn secondary w-full" href="/account/logout"
-                          onclick="return confirm('Do you want to logout?')">Logout</a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </nav>
-          </header>
-          <!-- Page View Start -->
-          <main>
-            <!-- Page View Start -->
-            <div class="dashboard">
-              <div class="mini-head">
-                <h3>Templates and Designs</h3>
-              </div>
-              <br>
-              <div class="feeds-nav flex between" id="resumes">
-                <h4>Most Recent</h4>
-                <a class="bbtn secondary" href="/new/template">Add template <i class="pl-1 fas fa-plus"></i></a>
-              </div>
-              <style>
-                .feed {
-                  background: #333333ae;
-                  height: 100px;
-                  border-radius: 1rem;
-                }
-              </style>
-              <div class="template-component">
-                <!-- FEEDs -->
-                <div class="main">
-                  <div class="item">
-                    <img src="/public/resumes/thumbnails/TEMPLATE-D5F33C079AA3FEEF6CBE.png" class="img-cover"
-                      alt="Design">
-                    <button class="btn"><i class="fas fa-plus"></i></button>
-                    <div class="options py-1 px-x">
-                      <a href="#" class="flex between between p-x option mb-1">
-                        .
-                        <i class="fas fa-times clr-warning"></i>
-                      </a>
-                      <a href="/new/templates/id" class="flex between between p-x option mb-1">
-                        <span class="text font-bold">Edit</span>
-                        <i class="fas fa-arrow-right"></i>
-                      </a>
-                      <a href="#" class="flex between between p-x option mb-1">
-                        <span class="text font-bold">Preview</span>
-                        <i class="fas fa-image"></i>
-                      </a>
-                      <a href="#" class="flex between between p-x option mb-1">
-                        <span class="text font-bold">Option 3</span>
-                        <i class="fas fa-dot-circle"></i>
-                      </a>
-                      <a href="#" class="flex between between p-x option mb-1">
-                        <span class="text font-bold">Option 4</span>
-                        <i class="fas fa-dot-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="default p-1 flex txt-center">
-                      <div class="group">
-                        <h2>Ooops</h2><br>
-                        <b>You have not created any templates yet!</b><br><br>
-                        <a href="/new/template" class="bbtn secondary small">Create now</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="item">
-                      <img src="/public/resumes/thumbnails/TEMPLATE-D5F33C079AA3FEEF6CBE.png" class="img-cover"
-                        alt="Design">
-                      <div class="options py-1 px-x">
-                        <a href="/new/template" class="bbtn secondary">
-                          Use Template <i class="pl-1 fas fa-angle-double-right"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item"></div>
-                  <div class="item"></div>
-                  <div class="item"></div>
-                  <div class="item"></div>
-                  <div class="item"></div>
-                  <div class="item"></div>
-                  <div class="item"></div>
-                </div>
-              </div>
-            </div>
+      <div class="content p-1" style="max-width: 400px;">
+        <h2 class="flex between txt-left">Hi There 👍 <button class="p-x font-size-1 btn_close_unsigned"><i
+              class="fas fa-times"></i></button></h2>
+        <p class="mt-2">Welcome to our Resume Generator, with high regard. Try creating an account to manages,
+          create and save your resumes with hight user support</p>
+      </div>
 
-          </main>
-          <!-- Page View Ends -->
-
-        </section>
+      <div class="flex between w-full" style="max-width: 400px;">
+        <button class="bbtn primary clr-white btn_close_unsigned">Cancel</button>
+        <a href="" class="bbtn secondary flex gap-2">Proceed <i class="fas fa-arrow-right"></i></a>
       </div>
-    </div>
-    <div class="popup-main">
-      <div class="nav container-x flex start">
-        <button class="close-main nav-btn btn btn-s"><i class="fas fa-arrow-left"></i> Cancel</button>
-      </div>
-      <div class="container flex">
-        <div class="content resume-info">
-          <div id="resume_meta">
-            <div class="create-step details animate-box-in active">
-              <div class="flex animate-box-in column gap-2">
-                <div class="head w-full">
-                  <div class="step-show">Step One</div>
-                  <h2>Create a resume</h2>
-                </div>
-                <div class="form-group w-full">
-                  <label for="meta_title">Resume title</label>
-                  <input type="text" id="meta_title" placeholder="Enter resume title.." required="">
-                </div>
-                <div class="form-group w-full">
-                  <label for="meta_description">Description</label>
-                  <textarea id="meta_description" cols="30" rows="5" required=""
-                    placeholder="Enter description.."></textarea>
-                </div>
-                <div class="actions flex between w-full">
-                  <span class="close-main btn">Cancel</span>
-                  <span data-step="templates" class="btn-p btn">Next Step</span>
-                </div>
-              </div>
-            </div>
-            <div class="create-step templates animate-box-in">
-              <div class="head">
-                <div class="step-show flex between">
-                  <span data-step="details" class="btn">
-                    <i class="fas fa-arrow-left  mr-2"></i>
-                    <span class="step-show">Step Two</span>
-                  </span>
-                </div>
-                <h3>Select A Template</h3>
-              </div>
-              <div class="templates-main">
-                <div class="wait flex" style="grid-column: span 5">
-                  <div class="loader"></div>
-                </div>
-              </div>
-              <div class="actions">
-                <div class="flex end pb-2">
-                  <button class="flex create_meta form_btn">
-                    <span class="mr-1 p-main"> Create Now </span>
-                    <i class="fas fa-arrow-right p-main"></i>
-                    <span class="p-odd mr-1">Processing...</span>
-                    <span class="p-odd loader inline-text mr-1"></span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="Toast_container">
     </div>
   </div>
-
   <script src="/static/scripts/jQuery.min.js"></script>
   <script type="module" src="/static/scripts/main.js"></script>
 

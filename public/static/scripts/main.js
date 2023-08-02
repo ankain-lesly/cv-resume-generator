@@ -173,7 +173,7 @@ $(".create_meta").on("click", async (e) => {
   if (response.ok && data.success) {
     // resolve_form() && Redirect()
     useToast("Resume created successfully. Setting up interface 🐱‍🏍");
-    useStorage(STORAGE_KEY, {});
+    // useStorage(STORAGE_KEY, {});
     setTimeout(() => {
       window.location = "/resume/create/" + data.resume + "?reff=new-resume";
     }, 2000);
