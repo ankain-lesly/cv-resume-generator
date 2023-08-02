@@ -1,4 +1,3 @@
-  <!-- GLOBALS -->
   <?php include_once __DIR__ . "/../globals/globals.php" ?>
   <title><?= $resume['title'] ?? "Untitled" ?> | Resume Maker</title>
   <link rel="stylesheet" href="/static/styles/create.css" />
@@ -84,10 +83,10 @@
   display: flex;
 }
 
-.refresh_view {
+.refresh_btn {
   position: fixed;
   bottom: 1rem;
-  right: 1rem;
+  right: 2rem;
   background: blue;
   color: #fff;
   border-radius: 50%;
@@ -439,7 +438,53 @@
                 </button>
               </div>
               <!-- // SETTINGS  -->
-              <div class="settings page_section">SETTINGS</div>
+              <div class="settings page_section">
+                <h3 class="">Settings</h3>
+                <div class="settings-component">
+                  <div class="grid-items">
+                    <div class="grid flex between">
+                      <div class="item">Themes</div>
+                      <div class="item">Fonts</div>
+                      <div class="item">Pallets</div>
+                      <div class="item">Margins</div>
+                      <div class="item">more <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                  </div>
+                  <div class="colors">
+                    <div class="form-group" data-target="resume_info">
+                      <input type="color" data-ref="target" name="" id="" style="height: 100px;">
+                    </div>
+                    <ul class="pallet">
+                      <li><span class="color" style="--hash: #00f"></span></li>
+                      <li><span class="color" style="--hash: #000"></span></li>
+                      <li><span class="color" style="--hash: #F20"></span></li>
+                      <li><span class="color" style="--hash: #D93"></span></li>
+                      <li><span class="color" style="--hash: #833"></span></li>
+                      <li><span class="color" style="--hash: #e31"></span></li>
+                      <li><span class="color" style="--hash: #D13"></span></li>
+                      <li><span class="color" style="--hash: #3e33"></span></li>
+                      <li><span class="color" style="--hash: #A88"></span></li>
+                      <li><span class="color" style="--hash: #AE3"></span></li>
+                      <li><span class="color" style="--hash: #C40"></span></li>
+                      <li><span class="color" style="--hash: #F18"></span></li>
+                      <li><span class="color" style="--hash: #4FF"></span></li>
+                      <li><span class="color" style="--hash: #F3F"></span></li>
+                      <li><span class="color" style="--hash: #FFF"></span></li>
+                      <li><span class="color" style="--hash: #CCB"></span></li>
+                      <li><span class="color" style="--hash: #FFA"></span></li>
+                      <li><span class="color" style="--hash: #00f75d"></span></li>
+                      <li><span class="color" style="--hash: #ff9"></span></li>
+                      <li><span class="color" style="--hash: #c730a5"></span></li>
+                      <li><span class="color" style="--hash: #0aff55"></span></li>
+                      <li><span class="color" style="--hash: #2861cd"></span></li>
+                      <li><span class="color" style="--hash: #ae67fa"></span></li>
+                      <li><span class="color" style="--hash: #a283f0"></span></li>
+                    </ul>
+                  </div>
+                </div>
+                <h4 class="mt-2">Font and Typography</h4>
+
+              </div>
               <!-- // TEMPLATES -->
               <div class="templates page_section">
 
@@ -461,7 +506,25 @@
                   </div>
                 </div>
               </div>
-              <div class="content page_section">CONTENT</div>
+              <!-- CONTENT -->
+
+              <div class="content page_section">
+                <h3 class="">Content</h3>
+                <div class="settings-component">
+                  <div class="grid-items">
+                    <div class="grid flex between">
+                      <div class="item">Meta</div>
+                      <div class="item">About</div>
+                      <div class="item">Exports</div>
+                      <div class="item">Version</div>
+                    </div>
+                  </div>
+                  <div class="colors">
+                    <div class="data-group" data-target="resume_info">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
           <section class="create-preview">
@@ -502,7 +565,8 @@
         </div>
       </div>
       <?php endif; ?>
-      <button class="refresh_view"><i class="fas fa-undo"></i></button>
+      <!-- <button class="refresh_view"><i class="fas fa-undo"></i></button> -->
+      <button class="btn_resume_dd refresh_btn"><i class="fas fa-download"></i></button>
       <!-- Toast Modul -->
       <?php include_once __DIR__ . "/../globals/toast-module.php" ?>
     </div>

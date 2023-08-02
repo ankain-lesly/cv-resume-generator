@@ -53,22 +53,7 @@ public function interceptRequest($path = null)
 
 ## Use Sessions on registration to tack process and verificatoin with form handling
 
-## Final Touches
-
-- sanitize data on_edit
-
-- final touches
-
-- Complete Touches
-
-- Design Resume Templates
-- Integrate with helper functions
-- install in application;
-
-- Proceed with Final Touches
-
-## Creating Templates...
-
 # -#- PRO ME -#-
 
 -> Generate Tokens on client side to ensure signle upload basis
+-> On templates, remove favicom and meta

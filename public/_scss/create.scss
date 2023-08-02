@@ -163,6 +163,7 @@ select:active {
 //   }
 // }
 .page_section {
+  background-color: $clr-white;
   &.on_page {
     transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
     transform: translateX(0);
@@ -262,7 +263,6 @@ select:active {
   }
 }
 // Templates
-
 .template-component {
   .main {
     display: grid;
@@ -326,6 +326,45 @@ select:active {
         font-size: 0.65rem;
         padding: 0.25em 0.5em;
       }
+    }
+  }
+}
+//settings {
+.settings-component {
+  .grid-items {
+    overflow: auto;
+    .grid {
+      width: 100%;
+      margin-top: 2rem;
+      gap: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .item {
+      background-color: hsla($hsl-clr-bg, 0.2);
+      padding: 1rem 10px;
+      border-radius: 5px;
+      flex: 1 1;
+      transition: $transition;
+      &:hover {
+        background-color: hsla($hsl-clr-bg, 0.1);
+      }
+    }
+  }
+  .colors {
+    margin-top: 1rem;
+    .pallet {
+      margin-top: 1rem;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .color {
+      width: 30px;
+      height: 30px;
+      background-color: var(--hash);
+      display: block;
+      border-radius: 50%;
     }
   }
 }
