@@ -9,18 +9,20 @@
   margin: 2rem;
 }
 </style>
-<main class="section-p">
-  <!-- Page View Start -->
-  <div class="get_started">
-    <h2>We will provide helpful links to resources that will guide you on how to use</h2>
+<main class="section-p" style="background-color: var(--color-bg); color: #fff">
+  <div class="container-x p-2">
+    <!-- Page View Start -->
+    <div class="get_started">
+      <h2>We will provide helpful links to resources that will guide you on how to use</h2>
 
-    <ul>
-      <li>The Editor</li>
-      <li>FIle Upload Features</li>
-      <li>And more...</li>
-    </ul>
+      <ul>
+        <li>The Editor</li>
+        <li>FIle Upload Features</li>
+        <li>And more...</li>
+      </ul>
 
-    <a href="/dashboard/" class="btn btn-s">Back to Dashboard</a>
+      <a href="/app/" class="btn btn-s">Back to Dashboard</a>
+    </div>
   </div>
   <!-- Page View Ends -->
 </main>

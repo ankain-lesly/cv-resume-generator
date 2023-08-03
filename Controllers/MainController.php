@@ -9,12 +9,14 @@ use Devlee\XRouter\Router;
 // middlewares
 use App\Middlewares\AuthMiddleware;
 use App\Models\Template;
+use Devlee\mvccore\DB\DataAccess;
 use Devlee\mvccore\Session;
 
 class MainController
 {
   private Template $templateObj;
   private Session $session;
+  private DataAccess $DataAccess;
   public function __construct()
   {
     /**
@@ -30,16 +32,23 @@ class MainController
     $AuthMiddleware->isUser();
     Router::$router->setLayout('layouts/dashboard');
     $this->session = new Session();
+    $this->DataAccess = new DataAccess();
   }
   public function index(Request $req, Response $res)
   {
     // Rendering home view
     $res->render("_dashboard/index");
   }
+
   public function resumes(Request $req, Response $res)
   {
-    $resume = new ResumeController('nolayout');
-    $meta = $resume->getMetaData();
+    $user = $this->session->get('user') ?? exit('Not authorized...');
+    $sql_meta = "SELECT *
+                FROM tblresume_metadata WHERE user_id = ?";
+    $meta = $this->DataAccess->findAll(
+      $sql_meta,
+      [$user['userID']]
+    );
     // Rendering home view
     $res->render("_dashboard/my-resumes", ['metadata' => $meta]);
   }
@@ -63,13 +72,22 @@ class MainController
     }
 
     $user = $this->session->get('user');
+
+    if ($api) {
+      $templates = $this->templateObj->findAll(
+        ['user_id' => $user['userID']],
+        ['status' => 1],
+        ["thumbnail", "status", "template_id"]
+      );
+      return $res->json($templates);
+    }
+
     $templates = $this->templateObj->findAll(
       ['user_id' => $user['userID']],
       ["thumbnail", "status", "template_id"]
     );
-    $templates = $templates['data'] ?? [];
 
-    if ($api) return $res->json($templates);
+    $templates = $templates['data'] ?? [];
 
     $res->render("_dashboard/show-templates", ["user" => $this->session, "templates" => $templates]);
   }

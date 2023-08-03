@@ -1,15 +1,12 @@
 <?php
 $data = $edit_data ?? null;
-?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload Resume Templates</title>
-  <link rel="stylesheet" href="/static/styles/template-upload.css">
-  <link rel="stylesheet" href="/00FA/css/all.css">
+include_once __DIR__ . "/../globals/globals.php";
+?>
+
+
+<title>Upload Resume Templates</title>
+<link rel="stylesheet" href="/static/styles/template-create.css">
 </head>
 
 <body>
@@ -105,6 +102,10 @@ $data = $edit_data ?? null;
         </div>
       </div>
     </main>
+
+    <div class="footer txt-center">
+      <h5>Read more</h5> <a href="/about?templates" class="clr-warning">About creating a template</a>
+    </div>
     <?php include_once __DIR__ . "/../globals/toast-module.php" ?>
   </div>
   <script src="/static/scripts/jQuery.min.js"></script>

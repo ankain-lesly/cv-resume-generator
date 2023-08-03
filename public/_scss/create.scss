@@ -1,4 +1,4 @@
-@import "index.scss";
+@import "index";
 
 /*  Form items */
 .input:active,
@@ -46,6 +46,19 @@ select:active {
   .create-preview {
     height: calc(100vh - 60px);
     overflow: auto;
+  }
+  .create-preview {
+    padding: 0 10px;
+  }
+  .mobile-nav {
+    background-color: $color-bg;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    .bbtn {
+      color: #fff;
+      border-color: #fff;
+    }
   }
 }
 .create-form {
@@ -529,17 +542,4 @@ select:active {
   }
 }
 
-@media (max-width: 550px) {
-  .personal-1 {
-    flex-direction: column;
-    .form-goup {
-      align-self: center;
-    }
-  }
-}
-@media (max-width: 350px) {
-  .form-content .intro-group {
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
-}
+@import "create-media";

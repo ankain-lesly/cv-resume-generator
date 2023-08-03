@@ -31,7 +31,10 @@ $router->get("/", [SiteController::class, 'index']);
 $router->get("/account/login", [AuthController::class, 'login']);
 $router->get("/account/signup", [AuthController::class, 'signup']);
 $router->get("/account/logout", [AuthController::class, 'logout']);
-// $router->get("/account/verification", [AuthController::class, 'verify']);
+$router->get("/account/reset-password", [AuthController::class, 'resetPassword']);
+$router->post("/account/reset-password", [AuthController::class, 'resetPassword']);
+$router->get("/account/change-password", [AuthController::class, 'changePassword']);
+$router->post("/account/change-password", [AuthController::class, 'changePassword']);
 
 //APIs
 $router->post("/auth/login", [AuthController::class, 'login']);

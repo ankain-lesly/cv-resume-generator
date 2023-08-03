@@ -14,7 +14,7 @@ class User extends DBModel
     public string $profile = '';
     public string $address = '';
     public string $password = '';
-    public string $confirm_password = '';
+    public string $password_reset = '';
 
     public static function tableName(): string
     {

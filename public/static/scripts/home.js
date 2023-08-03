@@ -10,3 +10,6 @@ $(document).on("scroll", function (e) {
     $(".main-header").removeClass("active");
   }
 });
+
+$(".nav-menu-btn").on("click", () => $(".nav-menu").addClass("active"));
+$(".screen-overflow").on("click", () => $(".nav-menu").removeClass("active"));

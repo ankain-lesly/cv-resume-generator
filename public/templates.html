@@ -23,7 +23,6 @@
       margin: auto;
       width: 100%;
       max-width: 550px;
-      border: 2px solid #333333ae;
       border-radius: 0.5em;
       box-shadow: 1px 2px 20px #333;
       cursor: zoom-in;
@@ -38,19 +37,78 @@
     #page_loader {
       position: fixed;
       width: 100vw;
-      display: grid;
-      grid-template-columns: repeat(2, 50%);
-      z-index: 1500;
+      z-index: 20000;
       top: 0;
+      left: 0;
+      height: 100%;
+    }
+
+    .loading {
+      background: #fff;
+      transition: .1s ease opacity;
+      -webkit-transition: .1s ease opacity;
+    }
+
+    .loading .spinner {
+      width: 70px;
+      text-align: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .loading .spinner>div {
+      width: 18px;
+      height: 18px;
+      background-color: #333;
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .loading .spinner .bounce1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
+
+    .loading .spinner .bounce2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
+
+    @-webkit-keyframes sk-bouncedelay {
+
+      0%,
+      80%,
+      100% {
+        -webkit-transform: scale(0)
+      }
+
+      40% {
+        -webkit-transform: scale(1.0)
+      }
+    }
+
+    @keyframes sk-bouncedelay {
+
+      0%,
+      80%,
+      100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+      }
     }
 
     #page_loader.loaded {
       display: none !important;
-    }
-
-    #page_loader .load_page {
-      height: 100vh;
-      /*pointer-events: none;*/
     }
 
     #page_loader .layer_content {
@@ -98,14 +156,33 @@
       display: flex;
     }
 
-    .refresh_btn {
+    .base-actions {
       position: fixed;
-      bottom: 1rem;
+      bottom: 1.5rem;
       right: 2rem;
+
+    }
+
+    .btn_main_dd {
       background: blue;
+      width: 50px;
+      height: 50px;
+      line-height: 35px;
+      box-sizing: var(--bs);
+      text-align: center;
       color: #fff;
       border-radius: 50%;
-      padding: 1rem;
+      display: none;
+    }
+
+    @media (min-width: 750px) {
+      .btn_preview {
+        display: none;
+      }
+
+      .btn_main_dd {
+        display: block;
+      }
     }
   </style>
 </head>
@@ -140,26 +217,22 @@
             <i class="icon fas fa-save"></i>
             <span class="txt">Save</span>
           </button>
-          <button class="bbtn primary flex gap-x">
+          <button class="bbtn primary flex gap-x option">
             <span class="spin loader inline-text"></span>
-            CV <i class="icon pl-1 fas fa-caret-down"></i>
+            <span class="pr-1 txt">CV</span> <i class="icon fas fa-caret-down"></i>
           </button>
           <button class="bbtn secondary pre flex gap-x btn_resume_dd">
             <span class="spin loader inline-text"></span>
-            <i class="icon fas fa-download pr-x"></i>
-            <span class="txt">Download</span>
+            <i class="icon fas fa-download"></i>
+            <span class="txt pl-x">Download</span>
           </button>
         </div>
       </header>
-      <div id="page_loader" class="loaded">
-        <div class="load_page layer_content flex">
-          <p class="sync flex gap-1">
-            <span class="loader inline-text"></span>
-            <span>Syncing ...</span>
-          </p>
-        </div>
-        <div class="load_page layer_preview flex">
-          <p>Please wait ...</p>
+      <div id="page_loader" class="loading">
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
         </div>
       </div>
       <main class="container-main">
@@ -1423,38 +1496,18 @@
         </section>
         <section class="create-preview">
           <div class="preview-container">
-            <nav class="mobile-nav mobile-test main-header flex between gap-1">
-              <button class="bbtn secondary"><i class="fas fa-arrow-right"></i></button>
+            <nav class="mobile-nav mobile-test flex between p-x">
+              <button class="bbtn primary small close_mobile_preview"><i class="fas fa-arrow-left"></i></button>
 
-              <div class="title flex-1 txt-center" style="overflow: hidden">
-                <!-- on_edit -->
-                <div class="resume_title flex gap-x">
-                  <p class="txt-ellipsis">Untitled | Resume</p>
-                  <input type="hidden" id="update_title" value="Untitled">
-                  <button class="fas fa-pencil-alt font-size-small"></button>
-                </div>
-              </div>
+              <p class="font-size-small">Preview..</p>
+              <button class="btn_resume_dd nav_btn_dd"><i class="fas fa-download"></i></button>
 
               <div class="actions flex gap-1">
-                <button class="bbtn primary flex gap-x btn_clear"
-                  onclick="return confirm('Do you want to reset all form data?')">
-                  <span class="spin loader inline-text"></span>
-                  <i class="icon fas fa-trash"></i>
-                  <span class="txt">Reset</span>
+                <button class="bbtn primary small flex gap-x btn_save_resume">
+                  <i class="fas fa-save"></i>
                 </button>
-                <button class="bbtn primary flex gap-x btn_save_resume">
-                  <span class="spin loader inline-text"></span>
-                  <i class="icon fas fa-save"></i>
-                  <span class="txt">Save</span>
-                </button>
-                <button class="bbtn primary flex gap-x">
-                  <span class="spin loader inline-text"></span>
-                  CV <i class="icon pl-1 fas fa-caret-down"></i>
-                </button>
-                <button class="bbtn secondary pre flex gap-x btn_resume_dd">
-                  <span class="spin loader inline-text"></span>
-                  <i class="icon fas fa-download pr-x"></i>
-                  <span class="txt">Download</span>
+                <button class="bbtn secondary small pre flex gap-x btn_resume_dd">
+                  <i class="fas fa-download"></i>
                 </button>
               </div>
             </nav>
@@ -1697,18 +1750,22 @@
       </main>
     </div>
 
-    <!-- <button class="refresh_view"><i class="fas fa-undo"></i></button> -->
-    <button class="btn_resume_dd refresh_btn"><i class="fas fa-download"></i></button>
+    <div class="base-actions on_view">
+      <!-- <button class="refresh_view"><i class="fas fa-undo"></i></button> -->
+      <button class="btn_resume_dd btn_main_dd"><i class="fas fa-download"></i></button>
+      <button class="btn_preview bbtn secondary flex gap-1">Preview <i class="fas fa-image"></i></button>
+    </div>
     <!-- Toast Modul -->
     <div class="Toast_container">
     </div>
   </div>
 
   <script src="/public/static/scripts/jQuery.min.js"></script>
-  <!-- <script src="/public/static/scripts/html2canvas.min.js"></script> -->
-  <!-- <script src="/public/static/scripts/jspdf.umd.min.js"></script> -->
-  <!-- <script type="module" src="/public/static/scripts/create.js"></script> -->
+  <script src="/public/static/scripts/html2canvas.min.js"></script>
+  <script src="/public/static/scripts/jspdf.umd.min.js"></script>
+  <script type="module" src="/public/static/scripts/create.js"></script>
   <script>
+    window.addEventListener("resize", resizePreviewer);
 
     //Responsive Scaling
     function resizePreviewer() {
@@ -1729,13 +1786,53 @@
       }
     }
     resizePreviewer()
-    // Panel Pages
-    $(".btn_close_unsigned").on("click", function (e) {
-      $(".alert-unsigned").fadeOut()
+    // Preview Options
+    $(".btn_preview").on("click", function (e) {
+      $(".create-preview").fadeIn()
+      alert("Load Data: call function")
+    });
+    $(".close_mobile_preview").on("click", function (e) {
+      $(".create-preview").fadeOut()
     }); 
   </script>
 
+  <script>
+    // Panel Pages
+    $(".btn_close_unsigned").on("click", function (e) {
+      $(".alert-unsigned").fadeOut()
+    });
+    setTimeout(() => $('.alert-unsigned').addClass('show'), 10000)
+    // panels
+    $(".panel_btn").on("click", function (e) {
+      $(".panel_btn").removeClass("active");
+      $(this).addClass("active");
+      const section = $(this).data("target");
+      $(".page_section").removeClass("on_page");
+      $(`.${section}`).addClass("on_page");
+      $(".area-step").removeClass("active");
+    });
+    // FORM SECTIONS
+    $(".control_action").on("click", function (e) {
+      $(".area-step").removeClass("active");
+      const section = $(this).data("form-section");
+      $(`.${section}`).addClass("active");
+      $(`[data-section-title="${section}"]`).addClass("active");
+    });
+    // PAGES Sections
+    $(".btn_page_section").on("click", function (e) {
+      $(".area-step").removeClass("active");
+    });
 
+    $(".btn_panel").on("click", function (e) {
+      let $panel = $(".side_panel");
+
+      if ($panel.hasClass("active")) {
+        $panel.removeClass("active");
+      } else {
+        $panel.addClass("active");
+      }
+    });
+  </script>
 </body>
 
 </html>

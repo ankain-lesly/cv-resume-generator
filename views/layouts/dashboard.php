@@ -1,4 +1,6 @@
-<?php include_once __DIR__ . "/../globals/dash-headTags.php"; ?>
+<?php include_once __DIR__ . "/../globals/globals.php"; ?>
+<title>Dashboard | Resume Maker</title>
+<link rel="stylesheet" href="/static/styles/main.css" />
 </head>
 
 <body>

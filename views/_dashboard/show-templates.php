@@ -64,7 +64,8 @@
 
       </div>
     </div>
-    <p class="txt-center pt-4">Read more about how this works: <a href="/about#templates">Read more</a></p>
+    <p class="txt-center pt-4">Read more about how this works: <a href="/about#templates" class="clr-warning">Read
+        more</a></p>
   </div>
 
 </main>

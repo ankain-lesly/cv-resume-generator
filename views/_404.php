@@ -1,3 +1,4 @@
+<div class="backgroud" style="height: 80px; background: var(--color-bg);"></div>
 <div class="Not-found section-p">
   <div class="container-x flex section-p">
     <main class="">

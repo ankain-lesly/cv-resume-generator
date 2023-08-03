@@ -1,5 +1,3 @@
-@import "variables";
-
 .user_profile {
   position: relative;
   &:hover .drop_menu {
@@ -254,7 +252,7 @@
   width: 100%;
   padding: 1rem;
   // left: 30px;
-  z-index: 500;
+  z-index: 10500;
   --toast-color: var(--clr-success);
   visibility: visible;
   animation: offScreen 300ms ease forwards 5000ms;

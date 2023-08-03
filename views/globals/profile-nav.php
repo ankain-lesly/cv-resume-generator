@@ -1,7 +1,14 @@
+<?php
+
+use Devlee\mvccore\Session;
+
+$user = (new Session())->get('user');
+$photo = $user['profile'] ? "/uploads/profiles/" . $user['profile'] : "/static/media/user.png";
+?>
 <div class="user_profile flex">
   <!-- <h4>username</h4> -->
   <div class="thumbnail">
-    <img class="ml-x mr-x profile-icon-x" src="/static/media/user.png" alt=" user profile">
+    <img class="ml-x mr-x profile-icon-x" src="<?= $photo  ?>" alt=" user profile">
   </div>
   <span class="padd">
     <i class="fas fa-caret-down"></i>

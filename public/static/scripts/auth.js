@@ -28,6 +28,8 @@ $("#login_form").on("submit", async (e) => {
 
   submitFormData(formData, "/auth/login");
 });
+// Handle Login
+$("#reset_form").on("submit", async (e) => setBtnLoading());
 const submitFormData = async (formData, endpoint, redirect_route = "/app/") => {
   if (isLoading) return;
   setBtnLoading();

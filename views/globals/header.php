@@ -14,20 +14,8 @@ $user = (new Session())->get('user');
     <nav class="nav-menu">
       <button class="screen-overflow mobile" data-target="nav-menu"></button>
       <div class="nav-menu-container">
-        <div class="nav-menu-head mobile">
-          <div class="nav flex between mb-1">
-            <h2>CV - Maker</h2>
-            <button class="btnB close-nav-menu">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Earum, debitis?
-          </p>
-        </div>
         <div class="nav-menu-body">
-          <div class="nav-links flex gap-2">
+          <div class="nav-links flex gap-1">
             <a href="/" class="nav-link">
               <span class="text">Home</span>
             </a>
@@ -56,11 +44,19 @@ $user = (new Session())->get('user');
                 <a href="#">Web Design</a>
               </div>
             </div>
+
+            <a href="/" class="nav-link">
+              <span class="text">About</span>
+            </a>
+            <a href="/" class="nav-link">
+              <span class="text">Forum</span>
+            </a>
+
           </div>
         </div>
         <div class="nav-menu-foot mobile">
           <div class="nav flex start mb-1">
-            <h4>Top Brands</h4>
+            <h4>Top Resumes</h4>
             <button class="btnB close-nav-menu">
               <i class="fas fa-angle-double-right"></i>
             </button>
@@ -72,7 +68,7 @@ $user = (new Session())->get('user');
             <div class="grid-item"></div>
           </div>
           <div class="accessories nav flex start mt-2">
-            <h4>Accessories/Parts</h4>
+            <h4>New templates designs</h4>
             <button class="btnB close-nav-menu">
               <i class="fas fa-angle-double-right"></i>
             </button>
@@ -97,7 +93,7 @@ $user = (new Session())->get('user');
             <i class="fas fa-search"></i>
           </button>
           <div class="search-action">
-            <form action="/module">
+            <form action="">
               <label for="search">Search </label>
               <div class="form-group flex relative">
                 <i class="fas fa-search icon-seach"></i>

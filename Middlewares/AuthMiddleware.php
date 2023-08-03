@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Middlewares;
+namespace App\Middlewares;
 
 use Devlee\mvccore\Middlewares\BaseMiddleware;
 use Devlee\mvccore\Session;

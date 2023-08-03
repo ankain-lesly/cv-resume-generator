@@ -98,3 +98,13 @@ body {
     margin-left: auto;
   }
 }
+@media (max-width: 730px) {
+  .main {
+    display: block;
+    width: 95%;
+    padding: 1rem;
+    .layer {
+      margin-bottom: 2rem;
+    }
+  }
+}

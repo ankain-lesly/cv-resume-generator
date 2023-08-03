@@ -10,7 +10,7 @@
        <header class="mt-2">
          <div class="container-x flex between">
            <a href="
-        <?= isset($_GET['password']) ? '/user/profile' : '/dashboard/'; ?>
+        <?= isset($_GET['password']) ? '/user/profile' : '/app/'; ?>
         " class="btn btn-s">Back</a>
            <h4>Edit Account</h4>
          </div>
@@ -87,8 +87,8 @@
                      style="height: 100px;"><?= $address ?></textarea>
                  </div>
                </div>
-               <div class="actions flex mt-2 end gap-2 pb-2 wrap mr-2">
-                 <a href="/dashboard/" class="btn btn-s">Cancel</a>
+               <div class="actions flex mt-2 between gap-2 pb-2 wrap mr-2">
+                 <a href="/app/" class="btn btn-s">Cancel</a>
                  <button class="btn btn-p" type="submit" name="update_profile">
                    <span class="mr-1"> Update Info </span>
                  </button>
@@ -139,8 +139,8 @@
                      placeholder="Enter old password..." required />
                  </div>
 
-                 <div class="actions flex mt-2 end gap-2 pb-2 wrap mr-2">
-                   <a href="/dashboard/" class="btn btn-s">Cancel</a>
+                 <div class="actions flex mt-2 between gap-2 pb-2 wrap mr-2">
+                   <a href="/app/" class="btn btn-s">Cancel</a>
                    <button class="btn btn-p" type="submit" name="change_password">
                      <span class="mr-1"> Update Info </span>
                    </button>

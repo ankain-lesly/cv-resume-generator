@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Middlewares\AuthMiddleware;
 use App\Models\User;
 use Devlee\mvccore\FileUpload;
 use Devlee\XRouter\Router;
@@ -10,6 +11,7 @@ use Devlee\XRouter\Response;
 
 use Devlee\mvccore\Session;
 use Devlee\mvccore\Library;
+use Devlee\mvccore\SendEmail;
 
 class AuthController
 {
@@ -126,7 +128,112 @@ class AuthController
     $res->render('login');
   }
 
-  // Login
+  // Password Reset
+  public function resetPassword(Request $req, Response $res)
+  {
+    $data = $req->body();
+    $error = false;
+
+    if ($req->isPost() && $data['reset_email']) {
+      $user = $this->UserObj->findOne(["email" => $data['reset_email']], ["username", 'email', "userID"]);
+
+      if (!$user) {
+        $error = "Your Email address is not valid";
+      } else {
+        $token = Library::generateToken(12);
+
+        $createToken = $this->UserObj->update(
+          ["password_reset" => $token, "userID" => $user['userID']],
+          ['userID']
+        );
+        if ($createToken) {
+          $mail = new SendEmail();
+          $message = "<h2>Dear " . $user['username'] . ",</h3>";
+          $message .= "<br>We receipt a password reset request from an account bearing this email. To proceed, kindly visit the link provided below. <br>With regards :) <br><br>";
+          $message .= 'Reset Link: <a href="https://resumemaker.letech-cg.com/account/change-password?reff=send-xp&reset=' . $token . '&token=true" class="mail_btn">Reset my password</a><br>';
+          $message .= "Let us know if you face any difficulties";
+          $message .= "<p style='text-align:center;'><small>Resume Maker &copy; 2023 - letech-cg.com</span></p>";
+          $mail->setEmail(
+            $data['reset_email'],
+            "HND Resumes: Request to reset account password",
+            $message
+          );
+
+          $mail->send();
+
+          $this->session->setToast("toast", 'Verified ✔. Am email has been sent to your email address');
+          $res->redirect("/account/reset-password?verified=true");
+        } else {
+          $error = "Error creating reset request, Try again";
+        }
+      }
+    }
+
+    $res->render('reset-password', ['error' => $error]);
+  }
+  // Password Reset
+  public function changePassword(Request $req, Response $res)
+  {
+    $token = $req->query('reset');
+    $error = false;
+
+    if (!$token) {
+      $this->session->setToast("toast", 'Your password reset session, had expired. 🚩');
+      $res->redirect("/account/login?reff=expired-sess");
+    }
+
+    $user = $this->UserObj->findOne(['password_reset' => $token]);
+
+    if (!$user) {
+      $this->session->setToast("toast", 'Your password reset session, had expired. 🚩');
+      $res->redirect("/account/login?reff=expired-sess");
+    }
+
+    if ($req->isPost()) {
+      $data = $req->body();
+      $password = $data['password'];
+      $con_password = $data['confirm_password'];
+
+      if ($password !== $con_password) {
+        $error = "Passwords don't match.. 🚩";
+        return $res->render('change-password', ['error' => $error]);
+      }
+
+      $data['password'] = $this->UserObj->hashString($password);
+      $data['userID'] = $user['userID'];
+
+      $update = $this->UserObj->update($data, ['userID']);
+
+      echo "here";
+      if ($update) {
+        $update = $this->UserObj->update(["password_reset" => 'DONE', 'userID' => $user['userID']], ['userID']);
+
+        if ($update) {
+          $mail = new SendEmail();
+          $message = "<h2>Dear " . $user['username'] . ",</h3>";
+          $message .= "<br>Your password was successfully changed on " . date("d/m/y") . " We hope this was initiated by you. <br>With regards :) <br><br>";
+          $message .= "<br>Let us know if you face any difficulties";
+          $message .= "<p style='text-align:center;'><small>Resume Maker &copy; 2023 - letech-cg.com</span></p>";
+          $mail->setEmail(
+            $data['reset_email'],
+            "HND Resumes: Request to reset account password",
+            $message
+          );
+
+          $mail->send();
+
+          $this->session->setToast("toast", 'Password change successfully ✔');
+          $this->setUser($user);
+          $res->redirect("/app/");
+        } else {
+          $error = "Something went wrong...";
+        }
+      }
+    }
+
+    $res->render('change-password', ['error' => $error]);
+  }
+  // Logout
   public function logout(Request $req, Response $res)
   {
     // Clearing user data
@@ -143,7 +250,7 @@ class AuthController
       'userID' => $data['userID'],
       'email' => $data['email'],
       'role' => $data['role'] ?? "USER",
-      'profile' => $data['profile_image'] ?? '',
+      'profile' => $data['profile'] ?? '',
       '_sess_token' => $data['_sess_token'],
     );
     $this->session->set('user', $user_data);
@@ -151,6 +258,8 @@ class AuthController
 
   public function profile(Request $req, Response $res)
   {
+    (new AuthMiddleware())->isUser();
+
     Router::setLayout('layouts/dashboard');
     $user = $this->session->get('user');
     $user_id = $user['userID'];
@@ -166,19 +275,24 @@ class AuthController
         $image = $_FILES['profile'];
 
         $file_options = [
-          "path" => Router::root_folder() . "/uploads/profiles/",
+          "path" => "/uploads/profiles/",
           "filename" => "IMG-" . strtoupper(str_replace(" ", "-", $username)) . "-" . $user_id,
+          "accept" => ['.jpg', '.png', '.jpeg'],
         ];
 
         $FileHandler = new FileUpload();
-        $FileHandler->options($file_options);
-        $file = $FileHandler->upload($image);
 
-        $data['profile'] = $file;
+        $data['profile'] = $FileHandler->setup($file_options, $image);
 
-        $update = $this->UserObj->update($data, ["userID", "email"]);
+        $FileHandler->upload();
 
-        $this->session->setToast('toast', "Profile Photo changed successfully 🐱‍🏍");
+        if ($FileHandler->errors()) {
+          $this->session->setToast('toast', "Ooops error uploading image 🚩");
+        } else {
+          $_SESSION['user']['profile'] = $data['profile'];
+          $update = $this->UserObj->update($data, ["userID", "email"]);
+          $this->session->setToast('toast', "Profile Photo changed successfully 🐱‍🏍");
+        }
       } elseif (isset($data['update_profile'])) {
         $update = $this->UserObj->update($data, ["userID", "email"]);
 

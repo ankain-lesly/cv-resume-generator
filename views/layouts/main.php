@@ -1,6 +1,6 @@
-<?php
-include_once __DIR__ . "/../globals/main-headTags.php";
-?>
+<?php include_once __DIR__ . "/../globals/globals.php" ?>
+<title>Awesome Home | HND Resume Maker</title>
+<link rel="stylesheet" href="/static/styles/style.css" />
 </head>
 
 <body>

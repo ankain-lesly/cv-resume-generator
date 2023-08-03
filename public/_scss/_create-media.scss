@@ -1,0 +1,75 @@
+// <Media  Queries
+@media (max-width: 720px) {
+  .main-header {
+    .bbtn {
+      &.option {
+        display: none;
+      }
+      // padding: 0.4em;
+      .txt {
+        display: none;
+      }
+    }
+  }
+  .container-main {
+    display: block;
+
+    .mobile-nav {
+      visibility: visible;
+      opacity: 1;
+    }
+    .create-preview {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 100vh;
+      bottom: 0;
+      background-color: $clr-white;
+      padding: 0;
+      z-index: 100;
+    }
+    #my_resume_wrapper {
+      width: 95%;
+      margin-top: 1rem;
+    }
+  }
+  .mobile-nav .nav_btn_dd {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1rem;
+
+    background: blue;
+    width: 50px;
+    height: 50px;
+    line-height: 35px;
+    box-sizing: var(--bs);
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+  }
+}
+
+@media (max-width: 550px) {
+  .main-header .bbtn {
+    padding: 0.4em;
+    margin-left: 0.4em;
+  }
+  .personal-1 {
+    flex-direction: column;
+    .form-goup {
+      align-self: center;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .form-content .intro-group {
+    display: block;
+    width: 100%;
+  }
+  .form-content .form-group {
+    // display: block;
+    margin-bottom: 0.25em;
+  }
+}

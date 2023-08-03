@@ -121,7 +121,7 @@ async function LoadTemplates() {
   setTimeout(() => {
     $(".templates-main").html("");
     $.each(object.data, (key, data) => {
-      console.log(data);
+      // console.log(data);
       let layout = `
       <div class="card">
         <input type="radio" id="${data.template_id}" id="meta_template" name="meta_template" class="temp_input" value="${data.template_id}" required>
@@ -175,7 +175,7 @@ $(".create_meta").on("click", async (e) => {
     useToast("Resume created successfully. Setting up interface 🐱‍🏍");
     // useStorage(STORAGE_KEY, {});
     setTimeout(() => {
-      window.location = "/resume/create/" + data.resume + "?reff=new-resume";
+      window.location = "/resume/edit/" + data.resume + "?reff=new-resume";
     }, 2000);
   }
 });

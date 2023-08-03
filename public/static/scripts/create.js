@@ -1,3 +1,8 @@
+/**
+ * Main Resume Contrl
+ * By: Ank Lee
+ */
+
 // Custom Objects
 import { STORAGE_KEY } from "./config.js";
 import { generateFormCard, RANGE_OBJECT } from "./form_objects.js";
@@ -295,7 +300,7 @@ $(document).ready(function (e) {
       // if -> get from database
       const res = await useFetch("GET", "/resume/" + META_DATA.resume + "/");
       if (!res) {
-        alert("Connections error: Please try again..");
+        useToast("Connections error: Loading default form interface 🐱‍🏍");
         return LoadDefaultForm();
       }
 
@@ -444,5 +449,53 @@ $(document).ready(function (e) {
       META_DATA.template = res.data.template;
       updatePreviewer(FORM_DATA);
     }
+  });
+
+  /**
+   * Main Page Panel
+   *
+   */
+  // Panel Pages
+  $(".btn_close_unsigned").on("click", function (e) {
+    $(".alert-unsigned").fadeOut();
+  });
+  setTimeout(() => $(".alert-unsigned").addClass("show"), 10000);
+  // panels
+  $(".panel_btn").on("click", function (e) {
+    $(".panel_btn").removeClass("active");
+    $(this).addClass("active");
+    const section = $(this).data("target");
+    $(".page_section").removeClass("on_page");
+    $(`.${section}`).addClass("on_page");
+    $(".area-step").removeClass("active");
+  });
+  // FORM SECTIONS
+  $(".control_action").on("click", function (e) {
+    $(".area-step").removeClass("active");
+    const section = $(this).data("form-section");
+    $(`.${section}`).addClass("active");
+    $(`[data-section-title="${section}"]`).addClass("active");
+  });
+  // PAGES Sections
+  $(".btn_page_section").on("click", function (e) {
+    $(".area-step").removeClass("active");
+  });
+
+  $(".btn_panel").on("click", function (e) {
+    let $panel = $(".side_panel");
+
+    if ($panel.hasClass("active")) {
+      $panel.removeClass("active");
+    } else {
+      $panel.addClass("active");
+    }
+  });
+  // Preview Options
+  $(".btn_preview").on("click", function (e) {
+    $(".create-preview").fadeIn();
+    updatePreviewer(FORM_DATA);
+  });
+  $(".close_mobile_preview").on("click", function (e) {
+    $(".create-preview").fadeOut();
   });
 });
