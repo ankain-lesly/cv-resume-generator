@@ -75,10 +75,10 @@ class MainController
 
     if ($api) {
       $templates = $this->templateObj->findAll(
-        ['user_id' => $user['userID']],
         ['status' => 1],
         ["thumbnail", "status", "template_id"]
       );
+      $templates = $templates['data'] ?? [];
       return $res->json($templates);
     }
 

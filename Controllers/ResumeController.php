@@ -107,6 +107,7 @@ class ResumeController
   {
     $user = $this->session->get('user');
     $resume_id = $req->params('resume_id');
+    $basis = $req->query('x-status');
 
     if ($req->isPost()) {
       $data = $req->body();
@@ -161,7 +162,7 @@ class ResumeController
       if ($update) $res->json(['success' => true]);
       exit;
     }
-    if ($user) {
+    if (!$basis) {
       $resume = $this->DataAccess->findOne("SELECT * FROM tblresume_metadata WHERE resume_id = ?", [$resume_id]);
     } else {
       $resume = $this->DataAccess->findOne("SELECT template_id FROM tbltemplates WHERE template_id = ?", [$resume_id]);

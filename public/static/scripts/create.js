@@ -351,55 +351,29 @@ $(document).ready(function (e) {
   });
 
   $(".btn_resume_dd").on("click", function (e) {
+    BA.name(".btn_resume_dd");
+    BA.loading();
     // window.jsPDF = window.jsPDF;
     const { jsPDF } = window.jspdf;
     var doc = new jsPDF();
     // Source HTMLElement or a string containing HTML.
+    let timeSpanFileName = "Resume-" + META_DATA.template + ".pdf";
     var elementHTML = document.querySelector("#resume_design");
     doc.html(elementHTML, {
       callback: function (doc) {
         // Save the PDF
-        doc.save("Resume-html.pdf");
+        doc.save(timeSpanFileName);
+        BA.done();
       },
       margin: [10, 10, 10, 10],
       autoPaging: "text",
       x: 0,
       y: 0,
-      width: 125, //target width in the PDF document
-      windowWidth: 675, //window width in CSS pixels
-      // width: 190, //target width in the PDF document
-      // windowWidth: 1025, //window width in CSS pixels
+      width: 125,
+      windowWidth: 675,
     });
   });
-  /*
-  // Download Resume
-  $(".btn_resume_dd").on("click", function (e) {
-    BA.name(".btn_resume_dd");
-    BA.loading();
-    window.jsPDF = window.jsPDF;
-    const { jsPDF } = window.jspdf;
-    // var doc = new jsPDF("p", "in", [8.26, 11.69]);
-    // var doc = new jsPDF("p", "mm", [524, 1024]);
-    // var doc = new jsPDF("p", "mm", [210, 297]);
-    var doc = new jsPDF();
-    // let date = new Date();
-    // let timeSpanFileName = "Resume-" + date.toLocaleString() + ".pdf";
-    let timeSpanFileName = "Resume-123.pdf";
-    console.log(timeSpanFileName);
-    // const resume = document.querySelector("#resume_design");
-    // const resume = document.querySelector("#my_resume_main");
-    const resume = document.querySelector("#resume_design");
 
-    doc.html(resume, {
-      callback: function (doc) {
-        doc.save(timeSpanFileName);
-        BA.done();
-      },
-      x: 20,
-      y: 20,
-    });
-  });
-*/
   // CHANGE COVER PHOTO
   $("#resume_photo").on("change", function (e) {
     BA.name(".btn_save_resume");
@@ -440,9 +414,6 @@ $(document).ready(function (e) {
       },
     });
   });
-  // Download Resume
-  // $(".change_template").on("click", function (e) {});
-
   // Save Resume
   const saveResume = async (data) => {
     if (META_DATA.resume == "XR-12345678-Lee")

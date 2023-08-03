@@ -14,20 +14,6 @@ handleAppTheme();
 // load templates
 let isLoaded = false;
 let isLoading = false;
-// let object = [
-//   {
-//     id: 134,
-//     src: "t1.jpg",
-//   },
-//   {
-//     id: 513,
-//     src: "t2.jpg",
-//   },
-//   {
-//     id: 133,
-//     src: "t3.jpg",
-//   },
-// ];
 // Dashboard
 // Menu -- sidebar
 $(".btn-sitebar").on("click", () => {
@@ -175,7 +161,7 @@ $(".create_meta").on("click", async (e) => {
     useToast("Resume created successfully. Setting up interface 🐱‍🏍");
     // useStorage(STORAGE_KEY, {});
     setTimeout(() => {
-      window.location = "/resume/edit/" + data.resume + "?reff=new-resume";
+      window.location = "/resume/edit/" + data.resume + "?basis=new-resume";
     }, 2000);
   }
 });

@@ -3,80 +3,80 @@
   <script src="/static/scripts/jQuery.min.js"></script>
 
   <script type="module">
-import {
-  handleAppTheme,
-} from "/static/scripts/app_hooks.js";
+    import {
+      handleAppTheme,
+    } from "/static/scripts/app_hooks.js";
 
-// App Theme()
-handleAppTheme();
+    // App Theme()
+    handleAppTheme();
   </script>
   <title>Untitled | Resume</title>
   <link rel="stylesheet" href="/static/styles/create.css" />
   <style type="text/css">
-#my_resume_wrapper {
-  margin: auto;
-  overflow: hidden;
-  margin: auto;
-  width: 100%;
-  max-width: 550px;
-  border: 2px solid #333333ae;
-  border-radius: 0.5em;
-  box-shadow: 1px 2px 20px #333;
-  cursor: zoom-in;
-}
+    #my_resume_wrapper {
+      margin: auto;
+      overflow: hidden;
+      margin: auto;
+      width: 100%;
+      max-width: 550px;
+      border: 2px solid #333333ae;
+      border-radius: 0.5em;
+      box-shadow: 1px 2px 20px #333;
+      cursor: zoom-in;
+    }
 
-#my_resume_main {
-  width: 1000px;
-  transform-origin: 0 0;
-}
+    #my_resume_main {
+      width: 1000px;
+      transform-origin: 0 0;
+    }
 
-/*// Loader*/
-#page_loader {
-  position: fixed;
-  width: 100vw;
-  z-index: 1500;
-  top: 0;
-}
+    /*// Loader*/
+    #page_loader {
+      position: fixed;
+      width: 100vw;
+      z-index: 1500;
+      top: 0;
+    }
 
-#page_loader.loaded {
-  display: none !important;
-}
+    #page_loader.loaded {
+      display: none !important;
+    }
 
-#page_loader .load_page {
-  height: 100vh;
-  /*pointer-events: none;*/
-}
+    #page_loader .load_page {
+      height: 100vh;
+      /*pointer-events: none;*/
+    }
 
-#page_loader .layer_content {
-  cursor: wait;
-  background-color: rgba(0, 0, 0, 0.6);
-}
+    #page_loader .layer_content {
+      cursor: wait;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
 
-#page_loader .sync {
-  padding: 0.5em 1em;
-}
+    #page_loader .sync {
+      padding: 0.5em 1em;
+    }
 
-#page_loader .sync,
-#page_loader .content {
-  border-radius: 0.35em;
-  background-color: var(--clr-white);
-  color: var(--clr-bg);
-  font-size: 0.8rem;
-  box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
-  text-align: center;
+    #page_loader .sync,
+    #page_loader .content {
+      border-radius: 0.35em;
+      background-color: var(--clr-white);
+      color: var(--clr-bg);
+      font-size: 0.8rem;
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+      text-align: center;
 
-}
+    }
 
-#page_loader .content p {
-  font-size: 1.1rem;
-}
+    #page_loader .content p {
+      font-size: 1.1rem;
+    }
 
-#page_loader .content {
-  margin-top: 2rem;
-  padding: 1em;
-  width: 100%;
-  max-width: 400px;
-}
+    #page_loader .content {
+      margin-top: 2rem;
+      padding: 1em;
+      width: 100%;
+      max-width: 400px;
+    }
   </style>
   </head>
 
@@ -94,7 +94,7 @@ handleAppTheme();
               <h2>Ooops</h2>
               <p class="mt-2">The resume you are trying to access is not available. Create one to proceed</p>
               <br>
-              <a href="<?= $user ? "/dashboard/?create=resume" : "/#templates" ?>" class="bbtn small secondary">Continue
+              <a href="<?= $user ? "/app/?create=resume" : "/#templates" ?>" class="bbtn small secondary">Continue
                 <i class="fas fa-angle-double-right"></i></a>
             </div>
           </div>
@@ -266,8 +266,7 @@ handleAppTheme();
                 <div class="form-content education">
                   <div class="education-main"></div>
                   <div class="actions">
-                    <span data-target=".education-main" data-form-object="OBJECT_EDUCATION"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".education-main" data-form-object="OBJECT_EDUCATION" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add education</small>
                     </span>
@@ -284,8 +283,7 @@ handleAppTheme();
                 <div class="form-content experience">
                   <div class="experience-main"></div>
                   <div class="actions">
-                    <span data-target=".experience-main" data-form-object="OBJECT_EXPERIENCE"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".experience-main" data-form-object="OBJECT_EXPERIENCE" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add experience</small>
                     </span>
@@ -304,8 +302,7 @@ handleAppTheme();
                   <div class="social-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".social-main" data-form-object="OBJECT_SOCIAL"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".social-main" data-form-object="OBJECT_SOCIAL" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add social</small>
                     </span>
@@ -324,8 +321,7 @@ handleAppTheme();
                   <div class="language-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".language-main" data-form-object="OBJECT_LANGUAGE"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".language-main" data-form-object="OBJECT_LANGUAGE" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add Language</small>
                     </span>
@@ -344,8 +340,7 @@ handleAppTheme();
                   <div class="skill-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".skill-main" data-form-object="OBJECT_SKILL"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".skill-main" data-form-object="OBJECT_SKILL" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add skill</small>
                     </span>
@@ -364,8 +359,7 @@ handleAppTheme();
                   <div class="hobby-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".hobby-main" data-form-object="OBJECT_HOBBY"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".hobby-main" data-form-object="OBJECT_HOBBY" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add hobby</small>
                     </span>
