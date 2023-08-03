@@ -60,29 +60,6 @@ $notifications = 1;
           <i class="fas fa-bezier-curve icon"></i>
           <span class="text"><label class="notif_indicator"><?= $templates ?></label> Resume Templates</span></a>
       </li>
-      <!-- <li class="drop-down">
-        <a aria-current="page" class="drop-down-head"> 
-          <i class="fas fa-coins icon"></i>
-          <span class="text"><label class="notif_indicator"><?= $resumes ?></label> My Resumes</span>
-          <i class="fas fa-caret-down drop-caret"></i>
-        </a>
-        <ul class="drop-down-body">
-          <li><a href="#">New Resumes</a></li>
-          <li><a href="#">Old Resumes</a></li>
-        </ul>
-      </li> -->
-      <!-- <li class="drop-down">
-        <a aria-current="page" class="drop-down-head">
-          <i class="fas fa-bezier-curve icon"></i> 
-          <span class="text">Templates</span>
-          <i class="fas fa-caret-down drop-caret"></i>
-        </a>
-        <ul class="drop-down-body">
-          <li><a href="#">Template One</a></li>
-          <li><a href="#">Template Two</a></li>
-          <li><a href="#">Template Three</a></li>
-        </ul>
-      </li> -->
       <li>
         <a class="" href="#notifications">
           <i class="fas fa-bell icon"></i>

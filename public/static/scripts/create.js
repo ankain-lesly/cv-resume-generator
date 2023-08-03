@@ -306,14 +306,15 @@ $(document).ready(function (e) {
 
       if (res.data) {
         formData = res.data;
-        // $.each(formData, (a, b) => (formData[a] = !b || b === "" ? {} : b));
-        // console.log(formData);
       } else if (!res.response.ok || res.response.status !== 200) {
         alert("Error getting data please try again..");
       } else {
         return LoadDefaultForm();
       }
     }
+
+    $.each(formData, (a, b) => (formData[a] = !b || b === "" ? {} : b));
+    // console.log(formData);
     FORM_DATA = formData;
     LoadFormData(formData);
     updatePreviewer(formData);
@@ -348,15 +349,45 @@ $(document).ready(function (e) {
       isLoading = false;
     }, 500);
   });
+
+  $(".btn_resume_dd").on("click", function (e) {
+    // window.jsPDF = window.jsPDF;
+    const { jsPDF } = window.jspdf;
+    var doc = new jsPDF();
+    // Source HTMLElement or a string containing HTML.
+    var elementHTML = document.querySelector("#resume_design");
+    doc.html(elementHTML, {
+      callback: function (doc) {
+        // Save the PDF
+        doc.save("Resume-html.pdf");
+      },
+      margin: [10, 10, 10, 10],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 125, //target width in the PDF document
+      windowWidth: 675, //window width in CSS pixels
+      // width: 190, //target width in the PDF document
+      // windowWidth: 1025, //window width in CSS pixels
+    });
+  });
+  /*
   // Download Resume
   $(".btn_resume_dd").on("click", function (e) {
     BA.name(".btn_resume_dd");
     BA.loading();
+    window.jsPDF = window.jsPDF;
     const { jsPDF } = window.jspdf;
-    var doc = new jsPDF("p", "mm", [1500, 1400]);
-    let date = new Date();
-    let timeSpanFileName = "Resume-" + date.toLocaleString() + ".pdf";
+    // var doc = new jsPDF("p", "in", [8.26, 11.69]);
+    // var doc = new jsPDF("p", "mm", [524, 1024]);
+    // var doc = new jsPDF("p", "mm", [210, 297]);
+    var doc = new jsPDF();
+    // let date = new Date();
+    // let timeSpanFileName = "Resume-" + date.toLocaleString() + ".pdf";
+    let timeSpanFileName = "Resume-123.pdf";
     console.log(timeSpanFileName);
+    // const resume = document.querySelector("#resume_design");
+    // const resume = document.querySelector("#my_resume_main");
     const resume = document.querySelector("#resume_design");
 
     doc.html(resume, {
@@ -368,7 +399,7 @@ $(document).ready(function (e) {
       y: 20,
     });
   });
-
+*/
   // CHANGE COVER PHOTO
   $("#resume_photo").on("change", function (e) {
     BA.name(".btn_save_resume");
@@ -444,7 +475,7 @@ $(document).ready(function (e) {
       update_meta: "true",
     });
 
-    if (res.data && res.data.success) {
+    if (res && res.data && res.data.success) {
       useToast("Template changed.. 😊");
       META_DATA.template = res.data.template;
       updatePreviewer(FORM_DATA);

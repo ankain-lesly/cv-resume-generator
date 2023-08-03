@@ -103,6 +103,9 @@ function makeBody(string $string)
   /* margin: 5px auto !important; */
   /* min-height: 1450px; */
   /* padding-bottom: 40px; */
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: 1.2rem;
   position: relative;
 }
 </style>
