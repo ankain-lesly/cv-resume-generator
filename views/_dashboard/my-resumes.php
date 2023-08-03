@@ -17,8 +17,8 @@
         <div class="box">
           <div class="overlay"></div>
           <div class="head flex between">
-            <a href="#" class="clr-bg" onclick="return confirm('Do you want to delete!')"><i
-                class="fas fa-trash"></i></a>
+            <!-- <a href="#" class="clr-bg" onclick="return confirm('Do you want to delete!')"><i -->
+            <a href="#" class="clr-bg"><i class="fas fa-trash"></i></a>
             <span class="count clr-danger">1</span>
           </div>
           <div class="content mb-2 mt-2">

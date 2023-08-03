@@ -11,7 +11,10 @@ $DataAccess = new DataAccess();
 $user = $session->get('user');
 // $notifications = $DataAccess->fetchCount('', $sql_notifications)['count']; //status PENDING
 $resumes = $DataAccess->findCount('tblresume_metadata', ['user_id' => $user['userID']])['count'];
+$templates = $DataAccess->findCount('tbltemplates', ['user_id' => $user['userID']])['count'];
+
 $notifications = 1;
+
 ?>
 <aside class="side-bar  scroll-bar">
   <div class="side-bar-hero">
@@ -55,7 +58,7 @@ $notifications = 1;
       <li>
         <a aria-current="page" href="/templates/resume">
           <i class="fas fa-bezier-curve icon"></i>
-          <span class="text">Resume Templates</span></a>
+          <span class="text"><label class="notif_indicator"><?= $templates ?></label> Resume Templates</span></a>
       </li>
       <!-- <li class="drop-down">
         <a aria-current="page" class="drop-down-head"> 
