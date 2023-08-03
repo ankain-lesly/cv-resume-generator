@@ -198,11 +198,11 @@ class AuthController
         $error = "Passwords don't match.. 🚩";
         return $res->render('change-password', ['error' => $error]);
       }
+      $new = [];
+      $new['password'] = $this->UserObj->hashString($password);
+      $new['userID'] = $user['userID'];
 
-      $data['password'] = $this->UserObj->hashString($password);
-      $data['userID'] = $user['userID'];
-
-      $update = $this->UserObj->update($data, ['userID']);
+      $update = $this->UserObj->update($new, ['userID']);
 
       echo "here";
       if ($update) {

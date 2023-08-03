@@ -1,9 +1,1 @@
-// LOADING
-let selected = "";
-
-// action
-export const setBtnAction = {
-  name: (selector = ".form_btn") => (selected = selector),
-  loading: () => $(selected).addClass("process"),
-  done: () => setTimeout(() => $(selected).removeClass("process"), 800),
-};
+let selected="";export const setBtnAction={name:(e=".form_btn")=>selected=e,loading:()=>$(selected).addClass("process"),done:()=>setTimeout((()=>$(selected).removeClass("process")),800)};

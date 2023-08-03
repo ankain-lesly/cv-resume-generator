@@ -2,9 +2,9 @@
 
 namespace App\Middlewares;
 
+use App\Models\User;
 use Devlee\mvccore\Middlewares\BaseMiddleware;
 use Devlee\mvccore\Session;
-use App\models\User;
 
 class AuthMiddleware extends BaseMiddleware
 {

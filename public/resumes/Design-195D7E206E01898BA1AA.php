@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <title>Design 5 | Resume Template</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
   <!-- <link rel="stylesheet" href="/static/styles/index.css"> -->
   <link rel="stylesheet" href="/resumes/design/<?= $css_file ?>">
 </head>

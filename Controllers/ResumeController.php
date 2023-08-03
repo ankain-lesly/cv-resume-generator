@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\models\Resume;
 use Devlee\mvccore\Library;
 use Devlee\XRouter\Request;
 use Devlee\XRouter\Response;
@@ -11,6 +10,7 @@ use Devlee\XRouter\Router;
 use Devlee\mvccore\Session;
 // middlewares
 use App\Middlewares\AuthMiddleware;
+use App\Models\Resume;
 use App\Models\Template;
 use Devlee\mvccore\DB\DataAccess;
 use Devlee\mvccore\FileUpload;
@@ -191,7 +191,7 @@ class ResumeController
     $php_file = "Design-" . $template_id . ".php";
     $css_file = "Design-" . $template_id . ".css";
 
-    $folder = Router::root_folder() . "/resumes\/";
+    $folder = Router::root_folder() . "/resumes/";
     $design = $folder . $php_file;
 
     // send default template

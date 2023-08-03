@@ -58,7 +58,7 @@ class AdminController
         "accept" => [".jpg", ".jpeg", ".png"]
       ];
       $file_options_php = [
-        "path" => "/resumes\/",
+        "path" => "/resumes/",
         "filename" => "Design-" . $template_id,
         "accept" => [".php"]
       ];
