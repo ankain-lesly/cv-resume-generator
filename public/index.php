@@ -60,11 +60,14 @@ $router->post("/new/template", [AdminController::class, 'createTemplate']);
 // Dashboard
 $router->get("/app", [MainController::class, 'index']);
 $router->get("/app/", [MainController::class, 'index']);
+// resume
 $router->get("/app/resumes", [MainController::class, 'resumes']);
 $router->get("/templates/{type}", [MainController::class, 'templates']);
 $router->get("/api/templates/{type}", [MainController::class, 'templates']);
+// account
 $router->get("/account/settings", [MainController::class, 'settings']);
 $router->get("/app/get-started", '@_dashboard/get-started');
+// profile
 $router->get("/user/profile", [AuthController::class, 'profile']);
 $router->post("/user/profile", [AuthController::class, 'profile']);
 
