@@ -17,7 +17,8 @@
         <div class="box">
           <div class="overlay"></div>
           <div class="head flex between">
-            <a href="#" class="" onclick="return confirm('Do you want to delete!')"><i class="fas fa-trash"></i></a>
+            <a href="#" class="clr-bg" onclick="return confirm('Do you want to delete!')"><i
+                class="fas fa-trash"></i></a>
             <span class="count clr-danger">1</span>
           </div>
           <div class="content mb-2 mt-2">
@@ -32,7 +33,7 @@
             <input type="hidden" value="<?= $data['meta_id'] ?>" id="content_meta">
           </div>
           <div class="foot flex between">
-            <p class="clr-warning">App 13</p>
+            <p class="clr-warning"><?= date("M j, h a", strtotime($data['created_on'])) ?></p>
             <a href="/resume/edit/<?= $data['resume_id'] ?>" class="btn btn-p">Open</i></a>
           </div>
         </div>
