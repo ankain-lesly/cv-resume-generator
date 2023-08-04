@@ -1,17 +1,19 @@
 vendor
 .vscode
 API.md
+
 00FA
 #00FA -> FontsAwsesome Package
-screenshots
+
+screenshots/
 styles/
 
 
 config.php
 
+Demo
+
 demo-stylesheet.css
 demo-script.js
 demo-cookies.cookies
 demo-loader.html
-
-Demo
