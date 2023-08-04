@@ -71,5 +71,9 @@ $router->get("/app/get-started", '@_dashboard/get-started');
 $router->get("/user/profile", [AuthController::class, 'profile']);
 $router->post("/user/profile", [AuthController::class, 'profile']);
 
+$router->get("/about", '@about');
+$router->get("/forum", '@forum');
+$router->get("/letech", '@letech');
+
 // Router resolve
 $router->resolve();

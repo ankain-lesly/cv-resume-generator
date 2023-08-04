@@ -45,10 +45,10 @@ $user = (new Session())->get('user');
               </div>
             </div>
 
-            <a href="/" class="nav-link">
+            <a href="/about" class="nav-link">
               <span class="text">About</span>
             </a>
-            <a href="/" class="nav-link">
+            <a href="/forum" class="nav-link">
               <span class="text">Forum</span>
             </a>
 
@@ -97,8 +97,7 @@ $user = (new Session())->get('user');
               <label for="search">Search </label>
               <div class="form-group flex relative">
                 <i class="fas fa-search icon-seach"></i>
-                <input class="search-module flex-1" type="search" name="keyword" id="search"
-                  placeholder="Search our collections" />
+                <input class="search-module flex-1" type="search" name="keyword" id="search" placeholder="Search our collections" />
                 <button class=" search-module">Go</button>
               </div>
             </form>
@@ -108,15 +107,15 @@ $user = (new Session())->get('user');
           <i class="fas fa-bars"></i>
         </button>
         <?php if ($user) : ?>
-        <button class="notification-btn btnB white">
-          <i class="fas fa-bell"></i>
-        </button>
-        <?php include_once "profile-nav.php"; ?>
+          <button class="notification-btn btnB white">
+            <i class="fas fa-bell"></i>
+          </button>
+          <?php include_once "profile-nav.php"; ?>
         <?php else : ?>
-        <div class="flex gap-x">
-          <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
-          <a href="/account/signup" class="btn btn-p">Signup</a>
-        </div>
+          <div class="flex gap-x">
+            <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
+            <a href="/account/signup" class="btn btn-p">Signup</a>
+          </div>
         <?php endif; ?>
       </div>
     </div>
