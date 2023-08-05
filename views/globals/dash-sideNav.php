@@ -1,5 +1,4 @@
 <?php
-
 // $sql_notifications = "SELECT COUNT(*) AS count FROM tblnotifications WHERE status = 'UNREAD'";
 
 use Devlee\mvccore\DB\DataAccess;
@@ -18,21 +17,34 @@ $notifications = 1;
 ?>
 <aside class="side-bar  scroll-bar">
   <div class="side-bar-hero">
-    <nav class="flex between mb-1">
-      <button class="padd btn-close-sidebar clr-success" style="color: #fff">
+    <nav class="flex between mb-2">
+      <a href="/" class="padd btn-home clr-success flex gap-x">
         <i class="fas fa-arrow-left"></i>
+        <b class="clr-success font-size-small">Home</b>
+      </a>
+
+      <span></span>
+
+      <button class="padd btn-close-sidebar clr-warning px-1">
+        <i class="fas fa-times"></i>
       </button>
     </nav>
     <div class="content ">
       <p class="hero-icon clr-warning mb-x">
         <i class="fas fa-briefcase"></i>
       </p>
-      <!-- <h2 class="clr-warning txt-capitalize  mb-1"><?= $user['name'] ?></h2> -->
-      <!-- <small class="detail">My Admin: <b class="status txt-upper clr-warning">Role</b></small> -->
     </div>
     <div class="stats-main no-scroll-bar">
       <ul class="stats flex between gap-x">
         <li class="stat right flex"><i class="fas fa-angle-left"></i></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
+        <li class="stat"></li>
         <li class="stat"></li>
         <li class="stat"></li>
         <li class="stat"></li>
@@ -65,7 +77,7 @@ $notifications = 1;
           <i class="fas fa-bell icon"></i>
           <span class="text">Notifications</span>
           <?php if ($notifications > 0) { ?>
-          <small class="notif_indicator"><?= $notifications > 9 ? $notifications : "0$notifications" ?></small>
+            <small class="notif_indicator"><?= $notifications > 9 ? $notifications : "0$notifications" ?></small>
           <?php } ?>
         </a>
       </li>

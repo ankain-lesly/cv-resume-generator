@@ -9,7 +9,7 @@ $user = (new Session())->get('user');
   <div class="container-x gap-2 flex between header-h">
     <a href="/" class="flex gap-x">
       <img src="/static/media/logo.png" alt="Logo" width="30px">
-      <h1 class="main-header-title"><span class="clr-warning">CV </span> Maker</h1>
+      <!-- <h1 class="main-header-title"><span class="clr-warning">CV </span> Maker</h1> -->
     </a>
     <nav class="nav-menu">
       <button class="screen-overflow mobile" data-target="nav-menu"></button>
@@ -51,8 +51,15 @@ $user = (new Session())->get('user');
             <a href="/forum" class="nav-link">
               <span class="text">Forum</span>
             </a>
-
           </div>
+          <?php if (!$user) { ?>
+          <div class="links my-1 mobile">
+            <div class="flex gap-1">
+              <a href="/account/login" class="bbtn primary flex-1" style="color: #fff; border-color: #fff">Login</a>
+              <a href="/account/signup" class="bbtn secondary flex-1">Signup</a>
+            </div>
+          </div>
+          <?php } ?>
         </div>
         <div class="nav-menu-foot mobile">
           <div class="nav flex start mb-1">
@@ -97,26 +104,27 @@ $user = (new Session())->get('user');
               <label for="search">Search </label>
               <div class="form-group flex relative">
                 <i class="fas fa-search icon-seach"></i>
-                <input class="search-module flex-1" type="search" name="keyword" id="search" placeholder="Search our collections" />
+                <input class="search-module flex-1" type="search" name="keyword" id="search"
+                  placeholder="Search our collections" />
                 <button class=" search-module">Go</button>
               </div>
             </form>
           </div>
         </div>
+        <?php if ($user) : ?>
+        <button class="notification-btn btnB white">
+          <i class="fas fa-bell"></i>
+        </button>
+        <?php include_once "profile-nav.php"; ?>
+        <?php else : ?>
+        <div class="flex gap-x desktop">
+          <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
+          <a href="/account/signup" class="btn btn-p">Signup</a>
+        </div>
+        <?php endif; ?>
         <button class="nav-menu-btn btnB mobile white">
           <i class="fas fa-bars"></i>
         </button>
-        <?php if ($user) : ?>
-          <button class="notification-btn btnB white">
-            <i class="fas fa-bell"></i>
-          </button>
-          <?php include_once "profile-nav.php"; ?>
-        <?php else : ?>
-          <div class="flex gap-x">
-            <a href="/account/login" class="btn btn-s" style="color: #fff; border-color: #fff">Login</a>
-            <a href="/account/signup" class="btn btn-p">Signup</a>
-          </div>
-        <?php endif; ?>
       </div>
     </div>
   </div>

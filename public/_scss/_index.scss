@@ -646,11 +646,14 @@ h3 {
   width: max-content;
 }
 /* RESPONSIVE */
-.mobile {
+.desktop {
   display: none;
 }
-@media (max-width: 450px) {
+@media (min-width: 450px) {
   .mobile {
+    display: none;
+  }
+  .desktop {
     display: block;
   }
 }

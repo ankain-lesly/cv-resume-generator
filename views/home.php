@@ -2,7 +2,7 @@
       <div class="hero-banner section-p">
         <div class="container-x flex">
           <div class="content">
-            <h2><span class="clr-warning">HND</span> - CV Maker <br> Be the host of your creativity</h2>
+            <h2><span class="clr-warning">Resume Generator</span><br> Be the host of your creativity</h2>
             <p>Showcase your knowledge, your skills, experience, expertise, and accomplishments. A resume the best place
               to start.</p>
             <h5 class="captions flex gap-x start">
@@ -65,16 +65,15 @@
         <div class="main">
           <!-- FEEDs -->
           <?php foreach ($templates as $data) { ?>
-          <div class="item">
-            <img src="/resumes/thumbnails/<?= $data['thumbnail'] ?>" class="img-cover" alt="Design">
-            <div class="options py-1 px-x">
-              <a href="/app/create/resume/<?= $data["template_id"] ?>/?x-status=new&basis=no-auth"
-                class="bbtn secondary small use_template">
-                Use Template <i class="pl-1 fas fa-angle-double-right"></i>
-              </a>
-              <input type="hidden" value="<?= $data["template_id"] ?>" id="use_main">
+            <div class="item">
+              <img src="/resumes/thumbnails/<?= $data['thumbnail'] ?>" class="img-cover" alt="Design">
+              <div class="options py-1 px-x">
+                <a href="/app/create/resume/<?= $data["template_id"] ?>/?x-status=new&basis=no-auth" class="bbtn secondary small use_template">
+                  Use Template <i class="pl-1 fas fa-angle-double-right"></i>
+                </a>
+                <input type="hidden" value="<?= $data["template_id"] ?>" id="use_main">
+              </div>
             </div>
-          </div>
           <?php } ?>
         </div>
       </div>
