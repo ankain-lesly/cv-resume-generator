@@ -2,174 +2,174 @@
   <title><?= $resume['title'] ?? "Untitled" ?> | Resume Maker</title>
   <link rel="stylesheet" href="/static/styles/create.css" />
   <style type="text/css">
-#my_resume_wrapper {
-  margin: auto;
-  overflow: hidden;
-  margin: auto;
-  width: 100%;
-  max-width: 550px;
-  border-radius: 0.5em;
-  box-shadow: 1px 2px 20px #333;
-  cursor: zoom-in;
-}
+    #my_resume_wrapper {
+      margin: auto;
+      overflow: hidden;
+      margin: auto;
+      width: 100%;
+      max-width: 550px;
+      border-radius: 0.5em;
+      box-shadow: 1px 2px 20px #333;
+      cursor: zoom-in;
+    }
 
-#my_resume_main {
-  width: var(--design-width);
-  transform-origin: 0 0;
-}
+    #my_resume_main {
+      width: var(--design-width);
+      transform-origin: 0 0;
+    }
 
-/*// Loader*/
-#page_loader {
-  position: fixed;
-  width: 100vw;
-  z-index: 20000;
-  top: 0;
-  left: 0;
-  height: 100%;
-}
+    /*// Loader*/
+    #page_loader {
+      position: fixed;
+      width: 100vw;
+      z-index: 20000;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }
 
-.loading {
-  background: #fff;
-  transition: .1s ease opacity;
-  -webkit-transition: .1s ease opacity;
-}
+    .loading {
+      background: #fff;
+      transition: .1s ease opacity;
+      -webkit-transition: .1s ease opacity;
+    }
 
-.loading .spinner {
-  width: 70px;
-  text-align: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
+    .loading .spinner {
+      width: 70px;
+      text-align: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
 
-.loading .spinner>div {
-  width: 18px;
-  height: 18px;
-  background-color: #333;
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
+    .loading .spinner>div {
+      width: 18px;
+      height: 18px;
+      background-color: #333;
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
 
-.loading .spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
+    .loading .spinner .bounce1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
 
-.loading .spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
+    .loading .spinner .bounce2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
 
-@-webkit-keyframes sk-bouncedelay {
+    @-webkit-keyframes sk-bouncedelay {
 
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0)
-  }
+      0%,
+      80%,
+      100% {
+        -webkit-transform: scale(0)
+      }
 
-  40% {
-    -webkit-transform: scale(1.0)
-  }
-}
+      40% {
+        -webkit-transform: scale(1.0)
+      }
+    }
 
-@keyframes sk-bouncedelay {
+    @keyframes sk-bouncedelay {
 
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
+      0%,
+      80%,
+      100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
 
-  40% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-  }
-}
+      40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+      }
+    }
 
-#page_loader.loaded {
-  display: none !important;
-}
+    #page_loader.loaded {
+      display: none !important;
+    }
 
-#page_loader .layer_content {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 0 1rem;
-}
+    #page_loader .layer_content {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 0 1rem;
+    }
 
-#page_loader .sync,
-#page_loader .content {
-  background-color: var(--clr-white);
-  border-radius: 0.35em;
-}
+    #page_loader .sync,
+    #page_loader .content {
+      background-color: var(--clr-white);
+      border-radius: 0.35em;
+    }
 
-#page_loader .sync {
-  padding: 0.5em 1em;
-  color: var(--clr-bg);
-  font-size: 0.8rem;
-  box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
-}
+    #page_loader .sync {
+      padding: 0.5em 1em;
+      color: var(--clr-bg);
+      font-size: 0.8rem;
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+    }
 
-#page_loader .layer_preview {
-  box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
-  background-color: var(--clr-white);
-  /*color: var(--clr-bg);*/
-  cursor: alias;
-}
-
-
-#page_loader .content h2 {
-  border-bottom: 2px solid var(--clr-text-muted);
-  text-align: left;
-  padding-bottom: 0.5rem;
-}
-
-#page_loader .content p {
-  font-size: 1.1rem;
-}
+    #page_loader .layer_preview {
+      box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+      background-color: var(--clr-white);
+      /*color: var(--clr-bg);*/
+      cursor: alias;
+    }
 
 
-#page_loader.alert-unsigned {
-  display: none;
-  background-color: hsla(var(--hsl-color-bg), 0.8);
-}
+    #page_loader .content h2 {
+      border-bottom: 2px solid var(--clr-text-muted);
+      text-align: left;
+      padding-bottom: 0.5rem;
+    }
 
-#page_loader.alert-unsigned.show {
-  display: flex;
-}
+    #page_loader .content p {
+      font-size: 1.1rem;
+    }
 
-.base-actions {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 2rem;
 
-}
+    #page_loader.alert-unsigned {
+      display: none;
+      background-color: hsla(var(--hsl-color-bg), 0.8);
+    }
 
-.btn_main_dd {
-  background: blue;
-  width: 50px;
-  height: 50px;
-  line-height: 35px;
-  box-sizing: var(--bs);
-  text-align: center;
-  color: #fff;
-  border-radius: 50%;
-  display: none;
-}
+    #page_loader.alert-unsigned.show {
+      display: flex;
+    }
 
-@media (min-width: 750px) {
-  .btn_preview {
-    display: none;
-  }
+    .base-actions {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 2rem;
 
-  .btn_main_dd {
-    display: block;
-  }
-}
+    }
+
+    .btn_main_dd {
+      background: blue;
+      width: 50px;
+      height: 50px;
+      line-height: 35px;
+      box-sizing: var(--bs);
+      text-align: center;
+      color: #fff;
+      border-radius: 50%;
+      display: none;
+    }
+
+    @media (min-width: 750px) {
+      .btn_preview {
+        display: none;
+      }
+
+      .btn_main_dd {
+        display: block;
+      }
+    }
   </style>
   </head>
 
@@ -185,15 +185,14 @@
           <div class="title flex-1 txt-center" style="overflow: hidden">
             <!-- on_edit -->
             <div class="resume_title flex gap-x">
-              <p class="txt-ellipsis txt-capitalize"><?= $resume['title'] ?? "Untitled" ?> | Resume</p>
+              <p class="txt-ellipsis clr-dark txt-capitalize"><?= $resume['title'] ?? "Untitled" ?> | Resume</p>
               <input type="hidden" id="update_title" value="Untitled">
               <button class="fas fa-pencil-alt font-size-small"></button>
             </div>
           </div>
 
           <div class="actions flex gap-1">
-            <button class="bbtn primary flex gap-x btn_clear"
-              onclick="return confirm('Do you want to reset all form data?')">
+            <button class="bbtn primary flex gap-x btn_clear" onclick="return confirm('Do you want to reset all form data?')">
               <span class="spin loader inline-text"></span>
               <i class="icon fas fa-trash"></i>
               <span class="txt">Reset</span>
@@ -397,8 +396,7 @@
                 <div class="form-content education">
                   <div class="education-main"></div>
                   <div class="actions">
-                    <span data-target=".education-main" data-form-object="OBJECT_EDUCATION"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".education-main" data-form-object="OBJECT_EDUCATION" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add education</small>
                     </span>
@@ -415,8 +413,7 @@
                 <div class="form-content experience">
                   <div class="experience-main"></div>
                   <div class="actions">
-                    <span data-target=".experience-main" data-form-object="OBJECT_EXPERIENCE"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".experience-main" data-form-object="OBJECT_EXPERIENCE" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add experience</small>
                     </span>
@@ -435,8 +432,7 @@
                   <div class="social-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".social-main" data-form-object="OBJECT_SOCIAL"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".social-main" data-form-object="OBJECT_SOCIAL" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add social</small>
                     </span>
@@ -455,8 +451,7 @@
                   <div class="language-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".language-main" data-form-object="OBJECT_LANGUAGE"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".language-main" data-form-object="OBJECT_LANGUAGE" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add Language</small>
                     </span>
@@ -475,8 +470,7 @@
                   <div class="skill-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".skill-main" data-form-object="OBJECT_SKILL"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".skill-main" data-form-object="OBJECT_SKILL" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add skill</small>
                     </span>
@@ -495,8 +489,7 @@
                   <div class="hobby-main"></div>
                   <!-- ACTIONS -->
                   <div class="actions">
-                    <span data-target=".hobby-main" data-form-object="OBJECT_HOBBY"
-                      class="bbtn primary small w-fit flex gap-x btn_form_card_add">
+                    <span data-target=".hobby-main" data-form-object="OBJECT_HOBBY" class="bbtn primary small w-fit flex gap-x btn_form_card_add">
                       <i class="fas fa-plus"></i>
                       <small class="text">Add hobby</small>
                     </span>
@@ -567,15 +560,15 @@
                   <h3 class="txt-center">Templates</h3>
                   <div class="main mt-2">
                     <?php foreach ($templates as $data) { ?>
-                    <div class="item">
-                      <img src="/resumes/thumbnails/<?= $data['thumbnail'] ?>" class="img-cover" alt="Design">
-                      <div class="options py-1 px-x">
-                        <a href="#" class="bbtn secondary small use_template">
-                          Use Template <i class="pl-1 fas fa-angle-double-right"></i>
-                        </a>
-                        <input type="hidden" value="<?= $data["template_id"] ?>" id="use_main">
+                      <div class="item">
+                        <img src="/resumes/thumbnails/<?= $data['thumbnail'] ?>" class="img-cover" alt="Design">
+                        <div class="options py-1 px-x">
+                          <a href="#" class="bbtn secondary small use_template">
+                            Use Template <i class="pl-1 fas fa-angle-double-right"></i>
+                          </a>
+                          <input type="hidden" value="<?= $data["template_id"] ?>" id="use_main">
+                        </div>
                       </div>
-                    </div>
                     <?php } ?>
                   </div>
                 </div>
@@ -630,27 +623,25 @@
 
       <!-- //welcome -->
       <?php if (!$user) : ?>
-      <div id="page_loader" class="alert-unsigned">
-        <div class="load_page layer_content flex column w-full gap-2">
-          <p class="sync flex gap-1">
-            <span class="loader inline-text"></span>
-            <span>Syncing ...</span>
-          </p>
+        <div id="page_loader" class="alert-unsigned">
+          <div class="load_page layer_content flex column w-full gap-2">
+            <p class="sync flex gap-1">
+              <span class="loader inline-text"></span>
+              <span>Syncing ...</span>
+            </p>
 
-          <div class="content p-1" style="max-width: 400px;">
-            <h2 class="flex between txt-left">Hi There 👍 <button class="p-x font-size-1 btn_close_unsigned"><i
-                  class="fas fa-times"></i></button></h2>
-            <p class="mt-2">Welcome to our Resume Generator, with high regard. Try creating an account to manages,
-              create and save your resumes with hight user support</p>
-          </div>
+            <div class="content p-1" style="max-width: 400px;">
+              <h2 class="flex between txt-left">Hi There 👍 <button class="p-x font-size-1 btn_close_unsigned"><i class="fas fa-times"></i></button></h2>
+              <p class="mt-2">Welcome to our Resume Generator, with high regard. Try creating an account to manages,
+                create and save your resumes with hight user support</p>
+            </div>
 
-          <div class="flex between w-full" style="max-width: 400px;">
-            <button class="bbtn primary clr-light btn_close_unsigned">Cancel</button>
-            <a href="/app/?create=resume" class="bbtn secondary flex gap-2">Proceed <i
-                class="fas fa-arrow-right"></i></a>
+            <div class="flex between w-full" style="max-width: 400px;">
+              <button class="bbtn primary clr-light btn_close_unsigned">Cancel</button>
+              <a href="/app/?create=resume" class="bbtn secondary flex gap-2">Proceed <i class="fas fa-arrow-right"></i></a>
+            </div>
           </div>
         </div>
-      </div>
       <?php endif; ?>
 
       <!-- // Actiondd. preview  -->

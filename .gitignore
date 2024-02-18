@@ -1,13 +1,15 @@
 vendor
-.vscode
+.vscode*
 API.md
+_dev
 
+# Icons Local Dev
 00FA
-#00FA -> FontsAwsesome Package
 
 screenshots/
-styles/
-
+# styles/
+scss/
+scripts-unminify
 
 config.php
 congig.js
