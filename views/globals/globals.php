@@ -24,9 +24,11 @@
   <meta name="keywords" content="Resume Generator, Create amazing CVs, Resumes, carts and more downloadable in PDF with our awesome resume maker">
   <meta name="author" content="Ankain lesly chuo">
   <!-- favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+
+  <link rel="icon" href="/favicon.ico" />
   <link rel="manifest" href="/site.webmanifest">
 
   <meta name="robot" content="index,follow">
@@ -44,13 +46,11 @@
   <meta property="og:image:width" content="300">
   <meta property="og:image:height" content="250">
 
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
 
-  <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/8ea543231b.js" crossorigin="anonymous"></script> -->
+  <script src="https://kit.fontawesome.com/8ea543231b.js" crossorigin="anonymous"></script>
 
   <!-- // LOCAL DEV -->
   <link rel="stylesheet" href="/00FA/css/all.css" />
-
-  <link rel="icon" href="/favicon.ico" />

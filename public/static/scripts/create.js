@@ -316,17 +316,19 @@ $(".theme-btn").on("click", () => displayThemeBtns()),
     };
     $(".use_template").on("click", async function (e) {
       let t = $(this).siblings("#use_main").val();
-      const o = await useFetch("POST", "/resume/meta", {
+      const { data } = await useFetch("POST", "/resume/meta", {
         resume_id: a.resume,
         template_id: t,
         update_meta: "true",
       });
-      o &&
-        o.data &&
-        o.data.success &&
-        (useToast("Template changed.. 😊"),
-        (a.template = o.data.template),
-        c(n));
+      // User
+      data &&
+        data.success &&
+        (useToast("Template changed.. 😊"), (a.template = data.template), c(n));
+      // No User
+      data &&
+        data.auth &&
+        useToast("Oops, please create account to track template.. 🚩");
     }),
       $(".btn_close_unsigned").on("click", function (e) {
         $(".alert-unsigned").fadeOut();

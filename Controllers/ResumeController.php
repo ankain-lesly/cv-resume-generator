@@ -39,13 +39,13 @@ class ResumeController
   public function createMeta(Request $req, Response $res)
   {
     $data = $req->body();
-    $user = $this->session->get('user')['userID'];
-    if (isset($data['update_meta'])) {
+    $user = $this->session->get('user');
+    if (isset($data['update_meta']) && $user) {
       $sql_resume = "UPDATE tblresume_metadata SET template_id = ? WHERE user_id = ? AND resume_id = ?";
 
       $resume = $this->DataAccess->query(
         $sql_resume,
-        [$data['template_id'], $user, $data['resume_id']]
+        [$data['template_id'], $user['userID'], $data['resume_id']]
       );
 
       if ($resume) $res->json(['success' => true, "template" => $data['template_id']]);
@@ -57,8 +57,8 @@ class ResumeController
     $meta_id = Library::generateToken(12);
     $resume_id = Library::generateToken(12);
 
-    $user = $this->session->get('user') ?? exit('Not authorized...');
-    if ($user['_sess_token'] !== $data['token']) exit('Not authorized...');
+    $user = $this->session->get('user') ?: exit(json_encode(['auth' => true]));
+    if ($user['_sess_token'] !== $data['token']) exit(json_encode(['auth' => true]));
 
     $sql_meta = "INSERT INTO tblresume_metadata 
           (meta_id, user_id, template_id, title, description, resume_id)
@@ -92,7 +92,7 @@ class ResumeController
   // public function getMetaData(Request $req, Response $res)
   public function getMetaData()
   {
-    $user = $this->session->get('user') ?? exit('Not authorized...');
+    $user = $this->session->get('user') ?? exit(json_encode(['auth' => true]));
     $sql_meta = "SELECT *
                 FROM tblresume_metadata WHERE user_id = ?";
 

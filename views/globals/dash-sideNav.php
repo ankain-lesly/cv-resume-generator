@@ -67,11 +67,19 @@ $notifications = 1;
           <i class="fas fa-coins icon"></i>
           <span class="text"><label class="notif_indicator"><?= $resumes ?></label> My Resumes</span></a>
       </li>
-      <li>
-        <a aria-current="page" href="/templates/resume">
-          <i class="fas fa-bezier-curve icon"></i>
-          <span class="text"><label class="notif_indicator"><?= $templates ?></label> Resume Templates</span></a>
-      </li>
+      <?php if ($user['role'] != "USER") : ?>
+        <li>
+          <a aria-current="page" href="/templates/resume">
+            <i class="fas fa-bezier-curve icon"></i>
+            <span class="text"><label class="notif_indicator"><?= $templates ?></label> Resume Templates</span></a>
+        </li>
+      <?php else : ?>
+        <li>
+          <a aria-current="page" href="#not-authorized" style="opacity: 0.5;" onclick="return alert('Not authorize: User eligibility')">
+            <i class="fas fa-bezier-curve icon"></i>
+            <span class="text clr-muted"> Resume Templates</span></a>
+        </li>
+      <?php endif; ?>
       <li>
         <a class="" href="#notifications">
           <i class="fas fa-bell icon"></i>
@@ -89,11 +97,21 @@ $notifications = 1;
           <i class="fas fa-fill icon"></i>
           <span class="text">New Resume <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
       </li>
-      <li>
-        <a class="" href="/new/template">
-          <i class="fas fa-edit icon"></i>
-          <span class="text">Add Template <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
-      </li>
+
+      <?php if ($user['role'] != "USER") : ?>
+
+        <li>
+          <a class="" href="/new/template">
+            <i class="fas fa-edit icon"></i>
+            <span class="text">Add Template <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
+        </li>
+      <?php else : ?>
+        <li>
+          <a class="" href="#not-authorized" style="opacity: 0.5;" onclick="return alert('Not authorize: User eligibility')">
+            <i class="fas fa-edit icon"></i>
+            <span class="text">Add Template <i class="fas fa-arrow-right font-size-small pl-x"></i></span></a>
+        </li>
+      <?php endif; ?>
     </ul>
     <p class="menu-title">Resources</p>
     <ul class="menu-list">

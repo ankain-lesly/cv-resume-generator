@@ -32,8 +32,7 @@ class Icon
   // Load Icon
   private static function loadIconImage($name)
   {
-    $temp =  '<img src="/static/media/icons/logo.png" width="40px" alt="Icon {{NAME}}">';
-    // $temp =  '<img src="/static/media/icons/{{NAME}}.png" width="45px" alt="Icon {{NAME}}">';
+    $temp =  '<img src="/static/media/icons/{{NAME}}.png" width="30px" alt="Icon {{NAME}}">';
     return str_replace("{{NAME}}", $name, $temp);
   }
 }
@@ -116,5 +115,9 @@ function makeBody(string $string)
     overflow: hidden;
     font-family: 1.2rem;
     position: relative;
+  }
+
+  .on-icon img {
+    width: 20px !important;
   }
 </style>
