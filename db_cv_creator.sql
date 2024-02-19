@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2023 at 12:26 PM
+-- Generation Time: Feb 19, 2024 at 02:10 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -91,8 +91,7 @@ CREATE TABLE `tblresumes` (
 --
 
 INSERT INTO `tblresumes` (`id`, `resume_id`, `cover_photo`, `personal`, `extras`, `education`, `experience`, `social`, `language`, `skill`, `hobby`, `created_on`, `updated_on`) VALUES
-(3, 'E08DDD2780606D5F7CD7', 'RESUME-209179933BA6ADA9957E46FC.jpg', '{\"firstname\":\"Ankain\",\"lastname\":\"lesly Chup\",\"address\":\"Cam Bamenda\",\"date_of_birth\":\"275760-05-06\",\"headline\":\"Font end Dev\",\"about\":\"About my soul...\",\"email\":\"leeleslyank@gmail.com\",\"phone\":\"670710480\"}', '[]', '{\"UU-1690948536790\":{\"education\":\"OJaf\",\"school\":\"sajadf\",\"start_date\":\"4894-06-04\",\"end_date\":\"0004-08-04\",\"city\":\"Bamenda\",\"description\":\"asdfasdffas\"},\"UU-1690955861050\":{\"education\":\"adfsadf\",\"school\":\"asdf sad\",\"start_date\":\"0003-03-04\",\"end_date\":\"0005-03-04\",\"city\":\"asdasf\",\"description\":\"asdfsadf \",\"present\":\"true\"}}', '{\"UU-1690949911541\":{\"position\":\"Soft\",\"employer\":\"Civilsalt\",\"start_date\":\"0768-05-08\",\"end_date\":\"7867-06-08\",\"city\":\"Bamenda\",\"description\":\"adfas dfsadfa sdf sdf sdfa sd\"},\"UU-1690955833378\":{\"position\":\"asdf\",\"employer\":\"asdf\",\"city\":\"asdf\",\"description\":\"asdfsadf\",\"end_date\":\"6456-04-05\",\"start_date\":\"0006-04-05\"}}', '{\"UU-1690950717900\":{\"social\":\"Facebook\",\"handle\":\"asdffas d\"},\"UU-1690950726996\":{\"social\":\"Telegram\",\"handle\":\"asdfsadf\"},\"UU-1690951458989\":{\"social\":\"Website\",\"handle\":\"adf\"},\"UU-1690955759154\":{\"social\":\"Website\",\"handle\":\"asdfsaf\"},\"UU-16909558', '', '', '', '2023-07-25 14:45:30', '2023-08-02 09:16:18'),
-(16, '99068FFA42F940A8AC06614551C5B8B4', 'RESUME-39E077A745978B1EE5AC8C07.jpg', '{\"firstname\":\"Ankain\",\"lastname\":\"lesly Chup\",\"address\":\"Cam Bamenda\",\"date_of_birth\":\"275760-05-06\",\"headline\":\"Font end Dev\",\"about\":\"About my soul...\",\"email\":\"leeleslyank@gmail.com\",\"phone\":\"670710480\"}', '[]', '{\"UU-1690948536790\":{\"education\":\"OJaf\",\"school\":\"sajadf\",\"start_date\":\"4894-06-04\",\"end_date\":\"0004-08-04\",\"city\":\"Bamenda\",\"description\":\"asdfasdffas\"},\"UU-1690949085750\":{\"education\":\"111HYD\",\"school\":\"asdf \",\"start_date\":\"0076-07-08\",\"end_date\":\"0078-07-06\",\"city\":\"Casss\",\"description\":\"lorem dorl.sadfl\"}}', '{\"UU-1690949911541\":{\"position\":\"Soft\",\"employer\":\"Civilsalt\",\"start_date\":\"0768-05-08\",\"end_date\":\"7867-06-08\",\"city\":\"Bamenda\",\"description\":\"adfas dfsadfa sdf sdf sdfa sd\"},\"UU-1690949945667\":{\"position\":\"Cake\",\"employer\":\"Yoaid\",\"start_date\":\"0005-05-07\",\"city\":\"57 street ayaba\",\"description\":\"sadfj;adkf sadf\"}}', '{\"UU-1690950717900\":{\"social\":\"Facebook\",\"handle\":\"asdffas d\"},\"UU-1690950726996\":{\"social\":\"Telegram\",\"handle\":\"asdfsadf\"},\"UU-1690950732141\":{\"social\":\"Twitter\"},\"UU-1690950828981\":{\"social\":\"LinkedIn\",\"handle\":\"asf\"},\"UU-1690951458989\":{\"social\":\"', '', '', '', '2023-08-01 18:08:21', '2023-08-01 21:51:31');
+(23, '57C66A66E1D49FF64A2AA9DC', 'Untited-R-E3D38EFBC1B4A156818CC4BC.jpg', '{\"firstname\":\"Test\",\"lastname\":\"Name\",\"address\":\"test@gmail.com\",\"date_of_birth\":\"3353-02-05\",\"headline\":\"Creative Designer\",\"about\":\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero corporis veritatis asperiores commodi, tempore alias aliquid modi, deserunt in eveniet voluptatum ad iste, cupiditate eos numquam expedita tenetur. Nesciunt, mollitia!\",\"email\":\"test@gmail.com\",\"phone\":\"+4564546546\"}', '\"\"', '{\"UU-1708193560677\":{\"education\":\"Computer Design\",\"school\":\"University of bamenda\",\"start_date\":\"2024-02-21\",\"end_date\":\"2024-02-07\",\"city\":\"Bamenda\",\"present\":\"\",\"description\":\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero corporis veritatis asperiores commodi, te \"}}', '\"\"', '\"\"', '', '', '', '2024-02-19 02:09:52', '2024-02-19 02:10:10');
 
 -- --------------------------------------------------------
 
@@ -116,8 +115,7 @@ CREATE TABLE `tblresume_metadata` (
 --
 
 INSERT INTO `tblresume_metadata` (`id`, `meta_id`, `user_id`, `template_id`, `title`, `description`, `resume_id`, `created_on`) VALUES
-(3, '05EC5978A0270C0623D0', 'E410B95575C4CD27FA32B3B9', '26F455977DEC2E1F3235', 'Test', 'test', 'E08DDD2780606D5F7CD7', '2023-07-25 14:45:30'),
-(16, '76431F55E647E275897C346DC65F0E1D', 'E410B95575C4CD27FA32B3B9', '666C76835290FF20BC3B', 'Job', 'My first job..', '99068FFA42F940A8AC06614551C5B8B4', '2023-08-01 18:08:21');
+(23, 'A08EA7C097F0C1E79F837371', 'DA9DC14063DF9AE4201FBBC8', '666C76835290FF20BC3B', 'Test Resume', 'My next Job', '57C66A66E1D49FF64A2AA9DC', '2024-02-19 02:09:52');
 
 -- --------------------------------------------------------
 
@@ -178,8 +176,7 @@ CREATE TABLE `tblusers` (
 --
 
 INSERT INTO `tblusers` (`id`, `userID`, `username`, `email`, `phone`, `address`, `profile`, `password`, `reg_date`, `role`, `action`, `password_reset`) VALUES
-(26, '378DF613E235DBF7DEE5BE91', 'ankleexx', 'ankleexx@gmail.com', '', '', '', '$2y$10$sLUmF73tAAdwxccweZgjh.AV8qxmV2AcRSPnaGAra0VWZXsuKGhrO', '2023-07-13 15:08:39', '1', 'NONE', ''),
-(27, 'E410B95575C4CD27FA32B3B9', 'Test name', 'test@gmail.com', '+4564546546 asdf', '345 go street A 21 asdfsadf', 'IMG-TEST-NAME-E410B95575C4CD27FA32B3B9.jpg', '$2y$10$T90sHM4jTVHZZlfi7Ys2tO5Tcqf9ITzOqmy2L1OdjDYsICjEDx7Sm', '2023-07-24 18:05:29', '3', 'NONE', 'DONE');
+(30, 'DA9DC14063DF9AE4201FBBC8', 'Test name', 'test@gmail.com', '+000 000 000', '', '', '$2y$10$Q43G232yiK8sCeKFZnbzBODBTYcSueUfxyVIEm9ErNOOKi25VLaCW', '2024-02-19 02:08:15', 'USER', 'NONE', '');
 
 --
 -- Indexes for dumped tables
@@ -241,13 +238,13 @@ ALTER TABLE `tblorders`
 -- AUTO_INCREMENT for table `tblresumes`
 --
 ALTER TABLE `tblresumes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tblresume_metadata`
 --
 ALTER TABLE `tblresume_metadata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbltemplates`
@@ -259,7 +256,7 @@ ALTER TABLE `tbltemplates`
 -- AUTO_INCREMENT for table `tblusers`
 --
 ALTER TABLE `tblusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
