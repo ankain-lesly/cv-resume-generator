@@ -1,3 +1,5 @@
+<!-- RENAME FILE TO -->
+<!-- config.php -->
 <?php
 // Custom Assets
 define("ROOT_URL", "https://www.website.com");

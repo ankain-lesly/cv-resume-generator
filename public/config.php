@@ -1,7 +1,7 @@
 <?php
 // Custom Assets
-define("ROOT_URL", "https://www.letech-cg.com");
-define("MAIN_EMAIL", "support@letech-cg.com");
+define("ROOT_URL", "https://www.website.com");
+define("MAIN_EMAIL", "email@server.com");
 
 // Host Server 
 
